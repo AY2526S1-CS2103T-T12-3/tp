@@ -288,32 +288,147 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ExcoLink` app and 
+the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+#### UC1: Add Member
 
-**MSS**
+- **Primary Actor:** Exco member
+- **Preconditions:**
+    - Application is running
+    - User is at the command input interface
+- **MSS:**
+    1. User enters a valid `add n/NAME p/PHONE e/EMAIL` command.
+    2. System validates all fields.
+    3. System checks for duplicates.
+    4. System adds the new member.
+    5. System confirms successful addition.
+- **Alternative Flows:**
+    - 1a. Missing or invalid parameter → System displays error.
+    - 1b. Duplicate detected → System rejects entry.
+    - 1c. Unknown prefix → System displays error.
+- **Guarantees:**
+    - Member is stored if input is valid and unique.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+#### UC2: Remove Member
 
-    Use case ends.
+- **Primary Actor:** Exco member
+- **Preconditions:**
+    - Member list is not empty
+- **MSS:**
+    1. User enters `remove INDEX`.
+    2. System validates the index.
+    3. System deletes the member.
+    4. System confirms removal.
+- **Alternative Flows:**
+    - 1a. Invalid or out-of-range index → System displays error.
+    - 1b. Empty list → System displays error.
+- **Guarantees:**
+    - The specified member is removed.
 
-**Extensions**
+#### UC3: View a Member
 
-* 2a. The list is empty.
+- **Primary Actor:** Exco member
+- **Preconditions:**
+    - At least one member exists
+- **MSS:**
+    1. User enters `view INDEX`.
+    2. System validates the index.
+    3. System displays the member’s full information.
+- **Alternative Flows:**
+    - 1a. Invalid or out-of-range index → System displays error.
+- **Guarantees:**
+    - Member details are displayed.
 
-  Use case ends.
+#### UC4: View All Members
 
-* 3a. The given index is invalid.
+- **Primary Actor:** Exco member
+- **Preconditions:** None
+- **MSS:**
+    1. User enters `list`.
+    2. System retrieves and displays all members.
+- **Alternative Flows:**
+    - 1a. Empty list → System displays “No members found.”
+- **Guarantees:**
+    - All members are displayed.
 
-    * 3a1. AddressBook shows an error message.
+#### UC5: Create Sub-Committee
 
-      Use case resumes at step 2.
+- **Primary Actor:** Exco member
+- **Preconditions:** None
+- **MSS:**
+    1. User enters `subcom sc/NAME`.
+    2. System validates the name.
+    3. System checks for duplicates.
+    4. System creates the sub-committee and confirms.
+- **Alternative Flows:**
+    - 1a. Invalid name → System displays error.
+    - 1b. Duplicate name → System displays error.
+- **Guarantees:**
+    - Sub-committee is stored and available for use.
 
-*{More to be added}*
+#### UC6: Assign Member to Sub-Committee
+
+- **Primary Actor:** Exco member
+- **Preconditions:**
+    - Member exists
+    - Sub-committee exists
+- **MSS:**
+    1. User enters `assign-subcom INDEX sc/SUB-COMMITTEE`.
+    2. System validates index and sub-committee.
+    3. System assigns member to sub-committee and confirms.
+- **Alternative Flows:**
+    - 1a. Invalid index → System displays error.
+    - 1b. Sub-committee not found → System displays error.
+- **Guarantees:**
+    - Member is linked to the specified sub-committee.
+
+#### UC7: View Members in Sub-Committee
+
+- **Primary Actor:** Exco member
+- **Preconditions:**
+    - Sub-committee exists
+- **MSS:**
+    1. User enters `subcom-list sc/SUB-COMMITTEE`.
+    2. System validates the sub-committee.
+    3. System retrieves and displays members assigned.
+- **Alternative Flows:**
+    - 1a. Sub-committee not found → System displays error.
+    - 1b. No members in sub-committee → System displays empty message.
+- **Guarantees:**
+    - Members in the sub-committee are displayed.
+
+#### UC8: Create Role
+
+- **Primary Actor:** Exco member
+- **Preconditions:** None
+- **MSS:**
+    1. User enters `role r/ROLE`.
+    2. System validates the role name.
+    3. System checks for duplicates.
+    4. System creates the role and confirms.
+- **Alternative Flows:**
+    - 1a. Invalid role name → System displays error.
+    - 1b. Duplicate role → System displays error.
+- **Guarantees:**
+    - New role is stored and available for assignment.
+
+#### UC9: Assign Member to Role
+
+- **Primary Actor:** Exco member
+- **Preconditions:**
+    - Member exists
+    - Role exists
+- **MSS:**
+    1. User enters `assign-role INDEX r/ROLE`.
+    2. System validates index and role.
+    3. System assigns the role to the member and confirms.
+- **Alternative Flows:**
+    - 1a. Invalid index → System displays error.
+    - 1b. Role not found → System displays error.
+- **Guarantees:**
+    - Member is associated with the specified role.
+
 
 ### Non-Functional Requirements
 
