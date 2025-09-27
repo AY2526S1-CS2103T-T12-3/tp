@@ -288,32 +288,124 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ExcoLink` app and  
+the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+#### UC1: Add Member
+**MSS:**
+1. User enters command to add member.
+2. System adds the new member and displays success message.
 
-**MSS**
+**Extensions:**
+- 1a. Missing or invalid parameter → System displays error.
+- 1b. Duplicate detected → System rejects entry.
+- 1c. Unknown prefix → System displays error.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**Guarantees:**
+- Member is stored if input is valid.  
+- No duplicate members will be added.
+--- 
 
-    Use case ends.
+#### UC2: Remove Member
+**Preconditions:**
+- Member exists
 
-**Extensions**
+**MSS:**
+1. User enters command to remove member.
+2. System deletes the member and displays success message.
 
-* 2a. The list is empty.
+**Extensions:**
+- 1a. Invalid or out-of-range index → System displays error.
+- 1b. Empty list → System displays error.
 
-  Use case ends.
+---
 
-* 3a. The given index is invalid.
+#### UC3: View a Member
+**Preconditions:**
+- Member exists
 
-    * 3a1. AddressBook shows an error message.
+**MSS:**
+1. User enters command to view member.
+2. System displays the member’s full information.
 
-      Use case resumes at step 2.
+**Extensions:**
+- 1a. Invalid or out-of-range index → System displays error.
 
-*{More to be added}*
+---
+
+#### UC4: View All Members
+**MSS:**
+1. User enters command to view all members.
+2. System retrieves and displays all members.
+
+**Extensions:**
+- 1a. Empty list → System displays “No members found.”
+
+---
+
+#### UC5: Create Subcommittee
+**MSS:**
+1. User enters command to create subcommittee.
+2. System creates the subcommittee and displays success message.
+
+**Extensions:**
+- 1a. Invalid name → System displays error.
+- 1b. Duplicate name → System displays error.
+
+---
+
+#### UC6: Assign Member to Subcommittee
+**Preconditions:**
+- Member exists
+- Subcommittee exists
+
+**MSS:**
+1. User enters command to assign member to subcommittee.
+2. System assigns member to subcommittee and displays success message.
+
+**Extensions:**
+- 1a. Invalid index → System displays error.
+- 1b. Subcommittee not found → System displays error.
+
+---
+
+#### UC7: View Members in Subcommittee
+**Preconditions:**
+- Subcommittee exists
+
+**MSS:**
+1. User enters command to view all members in subcommittee.
+2. System retrieves and displays members assigned.
+
+**Extensions:**
+- 1a. Subcommittee not found → System displays error.
+- 1b. No members in subcommittee → System displays empty message.
+
+---
+
+#### UC8: Create Role
+**MSS:**
+1. User enters command to create role.
+2. System creates the role and displays success message.
+
+**Extensions:**
+- 1a. Invalid role name → System displays error.
+- 1b. Duplicate role → System displays error.
+
+---
+
+#### UC9: Assign Member to Role
+**Preconditions:**
+- Member exists
+- Role exists
+
+**MSS:**
+1. User enters command to assign member to role.
+2. System assigns the role to the member and displays success message.
+
+**Extensions:**
+- 1a. Invalid index → System displays error.
+- 1b. Role not found → System displays error.
 
 ### Non-Functional Requirements
 
