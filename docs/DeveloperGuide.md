@@ -288,146 +288,174 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `ExcoLink` app and 
+(For all use cases below, the **System** is the `ExcoLink` app and  
 the **Actor** is the `user`, unless specified otherwise)
 
 #### UC1: Add Member
+**Preconditions:**
+- Application is running
+- User is at the command input interface
 
-- **Primary Actor:** Exco member
-- **Preconditions:**
-    - Application is running
-    - User is at the command input interface
-- **MSS:**
-    1. User enters a valid `add n/NAME p/PHONE e/EMAIL` command.
-    2. System validates all fields.
-    3. System checks for duplicates.
-    4. System adds the new member.
-    5. System confirms successful addition.
-- **Alternative Flows:**
-    - 1a. Missing or invalid parameter → System displays error.
-    - 1b. Duplicate detected → System rejects entry.
-    - 1c. Unknown prefix → System displays error.
-- **Guarantees:**
-    - Member is stored if input is valid and unique.
+**MSS:**
+1. User enters a valid `add n/NAME p/PHONE e/EMAIL` command.
+2. System validates all fields.
+3. System checks for duplicates.
+4. System adds the new member.
+5. System confirms successful addition.
+
+**Extensions:**
+- 1a. Missing or invalid parameter → System displays error.
+- 1b. Duplicate detected → System rejects entry.
+- 1c. Unknown prefix → System displays error.
+
+**Guarantees:**
+- Member is stored if input is valid and unique.
+
+---
 
 #### UC2: Remove Member
+**Preconditions:**
+- Member list is not empty
 
-- **Primary Actor:** Exco member
-- **Preconditions:**
-    - Member list is not empty
-- **MSS:**
-    1. User enters `remove INDEX`.
-    2. System validates the index.
-    3. System deletes the member.
-    4. System confirms removal.
-- **Alternative Flows:**
-    - 1a. Invalid or out-of-range index → System displays error.
-    - 1b. Empty list → System displays error.
-- **Guarantees:**
-    - The specified member is removed.
+**MSS:**
+1. User enters `remove INDEX`.
+2. System validates the index.
+3. System deletes the member.
+4. System confirms removal.
+
+**Extensions:**
+- 1a. Invalid or out-of-range index → System displays error.
+- 1b. Empty list → System displays error.
+
+**Guarantees:**
+- The specified member is removed.
+
+---
 
 #### UC3: View a Member
+**Preconditions:**
+- At least one member exists
 
-- **Primary Actor:** Exco member
-- **Preconditions:**
-    - At least one member exists
-- **MSS:**
-    1. User enters `view INDEX`.
-    2. System validates the index.
-    3. System displays the member’s full information.
-- **Alternative Flows:**
-    - 1a. Invalid or out-of-range index → System displays error.
-- **Guarantees:**
-    - Member details are displayed.
+**MSS:**
+1. User enters `view INDEX`.
+2. System validates the index.
+3. System displays the member’s full information.
+
+**Extensions:**
+- 1a. Invalid or out-of-range index → System displays error.
+
+**Guarantees:**
+- Member details are displayed.
+
+---
 
 #### UC4: View All Members
+**Preconditions:**
+- None
 
-- **Primary Actor:** Exco member
-- **Preconditions:** None
-- **MSS:**
-    1. User enters `list`.
-    2. System retrieves and displays all members.
-- **Alternative Flows:**
-    - 1a. Empty list → System displays “No members found.”
-- **Guarantees:**
-    - All members are displayed.
+**MSS:**
+1. User enters `list`.
+2. System retrieves and displays all members.
+
+**Extensions:**
+- 1a. Empty list → System displays “No members found.”
+
+**Guarantees:**
+- All members are displayed.
+
+---
 
 #### UC5: Create Sub-Committee
+**Preconditions:**
+- None
 
-- **Primary Actor:** Exco member
-- **Preconditions:** None
-- **MSS:**
-    1. User enters `subcom sc/NAME`.
-    2. System validates the name.
-    3. System checks for duplicates.
-    4. System creates the sub-committee and confirms.
-- **Alternative Flows:**
-    - 1a. Invalid name → System displays error.
-    - 1b. Duplicate name → System displays error.
-- **Guarantees:**
-    - Sub-committee is stored and available for use.
+**MSS:**
+1. User enters `subcom sc/NAME`.
+2. System validates the name.
+3. System checks for duplicates.
+4. System creates the sub-committee and confirms.
+
+**Extensions:**
+- 1a. Invalid name → System displays error.
+- 1b. Duplicate name → System displays error.
+
+**Guarantees:**
+- Sub-committee is stored and available for use.
+
+---
 
 #### UC6: Assign Member to Sub-Committee
+**Preconditions:**
+- Member exists
+- Sub-committee exists
 
-- **Primary Actor:** Exco member
-- **Preconditions:**
-    - Member exists
-    - Sub-committee exists
-- **MSS:**
-    1. User enters `assign-subcom INDEX sc/SUB-COMMITTEE`.
-    2. System validates index and sub-committee.
-    3. System assigns member to sub-committee and confirms.
-- **Alternative Flows:**
-    - 1a. Invalid index → System displays error.
-    - 1b. Sub-committee not found → System displays error.
-- **Guarantees:**
-    - Member is linked to the specified sub-committee.
+**MSS:**
+1. User enters `assign-subcom INDEX sc/SUB-COMMITTEE`.
+2. System validates index and sub-committee.
+3. System assigns member to sub-committee and confirms.
+
+**Extensions:**
+- 1a. Invalid index → System displays error.
+- 1b. Sub-committee not found → System displays error.
+
+**Guarantees:**
+- Member is linked to the specified sub-committee.
+
+---
 
 #### UC7: View Members in Sub-Committee
+**Preconditions:**
+- Sub-committee exists
 
-- **Primary Actor:** Exco member
-- **Preconditions:**
-    - Sub-committee exists
-- **MSS:**
-    1. User enters `subcom-list sc/SUB-COMMITTEE`.
-    2. System validates the sub-committee.
-    3. System retrieves and displays members assigned.
-- **Alternative Flows:**
-    - 1a. Sub-committee not found → System displays error.
-    - 1b. No members in sub-committee → System displays empty message.
-- **Guarantees:**
-    - Members in the sub-committee are displayed.
+**MSS:**
+1. User enters `subcom-list sc/SUB-COMMITTEE`.
+2. System validates the sub-committee.
+3. System retrieves and displays members assigned.
+
+**Extensions:**
+- 1a. Sub-committee not found → System displays error.
+- 1b. No members in sub-committee → System displays empty message.
+
+**Guarantees:**
+- Members in the sub-committee are displayed.
+
+---
 
 #### UC8: Create Role
+**Preconditions:**
+- None
 
-- **Primary Actor:** Exco member
-- **Preconditions:** None
-- **MSS:**
-    1. User enters `role r/ROLE`.
-    2. System validates the role name.
-    3. System checks for duplicates.
-    4. System creates the role and confirms.
-- **Alternative Flows:**
-    - 1a. Invalid role name → System displays error.
-    - 1b. Duplicate role → System displays error.
-- **Guarantees:**
-    - New role is stored and available for assignment.
+**MSS:**
+1. User enters `role r/ROLE`.
+2. System validates the role name.
+3. System checks for duplicates.
+4. System creates the role and confirms.
+
+**Extensions:**
+- 1a. Invalid role name → System displays error.
+- 1b. Duplicate role → System displays error.
+
+**Guarantees:**
+- New role is stored and available for assignment.
+
+---
 
 #### UC9: Assign Member to Role
+**Preconditions:**
+- Member exists
+- Role exists
 
-- **Primary Actor:** Exco member
-- **Preconditions:**
-    - Member exists
-    - Role exists
-- **MSS:**
-    1. User enters `assign-role INDEX r/ROLE`.
-    2. System validates index and role.
-    3. System assigns the role to the member and confirms.
-- **Alternative Flows:**
-    - 1a. Invalid index → System displays error.
-    - 1b. Role not found → System displays error.
-- **Guarantees:**
-    - Member is associated with the specified role.
+**MSS:**
+1. User enters `assign-role INDEX r/ROLE`.
+2. System validates index and role.
+3. System assigns the role to the member and confirms.
+
+**Extensions:**
+- 1a. Invalid index → System displays error.
+- 1b. Role not found → System displays error.
+
+**Guarantees:**
+- Member is associated with the specified role.
 
 
 ### Non-Functional Requirements
