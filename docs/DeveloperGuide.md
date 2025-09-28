@@ -262,27 +262,28 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* exco of a large university club with many sub-committees and members with different roles
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: allows excos to quickly retrieve and manage the information of their members, such as their contact information, sub-committee, participation record etc.
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​                                                                    | So that I can…​                        |
+| -------- |---------|---------------------------------------------------------------------------------|----------------------------------------|
+| `* * *`  | Exco    | view a list of all current members                                              | have a full overview of the membership |
+| `* * *`  | Exco    | add a new member with their basic information e.g. name and contact information |                                        |
+| `* * *`  | Exco    | remove a member                                                                 | remove outdated records                |
+| `* * *`  | Exco    | view a member's contact information                                             | communicate with them easily           |
+| `* *`    | Exco    | search for a member by name                                                     | quickly access their details           |
+| `*`      | Exco    | search members by year of joining                                               | identify seniority                     |
 
 *{More to be added}*
 
