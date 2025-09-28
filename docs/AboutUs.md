@@ -9,25 +9,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Glenn Chiang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/glenn-chiang.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Glenn-Chiang)]
+[[portfolio](team/glenn-chiang.md)]
 
-- Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-- Role: Team Lead
-- Responsibilities: UI
+* Role: Team Lead
 
 ### Wang Weijie
 
@@ -38,21 +27,30 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 - Role: Developer
 - Responsibilities: Data
 
-### Jean Doe
+### Ernest Seng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sengernest.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/sengernest)] [[portfolio](team/sengernest.md)]
+
+* Role: Developer
+* Responsibilities: Logic
+
+### Wei Chen
+
+<img src="images/whyudothiss.png" width="200px">
+
+[[github](http://github.com/Whyudothiss)]
 [[portfolio](team/johndoe.md)]
 
 - Role: Developer
 - Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Deshpande Neeti
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/neet-it.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/neet-it)]
 [[portfolio](team/johndoe.md)]
 
 - Role: Developer
