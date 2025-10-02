@@ -474,8 +474,18 @@ the **Actor** is the `user`, unless specified otherwise)
 
 ### Glossary
 
+
+- **CLI**: (Command Line Interface) A text based interface where users interact with the system using commands.
+- **Exco**: Executive committee of the club. Includes all members in leadership or administrative roles.
 - **Mainstream OS**: Windows, Linux, Unix, MacOS
+- **Member**: A person in the club whose record is stored in the system. Includes basic details like name, phone number,
+email.
+- **New Exco Member**: New executive committee member of the club. The member is new to the system.
+- **Participation Record**: Evaluation of the members performace with repect to their roles.
 - **Private contact detail**: A contact detail that is not meant to be shared with others
+- **Role**: The responsibility assigned to a member. Members can have multiple roles.
+- **Sub-committee/PD**: A smaller group under the main Exco, can be responsible for specific functions. Members may belong 
+to one or more Sub-committees.
 
 ---
 
