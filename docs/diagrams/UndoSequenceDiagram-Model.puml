@@ -4,18 +4,18 @@ skinparam ArrowFontStyle plain
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant ":VersionedExcoLink" as VersionedExcoLink MODEL_COLOR
 end box
 
-[-> Model : undoAddressBook()
+[-> Model : undoExcoLink()
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+Model -> VersionedExcoLink : undo()
+activate VersionedExcoLink
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+VersionedExcoLink -> VersionedExcoLink :resetData(ReadOnlyExcoLink)
+VersionedExcoLink --> Model :
+deactivate VersionedExcoLink
 
 [<-- Model
 deactivate Model
