@@ -2,6 +2,10 @@ package seedu.excolink.model.subcom;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents a subcommittee in ExcoLink.
+ * Guarantees: immutable
+ */
 public class Subcom {
     public final String subcomName;
 
