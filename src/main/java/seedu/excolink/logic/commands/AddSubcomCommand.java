@@ -7,7 +7,7 @@ import seedu.excolink.commons.util.ToStringBuilder;
 import seedu.excolink.logic.Messages;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
-import seedu.excolink.model.person.Person;
+import seedu.excolink.model.subcom.Subcom;
 
 public class AddSubcomCommand extends Command {
     public static final String COMMAND_WORD = "add-subcom";
@@ -19,28 +19,26 @@ public class AddSubcomCommand extends Command {
             + PREFIX_SUBCOM + "Publicity";
 
     public static final String MESSAGE_SUCCESS = "New subcommittee added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This subcommittee already exists.";
+    public static final String MESSAGE_DUPLICATE_SUBCOM = "This subcommittee already exists.";
 
-    private final Person toAdd;
+    private final Subcom toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddSubcomCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddSubcomCommand(Subcom subcom) {
+        requireNonNull(subcom);
+        toAdd = subcom;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
+        // TODO: Check for duplicate subcom
+        // TODO: Add subcom to model
 
-        model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toString()));
     }
 
     @Override
@@ -50,13 +48,12 @@ public class AddSubcomCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof AddSubcomCommand)) {
             return false;
         }
 
-//        AddCommand otherAddCommand = (AddCommand) other;
-//        return toAdd.equals(otherAddCommand.toAdd);
-        return true;
+        AddSubcomCommand otherAddSubcomCommand = (AddSubcomCommand) other;
+        return toAdd.equals(otherAddSubcomCommand.toAdd);
     }
 
     @Override

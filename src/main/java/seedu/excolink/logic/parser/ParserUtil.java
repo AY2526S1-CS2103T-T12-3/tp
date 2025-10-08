@@ -14,6 +14,7 @@ import seedu.excolink.model.person.Email;
 import seedu.excolink.model.person.Name;
 import seedu.excolink.model.person.Phone;
 import seedu.excolink.model.role.Role;
+import seedu.excolink.model.subcom.Subcom;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -122,4 +123,15 @@ public class ParserUtil {
         return roleSet;
     }
 
+    /**
+     * Parses a {@code String subcom} into a {@code Subcom}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code subcom} is invalid.
+     */
+    public static Subcom parseSubcom(String subcom) throws ParseException {
+        requireNonNull(subcom);
+        String trimmedSubcom = subcom.trim();
+        return new Subcom(trimmedSubcom);
+    }
 }
