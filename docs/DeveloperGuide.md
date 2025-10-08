@@ -308,7 +308,7 @@ _{More to be added}_
 
 ### Use cases
 
-(For all use cases below, the **System** is the `ExcoLink` app and  
+(For all use cases below, the **System** is the `ExcoLink` app and
 the **Actor** is the `user`, unless specified otherwise)
 
 #### UC1: Add Member
