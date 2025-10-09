@@ -123,4 +123,18 @@ public class ParserUtil {
         return roleSet;
     }
 
+    /**
+     * Parses a {@code String subcom} into a {@code Subcom}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code subcom} is invalid.
+     */
+    public static Subcom parseSubcom(String subcom) throws ParseException {
+        requireNonNull(subcom);
+        String trimmedSubcom = subcom.trim();
+        if (!Subcom.isValidSubcom(trimmedSubcom)) {
+            throw new ParseException(Subcom.MESSAGE_CONSTRAINTS);
+        }
+        return new Subcom(trimmedSubcom);
+    }
 }

@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.excolink.commons.core.GuiSettings;
 import seedu.excolink.commons.core.LogsCenter;
 import seedu.excolink.model.person.Person;
+import seedu.excolink.model.subcom.Subcom;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -109,6 +110,18 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         excoLink.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public boolean hasSubcom(Subcom subcom) {
+        requireNonNull(subcom);
+        // TODO: excoLink.hasSubcom(subcom)
+        return false;
+    }
+
+    @Override
+    public void addSubcom(Subcom subcom) {
+        // TODO: excoLink.addSubcom(subcom)
     }
 
     //=========== Filtered Person List Accessors =============================================================
