@@ -8,7 +8,8 @@ import static seedu.excolink.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable
  */
 public class Subcom {
-    public static final String MESSAGE_CONSTRAINTS = "Subcommitee names can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Subcommittee names can take any values, " +
+            "and it should not be blank";
 
     /*
      * The first character of the subcommittee name must not be a whitespace,

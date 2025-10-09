@@ -132,6 +132,9 @@ public class ParserUtil {
     public static Subcom parseSubcom(String subcom) throws ParseException {
         requireNonNull(subcom);
         String trimmedSubcom = subcom.trim();
+        if (!Subcom.isValidSubcom(subcom)) {
+            throw new ParseException(Subcom.MESSAGE_CONSTRAINTS);
+        }
         return new Subcom(trimmedSubcom);
     }
 }
