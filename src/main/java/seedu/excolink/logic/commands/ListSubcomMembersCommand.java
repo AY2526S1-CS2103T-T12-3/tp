@@ -35,7 +35,8 @@ public class ListSubcomMembersCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-/* TOBE: Included after addition of hasSubcom() and getSubcom()
+/* TODO: Included after addition of hasSubcom() and getSubcom()
+
         if(!model.hasSubcom(this.subcom)) {
             throw new CommandException(MESSAGE_SUCCESS);
         }
