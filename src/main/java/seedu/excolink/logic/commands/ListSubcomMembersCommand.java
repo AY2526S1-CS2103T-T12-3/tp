@@ -4,8 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 
 import seedu.excolink.logic.commands.exceptions.CommandException;
-import seedu.excolink.model.Model;
+
 import seedu.excolink.commons.util.ToStringBuilder;
+import seedu.excolink.model.Model;
 import seedu.excolink.model.subcom.Subcom;
 
 /**
@@ -24,26 +25,27 @@ public class ListSubcomMembersCommand extends Command {
 
     private final Subcom subcomToList;
 
+    /**
+     * Creates a ListSubcomMembersCommand to list the members in {@code Subcom}
+     */
     public ListSubcomMembersCommand(Subcom subcom) {
         requireNonNull(subcom);
         this.subcomToList = subcom;
 
     }
 
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-/* TODO: Included after addition of hasSubcom() and getSubcom()
-
-        if(!model.hasSubcom(this.subcom)) {
+        if(!model.hasSubcom(this.subcomToList)) {
             throw new CommandException(MESSAGE_SUCCESS);
         }
+        /* TODO: Included after addition of hasSubcom() and getSubcom()
 
         model.updateFilteredPersonList(person -> person.getSubcom().equals(subcomToList));
 
- */
+        */
         return new CommandResult(String.format(MESSAGE_SUCCESS, subcomToList));
     }
 
