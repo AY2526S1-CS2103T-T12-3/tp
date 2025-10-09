@@ -18,7 +18,6 @@ import seedu.excolink.logic.commands.ExitCommand;
 import seedu.excolink.logic.commands.FindCommand;
 import seedu.excolink.logic.commands.HelpCommand;
 import seedu.excolink.logic.commands.ListCommand;
-import seedu.excolink.logic.commands.ListSubcomMembersCommand;
 import seedu.excolink.logic.parser.exceptions.ParseException;
 
 /**

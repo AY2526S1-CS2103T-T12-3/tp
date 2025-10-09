@@ -3,9 +3,7 @@ package seedu.excolink.logic.parser;
 import static seedu.excolink.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOM;
 
-
 import seedu.excolink.logic.commands.ListSubcomMembersCommand;
-
 import seedu.excolink.logic.parser.exceptions.ParseException;
 import seedu.excolink.model.subcom.Subcom;
 

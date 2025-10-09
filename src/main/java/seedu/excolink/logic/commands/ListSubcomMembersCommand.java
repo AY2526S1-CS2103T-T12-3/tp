@@ -2,10 +2,8 @@ package seedu.excolink.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-
-import seedu.excolink.logic.commands.exceptions.CommandException;
-
 import seedu.excolink.commons.util.ToStringBuilder;
+import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.subcom.Subcom;
 
@@ -35,10 +33,10 @@ public class ListSubcomMembersCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException{
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if(!model.hasSubcom(this.subcomToList)) {
+        if (!model.hasSubcom(this.subcomToList)) {
             throw new CommandException(MESSAGE_INVALID_SUBCOM);
         }
         /* TODO: Included after addition of hasSubcom() and getSubcom()
