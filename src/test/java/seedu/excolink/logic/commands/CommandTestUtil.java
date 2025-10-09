@@ -7,6 +7,7 @@ import static seedu.excolink.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOM;
 import static seedu.excolink.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_ROLE_TEAM_LEAD = "teamlead";
     public static final String VALID_ROLE_MEMBER = "member";
+    public static final String VALID_SUBCOM_PUBLICITY = "publicity";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -47,12 +49,14 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String ROLE_DESC_MEMBER = " " + PREFIX_ROLE + VALID_ROLE_MEMBER;
     public static final String ROLE_DESC_TEAM_LEAD = " " + PREFIX_ROLE + VALID_ROLE_TEAM_LEAD;
+    public static final String SUBCOM_DESC_PUBLICITY = " " + PREFIX_SUBCOM + VALID_SUBCOM_PUBLICITY;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + "hubby*"; // '*' not allowed in roles
+    public static final String INVALID_SUBCOM_DESC = " " + PREFIX_SUBCOM; // empty string not allowed for subcommittees
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
