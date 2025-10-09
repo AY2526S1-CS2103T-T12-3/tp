@@ -1,12 +1,11 @@
 package seedu.excolink.logic.commands;
 
-import seedu.excolink.model.Model;
-
-import seedu.excolink.model.role.Role;
 import seedu.excolink.commons.core.index.Index;
+import seedu.excolink.model.Model;
+import seedu.excolink.model.role.Role;
 
 /**
- * Assigns a role to a person in ExcoLink. 
+ * Assigns a role to a person in ExcoLink.
  */
 public class AssignRoleCommand extends Command {
 
@@ -20,6 +19,9 @@ public class AssignRoleCommand extends Command {
     private final Index index;
     private final Role role;
 
+    /**
+     * Creates an AssignRoleCommand to assign a role to the person.
+     */
     public AssignRoleCommand(Index index, Role role) {
         this.index = index;
         this.role = role;

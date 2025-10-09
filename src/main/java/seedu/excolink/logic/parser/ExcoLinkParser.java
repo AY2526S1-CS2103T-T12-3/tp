@@ -8,7 +8,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.excolink.commons.core.LogsCenter;
-import seedu.excolink.logic.commands.*;
+import seedu.excolink.logic.commands.AddCommand;
+import seedu.excolink.logic.commands.AssignRoleCommand;
+import seedu.excolink.logic.commands.ClearCommand;
+import seedu.excolink.logic.commands.Command;
+import seedu.excolink.logic.commands.DeleteCommand;
+import seedu.excolink.logic.commands.EditCommand;
+import seedu.excolink.logic.commands.ExitCommand;
+import seedu.excolink.logic.commands.FindCommand;
+import seedu.excolink.logic.commands.HelpCommand;
+import seedu.excolink.logic.commands.ListCommand;
 import seedu.excolink.logic.parser.exceptions.ParseException;
 
 /**
