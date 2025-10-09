@@ -26,8 +26,9 @@ public class ListSubcomMembersCommandParser implements Parser<ListSubcomMembersC
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListSubcomMembersCommand.MESSAGE_USAGE));
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SUBCOM);
-        Subcom subcom = ParserUtil.parseSubcom(argMultimap.getValue(PREFIX_SUBCOM).get());
-        return new ListSubcomMembersCommand(subcom);
-
+        // TODO: After merge
+        // Subcom subcom = ParserUtil.parseSubcom(argMultimap.getValue(PREFIX_SUBCOM).get());
+        //return new ListSubcomMembersCommand(subcom);
+        return null; // Remove later
     }
 }
