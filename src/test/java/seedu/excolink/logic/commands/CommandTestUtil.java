@@ -2,7 +2,12 @@ package seedu.excolink.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.excolink.logic.parser.CliSyntax.*;
+import static seedu.excolink.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.excolink.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.excolink.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.excolink.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.excolink.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOM;
 import static seedu.excolink.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
