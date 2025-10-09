@@ -32,6 +32,12 @@ public class AssignSubcomCommandParser implements Parser<AssignSubcomCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SUBCOMMITTEE);
-        return new AssignSubcomCommand(index, argMultimap.getValue(PREFIX_SUBCOMMITTEE).get());
+        String subcom;
+        if (argMultimap.getValue(PREFIX_SUBCOMMITTEE).isPresent()) {
+            subcom = argMultimap.getValue(PREFIX_SUBCOMMITTEE).get();
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignSubcomCommand.MESSAGE_USAGE));
+        }
+        return new AssignSubcomCommand(index, subcom);
     }
 }

@@ -21,6 +21,8 @@ public class AssignSubcomCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_SUBCOMMITTEE + "publicity";
 
+    private Index index;
+    private String subcommString;
     /**
      * @param index of the person in the filtered person list to edit
      * @param subcommString subcomm that the person is assigned to
@@ -28,11 +30,23 @@ public class AssignSubcomCommand extends Command {
     public AssignSubcomCommand(Index index, String subcommString) {
         requireNonNull(index);
         requireNonNull(subcommString);
+        this.index = index;
+        this.subcommString = subcommString;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof AssignSubcomCommand) {
+            AssignSubcomCommand command = (AssignSubcomCommand) o;
+            return command.index.equals(this.index) && command.subcommString.equals(this.subcommString);
+        } else {
+            return false;
+        }
     }
 }

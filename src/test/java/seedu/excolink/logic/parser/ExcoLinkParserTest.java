@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.excolink.logic.commands.AddCommand;
+import seedu.excolink.logic.commands.AssignSubcomCommand;
 import seedu.excolink.logic.commands.ClearCommand;
 import seedu.excolink.logic.commands.DeleteCommand;
 import seedu.excolink.logic.commands.EditCommand;
@@ -88,6 +89,11 @@ public class ExcoLinkParserTest {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
     }
 
+    @Test
+    public void parseCommand_assignSubcom() throws Exception {
+        assertTrue((parser.parseCommand(AssignSubcomCommand.COMMAND_WORD + " 1 sc/SUBCOMMITTEE")
+                instanceof AssignSubcomCommand));
+    }
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
