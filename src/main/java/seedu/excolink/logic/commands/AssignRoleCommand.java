@@ -1,0 +1,32 @@
+package seedu.excolink.logic.commands;
+
+import seedu.excolink.model.Model;
+
+import seedu.excolink.model.role.Role;
+import seedu.excolink.commons.core.index.Index;
+
+/**
+ * Assigns a role to a person in ExcoLink. 
+ */
+public class AssignRoleCommand extends Command {
+
+    public static final String COMMAND_WORD = "assign-role";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Assigns a role to a member by index.\n"
+            + "Parameters: INDEX (must be a positive integer) r/ROLE\n"
+            + "Example: " + COMMAND_WORD + " 1 r/Treasurer";
+
+    private final Index index;
+    private final Role role;
+
+    public AssignRoleCommand(Index index, Role role) {
+        this.index = index;
+        this.role = role;
+    }
+
+    @Override
+    public CommandResult execute(Model model) {
+        return new CommandResult("Hello world!");
+    }
+}
