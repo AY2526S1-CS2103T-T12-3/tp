@@ -18,6 +18,7 @@ import seedu.excolink.logic.commands.ExitCommand;
 import seedu.excolink.logic.commands.FindCommand;
 import seedu.excolink.logic.commands.HelpCommand;
 import seedu.excolink.logic.commands.ListCommand;
+import seedu.excolink.logic.commands.ListSubcomMembersCommand;
 import seedu.excolink.logic.parser.exceptions.ParseException;
 
 /**
@@ -80,6 +81,7 @@ public class ExcoLinkParser {
 
         case AddSubcomCommand.COMMAND_WORD:
             return new AddSubcomCommandParser().parse(arguments);
+
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
