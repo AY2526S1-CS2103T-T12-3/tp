@@ -8,8 +8,16 @@ import seedu.excolink.commons.core.index.Index;
 import seedu.excolink.logic.commands.AssignSubcomCommand;
 import seedu.excolink.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new AssignSubcomCommand object
+ */
 public class AssignSubcomCommandParser implements Parser<AssignSubcomCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the AssignSubcomCommand
+     * and returns a SubcomCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public AssignSubcomCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SUBCOMMITTEE);

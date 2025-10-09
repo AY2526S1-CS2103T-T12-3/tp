@@ -21,14 +21,18 @@ public class AssignSubcomCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_SUBCOMMITTEE + "publicity";
 
+    /**
+     * @param index of the person in the filtered person list to edit
+     * @param subcommString subcomm that the person is assigned to
+     */
+    public AssignSubcomCommand(Index index, String subcommString) {
+        requireNonNull(index);
+        requireNonNull(subcommString);
+    }
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         return new CommandResult(MESSAGE_SUCCESS);
-    }
-
-    public AssignSubcomCommand(Index index, String subcommString) {
-        requireNonNull(index);
-        requireNonNull(subcommString);
     }
 }
