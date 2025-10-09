@@ -34,7 +34,6 @@ public class RemoveSubcomMemberCommand extends Command {
         this.targetIndex = targetIndex;
         this.subcomName = subcomName.trim();
     }
-    
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
