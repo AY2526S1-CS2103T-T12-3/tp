@@ -61,6 +61,6 @@ public class Subcom {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + subcomName + ']';
+        return subcomName;
     }
 }

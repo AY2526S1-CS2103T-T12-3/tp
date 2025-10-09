@@ -68,6 +68,6 @@ public class SubcomTest {
     @Test
     public void toString_returnsCorrectFormat() {
         Subcom subcom = new Subcom("Publicity");
-        assertEquals("[Publicity]", subcom.toString());
+        assertEquals("Publicity", subcom.toString());
     }
 }

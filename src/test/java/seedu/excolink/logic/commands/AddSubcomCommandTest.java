@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.excolink.logic.commands.AddSubcomCommand.MESSAGE_DUPLICATE_SUBCOM;
 import static seedu.excolink.logic.commands.AddSubcomCommand.MESSAGE_SUCCESS;
+import static seedu.excolink.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -74,9 +75,9 @@ class AddSubcomCommandTest {
     }
 
     @Test
-    void toString_validSubcom_returnsExpectedString() {
+    void toStringMethod () {
         AddSubcomCommand command = new AddSubcomCommand(publicity);
-        String expected = "AddSubcomCommand{toAdd=" + publicity + "}";
+        String expected = AddSubcomCommand.class.getCanonicalName() + "{toAdd=" + publicity + "}";
         assertEquals(expected, command.toString());
     }
 
