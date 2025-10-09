@@ -1,7 +1,7 @@
 package seedu.excolink.logic.parser;
 
 import static seedu.excolink.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.excolink.logic.parser.CliSyntax.*;
+import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOM;
 
 import java.util.stream.Stream;
 

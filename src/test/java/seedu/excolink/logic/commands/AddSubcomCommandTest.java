@@ -2,10 +2,15 @@ package seedu.excolink.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.excolink.logic.commands.AddSubcomCommand.MESSAGE_DUPLICATE_SUBCOM;
 import static seedu.excolink.logic.commands.AddSubcomCommand.MESSAGE_SUCCESS;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,11 +22,6 @@ import seedu.excolink.model.ReadOnlyExcoLink;
 import seedu.excolink.model.ReadOnlyUserPrefs;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
 
 class AddSubcomCommandTest {
     private final Subcom publicity = new Subcom("Publicity");
