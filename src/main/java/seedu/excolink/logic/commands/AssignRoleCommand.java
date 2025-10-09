@@ -31,4 +31,22 @@ public class AssignRoleCommand extends Command {
     public CommandResult execute(Model model) {
         return new CommandResult("Hello world!");
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof AssignRoleCommand)) {
+            return false;
+        }
+        AssignRoleCommand otherCommand = (AssignRoleCommand) other;
+        return index.equals(otherCommand.index) && role.equals(otherCommand.role);
+    }
+
+    @Override
+    public int hashCode() {
+        return index.hashCode() * 31 + role.hashCode();
+    }
+
 }

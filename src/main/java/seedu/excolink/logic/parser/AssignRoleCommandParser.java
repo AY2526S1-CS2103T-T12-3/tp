@@ -18,15 +18,24 @@ public class AssignRoleCommandParser implements Parser<AssignRoleCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ROLE);
 
         if (argMultimap.getValue(PREFIX_ROLE).isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignRoleCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AssignRoleCommand.MESSAGE_USAGE));
         }
 
         String preamble = argMultimap.getPreamble().trim();
         if (preamble.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignRoleCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AssignRoleCommand.MESSAGE_USAGE));
+        }
+        
+        Index index;
+        try {
+            index = ParserUtil.parseIndex(preamble);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AssignRoleCommand.MESSAGE_USAGE), pe);
         }
 
-        Index index = ParserUtil.parseIndex(preamble);
         Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
 
         return new AssignRoleCommand(index, role);
