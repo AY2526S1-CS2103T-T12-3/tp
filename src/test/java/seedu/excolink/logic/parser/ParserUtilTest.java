@@ -27,6 +27,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_ROLE = "#friend";
+    private static final String INVALID_SUBCOM = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -34,7 +35,6 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_ROLE_1 = "friend";
     private static final String VALID_ROLE_2 = "neighbour";
-    private static final String INVALID_SUBCOM = " ";
     private static final String VALID_SUBCOM = "Publicity";
 
     private static final String WHITESPACE = " \t\r\n";
