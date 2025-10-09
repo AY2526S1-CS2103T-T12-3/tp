@@ -28,6 +28,11 @@ public class RemoveSubcomMemberCommand extends Command {
     private final Index targetIndex;
     private final String subcomName;
 
+    /**
+     * Create the RemoveSubcomMemberCommand
+     * @param targetIndex Index of the member to be removed
+     * @param subcomName Name of the subcommittee
+     */
     public RemoveSubcomMemberCommand(Index targetIndex, String subcomName) {
         requireNonNull(targetIndex);
         requireNonNull(subcomName);
@@ -43,7 +48,7 @@ public class RemoveSubcomMemberCommand extends Command {
 
         Person personToEdit = model.getFilteredPersonList().get(targetIndex.getZeroBased());
 
-        /**
+        /*
          * Model should have a removeMemberFromSubCom method, should throw an illegalArgumentException
          * return true if person was a member and is removed successfully
          * returns false if the person was not a member of the subcomm
@@ -51,7 +56,7 @@ public class RemoveSubcomMemberCommand extends Command {
 
         boolean removed = true; // just put true for now since the method hasnt been added
         try {
-//            removed = model.removeMemberFromSubCom(personToEdit, subcomName);
+            // removed = model.removeMemberFromSubCom(personToEdit, subcomName);
         } catch (IllegalArgumentException e) {
             throw new CommandException(String.format(MESSAGE_SUBCOM_NOT_FOUND, subcomName));
         }
