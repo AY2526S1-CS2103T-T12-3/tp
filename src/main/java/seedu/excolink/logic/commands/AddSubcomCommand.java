@@ -37,8 +37,11 @@ public class AddSubcomCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // TODO: Check for duplicate subcom
-        // TODO: Add subcom to model
+        if (model.hasSubcom(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_SUBCOM);
+        }
+
+        model.addSubcom(toAdd);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toString()));
     }
