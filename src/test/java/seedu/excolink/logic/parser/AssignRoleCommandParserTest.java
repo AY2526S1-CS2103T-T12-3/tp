@@ -1,8 +1,8 @@
 package seedu.excolink.logic.parser;
 
+import static seedu.excolink.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.excolink.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.excolink.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.excolink.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import org.junit.jupiter.api.Test;
 

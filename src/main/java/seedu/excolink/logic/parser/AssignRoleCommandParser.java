@@ -27,7 +27,7 @@ public class AssignRoleCommandParser implements Parser<AssignRoleCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AssignRoleCommand.MESSAGE_USAGE));
         }
-        
+
         Index index;
         try {
             index = ParserUtil.parseIndex(preamble);
