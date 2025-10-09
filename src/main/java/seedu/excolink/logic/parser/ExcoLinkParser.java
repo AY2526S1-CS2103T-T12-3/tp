@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import seedu.excolink.commons.core.LogsCenter;
 import seedu.excolink.logic.commands.AddCommand;
 import seedu.excolink.logic.commands.AddSubcomCommand;
+import seedu.excolink.logic.commands.AssignSubcomCommand;
 import seedu.excolink.logic.commands.ClearCommand;
 import seedu.excolink.logic.commands.Command;
 import seedu.excolink.logic.commands.DeleteCommand;
@@ -47,7 +48,8 @@ public class ExcoLinkParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
+        // Note to developers: Change the log level in config.json to enable lower level
+        // (i.e., FINE, FINER and lower)
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
@@ -77,6 +79,8 @@ public class ExcoLinkParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+        case AssignSubcomCommand.COMMAND_WORD:
+            return new AssignSubcomCommandParser().parse(arguments);
 
         case AddSubcomCommand.COMMAND_WORD:
             return new AddSubcomCommandParser().parse(arguments);
