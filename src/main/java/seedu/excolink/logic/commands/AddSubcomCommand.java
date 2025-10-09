@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.excolink.logic.parser.CliSyntax.*;
 
 import seedu.excolink.commons.util.ToStringBuilder;
-import seedu.excolink.logic.Messages;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.subcom.Subcom;
 
+/**
+ * Adds a subcommittee to the app.
+ */
 public class AddSubcomCommand extends Command {
     public static final String COMMAND_WORD = "add-subcom";
 
