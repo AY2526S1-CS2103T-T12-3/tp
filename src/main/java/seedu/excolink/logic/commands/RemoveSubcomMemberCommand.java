@@ -7,6 +7,9 @@ import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.person.Person;
 
+/**
+ * Remove a member from a subcom
+ */
 public class RemoveSubcomMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "remove-subcom-member";
@@ -31,7 +34,7 @@ public class RemoveSubcomMemberCommand extends Command {
         this.targetIndex = targetIndex;
         this.subcomName = subcomName.trim();
     }
-
+    
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
