@@ -51,4 +51,11 @@ public class AssignRoleCommandParserTest {
         assertParseFailure(parser, "1 r/Treasurer123", expectedMessage);
         assertParseFailure(parser, "1 r/Treasurer!", expectedMessage);
     }
+
+    @Test
+    public void parse_emptyPreamble_failure() {
+        // Tests when the preamble is empty (no index before the prefix)
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignRoleCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, "   r/Treasurer", expectedMessage);
+    }
 }
