@@ -11,21 +11,30 @@ import seedu.excolink.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new RemoveSubcomMemberCommand object
  */
-public class RemoveSubcomMemberCommandParser implements Parser<RemoveSubcomMemberCommand>{
+public class RemoveSubcomMemberCommandParser implements Parser<RemoveSubcomMemberCommand> {
+
+    /**
+     * Parses the given string of arguments in the context of the RemoveSubcomMemberCommand
+     * @param args given string of arguments
+     * @return a RemoveSubcomMemberCommand object
+     * @throws ParseException if the user input does not follow the required format
+     */
     public RemoveSubcomMemberCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SUBCOM);
 
         String preamble = argMultimap.getPreamble();
         if (preamble.isEmpty() || !argMultimap.getValue(PREFIX_SUBCOM).isPresent()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveSubcomMemberCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    RemoveSubcomMemberCommand.MESSAGE_USAGE));
         }
 
         Index index;
         try {
             index = ParserUtil.parseIndex(preamble);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveSubcomMemberCommand.MESSAGE_USAGE, pe));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    RemoveSubcomMemberCommand.MESSAGE_USAGE, pe));
         }
 
         String subcomName = argMultimap.getValue(PREFIX_SUBCOM).get().trim();
