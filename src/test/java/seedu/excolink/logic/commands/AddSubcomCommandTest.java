@@ -7,21 +7,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.excolink.logic.commands.AddSubcomCommand.MESSAGE_DUPLICATE_SUBCOM;
 import static seedu.excolink.logic.commands.AddSubcomCommand.MESSAGE_SUCCESS;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
-import seedu.excolink.commons.core.GuiSettings;
 import seedu.excolink.logic.commands.exceptions.CommandException;
-import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelStub;
-import seedu.excolink.model.ReadOnlyExcoLink;
-import seedu.excolink.model.ReadOnlyUserPrefs;
-import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
 
 class AddSubcomCommandTest {

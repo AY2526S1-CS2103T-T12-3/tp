@@ -7,24 +7,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.excolink.testutil.Assert.assertThrows;
 import static seedu.excolink.testutil.TypicalPersons.ALICE;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
-import seedu.excolink.commons.core.GuiSettings;
 import seedu.excolink.logic.Messages;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.ExcoLink;
-import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelStub;
 import seedu.excolink.model.ReadOnlyExcoLink;
-import seedu.excolink.model.ReadOnlyUserPrefs;
 import seedu.excolink.model.person.Person;
-import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.testutil.PersonBuilder;
 
 public class AddCommandTest {
