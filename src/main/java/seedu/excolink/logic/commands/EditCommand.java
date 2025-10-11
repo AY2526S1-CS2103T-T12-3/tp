@@ -27,6 +27,7 @@ import seedu.excolink.model.person.Name;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.person.Phone;
 import seedu.excolink.model.role.Role;
+import seedu.excolink.model.subcom.Subcom;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -56,7 +57,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -87,7 +88,6 @@ public class EditCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
-
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
@@ -100,8 +100,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Role> updatedRoles = editPersonDescriptor.getRoles().orElse(personToEdit.getRoles());
+        Subcom updatedSubcom = editPersonDescriptor.getSubcom().orElse(personToEdit.getSubcom());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRoles);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRoles, updatedSubcom);
     }
 
     @Override
@@ -129,7 +130,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
+     * Stores the details to edit the person with. Each non-empty field value will
+     * replace the
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
@@ -138,11 +140,8 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Role> roles;
-
-        public EditPersonDescriptor() {}
-
+        private Subcom subcom;
         /**
-         * Copy constructor.
          * A defensive copy of {@code roles} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
@@ -151,13 +150,14 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setRoles(toCopy.roles);
+            setSubcom(toCopy.subcom);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, roles);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, roles, subcom);
         }
 
         public void setName(Name name) {
@@ -207,6 +207,14 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Role>> getRoles() {
             return (roles != null) ? Optional.of(Collections.unmodifiableSet(roles)) : Optional.empty();
+        }
+
+        public void setSubcom(Subcom subcom) {
+            this.subcom = subcom;
+        }
+
+        public Optional<Subcom> getSubcom() {
+            return Optional.ofNullable(subcom);
         }
 
         @Override

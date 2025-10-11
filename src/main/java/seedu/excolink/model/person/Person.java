@@ -9,10 +9,12 @@ import java.util.Set;
 
 import seedu.excolink.commons.util.ToStringBuilder;
 import seedu.excolink.model.role.Role;
+import seedu.excolink.model.subcom.Subcom;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated,
+ * immutable.
  */
 public class Person {
 
@@ -24,17 +26,19 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Role> roles = new HashSet<>();
+    private final Subcom subcom;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Role> roles) {
-        requireAllNonNull(name, phone, email, address, roles);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Role> roles, Subcom subcom) {
+        requireAllNonNull(name, phone, email, address, roles, subcom);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.roles.addAll(roles);
+        this.subcom = null;
     }
 
     public Name getName() {
@@ -54,11 +58,20 @@ public class Person {
     }
 
     /**
-     * Returns an immutable role set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable role set, which throws
+     * {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Role> getRoles() {
         return Collections.unmodifiableSet(roles);
+    }
+
+    public Subcom getSubcom() {
+        return subcom;
+    }
+
+    public Person assignSubcom(Subcom newSubcom) {
+        return new Person(name, phone, email, address, roles, newSubcom);
     }
 
     /**

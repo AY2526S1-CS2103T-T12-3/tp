@@ -18,6 +18,7 @@ public class Subcom {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String subcomName;
+    public final String value;
 
     /**
      * Constructs a {@code Subcom}.
@@ -28,6 +29,7 @@ public class Subcom {
         requireNonNull(subcomName);
         checkArgument(isValidSubcom(subcomName), MESSAGE_CONSTRAINTS);
         this.subcomName = subcomName;
+        this.value = subcomName;
     }
 
     /**
