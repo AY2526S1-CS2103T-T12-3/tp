@@ -85,6 +85,29 @@ public class ExcoLinkTest {
     }
 
     @Test
+    public void hasSubcom_nullSubcom_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> excoLink.hasSubcom(null));
+    }
+
+    @Test
+    public void hasSubcom_subcomNotInExcoLink_returnsFalse() {
+        Subcom subcom = new Subcom("Finance");
+        assertFalse(excoLink.hasSubcom(subcom));
+    }
+
+    @Test
+    public void hasSubcom_subcomInExcoLink_returnsTrue() {
+        Subcom subcom = new Subcom("Finance");
+        excoLink.addSubcom(subcom);
+        assertTrue(excoLink.hasSubcom(subcom));
+    }
+
+    @Test
+    public void getSubcomList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> excoLink.getSubcomList().remove(0));
+    }
+
+    @Test
     public void toStringMethod() {
         String expected = ExcoLink.class.getCanonicalName() + "{persons=" + excoLink.getPersonList() + "}";
         assertEquals(expected, excoLink.toString());
