@@ -23,17 +23,17 @@ public class SubcomTest {
     @Test
     public void isValidSubcom() {
         // null
-        assertThrows(NullPointerException.class, () -> Subcom.isValidSubcom(null));
+        assertThrows(NullPointerException.class, () -> Subcom.isValidSubcomName(null));
 
         // invalid
-        assertFalse(Subcom.isValidSubcom(" "));
-        assertFalse(Subcom.isValidSubcom("\t"));
+        assertFalse(Subcom.isValidSubcomName(" "));
+        assertFalse(Subcom.isValidSubcomName("\t"));
 
         // valid
-        assertTrue(Subcom.isValidSubcom("Publicity"));
-        assertTrue(Subcom.isValidSubcom("Logistics Committee"));
-        assertTrue(Subcom.isValidSubcom("123"));
-        assertTrue(Subcom.isValidSubcom("!@#$%"));
+        assertTrue(Subcom.isValidSubcomName("Publicity"));
+        assertTrue(Subcom.isValidSubcomName("Logistics Committee"));
+        assertTrue(Subcom.isValidSubcomName("123"));
+        assertTrue(Subcom.isValidSubcomName("!@#$%"));
     }
 
     @Test

@@ -12,6 +12,7 @@ import seedu.excolink.commons.exceptions.IllegalValueException;
 import seedu.excolink.model.ExcoLink;
 import seedu.excolink.model.ReadOnlyExcoLink;
 import seedu.excolink.model.person.Person;
+import seedu.excolink.model.subcom.Subcom;
 
 /**
  * An Immutable ExcoLink that is serializable to JSON format.
@@ -20,15 +21,19 @@ import seedu.excolink.model.person.Person;
 class JsonSerializableExcoLink {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_SUBCOM = "Subcoms list contains duplicate subcoms(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedSubcom> subcoms = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableExcoLink} with the given persons.
+     * Constructs a {@code JsonSerializableExcoLink} with the given persons and subcoms.
      */
     @JsonCreator
-    public JsonSerializableExcoLink(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableExcoLink(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                    @JsonProperty("subcoms") List<JsonAdaptedSubcom> subcoms) {
         this.persons.addAll(persons);
+        this.subcoms.addAll(subcoms);
     }
 
     /**
@@ -38,6 +43,7 @@ class JsonSerializableExcoLink {
      */
     public JsonSerializableExcoLink(ReadOnlyExcoLink source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        subcoms.addAll(source.getSubcomList().stream().map(JsonAdaptedSubcom::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +53,21 @@ class JsonSerializableExcoLink {
      */
     public ExcoLink toModelType() throws IllegalValueException {
         ExcoLink excoLink = new ExcoLink();
+        // Add persons
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (excoLink.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             excoLink.addPerson(person);
+        }
+        // Add subcoms
+        for (JsonAdaptedSubcom jsonAdaptedSubcom : subcoms) {
+            Subcom subcom = jsonAdaptedSubcom.toModelType();
+            if (excoLink.hasSubcom(subcom)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_SUBCOM);
+            }
+            excoLink.addSubcom(subcom);
         }
         return excoLink;
     }
