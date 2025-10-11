@@ -17,8 +17,8 @@ import seedu.excolink.model.subcom.exceptions.SubcomNotFoundException;
 public class SubcomListTest {
 
     private final SubcomList subcomList = new SubcomList();
-    private final Subcom FINANCE = new Subcom("Finance");
-    private final Subcom LOGISTICS = new Subcom("Logistics");
+    private final Subcom finance = new Subcom("Finance");
+    private final Subcom logistics = new Subcom("Logistics");
 
     @Test
     public void contains_nullSubcom_throwsNullPointerException() {
@@ -27,13 +27,13 @@ public class SubcomListTest {
 
     @Test
     public void contains_subcomNotInList_returnsFalse() {
-        assertFalse(subcomList.contains(FINANCE));
+        assertFalse(subcomList.contains(finance));
     }
 
     @Test
     public void contains_subcomInList_returnsTrue() {
-        subcomList.add(FINANCE);
-        assertTrue(subcomList.contains(FINANCE));
+        subcomList.add(finance);
+        assertTrue(subcomList.contains(finance));
     }
 
     @Test
@@ -43,8 +43,8 @@ public class SubcomListTest {
 
     @Test
     public void add_duplicateSubcom_throwsDuplicateSubcomException() {
-        subcomList.add(FINANCE);
-        assertThrows(DuplicateSubcomException.class, () -> subcomList.add(FINANCE));
+        subcomList.add(finance);
+        assertThrows(DuplicateSubcomException.class, () -> subcomList.add(finance));
     }
 
     @Test
@@ -54,13 +54,13 @@ public class SubcomListTest {
 
     @Test
     public void remove_subcomDoesNotExist_throwsSubcomNotFoundException() {
-        assertThrows(SubcomNotFoundException.class, () -> subcomList.remove(FINANCE));
+        assertThrows(SubcomNotFoundException.class, () -> subcomList.remove(finance));
     }
 
     @Test
     public void remove_existingSubcom_removesSubcom() {
-        subcomList.add(FINANCE);
-        subcomList.remove(FINANCE);
+        subcomList.add(finance);
+        subcomList.remove(finance);
         SubcomList expectedList = new SubcomList();
         assertEquals(expectedList, subcomList);
     }
@@ -72,9 +72,9 @@ public class SubcomListTest {
 
     @Test
     public void setSubcoms_validSubcomList_replacesOwnListWithProvidedSubcomList() {
-        subcomList.add(FINANCE);
+        subcomList.add(finance);
         SubcomList expectedList = new SubcomList();
-        expectedList.add(LOGISTICS);
+        expectedList.add(logistics);
         subcomList.setSubcoms(expectedList);
         assertEquals(expectedList, subcomList);
     }
@@ -86,17 +86,17 @@ public class SubcomListTest {
 
     @Test
     public void setSubcoms_list_replacesOwnListWithProvidedList() {
-        subcomList.add(FINANCE);
-        List<Subcom> list = Collections.singletonList(LOGISTICS);
+        subcomList.add(finance);
+        List<Subcom> list = Collections.singletonList(logistics);
         subcomList.setSubcoms(list);
         SubcomList expectedList = new SubcomList();
-        expectedList.add(LOGISTICS);
+        expectedList.add(logistics);
         assertEquals(expectedList, subcomList);
     }
 
     @Test
     public void setSubcoms_listWithDuplicateSubcoms_throwsDuplicateSubcomException() {
-        List<Subcom> listWithDuplicates = Arrays.asList(FINANCE, FINANCE);
+        List<Subcom> listWithDuplicates = Arrays.asList(finance, finance);
         assertThrows(DuplicateSubcomException.class, () -> subcomList.setSubcoms(listWithDuplicates));
     }
 
