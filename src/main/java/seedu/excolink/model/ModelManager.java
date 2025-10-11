@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.excolink.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,6 +15,7 @@ import seedu.excolink.commons.core.GuiSettings;
 import seedu.excolink.commons.core.LogsCenter;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.model.subcom.SubcomList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,6 +26,7 @@ public class ModelManager implements Model {
     private final ExcoLink excoLink;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Subcom> subcoms;
 
     /**
      * Initializes a ModelManager with the given excoLink and userPrefs.
@@ -35,6 +39,7 @@ public class ModelManager implements Model {
         this.excoLink = new ExcoLink(excoLink);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.excoLink.getPersonList());
+        this.subcoms = new FilteredList<>(this.excoLink.getSubcomList());
     }
 
     public ModelManager() {
@@ -115,13 +120,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasSubcom(Subcom subcom) {
         requireNonNull(subcom);
-        // TODO: excoLink.hasSubcom(subcom)
-        return false;
+        return excoLink.hasSubcom(subcom);
+    }
+
+    @Override
+    public void deleteSubcom(Subcom target) {
+        excoLink.removeSubcom(target);
     }
 
     @Override
     public void addSubcom(Subcom subcom) {
-        // TODO: excoLink.addSubcom(subcom)
+        excoLink.addSubcom(subcom);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -139,6 +148,17 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Subcom List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Subcom} backed by the internal list of
+     * {@code versionedExcoLink}
+     */
+    @Override
+    public ObservableList<Subcom> getSubcomList() {
+        return subcoms;
     }
 
     @Override
