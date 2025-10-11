@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.excolink.commons.core.GuiSettings;
 import seedu.excolink.model.person.Person;
+import seedu.excolink.model.subcom.Subcom;
 
 /**
  * The API of the Model component.
@@ -84,4 +85,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns true if a subcommittee identical to {@code subcom} exists in the app.
+     */
+    boolean hasSubcom(Subcom subcom);
+
+    /**
+     * Adds the given subcommittee.
+     * {@code subcom} must not already exist in the app.
+     */
+    void addSubcom(Subcom subcom);
 }

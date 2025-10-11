@@ -23,6 +23,7 @@ import seedu.excolink.model.Model;
 import seedu.excolink.model.ReadOnlyExcoLink;
 import seedu.excolink.model.ReadOnlyUserPrefs;
 import seedu.excolink.model.person.Person;
+import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -156,6 +157,16 @@ public class AddCommandTest {
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSubcom(Subcom subcom) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void addSubcom(Subcom subcom) {
+            throw new AssertionError("This method should not be called");
         }
     }
 

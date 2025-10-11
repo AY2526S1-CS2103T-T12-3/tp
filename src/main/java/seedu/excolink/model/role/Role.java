@@ -9,8 +9,9 @@ import static seedu.excolink.commons.util.AppUtil.checkArgument;
  */
 public class Role {
 
-    public static final String MESSAGE_CONSTRAINTS = "Role names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Role names should contain only letters and spaces, and "
+            + "cannot be blank";
+    public static final String VALIDATION_REGEX = "^[A-Za-z]+(?: [A-Za-z]+)*$";
 
     public final String roleName;
 

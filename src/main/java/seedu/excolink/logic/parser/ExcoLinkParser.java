@@ -9,6 +9,9 @@ import java.util.regex.Pattern;
 
 import seedu.excolink.commons.core.LogsCenter;
 import seedu.excolink.logic.commands.AddCommand;
+import seedu.excolink.logic.commands.AddSubcomCommand;
+import seedu.excolink.logic.commands.AssignRoleCommand;
+import seedu.excolink.logic.commands.AssignSubcomCommand;
 import seedu.excolink.logic.commands.ClearCommand;
 import seedu.excolink.logic.commands.Command;
 import seedu.excolink.logic.commands.DeleteCommand;
@@ -76,6 +79,15 @@ public class ExcoLinkParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case AssignSubcomCommand.COMMAND_WORD:
+            return new AssignSubcomCommandParser().parse(arguments);
+
+        case AddSubcomCommand.COMMAND_WORD:
+            return new AddSubcomCommandParser().parse(arguments);
+
+        case AssignRoleCommand.COMMAND_WORD:
+            return new AssignRoleCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
