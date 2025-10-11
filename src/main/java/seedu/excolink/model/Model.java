@@ -92,8 +92,17 @@ public interface Model {
     boolean hasSubcom(Subcom subcom);
 
     /**
+     * Deletes the given subcom.
+     * The subcom must exist in the app.
+     */
+    void deleteSubcom(Subcom target);
+
+    /**
      * Adds the given subcommittee.
      * {@code subcom} must not already exist in the app.
      */
     void addSubcom(Subcom subcom);
+
+    /** Returns an unmodifiable view of the filtered subcom list */
+    ObservableList<Subcom> getSubcomList();
 }

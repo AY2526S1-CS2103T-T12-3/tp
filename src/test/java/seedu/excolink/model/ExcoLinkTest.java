@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.person.exceptions.DuplicatePersonException;
+import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.testutil.PersonBuilder;
 
 public class ExcoLinkTest {
@@ -84,6 +85,29 @@ public class ExcoLinkTest {
     }
 
     @Test
+    public void hasSubcom_nullSubcom_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> excoLink.hasSubcom(null));
+    }
+
+    @Test
+    public void hasSubcom_subcomNotInExcoLink_returnsFalse() {
+        Subcom subcom = new Subcom("Finance");
+        assertFalse(excoLink.hasSubcom(subcom));
+    }
+
+    @Test
+    public void hasSubcom_subcomInExcoLink_returnsTrue() {
+        Subcom subcom = new Subcom("Finance");
+        excoLink.addSubcom(subcom);
+        assertTrue(excoLink.hasSubcom(subcom));
+    }
+
+    @Test
+    public void getSubcomList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> excoLink.getSubcomList().remove(0));
+    }
+
+    @Test
     public void toStringMethod() {
         String expected = ExcoLink.class.getCanonicalName() + "{persons=" + excoLink.getPersonList() + "}";
         assertEquals(expected, excoLink.toString());
@@ -94,6 +118,7 @@ public class ExcoLinkTest {
      */
     private static class ExcoLinkStub implements ReadOnlyExcoLink {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Subcom> subcoms = FXCollections.observableArrayList();
 
         ExcoLinkStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -102,6 +127,11 @@ public class ExcoLinkTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Subcom> getSubcomList() {
+            return subcoms;
         }
     }
 
