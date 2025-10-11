@@ -56,7 +56,9 @@ public class ExcoLink implements ReadOnlyExcoLink {
      * Replaces the contents of the subcom list with {@code subcoms}.
      * {@code subcoms} must not contain duplicate subcoms.
      */
-    public void setSubcoms(List<Subcom> subcoms) { this.subcoms.setSubcoms(subcoms); }
+    public void setSubcoms(List<Subcom> subcoms) {
+        this.subcoms.setSubcoms(subcoms);
+    }
 
     /**
      * Resets the existing data of this {@code ExcoLink} with {@code newData}.
@@ -146,7 +148,9 @@ public class ExcoLink implements ReadOnlyExcoLink {
     }
 
     @Override
-    public ObservableList<Subcom> getSubcomList() { return subcoms.asUnmodifiableObservableList(); }
+    public ObservableList<Subcom> getSubcomList() {
+        return subcoms.asUnmodifiableObservableList();
+    }
 
     @Override
     public boolean equals(Object other) {

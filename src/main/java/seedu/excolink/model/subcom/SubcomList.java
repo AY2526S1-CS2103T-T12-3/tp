@@ -11,6 +11,11 @@ import javafx.collections.ObservableList;
 import seedu.excolink.model.subcom.exceptions.DuplicateSubcomException;
 import seedu.excolink.model.subcom.exceptions.SubcomNotFoundException;
 
+/**
+ * A list of subcoms that enforces uniqueness between its elements and does not allow nulls.
+ *
+ * Supports a minimal set of list operations.
+ */
 public class SubcomList implements Iterable<Subcom> {
     private final ObservableList<Subcom> internalList = FXCollections.observableArrayList();
     private final ObservableList<Subcom> internalUnmodifiableList =

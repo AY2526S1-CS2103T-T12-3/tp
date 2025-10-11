@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.excolink.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -15,7 +13,6 @@ import seedu.excolink.commons.core.GuiSettings;
 import seedu.excolink.commons.core.LogsCenter;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
-import seedu.excolink.model.subcom.SubcomList;
 
 /**
  * Represents the in-memory model of the address book data.
