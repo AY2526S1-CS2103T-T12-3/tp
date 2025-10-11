@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.excolink.commons.core.GuiSettings;
 import seedu.excolink.model.person.NameContainsKeywordsPredicate;
+import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.testutil.ExcoLinkBuilder;
 
 public class ModelManagerTest {
@@ -91,6 +92,29 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void hasSubcom_nullSubcom_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasSubcom(null));
+    }
+
+    @Test
+    public void hasSubcom_subcomNotInExcoLink_returnsFalse() {
+        Subcom subcom = new Subcom("Finance");
+        assertFalse(modelManager.hasSubcom(subcom));
+    }
+
+    @Test
+    public void hasSubcom_subcomInExcoLink_returnsTrue() {
+        Subcom subcom = new Subcom("Finance");
+        modelManager.addSubcom(subcom);
+        assertTrue(modelManager.hasSubcom(subcom));
+    }
+
+    @Test
+    public void getSubcomList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getSubcomList().remove(0));
     }
 
     @Test
