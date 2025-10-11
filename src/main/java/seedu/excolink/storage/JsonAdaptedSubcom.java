@@ -10,6 +10,7 @@ import seedu.excolink.model.subcom.Subcom;
  * Jackson-friendly version of {@link Subcom}.
  */
 class JsonAdaptedSubcom {
+    public static final String NULL_SUBCOM_MESSAGE_FORMAT = "Subcommittee is null!";
 
     private final String subcomName;
 
@@ -39,10 +40,12 @@ class JsonAdaptedSubcom {
      * @throws IllegalValueException if there were any data constraints violated in the adapted subcom.
      */
     public Subcom toModelType() throws IllegalValueException {
-        if (!Subcom.isValidSubcom(subcomName)) {
+        if (subcomName == null) {
+            throw new IllegalValueException(NULL_SUBCOM_MESSAGE_FORMAT);
+        }
+        if (!Subcom.isValidSubcomName(subcomName)) {
             throw new IllegalValueException(Subcom.MESSAGE_CONSTRAINTS);
         }
         return new Subcom(subcomName);
     }
-
 }

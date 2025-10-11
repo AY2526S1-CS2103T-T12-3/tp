@@ -1,6 +1,7 @@
 package seedu.excolink.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.excolink.storage.JsonAdaptedSubcom.NULL_SUBCOM_MESSAGE_FORMAT;
 import static seedu.excolink.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -30,8 +31,7 @@ public class JsonAdaptedSubcomTest {
     @Test
     public void toModelType_nullSubcom_throwsIllegalValueException() {
         JsonAdaptedSubcom adaptedSubcom = new JsonAdaptedSubcom((String) null);
-        String expectedMessage = Subcom.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, adaptedSubcom::toModelType);
+        assertThrows(IllegalValueException.class, NULL_SUBCOM_MESSAGE_FORMAT, adaptedSubcom::toModelType);
     }
 
     @Test
