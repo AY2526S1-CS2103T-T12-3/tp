@@ -12,31 +12,42 @@ import seedu.excolink.model.person.Name;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.person.Phone;
 import seedu.excolink.model.role.Role;
+import seedu.excolink.model.subcom.Subcom;
 
 /**
  * Contains utility methods for populating {@code ExcoLink} with sample data.
  */
 public class SampleDataUtil {
+    private static Subcom publicity = new Subcom("Publicity");
+    private static Subcom logistics = new Subcom("Logistics");
+    private static Subcom relations = new Subcom("relations");
+
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getRoleSet("friends")),
+                    new Address("Blk 30 Geylang Street 29, #06-40"),
+                    getRoleSet("friends"),
+                    publicity),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getRoleSet("colleagues", "friends")),
+                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                    getRoleSet("colleagues", "friends"),
+                    logistics),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getRoleSet("neighbours")),
+                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                    getRoleSet("neighbours"),
+                    relations),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getRoleSet("family")),
+                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                    getRoleSet("family"),
+                    publicity),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getRoleSet("classmates")),
+                    new Address("Blk 47 Tampines Street 20, #17-35"),
+                    getRoleSet("classmates"),
+                    logistics),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getRoleSet("colleagues"))
+                    new Address("Blk 45 Aljunied Street 85, #11-31"),
+                    getRoleSet("colleagues"),
+                    relations)
         };
     }
 

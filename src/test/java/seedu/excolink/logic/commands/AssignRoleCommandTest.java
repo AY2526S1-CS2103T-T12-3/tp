@@ -19,6 +19,7 @@ import seedu.excolink.model.person.Name;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.person.Phone;
 import seedu.excolink.model.role.Role;
+import seedu.excolink.model.subcom.Subcom;
 
 public class AssignRoleCommandTest {
 
@@ -33,7 +34,8 @@ public class AssignRoleCommandTest {
                 new Phone("91234567"),
                 new Email("alice@example.com"),
                 new Address("123, Jurong West Ave 6"),
-                new HashSet<>()
+                new HashSet<>(),
+                new Subcom("Publicity")
         );
         model = new ModelManager();
         model.addPerson(testPerson);
