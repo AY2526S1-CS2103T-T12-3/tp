@@ -28,6 +28,8 @@ public class ExcoLink implements ReadOnlyExcoLink {
         persons = new UniquePersonList();
     }
 
+
+
     public ExcoLink() {}
 
     /**
@@ -93,6 +95,8 @@ public class ExcoLink implements ReadOnlyExcoLink {
     public void removePerson(Person key) {
         persons.remove(key);
     }
+
+
 
     //// util methods
 
