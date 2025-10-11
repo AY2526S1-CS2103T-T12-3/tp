@@ -2,7 +2,7 @@ package seedu.excolink.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.excolink.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOMMITTEE;
+import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOM;
 
 import seedu.excolink.commons.core.index.Index;
 import seedu.excolink.logic.commands.AssignSubcomCommand;
@@ -20,7 +20,7 @@ public class AssignSubcomCommandParser implements Parser<AssignSubcomCommand> {
      */
     public AssignSubcomCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SUBCOMMITTEE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SUBCOM);
 
         Index index;
 
@@ -31,10 +31,10 @@ public class AssignSubcomCommandParser implements Parser<AssignSubcomCommand> {
                     pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SUBCOMMITTEE);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SUBCOM);
         String subcom;
-        if (argMultimap.getValue(PREFIX_SUBCOMMITTEE).isPresent()) {
-            subcom = argMultimap.getValue(PREFIX_SUBCOMMITTEE).get();
+        if (argMultimap.getValue(PREFIX_SUBCOM).isPresent()) {
+            subcom = argMultimap.getValue(PREFIX_SUBCOM).get();
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignSubcomCommand.MESSAGE_USAGE));
         }

@@ -117,9 +117,10 @@ class JsonAdaptedPerson {
         }
         if (!Subcom.isValidSubcom(subcom)) {
             throw new IllegalValueException(Subcom.MESSAGE_CONSTRAINTS);
+        } else {
+            final Subcom modelSubcom = new Subcom(subcom);
+            return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRoles, modelSubcom);
         }
-        final Subcom modelSubcom = new Subcom(subcom);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRoles, modelSubcom);
     }
 
 }

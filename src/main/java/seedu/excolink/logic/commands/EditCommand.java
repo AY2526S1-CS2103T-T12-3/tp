@@ -141,6 +141,9 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Role> roles;
         private Subcom subcom;
+
+        public EditPersonDescriptor() {}
+
         /**
          * A defensive copy of {@code roles} is used internally.
          */

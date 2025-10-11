@@ -6,7 +6,7 @@ import static seedu.excolink.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOMMITTEE;
+import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOM;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -33,25 +33,27 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_ADDRESS, PREFIX_ROLE, PREFIX_SUBCOMMITTEE);
+                PREFIX_ADDRESS, PREFIX_ROLE, PREFIX_SUBCOM);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_SUBCOMMITTEE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_SUBCOMMITTEE);
+                PREFIX_SUBCOM);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Role> roleList = ParserUtil.parseRoles(argMultimap.getAllValues(PREFIX_ROLE));
-        Subcom subcom = ParserUtil.parseSubcom(argMultimap.getValue(PREFIX_SUBCOMMITTEE).get());
-
-        Person person = new Person(name, phone, email, address, roleList, subcom);
-
+        Person person;
+        if (argMultimap.getValue(PREFIX_SUBCOM).isPresent()) {
+            person = new Person(name, phone, email, address, roleList,
+                    ParserUtil.parseSubcom(argMultimap.getValue(PREFIX_SUBCOM).get()));
+        } else {
+            person = new Person(name, phone, email, address, roleList, Subcom.NOSUBCOM);
+        }
         return new AddCommand(person);
     }
 

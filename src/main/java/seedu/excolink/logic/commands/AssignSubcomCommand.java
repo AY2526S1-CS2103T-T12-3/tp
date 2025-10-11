@@ -1,7 +1,7 @@
 package seedu.excolink.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOMMITTEE;
+import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOM;
 
 import seedu.excolink.commons.core.index.Index;
 import seedu.excolink.model.Model;
@@ -17,9 +17,9 @@ public class AssignSubcomCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer)"
-            + "[" + PREFIX_SUBCOMMITTEE + "SUBCOMMITTEE]\n"
+            + "[" + PREFIX_SUBCOM + "SUBCOMMITTEE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_SUBCOMMITTEE + "publicity";
+            + PREFIX_SUBCOM + "publicity";
 
     private Index index;
     private String subcommString;

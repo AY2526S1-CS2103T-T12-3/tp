@@ -38,7 +38,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.roles.addAll(roles);
-        this.subcom = null;
+        this.subcom = subcom;
     }
 
     public Name getName() {
@@ -124,6 +124,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("roles", roles)
+                .add("subcom", subcom)
                 .toString();
     }
 

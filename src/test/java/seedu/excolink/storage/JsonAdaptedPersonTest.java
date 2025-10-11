@@ -16,6 +16,7 @@ import seedu.excolink.model.person.Address;
 import seedu.excolink.model.person.Email;
 import seedu.excolink.model.person.Name;
 import seedu.excolink.model.person.Phone;
+import seedu.excolink.model.subcom.Subcom;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -23,7 +24,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_ROLE = "#friend";
-    private static final String INVALID_SUBCOM = "#publicity";
+    private static final String INVALID_SUBCOM = " publicity";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -117,7 +118,8 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullSubcom_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 VALID_ROLES, null);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Subcom.class.getSimpleName());
+        System.out.println(expectedMessage);
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -125,7 +127,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidSubcom_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 VALID_ROLES, INVALID_SUBCOM);
-        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Subcom.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
