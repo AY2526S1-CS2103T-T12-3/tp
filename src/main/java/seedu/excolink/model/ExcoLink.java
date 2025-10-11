@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import seedu.excolink.commons.util.ToStringBuilder;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.person.UniquePersonList;
+import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.model.subcom.SubcomList;
 
 /**
  * Wraps all data at the address-book level
@@ -28,7 +30,7 @@ public class ExcoLink implements ReadOnlyExcoLink {
         persons = new UniquePersonList();
     }
 
-
+    private final SubcomList subcoms = new SubcomList();
 
     public ExcoLink() {}
 
@@ -51,12 +53,19 @@ public class ExcoLink implements ReadOnlyExcoLink {
     }
 
     /**
+     * Replaces the contents of the subcom list with {@code subcoms}.
+     * {@code subcoms} must not contain duplicate subcoms.
+     */
+    public void setSubcoms(List<Subcom> subcoms) { this.subcoms.setSubcoms(subcoms); }
+
+    /**
      * Resets the existing data of this {@code ExcoLink} with {@code newData}.
      */
     public void resetData(ReadOnlyExcoLink newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setSubcoms(newData.getSubcomList());
     }
 
     //// person-level operations
@@ -96,7 +105,31 @@ public class ExcoLink implements ReadOnlyExcoLink {
         persons.remove(key);
     }
 
+    //// subcom-level operations
 
+    /**
+     * Returns true if a subcom with the same identity as {@code subcom} exists in the app.
+     */
+    public boolean hasSubcom(Subcom subcom) {
+        requireNonNull(subcom);
+        return subcoms.contains(subcom);
+    }
+
+    /**
+     * Adds a subcom to the app.
+     * The subcom must not already exist in the app.
+     */
+    public void addSubcom(Subcom subcom) {
+        subcoms.add(subcom);
+    }
+
+    /**
+     * Removes {@code key} from this {@code ExcoLink}.
+     * {@code key} must exist in the app.
+     */
+    public void removeSubcom(Subcom key) {
+        subcoms.remove(key);
+    }
 
     //// util methods
 
@@ -113,6 +146,9 @@ public class ExcoLink implements ReadOnlyExcoLink {
     }
 
     @Override
+    public ObservableList<Subcom> getSubcomList() { return subcoms.asUnmodifiableObservableList(); }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -124,7 +160,7 @@ public class ExcoLink implements ReadOnlyExcoLink {
         }
 
         ExcoLink otherExcoLink = (ExcoLink) other;
-        return persons.equals(otherExcoLink.persons);
+        return persons.equals(otherExcoLink.persons) && subcoms.equals(otherExcoLink.subcoms);
     }
 
     @Override

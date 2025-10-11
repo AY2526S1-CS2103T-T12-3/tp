@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.excolink.model.subcom.exceptions.DuplicateSubcomException;
 import seedu.excolink.model.subcom.exceptions.SubcomNotFoundException;
-import seedu.excolink.model.subcom.Subcom;
 
 public class SubcomList implements Iterable<Subcom> {
     private final ObservableList<Subcom> internalList = FXCollections.observableArrayList();
@@ -46,6 +45,24 @@ public class SubcomList implements Iterable<Subcom> {
         if (!internalList.remove(toRemove)) {
             throw new SubcomNotFoundException();
         }
+    }
+
+    public void setSubcoms(SubcomList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code subcoms}.
+     * {@code subcoms} must not contain duplicate subcoms.
+     */
+    public void setSubcoms(List<Subcom> subcoms) {
+        requireAllNonNull(subcoms);
+        if (!subcomsAreUnique(subcoms)) {
+            throw new DuplicateSubcomException();
+        }
+
+        internalList.setAll(subcoms);
     }
 
     /**
