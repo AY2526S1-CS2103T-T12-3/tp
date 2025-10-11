@@ -70,4 +70,28 @@ public class SubcomTest {
         Subcom subcom = new Subcom("Publicity");
         assertEquals("Publicity", subcom.toString());
     }
+
+    /**
+     * Tests that {@link Subcom#NOSUBCOM} behaves correctly.
+     * Ensures it is equal to another instance of {@link Subcom.NoSubcom}
+     * and its string representation matches {@link Subcom#NOSUBCOM_STRING}.
+     */
+    @Test
+    public void noSubcom_behavesAsExpected() {
+        Subcom noSubcom = Subcom.NOSUBCOM;
+
+        // toString() should return "None"
+        assertEquals(Subcom.NOSUBCOM_STRING, noSubcom.toString(),
+                "NOSUBCOM toString() should return 'None'.");
+
+        // equals() should return true when comparing to another NoSubcom instance
+        Subcom anotherNoSubcom = Subcom.NOSUBCOM;
+        assertTrue(noSubcom.equals(anotherNoSubcom),
+                "Two NoSubcom instances should be equal.");
+
+        // equals() should return false for normal Subcom
+        Subcom publicity = new Subcom("Publicity");
+        assertFalse(noSubcom.equals(publicity),
+                "NoSubcom should not be equal to a normal Subcom instance.");
+    }
 }
