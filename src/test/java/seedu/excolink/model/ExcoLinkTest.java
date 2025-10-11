@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.person.exceptions.DuplicatePersonException;
+import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.testutil.PersonBuilder;
 
 public class ExcoLinkTest {
@@ -94,6 +95,7 @@ public class ExcoLinkTest {
      */
     private static class ExcoLinkStub implements ReadOnlyExcoLink {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Subcom> subcoms = FXCollections.observableArrayList();
 
         ExcoLinkStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -102,6 +104,11 @@ public class ExcoLinkTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Subcom> getSubcomList() {
+            return subcoms;
         }
     }
 
