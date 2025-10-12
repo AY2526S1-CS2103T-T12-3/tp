@@ -9,7 +9,8 @@ import org.junit.jupiter.api.Test;
 import seedu.excolink.commons.core.index.Index;
 import seedu.excolink.logic.commands.RemoveSubcomMemberCommand;
 import seedu.excolink.logic.parser.exceptions.ParseException;
-public class RemoveSubcomCommandParserTest {
+
+public class RemoveSubcomMemberCommandParserTest {
     private RemoveSubcomMemberCommandParser parser;
 
     @BeforeEach
