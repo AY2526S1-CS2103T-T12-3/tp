@@ -70,10 +70,6 @@ public class Person {
         return subcom;
     }
 
-    public Person assignSubcom(Subcom newSubcom) {
-        return new Person(name, phone, email, address, roles, newSubcom);
-    }
-
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.

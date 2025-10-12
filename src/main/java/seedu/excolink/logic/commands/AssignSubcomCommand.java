@@ -22,16 +22,15 @@ public class AssignSubcomCommand extends Command {
             + PREFIX_SUBCOM + "publicity";
 
     private Index index;
-    private String subcommString;
+    private String subcomName;
     /**
      * @param index of the person in the filtered person list to edit
-     * @param subcommString subcomm that the person is assigned to
+     * @param subcomName subcomm that the person is assigned to
      */
-    public AssignSubcomCommand(Index index, String subcommString) {
-        requireNonNull(index);
-        requireNonNull(subcommString);
+    public AssignSubcomCommand(Index index, String subcomName) {
+        requireNonNull(index, subcomName);
         this.index = index;
-        this.subcommString = subcommString;
+        this.subcomName = subcomName;
     }
 
     @Override
@@ -44,7 +43,7 @@ public class AssignSubcomCommand extends Command {
     public boolean equals(Object o) {
         if (o instanceof AssignSubcomCommand) {
             AssignSubcomCommand command = (AssignSubcomCommand) o;
-            return command.index.equals(this.index) && command.subcommString.equals(this.subcommString);
+            return command.index.equals(this.index) && command.subcomName.equals(this.subcomName);
         } else {
             return false;
         }
