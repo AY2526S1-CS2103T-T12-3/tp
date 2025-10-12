@@ -5,16 +5,18 @@ import static seedu.excolink.logic.commands.CommandTestUtil.assertCommandSuccess
 import static seedu.excolink.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.excolink.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.excolink.testutil.TypicalPersons.getTypicalExcoLink;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.excolink.testutil.TypicalPersons.getTypicalExcoLink;
+
 
 import org.junit.jupiter.api.Test;
 
 import seedu.excolink.commons.core.index.Index;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelManager;
-import seedu.excolink.model.person.Person;
 import seedu.excolink.model.UserPrefs;
+import seedu.excolink.model.person.Person;
+
 
 /**
  * This test uses a temporary placeholder for the model call. Need to change it
