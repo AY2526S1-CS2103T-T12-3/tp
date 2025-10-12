@@ -2,28 +2,34 @@ package seedu.excolink.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.excolink.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.excolink.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.excolink.testutil.TypicalPersons.getTypicalExcoLink;
+import static seedu.excolink.testutil.TypicalSubcoms.TECH;
+import static seedu.excolink.testutil.TypicalSubcoms.addTypicalSubcoms;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.excolink.commons.core.index.Index;
+import seedu.excolink.logic.Messages;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelManager;
 import seedu.excolink.model.UserPrefs;
+import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.testutil.TypicalSubcoms;
 
 /**
  * Contains unit and integration tests for {@code AssignSubcomCommand}.
  */
 public class AssignSubcomCommandTest {
 
-    private Model model = new ModelManager(getTypicalExcoLink(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalExcoLink(), new UserPrefs());
+    private Model model = new ModelManager(addTypicalSubcoms(getTypicalExcoLink()), new UserPrefs());
+    private Model expectedModel = new ModelManager(addTypicalSubcoms(getTypicalExcoLink()), new UserPrefs());
 
     @Test
     public void execute_validIndex_success() {
         Index index = Index.fromOneBased(1);
-        String subcom = "publicity";
+        Subcom subcom = TECH;
 
         AssignSubcomCommand command = new AssignSubcomCommand(index, subcom);
         String expectedMessage = AssignSubcomCommand.MESSAGE_SUCCESS;
@@ -34,11 +40,28 @@ public class AssignSubcomCommandTest {
     }
 
     @Test
+    public void execute_invalidIndex_throwsCommandException() {
+        Index outOfBoundsIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        AssignSubcomCommand command = new AssignSubcomCommand(outOfBoundsIndex, TECH);
+
+        assertCommandFailure(command, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidSubcom_throwsCommandException() {
+        Index validIndex = Index.fromOneBased(1);
+        Subcom invalidSubcom = new Subcom("NonExistentSubcom");
+        AssignSubcomCommand command = new AssignSubcomCommand(validIndex, invalidSubcom);
+
+        assertCommandFailure(command, model, Messages.MESSAGE_INVALID_SUBCOM_NAME);
+    }
+
+    @Test
     public void equals() {
         Index firstIndex = Index.fromOneBased(1);
         Index secondIndex = Index.fromOneBased(2);
-        String publicity = "publicity";
-        String logistics = "logistics";
+        Subcom publicity = new Subcom("publicity");
+        Subcom logistics = new Subcom("logistics");
 
         AssignSubcomCommand assignFirstCommand = new AssignSubcomCommand(firstIndex, publicity);
         AssignSubcomCommand assignSecondCommand = new AssignSubcomCommand(secondIndex, logistics);
