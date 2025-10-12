@@ -26,7 +26,7 @@ public class RemoveSubcomCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_withExtraWhitespace_returnsCommand() throws Exception {
+    public void parse_validArgsExtraWhitespace_returnsCommand() throws Exception {
         // whitespace should be tolerated
         RemoveSubcomMemberCommand expected =
                 new RemoveSubcomMemberCommand(Index.fromOneBased(2), "Events");
