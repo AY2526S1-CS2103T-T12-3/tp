@@ -26,14 +26,14 @@ public class Subcom {
      */
     public Subcom(String subcomName) {
         requireNonNull(subcomName);
-        checkArgument(isValidSubcom(subcomName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidSubcomName(subcomName), MESSAGE_CONSTRAINTS);
         this.subcomName = subcomName;
     }
 
     /**
      * Returns true if a given string is a valid subcommittee name.
      */
-    public static boolean isValidSubcom(String test) {
+    public static boolean isValidSubcomName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
