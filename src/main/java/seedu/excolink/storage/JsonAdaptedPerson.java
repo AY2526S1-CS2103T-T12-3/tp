@@ -115,7 +115,7 @@ class JsonAdaptedPerson {
         if (subcom == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Subcom.class.getSimpleName()));
         }
-        if (!Subcom.isValidSubcom(subcom)) {
+        if (!Subcom.isValidSubcomName(subcom)) {
             throw new IllegalValueException(Subcom.MESSAGE_CONSTRAINTS);
         } else {
             final Subcom modelSubcom = new Subcom(subcom);
