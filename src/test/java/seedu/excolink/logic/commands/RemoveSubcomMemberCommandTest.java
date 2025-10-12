@@ -1,9 +1,10 @@
 package seedu.excolink.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.excolink.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.excolink.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.excolink.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.excolink.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.excolink.testutil.TypicalPersons.getTypicalExcoLink;
@@ -57,5 +58,48 @@ public class RemoveSubcomMemberCommandTest {
         RemoveSubcomMemberCommand command = new RemoveSubcomMemberCommand(outOfBoundIndex, "Finance");
 
         assertCommandFailure(command, model, RemoveSubcomMemberCommand.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void equals_sameObject_returnsTrue() {
+        RemoveSubcomMemberCommand command = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance");
+        assertTrue(command.equals(command));
+    }
+
+    @Test
+    public void equals_sameValues_returnsTrue() {
+        RemoveSubcomMemberCommand commandA = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance");
+        RemoveSubcomMemberCommand commandB = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance");
+        assertTrue(commandA.equals(commandB));
+        assertEquals(commandA.hashCode(), commandB.hashCode());
+    }
+
+    @Test
+    public void equals_differentIndex_returnsFalse() {
+        RemoveSubcomMemberCommand commandA = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance");
+        RemoveSubcomMemberCommand commandB = new RemoveSubcomMemberCommand(INDEX_SECOND_PERSON, "Finance");
+        assertFalse(commandA.equals(commandB));
+    }
+
+    @Test
+    public void equals_differentSubcom_returnsFalse() {
+        RemoveSubcomMemberCommand commandA = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance");
+        RemoveSubcomMemberCommand commandB = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Events");
+        assertFalse(commandA.equals(commandB));
+    }
+
+    @Test
+    public void equals_nullOrDifferentType_returnsFalse() {
+        RemoveSubcomMemberCommand command = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance");
+        assertFalse(command.equals(null));
+        assertFalse(command.equals(5)); // different type
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex}.
+     */
+    private void showPersonAtIndex(Model model, Index targetIndex) {
+        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        model.updateFilteredPersonList(p -> p.equals(person));
     }
 }
