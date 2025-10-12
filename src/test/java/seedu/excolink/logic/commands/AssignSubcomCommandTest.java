@@ -16,7 +16,6 @@ import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelManager;
 import seedu.excolink.model.UserPrefs;
 import seedu.excolink.model.subcom.Subcom;
-import seedu.excolink.testutil.TypicalSubcoms;
 
 /**
  * Contains unit and integration tests for {@code AssignSubcomCommand}.
