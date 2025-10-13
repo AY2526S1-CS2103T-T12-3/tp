@@ -23,6 +23,7 @@ import seedu.excolink.logic.commands.ExitCommand;
 import seedu.excolink.logic.commands.FindCommand;
 import seedu.excolink.logic.commands.HelpCommand;
 import seedu.excolink.logic.commands.ListCommand;
+import seedu.excolink.logic.commands.RemoveSubcomMemberCommand;
 import seedu.excolink.logic.parser.exceptions.ParseException;
 import seedu.excolink.model.person.NameContainsKeywordsPredicate;
 import seedu.excolink.model.person.Person;
@@ -95,6 +96,14 @@ public class ExcoLinkParserTest {
         assertTrue((parser.parseCommand(AssignSubcomCommand.COMMAND_WORD + " 1 sc/SUBCOMMITTEE")
                 instanceof AssignSubcomCommand));
     }
+
+    @Test
+    public void parseCommand_removeSubcomMember() throws Exception {
+        RemoveSubcomMemberCommand command = (RemoveSubcomMemberCommand) parser.parseCommand(
+                RemoveSubcomMemberCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " sc/Finance");
+        assertEquals(new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance"), command);
+    }
+
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
