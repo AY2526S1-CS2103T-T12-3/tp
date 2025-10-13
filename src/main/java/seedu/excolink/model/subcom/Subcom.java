@@ -15,9 +15,13 @@ public class Subcom {
      * The first character of the subcommittee name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "\\S.*";
+    public static final Subcom NOSUBCOM = new NoSubcom();
+    public static final String NOSUBCOM_STRING = "None";
 
     public final String subcomName;
+    public final String value;
+
 
     /**
      * Constructs a {@code Subcom}.
@@ -26,14 +30,15 @@ public class Subcom {
      */
     public Subcom(String subcomName) {
         requireNonNull(subcomName);
-        checkArgument(isValidSubcom(subcomName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidSubcomName(subcomName), MESSAGE_CONSTRAINTS);
         this.subcomName = subcomName;
+        this.value = subcomName;
     }
 
     /**
      * Returns true if a given string is a valid subcommittee name.
      */
-    public static boolean isValidSubcom(String test) {
+    public static boolean isValidSubcomName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -62,5 +67,24 @@ public class Subcom {
      */
     public String toString() {
         return subcomName;
+    }
+
+    /**
+     * Represents having no subcommittee
+     */
+    private static class NoSubcom extends Subcom {
+        public NoSubcom() {
+            super("null");
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            return other instanceof NoSubcom;
+        }
+
+        @Override
+        public String toString() {
+            return NOSUBCOM_STRING;
+        }
     }
 }

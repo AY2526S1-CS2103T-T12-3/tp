@@ -9,6 +9,7 @@ import seedu.excolink.model.person.Name;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.person.Phone;
 import seedu.excolink.model.role.Role;
+import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.model.util.SampleDataUtil;
 
 /**
@@ -20,12 +21,14 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_SUBCOM = "Publicity";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Role> roles;
+    private Subcom subcom;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -36,6 +39,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         roles = new HashSet<>();
+        subcom = new Subcom(DEFAULT_SUBCOM);
     }
 
     /**
@@ -47,6 +51,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         roles = new HashSet<>(personToCopy.getRoles());
+        subcom = personToCopy.getSubcom();
     }
 
     /**
@@ -58,9 +63,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code roles} into a {@code Set<Role>} and set it to the {@code Person} that we are building.
+     * Parses the {@code roles} into a {@code Set<Role>} and set it to the
+     * {@code Person} that we are building.
      */
-    public PersonBuilder withRoles(String ... roles) {
+    public PersonBuilder withRoles(String... roles) {
         this.roles = SampleDataUtil.getRoleSet(roles);
         return this;
     }
@@ -89,8 +95,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Subcom} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withSubcom(String subcom) {
+        this.subcom = new Subcom(subcom);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, roles);
+        return new Person(name, phone, email, address, roles, subcom);
     }
 
 }

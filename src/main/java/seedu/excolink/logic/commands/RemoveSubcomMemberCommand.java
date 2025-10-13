@@ -2,6 +2,8 @@ package seedu.excolink.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
+
 import seedu.excolink.commons.core.index.Index;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
@@ -69,4 +71,23 @@ public class RemoveSubcomMemberCommand extends Command {
         return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, personToEdit.getName().fullName, subcomName));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof RemoveSubcomMemberCommand)) {
+            return false;
+        }
+
+        RemoveSubcomMemberCommand otherCommand = (RemoveSubcomMemberCommand) other;
+        return targetIndex.equals(otherCommand.targetIndex)
+                && subcomName.equals(otherCommand.subcomName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(targetIndex, subcomName);
+    }
 }

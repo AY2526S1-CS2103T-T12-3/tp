@@ -12,13 +12,19 @@ import seedu.excolink.commons.exceptions.IllegalValueException;
 import seedu.excolink.commons.util.JsonUtil;
 import seedu.excolink.model.ExcoLink;
 import seedu.excolink.testutil.TypicalPersons;
+import seedu.excolink.testutil.TypicalSubcoms;
 
 public class JsonSerializableExcoLinkTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableExcoLinkTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
+            "JsonSerializableExcoLinkTest");
     private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsExcoLink.json");
     private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonExcoLink.json");
     private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonExcoLink.json");
+
+    private static final Path TYPICAL_SUBCOMS_FILE = TEST_DATA_FOLDER.resolve("typicalSubcomsExcoLink.json");
+    private static final Path DUPLICATE_SUBCOM_FILE = TEST_DATA_FOLDER.resolve("duplicateSubcomExcoLink.json");
+    private static final Path INVALID_SUBCOM_FILE = TEST_DATA_FOLDER.resolve("invalidSubcomExcoLink.json");
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
@@ -44,4 +50,27 @@ public class JsonSerializableExcoLinkTest {
                 dataFromFile::toModelType);
     }
 
+    @Test
+    public void toModelType_typicalSubcomsFile_success() throws Exception {
+        JsonSerializableExcoLink dataFromFile = JsonUtil.readJsonFile(TYPICAL_SUBCOMS_FILE,
+                JsonSerializableExcoLink.class).get();
+        ExcoLink excoLinkFromFile = dataFromFile.toModelType();
+        ExcoLink expectedExcoLink = TypicalSubcoms.getTypicalExcoLink();
+        assertEquals(excoLinkFromFile, expectedExcoLink);
+    }
+
+    @Test
+    public void toModelType_invalidSubcomFile_throwsIllegalValueException() throws Exception {
+        JsonSerializableExcoLink dataFromFile = JsonUtil.readJsonFile(INVALID_SUBCOM_FILE,
+                JsonSerializableExcoLink.class).get();
+        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateSubcoms_throwsIllegalValueException() throws Exception {
+        JsonSerializableExcoLink dataFromFile = JsonUtil.readJsonFile(DUPLICATE_SUBCOM_FILE,
+                JsonSerializableExcoLink.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableExcoLink.MESSAGE_DUPLICATE_SUBCOM,
+                dataFromFile::toModelType);
+    }
 }

@@ -10,11 +10,13 @@ import static seedu.excolink.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.excolink.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.excolink.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.excolink.logic.commands.CommandTestUtil.INVALID_ROLE_DESC;
+import static seedu.excolink.logic.commands.CommandTestUtil.INVALID_SUBCOM_DESC;
 import static seedu.excolink.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.excolink.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.excolink.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.excolink.logic.commands.CommandTestUtil.ROLE_DESC_MEMBER;
 import static seedu.excolink.logic.commands.CommandTestUtil.ROLE_DESC_TEAM_LEAD;
+import static seedu.excolink.logic.commands.CommandTestUtil.SUBCOM_DESC_PUBLICITY;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -22,12 +24,14 @@ import static seedu.excolink.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_ROLE_MEMBER;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_ROLE_TEAM_LEAD;
+import static seedu.excolink.logic.commands.CommandTestUtil.VALID_SUBCOM_PUBLICITY;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.excolink.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.excolink.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.excolink.testutil.Assert.assertThrows;
 import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.excolink.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.excolink.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
@@ -43,6 +47,7 @@ import seedu.excolink.model.person.Email;
 import seedu.excolink.model.person.Name;
 import seedu.excolink.model.person.Phone;
 import seedu.excolink.model.role.Role;
+import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -205,4 +210,47 @@ public class EditCommandParserTest {
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
+
+    @Test
+    public void parse_withSubcom_success() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = targetIndex.getOneBased() + SUBCOM_DESC_PUBLICITY;
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withSubcom(VALID_SUBCOM_PUBLICITY)
+                .build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_invalidSubcom_failure() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = targetIndex.getOneBased() + INVALID_SUBCOM_DESC;
+        assertParseFailure(parser, userInput, Subcom.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_noRolesProvided_returnsEmptyOptional() throws Exception {
+        // Indirectly test private parseRolesForEdit via normal parse path
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = targetIndex.getOneBased() + " "; // valid index, no fields
+        assertParseFailure(parser, userInput, EditCommand.MESSAGE_NOT_EDITED);
+    }
+
+    @Test
+    public void parse_rolesWithEmptyString_returnsEmptyRolesSet() {
+        Index targetIndex = INDEX_SECOND_PERSON;
+        String userInput = targetIndex.getOneBased() + " " + PREFIX_ROLE + " ";
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withRoles().build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_nullArgs_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> parser.parse(null));
+    }
+
 }
