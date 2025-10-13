@@ -11,6 +11,7 @@ import seedu.excolink.model.person.Name;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.person.Phone;
 import seedu.excolink.model.role.Role;
+import seedu.excolink.model.subcom.Subcom;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -85,4 +86,11 @@ public class EditPersonDescriptorBuilder {
         return descriptor;
     }
 
+    /**
+     * Sets the {@code Subcom} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withSubcom(String subcom) {
+        descriptor.setSubcom(new Subcom(subcom));
+        return this;
+    }
 }

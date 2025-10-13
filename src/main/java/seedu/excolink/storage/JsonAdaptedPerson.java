@@ -16,6 +16,7 @@ import seedu.excolink.model.person.Name;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.person.Phone;
 import seedu.excolink.model.role.Role;
+import seedu.excolink.model.subcom.Subcom;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -29,6 +30,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedRole> roles = new ArrayList<>();
+    private final String subcom;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,7 +38,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("roles") List<JsonAdaptedRole> roles) {
+            @JsonProperty("roles") List<JsonAdaptedRole> roles,
+            @JsonProperty("subcom") String subcom) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,6 +47,7 @@ class JsonAdaptedPerson {
         if (roles != null) {
             this.roles.addAll(roles);
         }
+        this.subcom = subcom;
     }
 
     /**
@@ -57,12 +61,16 @@ class JsonAdaptedPerson {
         roles.addAll(source.getRoles().stream()
                 .map(JsonAdaptedRole::new)
                 .collect(Collectors.toList()));
+
+        subcom = source.getSubcom().value;
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's
+     * {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
         final List<Role> personRoles = new ArrayList<>();
@@ -103,7 +111,16 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Role> modelRoles = new HashSet<>(personRoles);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRoles);
+
+        if (subcom == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Subcom.class.getSimpleName()));
+        }
+        if (!Subcom.isValidSubcomName(subcom)) {
+            throw new IllegalValueException(Subcom.MESSAGE_CONSTRAINTS);
+        } else {
+            final Subcom modelSubcom = new Subcom(subcom);
+            return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRoles, modelSubcom);
+        }
     }
 
 }
