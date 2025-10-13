@@ -24,4 +24,14 @@ public class TypicalSubcoms {
         excoLink.addSubcom(BRANDING_AND_MARKETING);
         return excoLink;
     }
+
+    /**
+     * Add typical subcoms to an existing {@code ExcoLink}.
+     */
+    public static ExcoLink addTypicalSubcoms(ExcoLink modelToChange) {
+        modelToChange.addSubcom(TECH);
+        modelToChange.addSubcom(UI_UX);
+        modelToChange.addSubcom(BRANDING_AND_MARKETING);
+        return modelToChange;
+    }
 }

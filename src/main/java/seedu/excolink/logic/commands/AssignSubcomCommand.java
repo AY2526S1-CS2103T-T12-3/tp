@@ -3,8 +3,14 @@ package seedu.excolink.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOM;
 
+import java.util.List;
+
 import seedu.excolink.commons.core.index.Index;
+import seedu.excolink.logic.Messages;
+import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
+import seedu.excolink.model.person.Person;
+import seedu.excolink.model.subcom.Subcom;
 
 /**
  * Clears the address book.
@@ -22,28 +28,50 @@ public class AssignSubcomCommand extends Command {
             + PREFIX_SUBCOM + "publicity";
 
     private Index index;
-    private String subcomName;
+    private Subcom subcom;
     /**
      * @param index of the person in the filtered person list to edit
-     * @param subcomName subcomm that the person is assigned to
+     * @param subcom subcomm that the person is assigned to
      */
-    public AssignSubcomCommand(Index index, String subcomName) {
-        requireNonNull(index, subcomName);
+    public AssignSubcomCommand(Index index, Subcom subcom) {
+        requireNonNull(index);
+        requireNonNull(subcom);
         this.index = index;
-        this.subcomName = subcomName;
+        this.subcom = subcom;
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Person personToEdit = lastShownList.get(index.getZeroBased());
+        if (!model.hasSubcom(subcom)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_SUBCOM_NAME);
+        }
+        Person editedPerson = createNewPerson(personToEdit, subcom);
+        model.setPerson(personToEdit, editedPerson);
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    private Person createNewPerson(Person personToEdit, Subcom subcom) {
+        return new Person(personToEdit.getName(),
+                personToEdit.getPhone(),
+                personToEdit.getEmail(),
+                personToEdit.getAddress(),
+                personToEdit.getRoles(),
+                subcom);
     }
 
     @Override
     public boolean equals(Object o) {
         if (o instanceof AssignSubcomCommand) {
             AssignSubcomCommand command = (AssignSubcomCommand) o;
-            return command.index.equals(this.index) && command.subcomName.equals(this.subcomName);
+            return command.index.equals(this.index) && command.subcom.equals(this.subcom);
         } else {
             return false;
         }

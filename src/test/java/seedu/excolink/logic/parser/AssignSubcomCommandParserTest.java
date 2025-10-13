@@ -8,6 +8,7 @@ import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.excolink.logic.commands.AssignSubcomCommand;
+import seedu.excolink.model.subcom.Subcom;
 
 /**
  * Unit tests for {@code AssignSubcomCommandParser}.
@@ -36,7 +37,7 @@ public class AssignSubcomCommandParserTest {
     public void parse_validArgs_returnsAssignSubcomCommand() {
         String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + VALID_SUBCOM;
         AssignSubcomCommand expectedCommand =
-                new AssignSubcomCommand(INDEX_FIRST_PERSON, "Marketing");
+                new AssignSubcomCommand(INDEX_FIRST_PERSON, new Subcom("Marketing"));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
