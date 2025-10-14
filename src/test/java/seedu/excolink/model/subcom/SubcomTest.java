@@ -94,4 +94,14 @@ public class SubcomTest {
         assertFalse(noSubcom.equals(publicity),
                 "NoSubcom should not be equal to a normal Subcom instance.");
     }
+
+    @Test
+    public void getName_returnsSubcomName() {
+        Subcom subcom = new Subcom("Publicity");
+        assertEquals("Publicity", subcom.getName());
+
+        Subcom noSubcom = Subcom.NOSUBCOM;
+        assertEquals(Subcom.NOSUBCOM_STRING, noSubcom.getName(),
+                "getName() for NOSUBCOM should return NOSUBCOM_STRING.");
+    }
 }
