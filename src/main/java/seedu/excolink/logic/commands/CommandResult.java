@@ -43,10 +43,10 @@ public class CommandResult {
         this.displayEntity = DisplayEntity.PERSON;
     }
 
-        /**
-         * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code DisplayEntity},
-         * and other fields set to their default value.
-         */
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code DisplayEntity},
+     * and other fields set to their default value.
+     */
     public CommandResult(String feedbackToUser, DisplayEntity displayEntity) {
         this(feedbackToUser, false, false, displayEntity);
     }

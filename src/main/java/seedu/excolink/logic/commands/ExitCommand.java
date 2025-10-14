@@ -1,7 +1,6 @@
 package seedu.excolink.logic.commands;
 
 import seedu.excolink.model.Model;
-import seedu.excolink.ui.DisplayEntity;
 
 /**
  * Terminates the program.

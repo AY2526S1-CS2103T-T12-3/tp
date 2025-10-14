@@ -188,13 +188,13 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             switch (commandResult.getDisplayEntity()) {
-                case SUBCOM:
-                    showSubcomList();
-                    break;
-                case PERSON:
-                default:
-                    showPersonList();
-                    break;
+            case SUBCOM:
+                showSubcomList();
+                break;
+            case PERSON:
+            default:
+                showPersonList();
+                break;
             }
 
             return commandResult;
