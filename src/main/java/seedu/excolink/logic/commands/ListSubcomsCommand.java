@@ -3,6 +3,7 @@ package seedu.excolink.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.excolink.model.Model;
+import seedu.excolink.ui.DisplayEntity;
 
 /**
  * Lists all subcoms in the address book to the user.
@@ -17,6 +18,6 @@ public class ListSubcomsCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, DisplayEntity.SUBCOM);
     }
 }
