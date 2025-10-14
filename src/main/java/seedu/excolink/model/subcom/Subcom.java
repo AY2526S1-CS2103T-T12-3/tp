@@ -78,7 +78,7 @@ public class Subcom {
      */
     private static class NoSubcom extends Subcom {
         public NoSubcom() {
-            super("null");
+            super(NOSUBCOM_STRING);
         }
 
         @Override

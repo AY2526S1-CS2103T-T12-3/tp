@@ -73,7 +73,7 @@ public class SubcomTest {
 
     /**
      * Tests that {@link Subcom#NOSUBCOM} behaves correctly.
-     * Ensures it is equal to another instance of {@link Subcom.NoSubcom}
+     * Ensures it is equal to another instance of {@link Subcom#NOSUBCOM}
      * and its string representation matches {@link Subcom#NOSUBCOM_STRING}.
      */
     @Test

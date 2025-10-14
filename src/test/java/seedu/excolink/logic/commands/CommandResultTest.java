@@ -59,7 +59,7 @@ public class CommandResultTest {
         CommandResult commandResult = new CommandResult("feedback");
         String expected = CommandResult.class.getCanonicalName() + "{feedbackToUser="
                 + commandResult.getFeedbackToUser() + ", showHelp=" + commandResult.isShowHelp()
-                + ", exit=" + commandResult.isExit() + "}";
+                + ", exit=" + commandResult.isExit() + ", displayEntity=" + commandResult.getDisplayEntity() + "}";
         assertEquals(expected, commandResult.toString());
     }
 
@@ -96,14 +96,5 @@ public class CommandResultTest {
 
         // different display entity -> returns different hashcode
         assertNotEquals(resultA.hashCode(), resultC.hashCode());
-    }
-
-    @Test
-    public void toString_withDisplayEntity() {
-        CommandResult result = new CommandResult("feedback", DisplayEntity.SUBCOM);
-        String expected = CommandResult.class.getCanonicalName() + "{feedbackToUser="
-                + result.getFeedbackToUser() + ", showHelp=" + result.isShowHelp()
-                + ", exit=" + result.isExit() + ", displayEntity=" + result.getDisplayEntity() + "}";
-        assertEquals(expected, result.toString());
     }
 }
