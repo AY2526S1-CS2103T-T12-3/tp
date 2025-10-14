@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.excolink.commons.core.GuiSettings;
+import seedu.excolink.logic.ListEntity;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
 

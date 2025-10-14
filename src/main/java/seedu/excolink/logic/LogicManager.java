@@ -16,6 +16,7 @@ import seedu.excolink.logic.parser.exceptions.ParseException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.ReadOnlyExcoLink;
 import seedu.excolink.model.person.Person;
+import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.storage.Storage;
 
 /**
@@ -69,6 +70,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Subcom> getSubcomList() {
+        return model.getSubcomList();
     }
 
     @Override
