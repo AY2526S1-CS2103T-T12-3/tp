@@ -71,7 +71,7 @@ public class CommandResult {
         return exit;
     }
 
-    public DisplayEntity displayEntity() {
+    public DisplayEntity getDisplayEntity() {
         return displayEntity;
     }
 

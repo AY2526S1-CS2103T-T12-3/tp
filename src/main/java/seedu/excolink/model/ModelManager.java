@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.excolink.commons.core.GuiSettings;
 import seedu.excolink.commons.core.LogsCenter;
-import seedu.excolink.logic.ListEntity;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
 

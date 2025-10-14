@@ -35,6 +35,10 @@ public class Subcom {
         this.value = subcomName;
     }
 
+    public String getName() {
+        return subcomName;
+    }
+
     /**
      * Returns true if a given string is a valid subcommittee name.
      */
