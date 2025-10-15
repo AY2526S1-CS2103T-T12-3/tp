@@ -8,6 +8,7 @@ import seedu.excolink.commons.core.index.Index;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.person.Person;
+import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.ui.DisplayEntity;
 
 /**
@@ -45,30 +46,36 @@ public class RemoveSubcomMemberCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         if (targetIndex.getZeroBased() >= model.getFilteredPersonList().size()) {
             throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToEdit = model.getFilteredPersonList().get(targetIndex.getZeroBased());
 
-        /*
-         * Model should have a removeMemberFromSubCom method, should throw an illegalArgumentException
-         * return true if person was a member and is removed successfully
-         * returns false if the person was not a member of the subcomm
-         */
-
-        boolean removed = true; // just put true for now since the method hasnt been added
-        try {
-            // removed = model.removeMemberFromSubCom(personToEdit, subcomName);
-        } catch (IllegalArgumentException e) {
+        // Check if person is in the subcommittee
+        Subcom subcomToRemoveFrom = new Subcom(subcomName);
+        if (!model.hasSubcom(subcomToRemoveFrom)) {
             throw new CommandException(String.format(MESSAGE_SUBCOM_NOT_FOUND, subcomName));
         }
 
-        if (!removed) {
+        // Check if person is in the subcommittee
+        if (!personToEdit.getSubcom().equals(subcomToRemoveFrom)) {
             throw new CommandException(String.format(MESSAGE_MEMBER_NOT_IN_SUBCOM,
                     personToEdit.getName().fullName, subcomName));
         }
 
+        // Create new person with no subcommittee
+        Person editedPerson = new Person(
+                personToEdit.getName(),
+                personToEdit.getPhone(),
+                personToEdit.getEmail(),
+                personToEdit.getAddress(),
+                personToEdit.getRoles(),
+                Subcom.NOSUBCOM
+        );
+
+        model.setPerson(personToEdit, editedPerson);
         return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, personToEdit.getName().fullName, subcomName),
                 DisplayEntity.PERSON);
     }

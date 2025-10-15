@@ -16,6 +16,8 @@ import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelManager;
 import seedu.excolink.model.UserPrefs;
 import seedu.excolink.model.person.Person;
+import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.testutil.PersonBuilder;
 
 
 /**
@@ -26,15 +28,24 @@ public class RemoveSubcomMemberCommandTest {
     private Model model = new ModelManager(getTypicalExcoLink(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
-        Person personToRemove = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        RemoveSubcomMemberCommand command = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance");
+    public void execute_validIndexAndSubMemberInSubcom_success() {
+        Subcom financeSubcom = new Subcom("Finance");
+        model.addSubcom(financeSubcom);
+        Person personInSubcom = new PersonBuilder()
+                .withName("John Doe")
+                .withSubcom("Finance")
+                .build();
+        model.addPerson(personInSubcom);
+
+        Index lastIndex = Index.fromOneBased(model.getFilteredPersonList().size());
+        RemoveSubcomMemberCommand command = new RemoveSubcomMemberCommand(lastIndex, "Finance");
 
         String expectedMessage = String.format(RemoveSubcomMemberCommand.MESSAGE_REMOVE_SUCCESS,
-                personToRemove.getName().fullName, "Finance");
+                personInSubcom.getName().fullName, "Finance");
 
         Model expectedModel = new ModelManager(model.getExcoLink(), new UserPrefs());
-        // If the model later mutates the person/subcom membership, update expectedModel
+        Person editedPerson = new PersonBuilder(personInSubcom).withSubcom(Subcom.NOSUBCOM_STRING).build();
+        expectedModel.setPerson(personInSubcom, editedPerson);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
@@ -58,6 +69,46 @@ public class RemoveSubcomMemberCommandTest {
         RemoveSubcomMemberCommand command = new RemoveSubcomMemberCommand(outOfBoundIndex, "Finance");
 
         assertCommandFailure(command, model, RemoveSubcomMemberCommand.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_memberNotInSubcom_throwsComandException() {
+        Subcom financeSubcom = new Subcom("Finance");
+        model.addSubcom(financeSubcom);
+
+        Person personWithNoSubcom = new PersonBuilder()
+                .withName("Jane Doe")
+                .withSubcom(Subcom.NOSUBCOM_STRING)
+                .build();
+        model.addPerson(personWithNoSubcom);
+
+        Index lastIndex = Index.fromOneBased(model.getFilteredPersonList().size());
+        RemoveSubcomMemberCommand command = new RemoveSubcomMemberCommand(lastIndex, "Finance");
+
+        assertCommandFailure(command, model,
+                String.format(RemoveSubcomMemberCommand.MESSAGE_MEMBER_NOT_IN_SUBCOM,
+                        personWithNoSubcom.getName().fullName, "Finance"));
+    }
+
+    @Test public void execute_memberInDifferentSubcom_throwsCommandException() {
+        Subcom financeSubcom = new Subcom("Finance");
+        Subcom techSubcom = new Subcom("Tech");
+        model.addSubcom(financeSubcom);
+        model.addSubcom(techSubcom);
+
+        Person personInTech = new PersonBuilder()
+                .withName("Bob Smith")
+                .withSubcom("Tech")
+                .build();
+        model.addPerson(personInTech);
+
+        Index lastIndex = Index.fromOneBased(model.getFilteredPersonList().size());
+
+        RemoveSubcomMemberCommand command = new RemoveSubcomMemberCommand(lastIndex, "Finance");
+
+        assertCommandFailure(command, model,
+                String.format(RemoveSubcomMemberCommand.MESSAGE_MEMBER_NOT_IN_SUBCOM,
+                        personInTech.getName().fullName, "Finance"));
     }
 
     @Test
@@ -88,6 +139,12 @@ public class RemoveSubcomMemberCommandTest {
         assertFalse(commandA.equals(commandB));
     }
 
+    @Test
+    public void equals_differentSubcomWithWhitespace_returnsFalse() {
+        RemoveSubcomMemberCommand commandA = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance");
+        RemoveSubcomMemberCommand commandB = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance ");
+        assertTrue(commandA.equals(commandB));
+    }
     @Test
     public void equals_nullOrDifferentType_returnsFalse() {
         RemoveSubcomMemberCommand command = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance");
