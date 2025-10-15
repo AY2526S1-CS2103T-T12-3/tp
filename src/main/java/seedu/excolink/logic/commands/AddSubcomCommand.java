@@ -7,6 +7,7 @@ import seedu.excolink.commons.util.ToStringBuilder;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.ui.DisplayEntity;
 
 /**
  * Adds a subcommittee to the app.
@@ -43,7 +44,7 @@ public class AddSubcomCommand extends Command {
 
         model.addSubcom(toAdd);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toString()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toString()), DisplayEntity.SUBCOM);
     }
 
     @Override
