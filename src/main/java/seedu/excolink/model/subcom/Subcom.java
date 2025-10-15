@@ -35,6 +35,10 @@ public class Subcom {
         this.value = subcomName;
     }
 
+    public String getName() {
+        return subcomName;
+    }
+
     /**
      * Returns true if a given string is a valid subcommittee name.
      */
@@ -74,7 +78,7 @@ public class Subcom {
      */
     private static class NoSubcom extends Subcom {
         public NoSubcom() {
-            super("null");
+            super(NOSUBCOM_STRING);
         }
 
         @Override

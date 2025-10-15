@@ -73,7 +73,7 @@ public class SubcomTest {
 
     /**
      * Tests that {@link Subcom#NOSUBCOM} behaves correctly.
-     * Ensures it is equal to another instance of {@link Subcom.NoSubcom}
+     * Ensures it is equal to another instance of {@link Subcom#NOSUBCOM}
      * and its string representation matches {@link Subcom#NOSUBCOM_STRING}.
      */
     @Test
@@ -93,5 +93,15 @@ public class SubcomTest {
         Subcom publicity = new Subcom("Publicity");
         assertFalse(noSubcom.equals(publicity),
                 "NoSubcom should not be equal to a normal Subcom instance.");
+    }
+
+    @Test
+    public void getName_returnsSubcomName() {
+        Subcom subcom = new Subcom("Publicity");
+        assertEquals("Publicity", subcom.getName());
+
+        Subcom noSubcom = Subcom.NOSUBCOM;
+        assertEquals(Subcom.NOSUBCOM_STRING, noSubcom.getName(),
+                "getName() for NOSUBCOM should return NOSUBCOM_STRING.");
     }
 }

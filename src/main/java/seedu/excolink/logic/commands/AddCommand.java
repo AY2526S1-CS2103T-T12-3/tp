@@ -13,6 +13,7 @@ import seedu.excolink.logic.Messages;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.person.Person;
+import seedu.excolink.ui.DisplayEntity;
 
 /**
  * Adds a person to the address book.
@@ -58,7 +59,7 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)), DisplayEntity.PERSON);
     }
 
     @Override

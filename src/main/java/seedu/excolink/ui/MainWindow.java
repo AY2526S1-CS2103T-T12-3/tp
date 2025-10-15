@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private SubcomListPanel subcomListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -111,7 +112,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -186,11 +187,33 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            switch (commandResult.getDisplayEntity()) {
+            case SUBCOM:
+                showSubcomList();
+                break;
+            case PERSON:
+            default:
+                showPersonList();
+                break;
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    private void showPersonList() {
+        listPanelPlaceholder.getChildren().setAll(personListPanel.getRoot());
+    }
+
+    private void showSubcomList() {
+        if (subcomListPanel == null) {
+            subcomListPanel = new SubcomListPanel(logic.getSubcomList());
+        }
+        System.out.println("HELLOO");
+        listPanelPlaceholder.getChildren().setAll(subcomListPanel.getRoot());
     }
 }
