@@ -1,6 +1,7 @@
 package seedu.excolink.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOM;
 
 import seedu.excolink.commons.util.ToStringBuilder;
 import seedu.excolink.logic.commands.exceptions.CommandException;
@@ -17,7 +18,7 @@ public class ListSubcomMembersCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " Lists all persons who are members of "
             + "the specified Subcom (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: SUBCOM_NAME\n"
-            + "Example: " + COMMAND_WORD + " Publicity";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_SUBCOM + " Publicity";
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
     public static final String MESSAGE_INVALID_SUBCOM = "This subcommittee does not exist.";
