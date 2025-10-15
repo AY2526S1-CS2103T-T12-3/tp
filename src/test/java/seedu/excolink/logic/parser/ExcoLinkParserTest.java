@@ -114,7 +114,8 @@ public class ExcoLinkParserTest {
 
     @Test
     public void parseCommand_listSubcomMembers() throws Exception {
-        assertTrue(parser.parseCommand(ListSubcomMembersCommand.COMMAND_WORD + " sc/SUBCOMMITEE") instanceof ListSubcomMembersCommand);
+        assertTrue(parser.parseCommand(ListSubcomMembersCommand.COMMAND_WORD + " sc/SUBCOMMITEE")
+                instanceof ListSubcomMembersCommand);
     }
 
 
