@@ -76,7 +76,6 @@ public class RemoveSubcomMemberCommand extends Command {
         );
 
         model.setPerson(personToEdit, editedPerson);
-      
         return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, personToEdit.getName().fullName, subcomName),
                 DisplayEntity.PERSON);
     }
