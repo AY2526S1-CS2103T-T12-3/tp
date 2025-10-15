@@ -40,11 +40,8 @@ public class ListSubcomMembersCommand extends Command {
         if (!model.hasSubcom(this.subcomToList)) {
             throw new CommandException(MESSAGE_INVALID_SUBCOM);
         }
-        /* TODO: Included after addition of hasSubcom() and getSubcom()
 
         model.updateFilteredPersonList(person -> person.getSubcom().equals(subcomToList));
-
-        */
         return new CommandResult(String.format(MESSAGE_SUCCESS, subcomToList.toString()), DisplayEntity.PERSON);
     }
 
