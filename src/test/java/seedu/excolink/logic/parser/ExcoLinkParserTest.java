@@ -23,6 +23,7 @@ import seedu.excolink.logic.commands.ExitCommand;
 import seedu.excolink.logic.commands.FindCommand;
 import seedu.excolink.logic.commands.HelpCommand;
 import seedu.excolink.logic.commands.ListCommand;
+import seedu.excolink.logic.commands.ListSubcomsCommand;
 import seedu.excolink.logic.commands.RemoveSubcomMemberCommand;
 import seedu.excolink.logic.parser.exceptions.ParseException;
 import seedu.excolink.model.person.NameContainsKeywordsPredicate;
@@ -89,6 +90,12 @@ public class ExcoLinkParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_listSubcoms() throws Exception {
+        assertTrue(parser.parseCommand(ListSubcomsCommand.COMMAND_WORD) instanceof ListSubcomsCommand);
+        assertTrue(parser.parseCommand(ListSubcomsCommand.COMMAND_WORD + " 3") instanceof ListSubcomsCommand);
     }
 
     @Test

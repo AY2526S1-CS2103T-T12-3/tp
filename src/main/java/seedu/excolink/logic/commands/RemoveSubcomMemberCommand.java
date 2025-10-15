@@ -8,6 +8,7 @@ import seedu.excolink.commons.core.index.Index;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.person.Person;
+import seedu.excolink.ui.DisplayEntity;
 
 /**
  * Remove a member from a subcom
@@ -68,7 +69,8 @@ public class RemoveSubcomMemberCommand extends Command {
                     personToEdit.getName().fullName, subcomName));
         }
 
-        return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, personToEdit.getName().fullName, subcomName));
+        return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, personToEdit.getName().fullName, subcomName),
+                DisplayEntity.PERSON);
     }
 
     @Override

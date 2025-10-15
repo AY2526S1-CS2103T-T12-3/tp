@@ -11,6 +11,7 @@ import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.ui.DisplayEntity;
 
 /**
  * Clears the address book.
@@ -55,7 +56,7 @@ public class AssignSubcomCommand extends Command {
         }
         Person editedPerson = createNewPerson(personToEdit, subcom);
         model.setPerson(personToEdit, editedPerson);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, DisplayEntity.PERSON);
     }
 
     private Person createNewPerson(Person personToEdit, Subcom subcom) {

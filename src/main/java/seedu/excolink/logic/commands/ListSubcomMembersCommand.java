@@ -6,6 +6,7 @@ import seedu.excolink.commons.util.ToStringBuilder;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.ui.DisplayEntity;
 
 /**
  * Lists members in a  subcommittee.
@@ -44,7 +45,7 @@ public class ListSubcomMembersCommand extends Command {
         model.updateFilteredPersonList(person -> person.getSubcom().equals(subcomToList));
 
         */
-        return new CommandResult(String.format(MESSAGE_SUCCESS, subcomToList.toString()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, subcomToList.toString()), DisplayEntity.PERSON);
     }
 
     @Override

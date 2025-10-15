@@ -11,6 +11,7 @@ import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.role.Role;
+import seedu.excolink.ui.DisplayEntity;
 
 /**
  * Assigns a role to an existing member identified using its displayed index.
@@ -65,7 +66,7 @@ public class AssignRoleCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_ROLE_SUCCESS,
-                personToEdit.getName(), role.roleName));
+                personToEdit.getName(), role.roleName), DisplayEntity.PERSON);
     }
 
     @Override

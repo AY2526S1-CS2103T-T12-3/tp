@@ -9,6 +9,7 @@ import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.logic.parser.exceptions.ParseException;
 import seedu.excolink.model.ReadOnlyExcoLink;
 import seedu.excolink.model.person.Person;
+import seedu.excolink.model.subcom.Subcom;
 
 /**
  * API of the Logic component
@@ -32,6 +33,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the list of subcoms */
+    ObservableList<Subcom> getSubcomList();
 
     /**
      * Returns the user prefs' address book file path.
