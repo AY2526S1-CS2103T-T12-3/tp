@@ -29,27 +29,25 @@ public class RemoveSubcomMemberCommandTest {
 
     @Test
     public void execute_validIndexAndSubMemberInSubcom_success() {
-        Model testModel = new ModelManager(getTypicalExcoLink(), new UserPrefs());
-
         Subcom financeSubcom = new Subcom("Finance");
-        testModel.addSubcom(financeSubcom);
+        model.addSubcom(financeSubcom);
         Person personInSubcom = new PersonBuilder()
                 .withName("John Doe")
                 .withSubcom("Finance")
                 .build();
-        testModel.addPerson(personInSubcom);
+        model.addPerson(personInSubcom);
 
-        Index lastIndex = Index.fromOneBased(testModel.getFilteredPersonList().size());
+        Index lastIndex = Index.fromOneBased(model.getFilteredPersonList().size());
         RemoveSubcomMemberCommand command = new RemoveSubcomMemberCommand(lastIndex, "Finance");
 
         String expectedMessage = String.format(RemoveSubcomMemberCommand.MESSAGE_REMOVE_SUCCESS,
                 personInSubcom.getName().fullName, "Finance");
 
-        Model expectedModel = new ModelManager(testModel.getExcoLink(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getExcoLink(), new UserPrefs());
         Person editedPerson = new PersonBuilder(personInSubcom).withSubcom(Subcom.NOSUBCOM_STRING).build();
         expectedModel.setPerson(personInSubcom, editedPerson);
 
-        assertCommandSuccess(command, testModel, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -75,44 +73,40 @@ public class RemoveSubcomMemberCommandTest {
 
     @Test
     public void execute_memberNotInSubcom_throwsComandException() {
-        Model testModel = new ModelManager(getTypicalExcoLink(), new UserPrefs());
-
         Subcom financeSubcom = new Subcom("Finance");
-        testModel.addSubcom(financeSubcom);
+        model.addSubcom(financeSubcom);
 
         Person personWithNoSubcom = new PersonBuilder()
                 .withName("Jane Doe")
                 .withSubcom(Subcom.NOSUBCOM_STRING)
                 .build();
-        testModel.addPerson(personWithNoSubcom);
+        model.addPerson(personWithNoSubcom);
 
-        Index lastIndex = Index.fromOneBased(testModel.getFilteredPersonList().size());
+        Index lastIndex = Index.fromOneBased(model.getFilteredPersonList().size());
         RemoveSubcomMemberCommand command = new RemoveSubcomMemberCommand(lastIndex, "Finance");
 
-        assertCommandFailure(command, testModel,
+        assertCommandFailure(command, model,
                 String.format(RemoveSubcomMemberCommand.MESSAGE_MEMBER_NOT_IN_SUBCOM,
                         personWithNoSubcom.getName().fullName, "Finance"));
     }
 
     @Test public void execute_memberInDifferentSubcom_throwsCommandException() {
-        Model testModel = new ModelManager(getTypicalExcoLink(), new UserPrefs());
-
         Subcom financeSubcom = new Subcom("Finance");
         Subcom techSubcom = new Subcom("Tech");
-        testModel.addSubcom(financeSubcom);
-        testModel.addSubcom(techSubcom);
+        model.addSubcom(financeSubcom);
+        model.addSubcom(techSubcom);
 
         Person personInTech = new PersonBuilder()
                 .withName("Bob Smith")
                 .withSubcom("Tech")
                 .build();
-        testModel.addPerson(personInTech);
+        model.addPerson(personInTech);
 
-        Index lastIndex = Index.fromOneBased(testModel.getFilteredPersonList().size());
+        Index lastIndex = Index.fromOneBased(model.getFilteredPersonList().size());
 
         RemoveSubcomMemberCommand command = new RemoveSubcomMemberCommand(lastIndex, "Finance");
 
-        assertCommandFailure(command, testModel,
+        assertCommandFailure(command, model,
                 String.format(RemoveSubcomMemberCommand.MESSAGE_MEMBER_NOT_IN_SUBCOM,
                         personInTech.getName().fullName, "Finance"));
     }
