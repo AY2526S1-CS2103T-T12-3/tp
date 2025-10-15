@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.excolink.logic.commands.exceptions.CommandException;
@@ -75,7 +76,7 @@ class ListSubcomMembersCommandTest {
 
     private static class ModelStubWithSubcom extends ModelStub {
         private final List<Subcom> subcoms = new ArrayList<>();
-        boolean isFilteredListUpdated = false;
+        private boolean isFilteredListUpdated = false;
 
         ModelStubWithSubcom(Subcom subcom) {
             subcoms.add(subcom);
