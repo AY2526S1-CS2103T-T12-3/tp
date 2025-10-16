@@ -19,7 +19,7 @@ import seedu.excolink.ui.DisplayEntity;
 public class AssignSubcomCommand extends Command {
 
     public static final String COMMAND_WORD = "assign-subcom";
-    public static final String MESSAGE_SUCCESS = "Subcommittee has been assigned!";
+    public static final String MESSAGE_SUCCESS = "Assigned %1$s to subcommittee: %2$s";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign a subcommittee for a member "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -56,7 +56,8 @@ public class AssignSubcomCommand extends Command {
         }
         Person editedPerson = createNewPerson(personToEdit, subcom);
         model.setPerson(personToEdit, editedPerson);
-        return new CommandResult(MESSAGE_SUCCESS, DisplayEntity.PERSON);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedPerson.getName(), subcom.getName()),
+                DisplayEntity.PERSON);
     }
 
     private Person createNewPerson(Person personToEdit, Subcom subcom) {
