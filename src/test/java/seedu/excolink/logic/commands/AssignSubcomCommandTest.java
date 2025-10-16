@@ -9,13 +9,10 @@ import static seedu.excolink.testutil.TypicalPersons.getTypicalExcoLink;
 import static seedu.excolink.testutil.TypicalSubcoms.TECH;
 import static seedu.excolink.testutil.TypicalSubcoms.addTypicalSubcoms;
 
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.excolink.commons.core.index.Index;
 import seedu.excolink.logic.Messages;
-import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelManager;
 import seedu.excolink.model.UserPrefs;
