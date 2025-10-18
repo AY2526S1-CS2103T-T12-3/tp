@@ -17,6 +17,7 @@ import seedu.excolink.logic.commands.AddCommand;
 import seedu.excolink.logic.commands.AssignSubcomCommand;
 import seedu.excolink.logic.commands.ClearCommand;
 import seedu.excolink.logic.commands.DeleteCommand;
+import seedu.excolink.logic.commands.DeleteSubcomCommand;
 import seedu.excolink.logic.commands.EditCommand;
 import seedu.excolink.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.excolink.logic.commands.ExitCommand;
@@ -118,6 +119,12 @@ public class ExcoLinkParserTest {
                 instanceof ListSubcomMembersCommand);
     }
 
+    @Test
+    public void parseCommand_deleteSubcom() throws Exception {
+        DeleteSubcomCommand command = (DeleteSubcomCommand) parser.parseCommand(
+                DeleteSubcomCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteSubcomCommand(INDEX_FIRST), command);
+    }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
