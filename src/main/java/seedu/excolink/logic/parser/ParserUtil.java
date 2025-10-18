@@ -9,7 +9,6 @@ import java.util.Set;
 import seedu.excolink.commons.core.index.Index;
 import seedu.excolink.commons.util.StringUtil;
 import seedu.excolink.logic.parser.exceptions.ParseException;
-import seedu.excolink.model.person.Address;
 import seedu.excolink.model.person.Email;
 import seedu.excolink.model.person.Name;
 import seedu.excolink.model.person.Phone;
@@ -64,21 +63,6 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
-    }
-
-    /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
     }
 
     /**

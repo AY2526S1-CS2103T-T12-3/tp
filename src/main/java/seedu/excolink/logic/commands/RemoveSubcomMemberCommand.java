@@ -70,7 +70,6 @@ public class RemoveSubcomMemberCommand extends Command {
                 personToEdit.getName(),
                 personToEdit.getPhone(),
                 personToEdit.getEmail(),
-                personToEdit.getAddress(),
                 personToEdit.getRoles(),
                 Subcom.NOSUBCOM
         );

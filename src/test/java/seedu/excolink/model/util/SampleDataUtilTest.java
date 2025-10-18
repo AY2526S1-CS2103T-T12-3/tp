@@ -33,7 +33,6 @@ public class SampleDataUtilTest {
             assertNotNull(p.getName(), "Person name should not be null.");
             assertNotNull(p.getPhone(), "Person phone should not be null.");
             assertNotNull(p.getEmail(), "Person email should not be null.");
-            assertNotNull(p.getAddress(), "Person address should not be null.");
             assertNotNull(p.getSubcom(), "Person subcom should not be null.");
             assertNotNull(p.getRoles(), "Person roles should not be null.");
             assertFalse(p.getRoles().isEmpty(), "Each person should have at least one role.");

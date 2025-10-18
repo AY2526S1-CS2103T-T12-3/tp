@@ -1,7 +1,6 @@
 package seedu.excolink.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.excolink.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -27,14 +26,12 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_ROLE + "ROLE]...\n"
             + "[" + PREFIX_SUBCOM + "SUBCOMMITTEE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_ROLE + "Team Lead";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";

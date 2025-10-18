@@ -3,7 +3,6 @@ package seedu.excolink.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.excolink.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -34,7 +33,7 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withRoles(VALID_ROLE_TEAM_LEAD).build();
+                .withRoles(VALID_ROLE_TEAM_LEAD).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -81,10 +80,6 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different address -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
         // different roles -> returns false
         editedAlice = new PersonBuilder(ALICE).withRoles(VALID_ROLE_TEAM_LEAD).build();
         assertFalse(ALICE.equals(editedAlice));
@@ -93,7 +88,7 @@ public class PersonTest {
     @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", roles=" + ALICE.getRoles()
+                + ", email=" + ALICE.getEmail() + ", roles=" + ALICE.getRoles()
                 + ", subcom=" + ALICE.getSubcom() + "}";
         assertEquals(expected, ALICE.toString());
     }

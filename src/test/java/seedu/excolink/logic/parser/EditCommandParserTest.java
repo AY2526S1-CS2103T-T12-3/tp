@@ -1,11 +1,8 @@
 package seedu.excolink.logic.parser;
 
 import static seedu.excolink.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.excolink.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.excolink.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.excolink.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.excolink.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.excolink.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.excolink.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.excolink.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.excolink.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -17,7 +14,6 @@ import static seedu.excolink.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.excolink.logic.commands.CommandTestUtil.ROLE_DESC_MEMBER;
 import static seedu.excolink.logic.commands.CommandTestUtil.ROLE_DESC_TEAM_LEAD;
 import static seedu.excolink.logic.commands.CommandTestUtil.SUBCOM_DESC_PUBLICITY;
-import static seedu.excolink.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -25,7 +21,6 @@ import static seedu.excolink.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_ROLE_MEMBER;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_ROLE_TEAM_LEAD;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_SUBCOM_PUBLICITY;
-import static seedu.excolink.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -42,7 +37,6 @@ import seedu.excolink.commons.core.index.Index;
 import seedu.excolink.logic.Messages;
 import seedu.excolink.logic.commands.EditCommand;
 import seedu.excolink.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.excolink.model.person.Address;
 import seedu.excolink.model.person.Email;
 import seedu.excolink.model.person.Name;
 import seedu.excolink.model.person.Phone;
@@ -91,7 +85,6 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_ROLE_DESC, Role.MESSAGE_CONSTRAINTS); // invalid role
 
         // invalid phone followed by valid email
@@ -104,7 +97,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + ROLE_EMPTY + ROLE_DESC_MEMBER + ROLE_DESC_TEAM_LEAD, Role.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_PHONE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -112,10 +105,10 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + ROLE_DESC_TEAM_LEAD
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + ROLE_DESC_MEMBER;
+                + EMAIL_DESC_AMY + NAME_DESC_AMY + ROLE_DESC_MEMBER;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
                 .withRoles(VALID_ROLE_TEAM_LEAD, VALID_ROLE_MEMBER).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -155,12 +148,6 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // address
-        userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
         // roles
         userInput = targetIndex.getOneBased() + ROLE_DESC_MEMBER;
         descriptor = new EditPersonDescriptorBuilder().withRoles(VALID_ROLE_MEMBER).build();
@@ -185,19 +172,19 @@ public class EditCommandParserTest {
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
 
         // mulltiple valid fields repeated
-        userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + ROLE_DESC_MEMBER + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + ROLE_DESC_MEMBER
-                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + ROLE_DESC_TEAM_LEAD;
+        userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + ROLE_DESC_MEMBER + PHONE_DESC_AMY + EMAIL_DESC_AMY + ROLE_DESC_MEMBER
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ROLE_DESC_TEAM_LEAD;
 
         assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL));
 
         // multiple invalid values
-        userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + INVALID_ADDRESS_DESC + INVALID_EMAIL_DESC
-                + INVALID_PHONE_DESC + INVALID_ADDRESS_DESC + INVALID_EMAIL_DESC;
+        userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + INVALID_EMAIL_DESC
+                + INVALID_PHONE_DESC + INVALID_EMAIL_DESC;
 
         assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL));
     }
 
     @Test
