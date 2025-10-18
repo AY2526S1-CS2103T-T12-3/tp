@@ -1,6 +1,9 @@
 package seedu.excolink.testutil;
 
-import seedu.excolink.model.ExcoLink;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.excolink.model.subcom.Subcom;
 
 /**
@@ -14,24 +17,7 @@ public class TypicalSubcoms {
 
     private TypicalSubcoms() {} // prevents instantiation
 
-    /**
-     * Returns an {@code ExcoLink} with all the typical subcoms.
-     */
-    public static ExcoLink getTypicalExcoLink() {
-        ExcoLink excoLink = new ExcoLink();
-        excoLink.addSubcom(TECH);
-        excoLink.addSubcom(UI_UX);
-        excoLink.addSubcom(BRANDING_AND_MARKETING);
-        return excoLink;
-    }
-
-    /**
-     * Add typical subcoms to an existing {@code ExcoLink}.
-     */
-    public static ExcoLink addTypicalSubcoms(ExcoLink modelToChange) {
-        modelToChange.addSubcom(TECH);
-        modelToChange.addSubcom(UI_UX);
-        modelToChange.addSubcom(BRANDING_AND_MARKETING);
-        return modelToChange;
+    public static List<Subcom> getTypicalSubcoms() {
+        return new ArrayList<>(Arrays.asList(TECH, UI_UX, BRANDING_AND_MARKETING));
     }
 }

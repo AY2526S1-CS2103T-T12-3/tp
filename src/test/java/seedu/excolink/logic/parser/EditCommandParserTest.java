@@ -32,9 +32,9 @@ import static seedu.excolink.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.excolink.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.excolink.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.excolink.testutil.Assert.assertThrows;
-import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.excolink.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.excolink.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.excolink.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.excolink.testutil.TypicalIndexes.INDEX_THIRD;
 
 import org.junit.jupiter.api.Test;
 
@@ -110,7 +110,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_PERSON;
+        Index targetIndex = INDEX_SECOND;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + ROLE_DESC_TEAM_LEAD
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + ROLE_DESC_MEMBER;
 
@@ -124,7 +124,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
@@ -137,7 +137,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -174,7 +174,7 @@ public class EditCommandParserTest {
         // AddCommandParserTest#parse_repeatedNonRoleValue_failure()
 
         // valid followed by invalid
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
 
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
@@ -202,7 +202,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_resetRoles_success() {
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + ROLE_EMPTY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withRoles().build();
@@ -213,7 +213,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_withSubcom_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + SUBCOM_DESC_PUBLICITY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
@@ -226,7 +226,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidSubcom_failure() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + INVALID_SUBCOM_DESC;
         assertParseFailure(parser, userInput, Subcom.MESSAGE_CONSTRAINTS);
     }
@@ -234,14 +234,14 @@ public class EditCommandParserTest {
     @Test
     public void parse_noRolesProvided_returnsEmptyOptional() throws Exception {
         // Indirectly test private parseRolesForEdit via normal parse path
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + " "; // valid index, no fields
         assertParseFailure(parser, userInput, EditCommand.MESSAGE_NOT_EDITED);
     }
 
     @Test
     public void parse_rolesWithEmptyString_returnsEmptyRolesSet() {
-        Index targetIndex = INDEX_SECOND_PERSON;
+        Index targetIndex = INDEX_SECOND;
         String userInput = targetIndex.getOneBased() + " " + PREFIX_ROLE + " ";
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withRoles().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
