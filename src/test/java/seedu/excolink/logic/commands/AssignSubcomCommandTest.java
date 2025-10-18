@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.excolink.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.excolink.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.excolink.testutil.TypicalExcoLink.getTypicalExcoLink;
+import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.excolink.testutil.TypicalSubcoms.TECH;
 
 import org.junit.jupiter.api.Test;

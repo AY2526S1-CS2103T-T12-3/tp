@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.excolink.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.excolink.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.excolink.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.excolink.testutil.TypicalExcoLink.getTypicalExcoLink;
 import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.excolink.testutil.TypicalIndexes.INDEX_SECOND;
-import static seedu.excolink.testutil.TypicalExcoLink.getTypicalExcoLink;
 
 import org.junit.jupiter.api.Test;
 

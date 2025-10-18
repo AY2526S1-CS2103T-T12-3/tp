@@ -2,8 +2,8 @@ package seedu.excolink.logic.commands;
 
 import static seedu.excolink.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.excolink.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.excolink.testutil.TypicalExcoLink.getTypicalExcoLink;
+import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
