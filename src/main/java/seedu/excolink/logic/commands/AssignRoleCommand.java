@@ -57,7 +57,6 @@ public class AssignRoleCommand extends Command {
                 personToEdit.getName(),
                 personToEdit.getPhone(),
                 personToEdit.getEmail(),
-                personToEdit.getAddress(),
                 updatedRoles,
                 personToEdit.getSubcom()
         );
