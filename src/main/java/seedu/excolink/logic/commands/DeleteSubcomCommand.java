@@ -9,7 +9,6 @@ import seedu.excolink.commons.util.ToStringBuilder;
 import seedu.excolink.logic.Messages;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
-import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.ui.DisplayEntity;
 
