@@ -84,6 +84,14 @@ public class Person {
     }
 
     /**
+     * Removes this person from their associated subcommittee by setting their {@code subcom} to NOSUBCOM.
+     * @return The modified person.
+     */
+    public Person removeFromSubcom() {
+        return new Person(name, phone, email, address, roles, Subcom.NOSUBCOM);
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */

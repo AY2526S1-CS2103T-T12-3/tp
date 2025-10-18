@@ -17,7 +17,7 @@ public class Subcom {
      */
     public static final String VALIDATION_REGEX = "\\S.*";
     public static final Subcom NOSUBCOM = new NoSubcom();
-    public static final String NOSUBCOM_STRING = "None";
+    public static final String NOSUBCOM_STRING = "No subcommittee";
 
     public final String subcomName;
     public final String value;
