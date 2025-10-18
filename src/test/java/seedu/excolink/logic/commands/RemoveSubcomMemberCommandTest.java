@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.excolink.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.excolink.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.excolink.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.excolink.testutil.TypicalPersons.getTypicalExcoLink;
+import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.excolink.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.excolink.testutil.TypicalExcoLink.getTypicalExcoLink;
 
 import org.junit.jupiter.api.Test;
 
@@ -60,10 +60,10 @@ public class RemoveSubcomMemberCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST);
 
         // ensures that outOfBoundIndex is still in bounds of the full address book list
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = INDEX_SECOND;
         assertTrue(outOfBoundIndex.getZeroBased() < model.getExcoLink().getPersonList().size());
 
         RemoveSubcomMemberCommand command = new RemoveSubcomMemberCommand(outOfBoundIndex, "Finance");
@@ -92,9 +92,7 @@ public class RemoveSubcomMemberCommandTest {
 
     @Test public void execute_memberInDifferentSubcom_throwsCommandException() {
         Subcom financeSubcom = new Subcom("Finance");
-        Subcom techSubcom = new Subcom("Tech");
         model.addSubcom(financeSubcom);
-        model.addSubcom(techSubcom);
 
         Person personInTech = new PersonBuilder()
                 .withName("Bob Smith")
@@ -113,41 +111,41 @@ public class RemoveSubcomMemberCommandTest {
 
     @Test
     public void equals_sameObject_returnsTrue() {
-        RemoveSubcomMemberCommand command = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance");
+        RemoveSubcomMemberCommand command = new RemoveSubcomMemberCommand(INDEX_FIRST, "Finance");
         assertTrue(command.equals(command));
     }
 
     @Test
     public void equals_sameValues_returnsTrue() {
-        RemoveSubcomMemberCommand commandA = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance");
-        RemoveSubcomMemberCommand commandB = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance");
+        RemoveSubcomMemberCommand commandA = new RemoveSubcomMemberCommand(INDEX_FIRST, "Finance");
+        RemoveSubcomMemberCommand commandB = new RemoveSubcomMemberCommand(INDEX_FIRST, "Finance");
         assertTrue(commandA.equals(commandB));
         assertEquals(commandA.hashCode(), commandB.hashCode());
     }
 
     @Test
     public void equals_differentIndex_returnsFalse() {
-        RemoveSubcomMemberCommand commandA = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance");
-        RemoveSubcomMemberCommand commandB = new RemoveSubcomMemberCommand(INDEX_SECOND_PERSON, "Finance");
+        RemoveSubcomMemberCommand commandA = new RemoveSubcomMemberCommand(INDEX_FIRST, "Finance");
+        RemoveSubcomMemberCommand commandB = new RemoveSubcomMemberCommand(INDEX_SECOND, "Finance");
         assertFalse(commandA.equals(commandB));
     }
 
     @Test
     public void equals_differentSubcom_returnsFalse() {
-        RemoveSubcomMemberCommand commandA = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance");
-        RemoveSubcomMemberCommand commandB = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Events");
+        RemoveSubcomMemberCommand commandA = new RemoveSubcomMemberCommand(INDEX_FIRST, "Finance");
+        RemoveSubcomMemberCommand commandB = new RemoveSubcomMemberCommand(INDEX_FIRST, "Events");
         assertFalse(commandA.equals(commandB));
     }
 
     @Test
     public void equals_differentSubcomWithWhitespace_returnsFalse() {
-        RemoveSubcomMemberCommand commandA = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance");
-        RemoveSubcomMemberCommand commandB = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance ");
+        RemoveSubcomMemberCommand commandA = new RemoveSubcomMemberCommand(INDEX_FIRST, "Finance");
+        RemoveSubcomMemberCommand commandB = new RemoveSubcomMemberCommand(INDEX_FIRST, "Finance ");
         assertTrue(commandA.equals(commandB));
     }
     @Test
     public void equals_nullOrDifferentType_returnsFalse() {
-        RemoveSubcomMemberCommand command = new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance");
+        RemoveSubcomMemberCommand command = new RemoveSubcomMemberCommand(INDEX_FIRST, "Finance");
         assertFalse(command.equals(null));
         assertFalse(command.equals(5)); // different type
     }

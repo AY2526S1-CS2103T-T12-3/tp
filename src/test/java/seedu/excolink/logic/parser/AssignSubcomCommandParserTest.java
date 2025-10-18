@@ -3,7 +3,7 @@ package seedu.excolink.logic.parser;
 import static seedu.excolink.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.excolink.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.excolink.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,9 +35,9 @@ public class AssignSubcomCommandParserTest {
      */
     @Test
     public void parse_validArgs_returnsAssignSubcomCommand() {
-        String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + VALID_SUBCOM;
+        String userInput = INDEX_FIRST.getOneBased() + " " + VALID_SUBCOM;
         AssignSubcomCommand expectedCommand =
-                new AssignSubcomCommand(INDEX_FIRST_PERSON, new Subcom("Marketing"));
+                new AssignSubcomCommand(INDEX_FIRST, new Subcom("Marketing"));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

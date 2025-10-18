@@ -2,7 +2,7 @@ package seedu.excolink.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.excolink.testutil.TypicalPersons.getTypicalExcoLink;
+import static seedu.excolink.testutil.TypicalExcoLink.getTypicalExcoLink;
 
 import java.nio.file.Path;
 

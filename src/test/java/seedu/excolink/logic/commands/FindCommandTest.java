@@ -8,7 +8,7 @@ import static seedu.excolink.logic.commands.CommandTestUtil.assertCommandSuccess
 import static seedu.excolink.testutil.TypicalPersons.CARL;
 import static seedu.excolink.testutil.TypicalPersons.ELLE;
 import static seedu.excolink.testutil.TypicalPersons.FIONA;
-import static seedu.excolink.testutil.TypicalPersons.getTypicalExcoLink;
+import static seedu.excolink.testutil.TypicalExcoLink.getTypicalExcoLink;
 
 import java.util.Arrays;
 import java.util.Collections;

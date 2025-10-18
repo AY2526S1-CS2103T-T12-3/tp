@@ -2,8 +2,8 @@ package seedu.excolink.logic.commands;
 
 import static seedu.excolink.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.excolink.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.excolink.testutil.TypicalPersons.getTypicalExcoLink;
+import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.excolink.testutil.TypicalExcoLink.getTypicalExcoLink;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

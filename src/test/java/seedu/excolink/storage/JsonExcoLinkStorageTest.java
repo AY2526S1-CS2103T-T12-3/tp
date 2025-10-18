@@ -6,7 +6,7 @@ import static seedu.excolink.testutil.Assert.assertThrows;
 import static seedu.excolink.testutil.TypicalPersons.ALICE;
 import static seedu.excolink.testutil.TypicalPersons.HOON;
 import static seedu.excolink.testutil.TypicalPersons.IDA;
-import static seedu.excolink.testutil.TypicalPersons.getTypicalExcoLink;
+import static seedu.excolink.testutil.TypicalExcoLink.getTypicalExcoLink;
 
 import java.io.IOException;
 import java.nio.file.Path;
