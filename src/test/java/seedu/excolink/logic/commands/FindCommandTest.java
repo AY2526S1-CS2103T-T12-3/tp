@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.excolink.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.excolink.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.excolink.testutil.TypicalExcoLink.getTypicalExcoLink;
 import static seedu.excolink.testutil.TypicalPersons.CARL;
 import static seedu.excolink.testutil.TypicalPersons.ELLE;
 import static seedu.excolink.testutil.TypicalPersons.FIONA;
-import static seedu.excolink.testutil.TypicalPersons.getTypicalExcoLink;
 
 import java.util.Arrays;
 import java.util.Collections;

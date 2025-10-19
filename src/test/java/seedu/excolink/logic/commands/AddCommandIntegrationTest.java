@@ -2,7 +2,7 @@ package seedu.excolink.logic.commands;
 
 import static seedu.excolink.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.excolink.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.excolink.testutil.TypicalPersons.getTypicalExcoLink;
+import static seedu.excolink.testutil.TypicalExcoLink.getTypicalExcoLink;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -3,7 +3,6 @@ package seedu.excolink.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.excolink.model.person.Address;
 import seedu.excolink.model.person.Email;
 import seedu.excolink.model.person.Name;
 import seedu.excolink.model.person.Person;
@@ -26,7 +25,6 @@ public class PersonBuilder {
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
     private Set<Role> roles;
     private Subcom subcom;
 
@@ -37,7 +35,6 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
         roles = new HashSet<>();
         subcom = new Subcom(DEFAULT_SUBCOM);
     }
@@ -49,7 +46,6 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
         roles = new HashSet<>(personToCopy.getRoles());
         subcom = personToCopy.getSubcom();
     }
@@ -75,7 +71,6 @@ public class PersonBuilder {
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
         return this;
     }
 
@@ -104,7 +99,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, roles, subcom);
+        return new Person(name, phone, email, roles, subcom);
     }
 
 }

@@ -1,7 +1,5 @@
 package seedu.excolink.testutil;
 
-import static seedu.excolink.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.excolink.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -15,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.excolink.model.ExcoLink;
 import seedu.excolink.model.person.Person;
 
 /**
@@ -50,26 +47,15 @@ public class TypicalPersons {
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withRoles(VALID_ROLE_MEMBER).build();
+            .withEmail(VALID_EMAIL_AMY).withRoles(VALID_ROLE_MEMBER).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withRoles(VALID_ROLE_TEAM_LEAD,
+            .withEmail(VALID_EMAIL_BOB).withRoles(VALID_ROLE_TEAM_LEAD,
                     VALID_ROLE_MEMBER)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
-
-    /**
-     * Returns an {@code ExcoLink} with all the typical persons.
-     */
-    public static ExcoLink getTypicalExcoLink() {
-        ExcoLink ab = new ExcoLink();
-        for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
-        }
-        return ab;
-    }
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));

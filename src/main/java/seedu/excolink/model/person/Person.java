@@ -24,19 +24,17 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Address address;
     private final Set<Role> roles = new HashSet<>();
     private final Subcom subcom;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Role> roles, Subcom subcom) {
-        requireAllNonNull(name, phone, email, address, roles, subcom);
+    public Person(Name name, Phone phone, Email email, Set<Role> roles, Subcom subcom) {
+        requireAllNonNull(name, phone, email, roles, subcom);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
         this.roles.addAll(roles);
         this.subcom = subcom;
     }
@@ -51,10 +49,6 @@ public class Person {
 
     public Email getEmail() {
         return email;
-    }
-
-    public Address getAddress() {
-        return address;
     }
 
     /**
@@ -84,6 +78,14 @@ public class Person {
     }
 
     /**
+     * Removes this person from their associated subcommittee by setting their {@code subcom} to NOSUBCOM.
+     * @return The modified person.
+     */
+    public Person removeFromSubcom() {
+        return new Person(name, phone, email, roles, Subcom.NOSUBCOM);
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -102,14 +104,13 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
                 && roles.equals(otherPerson.roles);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, roles);
+        return Objects.hash(name, phone, email, roles);
     }
 
     @Override
@@ -118,7 +119,6 @@ public class Person {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("address", address)
                 .add("roles", roles)
                 .add("subcom", subcom)
                 .toString();

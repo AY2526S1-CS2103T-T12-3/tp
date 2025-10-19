@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.excolink.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.excolink.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.excolink.testutil.Assert.assertThrows;
-import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +17,7 @@ import seedu.excolink.logic.commands.AddCommand;
 import seedu.excolink.logic.commands.AssignSubcomCommand;
 import seedu.excolink.logic.commands.ClearCommand;
 import seedu.excolink.logic.commands.DeleteCommand;
+import seedu.excolink.logic.commands.DeleteSubcomCommand;
 import seedu.excolink.logic.commands.EditCommand;
 import seedu.excolink.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.excolink.logic.commands.ExitCommand;
@@ -54,8 +55,8 @@ public class ExcoLinkParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST), command);
     }
 
     @Test
@@ -63,8 +64,8 @@ public class ExcoLinkParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST, descriptor), command);
     }
 
     @Test
@@ -108,8 +109,8 @@ public class ExcoLinkParserTest {
     @Test
     public void parseCommand_removeSubcomMember() throws Exception {
         RemoveSubcomMemberCommand command = (RemoveSubcomMemberCommand) parser.parseCommand(
-                RemoveSubcomMemberCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " sc/Finance");
-        assertEquals(new RemoveSubcomMemberCommand(INDEX_FIRST_PERSON, "Finance"), command);
+                RemoveSubcomMemberCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " sc/Finance");
+        assertEquals(new RemoveSubcomMemberCommand(INDEX_FIRST, "Finance"), command);
     }
 
     @Test
@@ -118,6 +119,12 @@ public class ExcoLinkParserTest {
                 instanceof ListSubcomMembersCommand);
     }
 
+    @Test
+    public void parseCommand_deleteSubcom() throws Exception {
+        DeleteSubcomCommand command = (DeleteSubcomCommand) parser.parseCommand(
+                DeleteSubcomCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteSubcomCommand(INDEX_FIRST), command);
+    }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {

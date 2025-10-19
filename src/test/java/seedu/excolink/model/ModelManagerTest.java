@@ -16,8 +16,10 @@ import org.junit.jupiter.api.Test;
 
 import seedu.excolink.commons.core.GuiSettings;
 import seedu.excolink.model.person.NameContainsKeywordsPredicate;
+import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.testutil.ExcoLinkBuilder;
+import seedu.excolink.testutil.PersonBuilder;
 
 public class ModelManagerTest {
 
@@ -116,6 +118,36 @@ public class ModelManagerTest {
     public void getSubcomList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getSubcomList().remove(0));
     }
+
+    @Test
+    public void deleteSubcom_removesSubcomAndClearsMembers() {
+        Subcom publicity = new Subcom("Publicity");
+        modelManager.addSubcom(publicity);
+
+        // Add person in subcom
+        Person personInSubcom = new PersonBuilder().withSubcom("Publicity").build();
+        modelManager.addPerson(personInSubcom);
+
+        assertTrue(modelManager.hasSubcom(publicity));
+        assertTrue(modelManager.hasPerson(personInSubcom));
+
+        modelManager.deleteSubcom(publicity);
+
+        // Subcom removed
+        assertFalse(modelManager.hasSubcom(publicity));
+
+        // Member should have been removed from the subcom
+        Person updatedPerson = modelManager.getFilteredPersonList().get(0);
+        assertFalse(updatedPerson.getSubcom().equals(publicity));
+    }
+
+    @Test
+    public void addSubcom_addsSuccessfully() {
+        Subcom welfare = new Subcom("Welfare");
+        modelManager.addSubcom(welfare);
+        assertTrue(modelManager.hasSubcom(welfare));
+    }
+
 
     @Test
     public void equals() {
