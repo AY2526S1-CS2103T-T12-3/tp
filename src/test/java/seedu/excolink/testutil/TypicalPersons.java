@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.excolink.model.ExcoLink;
 import seedu.excolink.model.person.Person;
 
 /**
@@ -57,17 +56,6 @@ public class TypicalPersons {
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
-
-    /**
-     * Returns an {@code ExcoLink} with all the typical persons.
-     */
-    public static ExcoLink getTypicalExcoLink() {
-        ExcoLink ab = new ExcoLink();
-        for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
-        }
-        return ab;
-    }
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));

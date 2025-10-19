@@ -4,10 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.excolink.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.excolink.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.excolink.testutil.TypicalPersons.getTypicalExcoLink;
+import static seedu.excolink.testutil.TypicalExcoLink.getTypicalExcoLink;
+import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.excolink.testutil.TypicalSubcoms.TECH;
-import static seedu.excolink.testutil.TypicalSubcoms.addTypicalSubcoms;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,14 +23,14 @@ import seedu.excolink.model.subcom.Subcom;
  */
 public class AssignSubcomCommandTest {
 
-    private Model model = new ModelManager(addTypicalSubcoms(getTypicalExcoLink()), new UserPrefs());
-    private Model expectedModel = new ModelManager(addTypicalSubcoms(getTypicalExcoLink()), new UserPrefs());
+    private Model model = new ModelManager(getTypicalExcoLink(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalExcoLink(), new UserPrefs());
 
     @Test
     public void execute_validIndex_success() {
-        Person personToAssign = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person personToAssign = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
         Subcom subcom = TECH;
-        AssignSubcomCommand command = new AssignSubcomCommand(INDEX_FIRST_PERSON, subcom);
+        AssignSubcomCommand command = new AssignSubcomCommand(INDEX_FIRST, subcom);
         String expectedMessage = String.format(AssignSubcomCommand.MESSAGE_SUCCESS, personToAssign.getName(),
                 subcom.getName());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
