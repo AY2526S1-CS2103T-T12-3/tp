@@ -18,26 +18,25 @@ public class UnassignSubcomCommand extends Command {
 
     public static final String COMMAND_WORD = "unassign-subcom";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Unassigns the member at the given INDEX from their subcommittee.\n"
-            + "Parameters: INDEX (must be a positive Integer)\n"
+            + ": Unassigns the member at the given INDEX from the specified subcommittee.\n"
+            + "Parameters: INDEX (must be a positive Integer)"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_REMOVE_SUCCESS = "Unassigned %1$s from subcommittee: %2$s";
-    public static final String MESSAGE_MEMBER_NOT_IN_SUBCOM = "%1$s is not a member of subcommittee \"%2$s\".";
+    public static final String MESSAGE_REMOVE_SUCCESS = "Removed %1$s from subcommittee: %2$s";
+    public static final String MESSAGE_MEMBER_NOT_IN_SUBCOM = "%1$s is not a member of any subcommittee ";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
 
 
     private final Index targetIndex;
 
     /**
-     * Create the UnassignSubcomCommand to unassign a member from their committee
-     * @param targetIndex Index of the member to be unassigned
+     * Create the UnassignSubcomCommand
+     * @param targetIndex Index of the member to be removed
      */
     public UnassignSubcomCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -48,8 +47,10 @@ public class UnassignSubcomCommand extends Command {
 
         Person personToEdit = model.getFilteredPersonList().get(targetIndex.getZeroBased());
 
+        String previousSubcom = personToEdit.getSubcom().toString();
+
         // Check if person is in the subcommittee
-        if (!personToEdit.getSubcom().equals(Subcom.NOSUBCOM)) {
+        if (personToEdit.getSubcom().equals(Subcom.NOSUBCOM)) {
             throw new CommandException(String.format(MESSAGE_MEMBER_NOT_IN_SUBCOM,
                     personToEdit.getName().fullName));
         }
@@ -58,7 +59,7 @@ public class UnassignSubcomCommand extends Command {
         Person editedPerson = personToEdit.removeFromSubcom();
 
         model.setPerson(personToEdit, editedPerson);
-        return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, personToEdit.getName().fullName),
+        return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, personToEdit.getName().fullName, previousSubcom),
                 DisplayEntity.PERSON);
     }
 
