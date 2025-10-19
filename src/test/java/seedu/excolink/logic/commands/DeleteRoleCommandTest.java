@@ -14,7 +14,6 @@ import seedu.excolink.commons.core.index.Index;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelManager;
-import seedu.excolink.model.person.Address;
 import seedu.excolink.model.person.Email;
 import seedu.excolink.model.person.Name;
 import seedu.excolink.model.person.Person;
@@ -37,7 +36,6 @@ public class DeleteRoleCommandTest {
                 new Name("Alice"),
                 new Phone("91234567"),
                 new Email("alice@example.com"),
-                new Address("123, Jurong West Ave 6"),
                 new HashSet<>(Collections.singleton(existingRole)),
                 new Subcom("Publicity")
         );
