@@ -1,7 +1,5 @@
 package seedu.excolink.testutil;
 
-import static seedu.excolink.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.excolink.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -49,9 +47,9 @@ public class TypicalPersons {
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withRoles(VALID_ROLE_MEMBER).build();
+            .withEmail(VALID_EMAIL_AMY).withRoles(VALID_ROLE_MEMBER).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withRoles(VALID_ROLE_TEAM_LEAD,
+            .withEmail(VALID_EMAIL_BOB).withRoles(VALID_ROLE_TEAM_LEAD,
                     VALID_ROLE_MEMBER)
             .build();
 

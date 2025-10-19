@@ -3,7 +3,6 @@ package seedu.excolink.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.excolink.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_ROLE_TEAM_LEAD;
 import static seedu.excolink.testutil.Assert.assertThrows;
 import static seedu.excolink.testutil.TypicalExcoLink.getTypicalExcoLink;
@@ -47,7 +46,7 @@ public class ExcoLinkTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withRoles(VALID_ROLE_TEAM_LEAD)
+        Person editedAlice = new PersonBuilder(ALICE).withRoles(VALID_ROLE_TEAM_LEAD)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         ExcoLinkStub newData = new ExcoLinkStub(newPersons);
@@ -74,7 +73,7 @@ public class ExcoLinkTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInExcoLink_returnsTrue() {
         excoLink.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withRoles(VALID_ROLE_TEAM_LEAD)
+        Person editedAlice = new PersonBuilder(ALICE).withRoles(VALID_ROLE_TEAM_LEAD)
                 .build();
         assertTrue(excoLink.hasPerson(editedAlice));
     }
