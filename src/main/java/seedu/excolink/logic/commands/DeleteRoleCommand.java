@@ -1,9 +1,17 @@
 package seedu.excolink.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.excolink.commons.core.index.Index;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
+import seedu.excolink.model.person.Person;
 import seedu.excolink.model.role.Role;
+import seedu.excolink.ui.DisplayEntity;
 
 /**
  * Removes a role of an existing member identified using its displayed index.
@@ -17,23 +25,65 @@ public class DeleteRoleCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) r/ROLE\n"
             + "Example: " + COMMAND_WORD + " 1 r/Team Lead";
 
-    public static final String MESSAGE_SUCCESS = "DeleteRoleCommand executed for index %1$d, role: %2$s";
+    public static final String MESSAGE_SUCCESS = "Member %1$s deleted role: %2$s";
+    public static final String MESSAGE_INVALID_INDEX = "Error: Invalid member index.";
+    public static final String MESSAGE_ROLE_NOT_FOUND = "Error: Member does not have the role '%1$s'.";
 
     private final Index index;
     private final Role role;
 
     /**
-     * Creates an DeleteRoleCommand to remove the specified {@code Role} of a member
+     * Creates a DeleteRoleCommand to remove the specified {@code Role} of a member
      */
     public DeleteRoleCommand(Index index, Role role) {
+        requireNonNull(index);
+        requireNonNull(role);
         this.index = index;
         this.role = role;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        System.out.println("Hello world from DeleteRoleCommand!");
-        return new CommandResult(String.format(MESSAGE_SUCCESS, index.getOneBased(), role.roleName));
+        requireNonNull(model);
+
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(MESSAGE_INVALID_INDEX);
+        }
+
+        Person personToEdit = lastShownList.get(index.getZeroBased());
+
+        // Loop through roles to find exact match
+        boolean roleFound = false;
+        Set<Role> updatedRoles = new HashSet<>();
+        for (Role existingRole : personToEdit.getRoles()) {
+            if (existingRole.equals(role)) {
+                roleFound = true;
+            } else {
+                updatedRoles.add(existingRole);
+            }
+        }
+
+        if (!roleFound) {
+            throw new CommandException(String.format(MESSAGE_ROLE_NOT_FOUND, role.roleName));
+        }
+
+        Person editedPerson = new Person(
+                personToEdit.getName(),
+                personToEdit.getPhone(),
+                personToEdit.getEmail(),
+                personToEdit.getAddress(),
+                updatedRoles,
+                personToEdit.getSubcom()
+        );
+
+        model.setPerson(personToEdit, editedPerson);
+
+        return new CommandResult(
+                String.format(MESSAGE_SUCCESS, personToEdit.getName(), role.roleName),
+                DisplayEntity.PERSON
+        );
     }
 
     @Override
