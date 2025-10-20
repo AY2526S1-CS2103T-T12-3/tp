@@ -1,0 +1,95 @@
+@startuml AssignSubcomSequenceDiagram
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExcoLinkParser" as ExcoLinkParser LOGIC_COLOR
+participant ":AssignSubcomCommandParser" as AssignSubcomCommandParser LOGIC_COLOR
+participant "as:AssignSubcomCommand" as AssignSubcomCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+participant "editedPerson:Person" as editedPerson MODEL_COLOR
+end box
+
+[-> LogicManager : execute("assign-subcom 1 sc/Publicity")
+activate LogicManager
+
+LogicManager -> ExcoLinkParser : parseCommand("assign-subcom 1 sc/Publicity")
+activate ExcoLinkParser
+
+create AssignSubcomCommandParser
+ExcoLinkParser -> AssignSubcomCommandParser
+activate AssignSubcomCommandParser
+
+AssignSubcomCommandParser --> ExcoLinkParser
+deactivate AssignSubcomCommandParser
+
+ExcoLinkParser -> AssignSubcomCommandParser : parse("1 sc/Publicity")
+activate AssignSubcomCommandParser
+
+create AssignSubcomCommand
+AssignSubcomCommandParser -> AssignSubcomCommand
+activate AssignSubcomCommand
+
+AssignSubcomCommand --> AssignSubcomCommandParser : as
+deactivate AssignSubcomCommand
+
+AssignSubcomCommandParser --> ExcoLinkParser : as
+deactivate AssignSubcomCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AssignSubcomCommandParser -[hidden]-> ExcoLinkParser
+destroy AssignSubcomCommandParser
+
+ExcoLinkParser --> LogicManager : as
+deactivate ExcoLinkParser
+
+LogicManager -> AssignSubcomCommand : execute(m)
+activate AssignSubcomCommand
+
+AssignSubcomCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> AssignSubcomCommand
+deactivate Model
+
+
+AssignSubcomCommand -> Model : hasSubcom(subcom)
+activate Model
+Model --> AssignSubcomCommand
+deactivate Model
+
+AssignSubcomCommand -> AssignSubcomCommand : createNewPerson(personToEdit, subcom)
+activate AssignSubcomCommand
+
+create editedPerson
+AssignSubcomCommand -> editedPerson : new Person(name, phone, email, roles, subcom)
+activate editedPerson
+editedPerson --> AssignSubcomCommand : editedPerson
+deactivate editedPerson
+AssignSubcomCommand --> AssignSubcomCommand : editedPerson
+
+deactivate AssignSubcomCommand
+
+AssignSubcomCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+Model --> AssignSubcomCommand
+deactivate Model
+
+create CommandResult
+AssignSubcomCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AssignSubcomCommand
+deactivate CommandResult
+
+AssignSubcomCommand --> LogicManager : r
+deactivate AssignSubcomCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
