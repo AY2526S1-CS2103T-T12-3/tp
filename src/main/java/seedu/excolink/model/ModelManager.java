@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.excolink.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -123,6 +125,15 @@ public class ModelManager implements Model {
     @Override
     public void deleteSubcom(Subcom target) {
         excoLink.removeSubcom(target);
+
+        // Remove all members of the deleted subcommittee
+        List<Person> allPersons = new ArrayList<>(excoLink.getPersonList());
+        for (Person person : allPersons) {
+            if (person.getSubcom().equals(target)) {
+                Person updatedPerson = person.removeFromSubcom();
+                setPerson(person, updatedPerson);
+            }
+        }
     }
 
     @Override

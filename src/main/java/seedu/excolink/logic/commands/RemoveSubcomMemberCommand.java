@@ -53,7 +53,7 @@ public class RemoveSubcomMemberCommand extends Command {
 
         Person personToEdit = model.getFilteredPersonList().get(targetIndex.getZeroBased());
 
-        // Check if person is in the subcommittee
+        // Check if the subcommittee exists
         Subcom subcomToRemoveFrom = new Subcom(subcomName);
         if (!model.hasSubcom(subcomToRemoveFrom)) {
             throw new CommandException(String.format(MESSAGE_SUBCOM_NOT_FOUND, subcomName));
@@ -66,13 +66,7 @@ public class RemoveSubcomMemberCommand extends Command {
         }
 
         // Create new person with no subcommittee
-        Person editedPerson = new Person(
-                personToEdit.getName(),
-                personToEdit.getPhone(),
-                personToEdit.getEmail(),
-                personToEdit.getRoles(),
-                Subcom.NOSUBCOM
-        );
+        Person editedPerson = personToEdit.removeFromSubcom();
 
         model.setPerson(personToEdit, editedPerson);
         return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, personToEdit.getName().fullName, subcomName),
