@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExcoLinkParser" as ExcoLinkParser LOGIC_COLOR
+participant ":DeleteSubcomCommandParser" as DeleteSubcomCommandParser LOGIC_COLOR
+participant "d:DeleteSubcomCommand" as DeleteSubcomCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete-sc 1")
+activate LogicManager
+
+LogicManager -> ExcoLinkParser : parseCommand("delete-sc 1")
+activate ExcoLinkParser
+
+create DeleteSubcomCommandParser
+ExcoLinkParser -> DeleteSubcomCommandParser
+activate DeleteSubcomCommandParser
+
+DeleteSubcomCommandParser --> ExcoLinkParser
+deactivate DeleteSubcomCommandParser
+
+ExcoLinkParser -> DeleteSubcomCommandParser : parse("1")
+activate DeleteSubcomCommandParser
+
+create DeleteSubcomCommand
+DeleteSubcomCommandParser -> DeleteSubcomCommand
+activate DeleteSubcomCommand
+
+DeleteSubcomCommand --> DeleteSubcomCommandParser :
+deactivate DeleteSubcomCommand
+
+DeleteSubcomCommandParser --> ExcoLinkParser : d
+deactivate DeleteSubcomCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteSubcomCommandParser -[hidden]-> ExcoLinkParser
+destroy DeleteSubcomCommandParser
+
+ExcoLinkParser --> LogicManager : d
+deactivate ExcoLinkParser
+
+LogicManager -> DeleteSubcomCommand : execute(m)
+activate DeleteSubcomCommand
+
+DeleteSubcomCommand -> Model : getSubcomList()
+activate Model
+
+Model --> DeleteSubcomCommand : subcomList
+deactivate Model
+
+DeleteSubcomCommand -> Model : deleteSubcom(1)
+activate Model
+
+Model --> DeleteSubcomCommand
+deactivate Model
+
+create CommandResult
+DeleteSubcomCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteSubcomCommand
+deactivate CommandResult
+
+DeleteSubcomCommand --> LogicManager : r
+deactivate DeleteSubcomCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
