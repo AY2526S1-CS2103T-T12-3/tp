@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.excolink.commons.core.index.Index;
+import seedu.excolink.logic.Messages;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelManager;
@@ -52,7 +53,7 @@ public class DeleteRoleCommandTest {
 
         CommandResult result = command.execute(model);
 
-        String expectedMessage = String.format("Member %s deleted role: %s",
+        String expectedMessage = String.format(DeleteRoleCommand.MESSAGE_SUCCESS,
                 testPerson.getName(), existingRole.roleName);
         assertEquals(expectedMessage, result.getFeedbackToUser());
 
@@ -78,7 +79,7 @@ public class DeleteRoleCommandTest {
         DeleteRoleCommand command = new DeleteRoleCommand(invalidIndex, existingRole);
 
         CommandException exception = assertThrows(CommandException.class, () -> command.execute(model));
-        assertEquals(DeleteRoleCommand.MESSAGE_INVALID_INDEX, exception.getMessage());
+        assertEquals(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, exception.getMessage());
     }
 
     @Test

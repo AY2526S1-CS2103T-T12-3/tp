@@ -11,6 +11,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.excolink.logic.Messages;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.ModelStub;
 import seedu.excolink.model.person.Person;
@@ -34,7 +35,7 @@ class ListSubcomMembersCommandTest {
 
         CommandResult result = command.execute(modelStub);
 
-        assertEquals(ListSubcomMembersCommand.MESSAGE_SUCCESS, result.getFeedbackToUser());
+        assertEquals(String.format(ListSubcomMembersCommand.MESSAGE_SUCCESS, publicity), result.getFeedbackToUser());
         assertEquals(DisplayEntity.PERSON, result.getDisplayEntity());
         assertTrue(modelStub.isFilteredListUpdated);
     }
@@ -45,7 +46,7 @@ class ListSubcomMembersCommandTest {
         ListSubcomMembersCommand command = new ListSubcomMembersCommand(welfare);
 
         assertThrows(CommandException.class, () -> command.execute(modelStub),
-                ListSubcomMembersCommand.MESSAGE_INVALID_SUBCOM);
+                Messages.MESSAGE_INVALID_SUBCOM_DISPLAYED_INDEX);
     }
 
     @Test

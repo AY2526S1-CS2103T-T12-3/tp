@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.excolink.commons.core.index.Index;
+import seedu.excolink.logic.Messages;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelManager;
@@ -65,7 +66,7 @@ public class AssignRoleCommandTest {
         try {
             command.execute(model);
         } catch (CommandException e) {
-            assertEquals(AssignRoleCommand.MESSAGE_INVALID_INDEX, e.getMessage());
+            assertEquals(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, e.getMessage());
         }
     }
 
