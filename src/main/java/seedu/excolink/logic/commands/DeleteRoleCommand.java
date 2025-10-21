@@ -1,6 +1,7 @@
 package seedu.excolink.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.excolink.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
 import java.util.HashSet;
 import java.util.List;
@@ -25,9 +26,8 @@ public class DeleteRoleCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) r/ROLE\n"
             + "Example: " + COMMAND_WORD + " 1 r/Team Lead";
 
-    public static final String MESSAGE_SUCCESS = "Member %1$s deleted role: %2$s";
-    public static final String MESSAGE_INVALID_INDEX = "Error: Invalid member index.";
-    public static final String MESSAGE_ROLE_NOT_FOUND = "Error: Member does not have the role '%1$s'.";
+    public static final String MESSAGE_SUCCESS = "%1$s unassigned role: %2$s";
+    public static final String MESSAGE_ROLE_NOT_FOUND = "Member does not have the role '%1$s'";
 
     private final Index index;
     private final Role role;
@@ -49,7 +49,7 @@ public class DeleteRoleCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_INDEX);
+            throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
