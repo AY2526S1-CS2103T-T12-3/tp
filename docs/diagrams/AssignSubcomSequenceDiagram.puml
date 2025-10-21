@@ -15,10 +15,10 @@ participant "m:Model" as Model MODEL_COLOR
 participant "editedPerson:Person" as editedPerson MODEL_COLOR
 end box
 
-[-> LogicManager : execute("assign-subcom 1 sc/Publicity")
+[-> LogicManager : execute("assign-sc 1 sc/Publicity")
 activate LogicManager
 
-LogicManager -> ExcoLinkParser : parseCommand("assign-subcom 1 sc/Publicity")
+LogicManager -> ExcoLinkParser : parseCommand("assign-sc 1 sc/Publicity")
 activate ExcoLinkParser
 
 create AssignSubcomCommandParser
