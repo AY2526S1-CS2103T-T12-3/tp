@@ -109,7 +109,7 @@ public class ExcoLinkParserTest {
     @Test
     public void parseCommand_removeSubcomMember() throws Exception {
         UnassignSubcomCommand command = (UnassignSubcomCommand) parser.parseCommand(
-                UnassignSubcomCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " sc/Finance");
+                UnassignSubcomCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
         assertEquals(new UnassignSubcomCommand(INDEX_FIRST), command);
     }
 
