@@ -13,7 +13,7 @@ import seedu.excolink.ui.DisplayEntity;
  * Lists members in a  subcommittee.
  */
 public class ListSubcomMembersCommand extends Command {
-    public static final String COMMAND_WORD = "list-subcom-members";
+    public static final String COMMAND_WORD = "list-sc-members";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " Lists all persons who are members of "
             + "the specified Subcom (case-insensitive) and displays them as a list with index numbers.\n"

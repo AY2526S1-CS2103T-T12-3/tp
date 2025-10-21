@@ -17,7 +17,7 @@ import seedu.excolink.ui.DisplayEntity;
  */
 public class DeleteSubcomCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete-subcom";
+    public static final String COMMAND_WORD = "delete-sc";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the subcommittee identified by the index number used in the displayed subcommittee list.\n"

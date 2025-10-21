@@ -16,7 +16,7 @@ import seedu.excolink.ui.DisplayEntity;
  */
 public class RemoveSubcomMemberCommand extends Command {
 
-    public static final String COMMAND_WORD = "remove-subcom-member";
+    public static final String COMMAND_WORD = "remove-sc-member";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes the member at the given INDEX from the specified subcommittee.\n"
             + "Parameters: INDEX (must be a positive Integer)"
