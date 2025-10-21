@@ -14,11 +14,13 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
-Class Email
+Class Role
 Class Name
+Class Email
 Class Phone
-Class Tag
+
+Class SubcomList
+Class Subcom
 
 Class I #FFFFFF
 }
@@ -36,19 +38,17 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 ExcoLink *--> "1" UniquePersonList
+ExcoLink *--> "1" SubcomList
+
 UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Person *--> "*" Role
 
-Person -[hidden]up--> I
-UniquePersonList -[hidden]right-> I
-
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+SubcomList --> "*" Subcom
+Person "*" ---> "1" Subcom : < has members
 
 ModelManager --> "~* filtered" Person
+ModelManager --> "*" Subcom
 @enduml
