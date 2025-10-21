@@ -1,6 +1,7 @@
 package seedu.excolink.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.excolink.logic.Messages.MESSAGE_INVALID_SUBCOM_NAME;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOM;
 
 import seedu.excolink.commons.util.ToStringBuilder;
@@ -20,8 +21,7 @@ public class ListSubcomMembersCommand extends Command {
             + "Parameters: SUBCOM_NAME\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_SUBCOM + " Publicity";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
-    public static final String MESSAGE_INVALID_SUBCOM = "This subcommittee does not exist.";
+    public static final String MESSAGE_SUCCESS = "Listed all persons in subcommittee: %s";
 
     private final Subcom subcomToList;
 
@@ -39,7 +39,7 @@ public class ListSubcomMembersCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasSubcom(this.subcomToList)) {
-            throw new CommandException(MESSAGE_INVALID_SUBCOM);
+            throw new CommandException(MESSAGE_INVALID_SUBCOM_NAME);
         }
 
         model.updateFilteredPersonList(person -> person.getSubcom().equals(subcomToList));

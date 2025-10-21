@@ -16,14 +16,14 @@ import seedu.excolink.ui.DisplayEntity;
  */
 public class RemoveSubcomMemberCommand extends Command {
 
-    public static final String COMMAND_WORD = "remove-sc-member";
+    public static final String COMMAND_WORD = "unassign-sc";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes the member at the given INDEX from the specified subcommittee.\n"
             + "Parameters: INDEX (must be a positive Integer)"
             + "sc/SUBCOM_NAME\n"
             + "Example: " + COMMAND_WORD + " 1 sc/Finance";
 
-    public static final String MESSAGE_REMOVE_SUCCESS = "Removed %1$s from subcommittee: %2$s";
+    public static final String MESSAGE_REMOVE_SUCCESS = "Unassigned %1$s from subcommittee: %2$s";
     public static final String MESSAGE_SUBCOM_NOT_FOUND = "Subcommittee named \"%1$s\" not found.";
     public static final String MESSAGE_MEMBER_NOT_IN_SUBCOM = "%1$s is not a member of subcommittee \"%2$s\".";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
