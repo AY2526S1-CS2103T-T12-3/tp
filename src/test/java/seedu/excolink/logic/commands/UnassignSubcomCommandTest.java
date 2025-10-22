@@ -12,6 +12,7 @@ import static seedu.excolink.testutil.TypicalIndexes.INDEX_SECOND;
 import org.junit.jupiter.api.Test;
 
 import seedu.excolink.commons.core.index.Index;
+import seedu.excolink.logic.Messages;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelManager;
 import seedu.excolink.model.UserPrefs;
@@ -55,7 +56,7 @@ public class UnassignSubcomCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         UnassignSubcomCommand command = new UnassignSubcomCommand(outOfBoundIndex);
 
-        assertCommandFailure(command, model, UnassignSubcomCommand.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(command, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -68,7 +69,7 @@ public class UnassignSubcomCommandTest {
 
         UnassignSubcomCommand command = new UnassignSubcomCommand(outOfBoundIndex);
 
-        assertCommandFailure(command, model, UnassignSubcomCommand.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(command, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test

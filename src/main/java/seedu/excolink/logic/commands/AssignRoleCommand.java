@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.excolink.commons.core.index.Index;
+import seedu.excolink.logic.Messages;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.person.Person;
@@ -24,9 +25,7 @@ public class AssignRoleCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) r/ROLE\n"
             + "Example: " + COMMAND_WORD + " 1 r/Treasurer";
 
-    public static final String MESSAGE_ASSIGN_ROLE_SUCCESS = "Member %1$s assigned role: %2$s";
-    public static final String MESSAGE_INVALID_INDEX = "Error: Invalid member index.";
-
+    public static final String MESSAGE_ASSIGN_ROLE_SUCCESS = "%1$s assigned role: %2$s";
     private final Index index;
     private final Role role;
 
@@ -46,7 +45,7 @@ public class AssignRoleCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());

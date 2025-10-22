@@ -13,7 +13,7 @@ import seedu.excolink.ui.DisplayEntity;
  * Adds a subcommittee to the app.
  */
 public class AddSubcomCommand extends Command {
-    public static final String COMMAND_WORD = "add-subcom";
+    public static final String COMMAND_WORD = "add-sc";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a subcommittee to ExcoLink. "
             + "Parameters: "

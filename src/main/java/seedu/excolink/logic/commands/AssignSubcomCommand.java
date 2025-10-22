@@ -18,7 +18,7 @@ import seedu.excolink.ui.DisplayEntity;
  */
 public class AssignSubcomCommand extends Command {
 
-    public static final String COMMAND_WORD = "assign-subcom";
+    public static final String COMMAND_WORD = "assign-sc";
     public static final String MESSAGE_SUCCESS = "Assigned %1$s to subcommittee: %2$s";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign a subcommittee for a member "
             + "by the index number used in the displayed person list. "
