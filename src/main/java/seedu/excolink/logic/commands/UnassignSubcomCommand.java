@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 
 import seedu.excolink.commons.core.index.Index;
+import seedu.excolink.logic.Messages;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.person.Person;
@@ -14,62 +15,48 @@ import seedu.excolink.ui.DisplayEntity;
 /**
  * Remove a member from a subcom
  */
-public class RemoveSubcomMemberCommand extends Command {
-
+public class UnassignSubcomCommand extends Command {
     public static final String COMMAND_WORD = "unassign-sc";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes the member at the given INDEX from the specified subcommittee.\n"
+            + ": Unassigns the member at the given INDEX from the specified subcommittee.\n"
             + "Parameters: INDEX (must be a positive Integer)"
-            + "sc/SUBCOM_NAME\n"
-            + "Example: " + COMMAND_WORD + " 1 sc/Finance";
-
+            + "Example: " + COMMAND_WORD + " 1";
     public static final String MESSAGE_REMOVE_SUCCESS = "Unassigned %1$s from subcommittee: %2$s";
-    public static final String MESSAGE_SUBCOM_NOT_FOUND = "Subcommittee named \"%1$s\" not found.";
-    public static final String MESSAGE_MEMBER_NOT_IN_SUBCOM = "%1$s is not a member of subcommittee \"%2$s\".";
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
-
+    public static final String MESSAGE_MEMBER_NOT_IN_SUBCOM = "%1$s is not a member of any subcommittee ";
 
     private final Index targetIndex;
-    private final String subcomName;
 
     /**
-     * Create the RemoveSubcomMemberCommand
+     * Create the UnassignSubcomCommand
      * @param targetIndex Index of the member to be removed
-     * @param subcomName Name of the subcommittee
      */
-    public RemoveSubcomMemberCommand(Index targetIndex, String subcomName) {
+    public UnassignSubcomCommand(Index targetIndex) {
         requireNonNull(targetIndex);
-        requireNonNull(subcomName);
         this.targetIndex = targetIndex;
-        this.subcomName = subcomName.trim();
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         if (targetIndex.getZeroBased() >= model.getFilteredPersonList().size()) {
-            throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToEdit = model.getFilteredPersonList().get(targetIndex.getZeroBased());
 
-        // Check if the subcommittee exists
-        Subcom subcomToRemoveFrom = new Subcom(subcomName);
-        if (!model.hasSubcom(subcomToRemoveFrom)) {
-            throw new CommandException(String.format(MESSAGE_SUBCOM_NOT_FOUND, subcomName));
-        }
+        String previousSubcom = personToEdit.getSubcom().toString();
 
         // Check if person is in the subcommittee
-        if (!personToEdit.getSubcom().equals(subcomToRemoveFrom)) {
+        if (personToEdit.getSubcom().equals(Subcom.NOSUBCOM)) {
             throw new CommandException(String.format(MESSAGE_MEMBER_NOT_IN_SUBCOM,
-                    personToEdit.getName().fullName, subcomName));
+                    personToEdit.getName().fullName));
         }
 
         // Create new person with no subcommittee
         Person editedPerson = personToEdit.removeFromSubcom();
 
         model.setPerson(personToEdit, editedPerson);
-        return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, personToEdit.getName().fullName, subcomName),
+        return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, personToEdit.getName().fullName, previousSubcom),
                 DisplayEntity.PERSON);
     }
 
@@ -79,17 +66,16 @@ public class RemoveSubcomMemberCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof RemoveSubcomMemberCommand)) {
+        if (!(other instanceof UnassignSubcomCommand)) {
             return false;
         }
 
-        RemoveSubcomMemberCommand otherCommand = (RemoveSubcomMemberCommand) other;
-        return targetIndex.equals(otherCommand.targetIndex)
-                && subcomName.equals(otherCommand.subcomName);
+        UnassignSubcomCommand otherCommand = (UnassignSubcomCommand) other;
+        return targetIndex.equals(otherCommand.targetIndex);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(targetIndex, subcomName);
+        return Objects.hash(targetIndex);
     }
 }

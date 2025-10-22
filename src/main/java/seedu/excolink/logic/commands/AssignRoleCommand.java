@@ -1,13 +1,13 @@
 package seedu.excolink.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.excolink.logic.commands.RemoveSubcomMemberCommand.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import seedu.excolink.commons.core.index.Index;
+import seedu.excolink.logic.Messages;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.person.Person;
@@ -45,7 +45,7 @@ public class AssignRoleCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());

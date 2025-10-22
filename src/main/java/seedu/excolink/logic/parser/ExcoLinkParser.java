@@ -24,7 +24,7 @@ import seedu.excolink.logic.commands.HelpCommand;
 import seedu.excolink.logic.commands.ListCommand;
 import seedu.excolink.logic.commands.ListSubcomMembersCommand;
 import seedu.excolink.logic.commands.ListSubcomsCommand;
-import seedu.excolink.logic.commands.RemoveSubcomMemberCommand;
+import seedu.excolink.logic.commands.UnassignSubcomCommand;
 import seedu.excolink.logic.parser.exceptions.ParseException;
 
 /**
@@ -100,8 +100,8 @@ public class ExcoLinkParser {
         case DeleteRoleCommand.COMMAND_WORD:
             return new DeleteRoleCommandParser().parse(arguments);
 
-        case RemoveSubcomMemberCommand.COMMAND_WORD:
-            return new RemoveSubcomMemberCommandParser().parse(arguments);
+        case UnassignSubcomCommand.COMMAND_WORD:
+            return new UnassignSubcomCommandParser().parse(arguments);
 
         case ListSubcomsCommand.COMMAND_WORD:
             return new ListSubcomsCommand();
