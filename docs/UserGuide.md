@@ -15,7 +15,7 @@ ExcoLink is a **desktop app for managing club members and subcommittees, optimiz
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/excolink/releases).
+1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T12-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your ExcoLink.
 
