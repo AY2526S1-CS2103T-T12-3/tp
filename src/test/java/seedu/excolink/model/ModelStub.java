@@ -101,4 +101,9 @@ public class ModelStub implements Model {
     public ObservableList<Subcom> getSubcomList() {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public ObservableList<Person> getPersonList() {
+        throw new AssertionError("This method should not be called.");
+    }
 }
