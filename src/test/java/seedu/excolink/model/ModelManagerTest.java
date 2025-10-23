@@ -15,7 +15,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-
 import seedu.excolink.commons.core.GuiSettings;
 import seedu.excolink.model.person.NameContainsKeywordsPredicate;
 import seedu.excolink.model.person.Person;
