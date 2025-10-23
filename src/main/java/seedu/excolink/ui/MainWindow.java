@@ -214,7 +214,6 @@ public class MainWindow extends UiPart<Stage> {
             subcomListPanel = new SubcomListPanel(logic.getSubcomList(),
                     subcom -> logic.getSubcomMemberCount(subcom));
         }
-        System.out.println("HELLOO");
         listPanelPlaceholder.getChildren().setAll(subcomListPanel.getRoot());
     }
 }
