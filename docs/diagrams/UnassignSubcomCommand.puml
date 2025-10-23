@@ -85,5 +85,4 @@ deactivate UnassignSubcomCommand
 
 [<--LogicManager
 deactivate LogicManager
-
 @enduml
