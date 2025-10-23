@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExcoLinkParser" as ExcoLinkParser LOGIC_COLOR
+participant ":UnassignSubcomCommandParser" as UnassignSubcomCommandParser LOGIC_COLOR
+participant "d:UnassignSubcomCommand" as UnassignSubcomCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+participant "editedPerson:Person" as editedPerson MODEL_COLOR
+end box
+
+[-> LogicManager : execute("unassign-sc 1")
+activate LogicManager
+
+LogicManager -> ExcoLinkParser : parseCommand("unassign-sc 1")
+activate ExcoLinkParser
+
+create UnassignSubcomCommandParser
+ExcoLinkParser -> UnassignSubcomCommandParser
+activate UnassginSubcomCommandParser
+
+UnassignSubcomCommandParser --> ExcoLinkParser
+deactivate UnassignSubcomCommandParser
+
+ExcoLinkParser -> UnassignSubcomCommandParser : parse("1")
+activate UnassignSubcomCommandParser
+
+create UnassignSubcomCommand
+UnassignSubcomCommandParser -> UnassignSubcomCommand
+activate UnassignSubcomCommand
+
+UnassignSubcomCommand --> UnassignSubcomCommandParser : u
+deactivate UnassignSubcomCommand
+
+UnassignSubcomCommandParser --> ExcoLinkParser : u
+deactivate UnassignSubcomCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteSubcomCommandParser -[hidden]-> ExcoLinkParser
+destroy UnassignSubcomCommandParser
+
+ExcoLinkParser --> LogicManager : u
+deactivate ExcoLinkParser
+
+LogicManager -> UnassignSubcomCommand : execute(m)
+activate UnassignSubcomCommand
+
+UnassignSubcomCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> UnassignSubcomCommand
+deactivate Model
+
+UnassignSubcomCommand -> UnassignSubcomCommand : removeFromSubcom(1)
+activate UnassignSubcomCommand
+
+create editedPerson
+UnassignSubcomCommand -> editedPerson: new Person(name, phone, email, roles, NOSUBCOM)
+activate editedPerson
+editedPerson --> UnassignSubcomCommand : editedPerson
+deactivate editedPerson
+UnassignSubcomCommand --> UnassignSubcomCommand : editedPerson
+
+deactivate UnassignSubcomCommand
+
+UnassignSubcomCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+Model --> UnassignSubcomCommand
+deactivate Model
+
+create CommandResult
+UnassignSubcomCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteSubcomCommand
+deactivate CommandResult
+
+DeleteSubcomCommand --> LogicManager : r
+deactivate DeleteSubcomCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
