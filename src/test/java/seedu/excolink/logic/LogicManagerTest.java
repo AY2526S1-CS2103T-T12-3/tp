@@ -91,6 +91,12 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getSubcomList().remove(0));
     }
 
+    @Test
+    public void logic_getPersonList_returnsAllPersons() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getPersonList().remove(0));
+    }
+
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>
