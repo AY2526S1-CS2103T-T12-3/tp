@@ -29,14 +29,17 @@ public class SubcomCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
+    @FXML
+    private Label memberCount;
 
     /**
      * Creates a {@code SubcomCode} with the given {@code Subcom} and index to display.
      */
-    public SubcomCard(Subcom subcom, int displayedIndex) {
+    public SubcomCard(Subcom subcom, int displayedIndex, int memberCount) {
         super(FXML);
         this.subcom = subcom;
         id.setText(displayedIndex + ". ");
         name.setText(subcom.getName());
+        this.memberCount.setText("Member count: " + memberCount);
     }
 }

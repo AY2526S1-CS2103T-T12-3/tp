@@ -27,6 +27,7 @@ import seedu.excolink.model.ModelManager;
 import seedu.excolink.model.ReadOnlyExcoLink;
 import seedu.excolink.model.UserPrefs;
 import seedu.excolink.model.person.Person;
+import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.storage.JsonExcoLinkStorage;
 import seedu.excolink.storage.JsonUserPrefsStorage;
 import seedu.excolink.storage.StorageManager;
@@ -90,6 +91,23 @@ public class LogicManagerTest {
     public void getSubcomList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getSubcomList().remove(0));
     }
+    @Test
+    public void getSubcomMemberCount_validSubcom_returnsCorrectCount() {
+        Subcom subcom = new Subcom("Tech");
+        Person person1 = new PersonBuilder().withName("Alice").withSubcom("Tech").build();
+        Person person2 = new PersonBuilder().withName("Bob").withSubcom("Tech").build();
+        model.addPerson(person1);
+        model.addPerson(person2);
+
+        assertEquals(2, logic.getSubcomMemberCount(subcom));
+    }
+
+    @Test
+    public void getSubcomMemberCount_noMembers_returnsZero() {
+        Subcom subcom = new Subcom("Design");
+        assertEquals(0, logic.getSubcomMemberCount(subcom));
+    }
+
 
     /**
      * Executes the command and confirms that

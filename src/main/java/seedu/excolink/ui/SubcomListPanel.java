@@ -1,5 +1,6 @@
 package seedu.excolink.ui;
 
+import java.util.function.Function;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ import seedu.excolink.model.subcom.Subcom;
 public class SubcomListPanel extends UiPart<Region> {
     private static final String FXML = "SubcomListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(SubcomListPanel.class);
+    private Function<Subcom, Integer> memberCountFunc;
 
     @FXML
     private ListView<Subcom> subcomListView;
@@ -23,10 +25,11 @@ public class SubcomListPanel extends UiPart<Region> {
     /**
      * Creates a {@code SubcomListPanel} with the given {@code ObservableList}.
      */
-    public SubcomListPanel(ObservableList<Subcom> subcomList) {
+    public SubcomListPanel(ObservableList<Subcom> subcomList, Function<Subcom, Integer> memberCountFunc) {
         super(FXML);
         subcomListView.setItems(subcomList);
         subcomListView.setCellFactory(listView -> new SubcomListViewCell());
+        this.memberCountFunc = memberCountFunc;
     }
 
     /**
@@ -41,7 +44,8 @@ public class SubcomListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new SubcomCard(subcom, getIndex() + 1).getRoot());
+                setGraphic(new SubcomCard(subcom, getIndex() + 1,
+                        memberCountFunc.apply(subcom)).getRoot());
             }
         }
     }

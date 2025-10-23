@@ -120,6 +120,24 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getSubcomMemberCount_validSubcom_returnsCorrectCount() {
+        Subcom subcom = new Subcom("Tech");
+        Person person1 = new PersonBuilder().withName("Alice").withSubcom("Tech").build();
+        Person person2 = new PersonBuilder().withName("Bob").withSubcom("Tech").build();
+        modelManager.addPerson(person1);
+        modelManager.addPerson(person2);
+
+        int count = modelManager.getSubcomMemberCount(subcom);
+        assertEquals(2, count);
+    }
+
+    @Test
+    public void getSubcomMemberCount_noMembers_returnsZero() {
+        Subcom subcom = new Subcom("Marketing");
+        assertEquals(0, modelManager.getSubcomMemberCount(subcom));
+    }
+
+    @Test
     public void deleteSubcom_removesSubcomAndClearsMembers() {
         Subcom publicity = new Subcom("Publicity");
         modelManager.addSubcom(publicity);

@@ -105,4 +105,7 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered subcom list */
     ObservableList<Subcom> getSubcomList();
+
+    /** Returns the number of members in a subcom */
+    int getSubcomMemberCount(Subcom subcom);
 }
