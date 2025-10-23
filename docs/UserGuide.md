@@ -3,10 +3,10 @@ layout: page
 title: User Guide
 ---
 
-ExcoLink Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+ExcoLink is a **desktop app for managing club members and subcommittees, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ExcoLink can get your member management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -15,26 +15,21 @@ ExcoLink Level 3 (AB3) is a **desktop app for managing contacts, optimized for u
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/excoLink-level3/releases).
+1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T12-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your ExcoLink.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar excoLink.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar excolink.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
+    * `list` : Lists all members.
+    * `add n/John Doe p/98765432 e/johnd@example.com` : Adds a member named `John Doe` to ExcoLink.
+    * `delete 1` : Deletes the 1st member shown in the current list.
+    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -50,19 +45,21 @@ ExcoLink Level 3 (AB3) is a **desktop app for managing contacts, optimized for u
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `assign-role INDEX [r/ROLE]` can be used as `assign-role 1 r/Treasurer`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…` after them can be used multiple times including zero times.<br>
+  e.g. `[r/ROLE]…` can be used as ` ` (i.e. 0 times), `r/Treasurer`, `r/President r/Secretary`, etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE e/EMAIL`, `p/PHONE n/NAME e/EMAIL` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, and `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
+
+---
 
 ### Viewing help : `help`
 
@@ -72,81 +69,132 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+---
 
-### Adding a person: `add`
+### Adding a member: `add`
 
-Adds a person to the address book.
+Adds a member to ExcoLink.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add n/NAME p/PHONE e/EMAIL`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com`
+* `add n/Alice Tan p/91234567 e/alice@example.com`
 
-### Listing all persons : `list`
+---
 
-Shows a list of all persons in the address book.
+### Listing all members : `list`
+
+Shows a list of all members in ExcoLink.
 
 Format: `list`
 
-### Editing a person : `edit`
+---
 
-Edits an existing person in the address book.
+### Deleting a member : `delete`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
+Deletes the specified member from ExcoLink.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the member at the specified `INDEX`.
+* The index refers to the index number shown in the displayed member list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd member in the list.
 
-### Clearing all entries : `clear`
+---
 
-Clears all entries from the address book.
+### Creating a subcommittee : `add-sc`
 
-Format: `clear`
+Creates a new subcommittee.
+
+Format: `add-sc sc/SUBCOMMITTEE`
+
+Examples:
+* `add-sc sc/Publicity`
+
+---
+
+### Listing all subcommittees : `list-sc`
+
+Shows a list of all subcommittees in ExcoLink.
+
+Format: `list-sc`
+
+---
+
+### Deleting a subcommittee : `delete-sc`
+
+Deletes the specified subcommittee.
+
+Format: `delete-sc INDEX`
+
+* Deletes the subcommittee at the specified `INDEX`.
+* The index refers to the index number shown in the displayed subcommittee list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list-sc` followed by `delete-sc 1` deletes the 1st subcommittee in the list.
+
+---
+
+### Assigning a member to a subcommittee : `assign-sc`
+
+Assigns a member to a subcommittee.
+
+Format: `assign-sc INDEX sc/SUBCOMMITTEE`
+
+Examples:
+* `assign-sc 2 sc/Publicity`
+
+---
+
+### Unassigning a member from a subcommittee : `unassign-sc`
+
+Removes a member from their assigned subcommittee.
+
+Format: `unassign-sc INDEX`
+
+Examples:
+* `unassign-sc 2`
+
+---
+
+### Viewing members in a subcommittee : `list-sc-members`
+
+Shows all members belonging to a specified subcommittee.
+
+Format: `list-sc-members sc/SUBCOMMITTEE`
+
+Examples:
+* `list-sc-members sc/Publicity`
+
+---
+
+### Assigning a role to a member : `assign-role`
+
+Assigns a role to a member. Members can hold multiple roles.
+
+Format: `assign-role INDEX r/ROLE`
+
+Examples:
+* `assign-role 1 r/Treasurer`
+* `assign-role 3 r/President`
+
+---
+
+### Removing a role from a member : `delete-role`
+
+Removes a role from a member.
+
+Format: `delete-role INDEX r/ROLE`
+
+Examples:
+* `delete-role 1 r/Treasurer`
+
+---
 
 ### Exiting the program : `exit`
 
@@ -154,47 +202,53 @@ Exits the program.
 
 Format: `exit`
 
+---
+
 ### Saving the data
 
 ExcoLink data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
+---
+
 ### Editing the data file
 
-ExcoLink data are saved automatically as a JSON file `[JAR file location]/data/excoLink.json`. Advanced users are welcome to update data directly by editing that data file.
+ExcoLink data are saved automatically as a JSON file `[JAR file location]/data/excolink.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, ExcoLink will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+If your changes to the data file make its format invalid, ExcoLink will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the ExcoLink to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ExcoLink home folder.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**Add Member** | `add n/NAME p/PHONE e/EMAIL` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com`
+**Delete Member** | `delete INDEX` <br> e.g., `delete 1`
+**List Members** | `list`
+**Add Subcommittee** | `add-sc sc/SUBCOMMITTEE` <br> e.g., `add-sc sc/Publicity`
+**Delete Subcommittee** | `delete-sc INDEX` <br> e.g., `delete-sc 1`
+**List Subcommittees** | `list-sc`
+**Assign Member to Subcommittee** | `assign-sc INDEX sc/SUBCOMMITTEE` <br> e.g., `assign-sc 1 sc/Tech`
+**Unassign Member from Subcommittee** | `unassign-sc INDEX` <br> e.g., `unassign-sc 1`
+**List Members in Subcommittee** | `list-sc-members sc/SUBCOMMITTEE` <br> e.g., `list-sc-members sc/Publicity`
+**Assign Role to Member** | `assign-role INDEX r/ROLE` <br> e.g., `assign-role 1 r/President`
+**Delete Role from Member** | `delete-role INDEX r/ROLE` <br> e.g., `delete-role 1 r/Treasurer`
 **Help** | `help`
+**Exit** | `exit`
