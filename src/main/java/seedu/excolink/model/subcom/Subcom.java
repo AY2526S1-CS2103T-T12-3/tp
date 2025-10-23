@@ -58,12 +58,12 @@ public class Subcom {
         }
 
         Subcom otherSubcom = (Subcom) other;
-        return subcomName.equals(otherSubcom.subcomName);
+        return subcomName.equalsIgnoreCase(otherSubcom.subcomName);
     }
 
     @Override
     public int hashCode() {
-        return subcomName.hashCode();
+        return subcomName.toLowerCase().hashCode();
     }
 
     /**
