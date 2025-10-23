@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.excolink.commons.core.LogsCenter;
+import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
 
 /**
@@ -16,6 +17,7 @@ import seedu.excolink.model.subcom.Subcom;
 public class SubcomListPanel extends UiPart<Region> {
     private static final String FXML = "SubcomListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(SubcomListPanel.class);
+    private ObservableList<Person> personList;
 
     @FXML
     private ListView<Subcom> subcomListView;
@@ -23,10 +25,11 @@ public class SubcomListPanel extends UiPart<Region> {
     /**
      * Creates a {@code SubcomListPanel} with the given {@code ObservableList}.
      */
-    public SubcomListPanel(ObservableList<Subcom> subcomList) {
+    public SubcomListPanel(ObservableList<Subcom> subcomList, ObservableList<Person> personList) {
         super(FXML);
         subcomListView.setItems(subcomList);
         subcomListView.setCellFactory(listView -> new SubcomListViewCell());
+        this.personList = personList;
     }
 
     /**
@@ -41,7 +44,10 @@ public class SubcomListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new SubcomCard(subcom, getIndex() + 1).getRoot());
+                int count = (int) personList.stream()
+                        .filter(p -> p.getSubcom().equals(subcom))
+                        .count();
+                setGraphic(new SubcomCard(subcom, getIndex() + 1, count).getRoot());
             }
         }
     }

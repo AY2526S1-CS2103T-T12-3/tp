@@ -105,4 +105,5 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered subcom list */
     ObservableList<Subcom> getSubcomList();
+
 }

@@ -211,7 +211,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void showSubcomList() {
         if (subcomListPanel == null) {
-            subcomListPanel = new SubcomListPanel(logic.getSubcomList());
+            subcomListPanel = new SubcomListPanel(logic.getSubcomList(), logic.getFilteredPersonList());
         }
         System.out.println("HELLOO");
         listPanelPlaceholder.getChildren().setAll(subcomListPanel.getRoot());
