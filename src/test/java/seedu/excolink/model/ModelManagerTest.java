@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 import seedu.excolink.commons.core.GuiSettings;
@@ -118,6 +119,15 @@ public class ModelManagerTest {
     public void getSubcomList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getSubcomList().remove(0));
     }
+
+    @Test
+    public void getPersonList_returnsAllPersons() {
+        ObservableList<Person> allPersons = modelManager.getPersonList();
+
+        assertEquals(modelManager.getPersonList(), allPersons);
+        assertThrows(UnsupportedOperationException.class, () -> allPersons.add(new PersonBuilder().build()));
+    }
+
 
     @Test
     public void deleteSubcom_removesSubcomAndClearsMembers() {
