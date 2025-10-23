@@ -1,4 +1,4 @@
-@startuml
+@startuml UnassignSubcomSequenceDiagram
 !include style.puml
 skinparam ArrowFontStyle plain
 
@@ -6,7 +6,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ExcoLinkParser" as ExcoLinkParser LOGIC_COLOR
 participant ":UnassignSubcomCommandParser" as UnassignSubcomCommandParser LOGIC_COLOR
-participant "d:UnassignSubcomCommand" as UnassignSubcomCommand LOGIC_COLOR
+participant "u:UnassignSubcomCommand" as UnassignSubcomCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -23,7 +23,7 @@ activate ExcoLinkParser
 
 create UnassignSubcomCommandParser
 ExcoLinkParser -> UnassignSubcomCommandParser
-activate UnassginSubcomCommandParser
+activate UnassignSubcomCommandParser
 
 UnassignSubcomCommandParser --> ExcoLinkParser
 deactivate UnassignSubcomCommandParser
@@ -41,7 +41,7 @@ deactivate UnassignSubcomCommand
 UnassignSubcomCommandParser --> ExcoLinkParser : u
 deactivate UnassignSubcomCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteSubcomCommandParser -[hidden]-> ExcoLinkParser
+UnassignSubcomCommandParser -[hidden]-> ExcoLinkParser
 destroy UnassignSubcomCommandParser
 
 ExcoLinkParser --> LogicManager : u
@@ -56,11 +56,11 @@ activate Model
 Model --> UnassignSubcomCommand
 deactivate Model
 
-UnassignSubcomCommand -> UnassignSubcomCommand : removeFromSubcom(1)
+UnassignSubcomCommand -> UnassignSubcomCommand : removeFromSubcom()
 activate UnassignSubcomCommand
 
 create editedPerson
-UnassignSubcomCommand -> editedPerson: new Person(name, phone, email, roles, NOSUBCOM)
+UnassignSubcomCommand -> editedPerson : new Person(name, phone, email, roles, NOSUBCOM)
 activate editedPerson
 editedPerson --> UnassignSubcomCommand : editedPerson
 deactivate editedPerson
@@ -77,11 +77,11 @@ create CommandResult
 UnassignSubcomCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteSubcomCommand
+CommandResult --> UnassignSubcomCommand
 deactivate CommandResult
 
-DeleteSubcomCommand --> LogicManager : r
-deactivate DeleteSubcomCommand
+UnassignSubcomCommand --> LogicManager : r
+deactivate UnassignSubcomCommand
 
 [<--LogicManager
 deactivate LogicManager
