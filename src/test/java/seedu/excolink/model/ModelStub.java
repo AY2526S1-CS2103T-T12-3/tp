@@ -103,7 +103,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
+    public int getSubcomMemberCount(Subcom subcom) {
         throw new AssertionError("This method should not be called.");
     }
 }

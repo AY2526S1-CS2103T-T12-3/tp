@@ -14,7 +14,6 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
 import seedu.excolink.commons.core.GuiSettings;
 import seedu.excolink.model.person.NameContainsKeywordsPredicate;
 import seedu.excolink.model.person.Person;
@@ -121,13 +120,22 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getPersonList_returnsAllPersons() {
-        ObservableList<Person> allPersons = modelManager.getPersonList();
+    public void getSubcomMemberCount_validSubcom_returnsCorrectCount() {
+        Subcom subcom = new Subcom("Tech");
+        Person person1 = new PersonBuilder().withName("Alice").withSubcom("Tech").build();
+        Person person2 = new PersonBuilder().withName("Bob").withSubcom("Tech").build();
+        modelManager.addPerson(person1);
+        modelManager.addPerson(person2);
 
-        assertEquals(modelManager.getPersonList(), allPersons);
-        assertThrows(UnsupportedOperationException.class, () -> allPersons.add(new PersonBuilder().build()));
+        int count = modelManager.getSubcomMemberCount(subcom);
+        assertEquals(2, count);
     }
 
+    @Test
+    public void getSubcomMemberCount_noMembers_returnsZero() {
+        Subcom subcom = new Subcom("Marketing");
+        assertEquals(0, modelManager.getSubcomMemberCount(subcom));
+    }
 
     @Test
     public void deleteSubcom_removesSubcomAndClearsMembers() {

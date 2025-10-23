@@ -155,11 +155,13 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns an unmodifiable view of the list of all persons in the Exco.
+     * TOD0: Returns an unmodifiable view of the list of all persons in the Exco.
      */
     @Override
-    public ObservableList<Person> getPersonList() {
-        return allPersons;
+    public int getSubcomMemberCount(Subcom subcom) {
+        return (int) allPersons.stream()
+                .filter(p -> p.getSubcom().equals(subcom))
+                .count();
     }
 
     @Override

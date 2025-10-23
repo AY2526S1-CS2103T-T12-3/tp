@@ -78,8 +78,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return model.getPersonList();
+    public int getSubcomMemberCount(Subcom subcom) {
+        return model.getSubcomMemberCount(subcom);
     }
 
     @Override
