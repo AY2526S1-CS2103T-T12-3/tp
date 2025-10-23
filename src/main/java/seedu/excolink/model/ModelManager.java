@@ -26,6 +26,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Subcom> subcoms;
+    private final FilteredList<Person> allPersons;
 
     /**
      * Initializes a ModelManager with the given excoLink and userPrefs.
@@ -39,6 +40,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.excoLink.getPersonList());
         this.subcoms = new FilteredList<>(this.excoLink.getSubcomList());
+        this.allPersons = new FilteredList<>(this.excoLink.getPersonList());
     }
 
     public ModelManager() {
@@ -150,6 +152,14 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of all persons in the Exco.
+     */
+    @Override
+    public ObservableList<Person> getPersonList() {
+        return allPersons;
     }
 
     @Override

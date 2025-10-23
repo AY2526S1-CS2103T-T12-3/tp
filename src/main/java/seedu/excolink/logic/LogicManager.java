@@ -78,6 +78,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Person> getPersonList() {
+        return model.getPersonList();
+    }
+
+    @Override
     public Path getExcoLinkFilePath() {
         return model.getExcoLinkFilePath();
     }

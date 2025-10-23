@@ -37,6 +37,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the list of subcoms */
     ObservableList<Subcom> getSubcomList();
 
+    /** Returns an unmodifiable view of the list of all persons*/
+    ObservableList<Person> getPersonList();
+
     /**
      * Returns the user prefs' address book file path.
      */

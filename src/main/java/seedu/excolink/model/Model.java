@@ -105,4 +105,7 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered subcom list */
     ObservableList<Subcom> getSubcomList();
+
+    /** Returns an unmodifiable view of the all persons list */
+    ObservableList<Person> getPersonList();
 }
