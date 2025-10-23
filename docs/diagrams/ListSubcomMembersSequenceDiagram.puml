@@ -1,0 +1,51 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "l:ListSubcomMembersCommand" as ListSubcomMembersCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("list-sc-members sc/Publicity")
+activate LogicManager
+
+' LogicManager creates and executes the command
+create ListSubcomMembersCommand
+LogicManager -> ListSubcomMembersCommand : execute(m)
+activate ListSubcomMembersCommand
+
+' Call Model.hasSubcom()
+ListSubcomMembersCommand -> Model : hasSubcom(subcomToList)
+activate Model
+Model --> ListSubcomMembersCommand : true/false
+deactivate Model
+
+alt Subcom exists
+    ' Call Model.updateFilteredPersonList()
+    ListSubcomMembersCommand -> Model : updateFilteredPersonList(person -> person.getSubcom().equals(subcomToList))
+    activate Model
+    Model --> ListSubcomMembersCommand
+    deactivate Model
+
+    ' Create and return CommandResult
+    create CommandResult
+    ListSubcomMembersCommand -> CommandResult
+    activate CommandResult
+    CommandResult --> ListSubcomMembersCommand
+    deactivate CommandResult
+else Subcom does not exist
+    ListSubcomMembersCommand --> LogicManager : CommandException(MESSAGE_INVALID_SUBCOM_NAME)
+end
+
+ListSubcomMembersCommand --> LogicManager : r
+deactivate ListSubcomMembersCommand
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
