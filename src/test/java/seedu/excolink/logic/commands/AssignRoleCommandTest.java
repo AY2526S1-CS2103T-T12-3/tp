@@ -20,6 +20,7 @@ import seedu.excolink.model.person.Person;
 import seedu.excolink.model.person.Phone;
 import seedu.excolink.model.role.Role;
 import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.testutil.PersonBuilder;
 
 public class AssignRoleCommandTest {
 
@@ -55,6 +56,29 @@ public class AssignRoleCommandTest {
         // Verify that the role was actually added
         Person updatedPerson = model.getFilteredPersonList().get(0);
         assertEquals(Collections.singleton(role), updatedPerson.getRoles());
+    }
+    @Test
+    public void execute_duplicateRole_throwsCommandException() {
+        Index index = Index.fromOneBased(1);
+        Role role = new Role("lead");
+
+        // Create a person with an existing role
+        Person personWithRole = new PersonBuilder().withRoles("lead").build();
+
+        model.setPerson(model.getFilteredPersonList().get(0), personWithRole);
+
+        AssignRoleCommand command = new AssignRoleCommand(index, role);
+
+        try {
+            command.execute(model);
+        } catch (CommandException e) {
+            String expectedMessage = String.format(
+                    AssignRoleCommand.MESSAGE_DUPLICATE_ROLE,
+                    personWithRole.getName(),
+                    role
+            );
+            assertEquals(expectedMessage, e.getMessage());
+        }
     }
 
     @Test
