@@ -17,11 +17,27 @@ public class AssignRoleCommandParserTest {
     @Test
     public void parse_validArgs_returnsAssignRoleCommand() {
         // single role
-        AssignRoleCommand expectedCommand = new AssignRoleCommand(Index.fromOneBased(1), new Role("Treasurer"));
-        assertParseSuccess(parser, "1 r/Treasurer", expectedCommand);
+        AssignRoleCommand expectedCommand = new AssignRoleCommand(Index.fromOneBased(1),
+                new Role("treasurer"));
+        assertParseSuccess(parser, "1 r/treasurer", expectedCommand);
 
         // role with spaces
-        AssignRoleCommand expectedCommand2 = new AssignRoleCommand(Index.fromOneBased(2), new Role("Team Lead"));
+        AssignRoleCommand expectedCommand2 = new AssignRoleCommand(Index.fromOneBased(2),
+                new Role("team lead"));
+        assertParseSuccess(parser, "2 r/team lead", expectedCommand2);
+    }
+
+    @Test
+    public void parse_roleCaseInsensitive_convertsToLowercase() {
+        // Mixed case role
+        AssignRoleCommand expectedCommand = new AssignRoleCommand(Index.fromOneBased(1),
+                new Role("treasurer"));
+        assertParseSuccess(parser, "1 r/TREASURER", expectedCommand);
+        assertParseSuccess(parser, "1 r/TreAsUrer", expectedCommand);
+
+        // Role with spaces and mixed case
+        AssignRoleCommand expectedCommand2 = new AssignRoleCommand(Index.fromOneBased(2),
+                new Role("team lead"));
         assertParseSuccess(parser, "2 r/Team Lead", expectedCommand2);
     }
 

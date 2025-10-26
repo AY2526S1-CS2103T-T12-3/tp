@@ -83,12 +83,13 @@ public class ParserUtil {
     /**
      * Parses a {@code String role} into a {@code Role}.
      * Leading and trailing whitespaces will be trimmed.
+     * {@code role} will be converted to lowercase.
      *
      * @throws ParseException if the given {@code role} is invalid.
      */
     public static Role parseRole(String role) throws ParseException {
         requireNonNull(role);
-        String trimmedRole = role.trim();
+        String trimmedRole = role.trim().toLowerCase();
         if (!Role.isValidRoleName(trimmedRole)) {
             throw new ParseException(Role.MESSAGE_CONSTRAINTS);
         }

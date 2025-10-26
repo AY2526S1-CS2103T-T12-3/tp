@@ -17,11 +17,27 @@ public class DeleteRoleCommandParserTest {
     @Test
     public void parse_validArgs_returnsDeleteRoleCommand() {
         // Single-word role
-        DeleteRoleCommand expectedCommand = new DeleteRoleCommand(Index.fromOneBased(1), new Role("Treasurer"));
-        assertParseSuccess(parser, "1 r/Treasurer", expectedCommand);
+        DeleteRoleCommand expectedCommand = new DeleteRoleCommand(Index.fromOneBased(1),
+                new Role("treasurer"));
+        assertParseSuccess(parser, "1 r/treasurer", expectedCommand);
 
         // Multi-word role
-        DeleteRoleCommand expectedCommand2 = new DeleteRoleCommand(Index.fromOneBased(2), new Role("Team Lead"));
+        DeleteRoleCommand expectedCommand2 = new DeleteRoleCommand(Index.fromOneBased(2),
+                new Role("team lead"));
+        assertParseSuccess(parser, "2 r/team lead", expectedCommand2);
+    }
+
+    @Test
+    public void parse_roleCaseInsensitive_convertsToLowercase() {
+        // Mixed case role
+        DeleteRoleCommand expectedCommand = new DeleteRoleCommand(Index.fromOneBased(1),
+                new Role("treasurer"));
+        assertParseSuccess(parser, "1 r/TREASURER", expectedCommand);
+        assertParseSuccess(parser, "1 r/TreAsUrer", expectedCommand);
+
+        // Role with spaces and mixed case
+        DeleteRoleCommand expectedCommand2 = new DeleteRoleCommand(Index.fromOneBased(2),
+                new Role("team lead"));
         assertParseSuccess(parser, "2 r/Team Lead", expectedCommand2);
     }
 
