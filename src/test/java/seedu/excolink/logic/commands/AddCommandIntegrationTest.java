@@ -15,7 +15,8 @@ import seedu.excolink.model.person.Person;
 import seedu.excolink.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for
+ * {@code AddCommand}.
  */
 public class AddCommandIntegrationTest {
 

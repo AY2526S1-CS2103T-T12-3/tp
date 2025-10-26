@@ -126,8 +126,16 @@ public class ExcoLink implements ReadOnlyExcoLink {
         return subcoms.contains(subcom);
     }
 
-    public Subcom getSubcomByName(String subcomName) throws SubcomNotFoundException {
-        return subcoms.getSubcomByName(subcomName);
+    /**
+     * Returns the subcom referenced in subcoms
+     * @param subcom new subcom with the same properties as the correct subcom
+     * @return subcom that is within subcoms
+     */
+    public Subcom findSubcom(Subcom subcom) throws SubcomNotFoundException {
+        if (subcom.isNone()) {
+            return subcom;
+        }
+        return subcoms.getSubcomByName(subcom.getName());
     }
 
     /**

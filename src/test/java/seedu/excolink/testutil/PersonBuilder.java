@@ -1,5 +1,7 @@
 package seedu.excolink.testutil;
 
+import static seedu.excolink.testutil.TypicalSubcoms.TECH;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +22,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_SUBCOM = "Publicity";
+    public static final Subcom DEFAULT_SUBCOM = TECH;
 
     private Name name;
     private Phone phone;
@@ -36,7 +38,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         roles = new HashSet<>();
-        subcom = new Subcom(DEFAULT_SUBCOM);
+        subcom = TECH;
     }
 
     /**

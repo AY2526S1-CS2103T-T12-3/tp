@@ -39,7 +39,6 @@ public class AssignSubcomCommandParser implements Parser<AssignSubcomCommand> {
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignSubcomCommand.MESSAGE_USAGE));
         }
-
-        return new AssignSubcomCommand(index, subcom);
+        return new AssignSubcomCommand(index, ParserUtil.parseSubcom(subcom));
     }
 }

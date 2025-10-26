@@ -108,7 +108,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public Subcom getSubcomByName(String subcomName) {
+    public Subcom findSubcom(Subcom subcom) {
         throw new AssertionError("This method should not be called.");
     }
 }

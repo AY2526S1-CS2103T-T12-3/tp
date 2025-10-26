@@ -74,6 +74,16 @@ public class Person {
     }
 
     /**
+     * Assign this person to their assigned subcommittee by setting their
+     * {@code subcom} to {@param subcom}.
+     *
+     * @return The modified person.
+     */
+    public Person assignSubcom(Subcom subcom) {
+        return new Person(name, phone, email, roles, subcom);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */

@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.excolink.commons.core.GuiSettings;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.model.subcom.exceptions.SubcomNotFoundException;
 
 /**
  * The API of the Model component.
@@ -113,5 +114,5 @@ public interface Model {
     int getSubcomMemberCount(Subcom subcom);
 
     /** Returns the subcom corresponding to the name */
-    Subcom getSubcomByName(String subcomname);
+    Subcom findSubcom(Subcom subcom) throws SubcomNotFoundException;
 }

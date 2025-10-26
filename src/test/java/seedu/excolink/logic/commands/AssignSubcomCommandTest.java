@@ -30,7 +30,7 @@ public class AssignSubcomCommandTest {
     public void execute_validIndex_success() {
         Person personToAssign = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
         Subcom subcom = TECH;
-        AssignSubcomCommand command = new AssignSubcomCommand(INDEX_FIRST, TECH.getName());
+        AssignSubcomCommand command = new AssignSubcomCommand(INDEX_FIRST, TECH);
         String expectedMessage = String.format(AssignSubcomCommand.MESSAGE_SUCCESS, personToAssign.getName(),
                 subcom.getName());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -39,7 +39,7 @@ public class AssignSubcomCommandTest {
     @Test
     public void execute_invalidIndex_throwsCommandException() {
         Index outOfBoundsIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        AssignSubcomCommand command = new AssignSubcomCommand(outOfBoundsIndex, TECH.getName());
+        AssignSubcomCommand command = new AssignSubcomCommand(outOfBoundsIndex, TECH);
 
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -48,7 +48,7 @@ public class AssignSubcomCommandTest {
     public void execute_invalidSubcom_throwsCommandException() {
         Index validIndex = Index.fromOneBased(1);
         Subcom invalidSubcom = new Subcom("NonExistentSubcom");
-        AssignSubcomCommand command = new AssignSubcomCommand(validIndex, invalidSubcom.getName());
+        AssignSubcomCommand command = new AssignSubcomCommand(validIndex, invalidSubcom);
 
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_SUBCOM_NAME);
     }
@@ -60,11 +60,11 @@ public class AssignSubcomCommandTest {
         Subcom publicity = new Subcom("publicity");
         Subcom logistics = new Subcom("logistics");
 
-        AssignSubcomCommand assignFirstCommand = new AssignSubcomCommand(firstIndex, publicity.getName());
-        AssignSubcomCommand assignSecondCommand = new AssignSubcomCommand(secondIndex, logistics.getName());
+        AssignSubcomCommand assignFirstCommand = new AssignSubcomCommand(firstIndex, publicity);
+        AssignSubcomCommand assignSecondCommand = new AssignSubcomCommand(secondIndex, logistics);
 
         // same values -> returns true
-        AssignSubcomCommand assignFirstCommandCopy = new AssignSubcomCommand(firstIndex, publicity.getName());
+        AssignSubcomCommand assignFirstCommandCopy = new AssignSubcomCommand(firstIndex, publicity);
         assertEquals(assignFirstCommand, assignFirstCommandCopy);
 
         // different types -> returns false

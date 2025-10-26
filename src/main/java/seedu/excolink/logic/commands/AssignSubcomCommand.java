@@ -1,6 +1,5 @@
 package seedu.excolink.logic.commands;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOM;
 
@@ -31,16 +30,16 @@ public class AssignSubcomCommand extends Command {
             + PREFIX_SUBCOM + "publicity";
 
     private Index index;
-    private String subcomName;
+    private Subcom subcom;
 
     /**
      * @param index      of the person in the filtered person list to edit
      * @param subcomName name of subcomm that the person is assigned to
      */
-    public AssignSubcomCommand(Index index, String subcomName) {
+    public AssignSubcomCommand(Index index, Subcom subcom) {
         requireNonNull(index);
         this.index = index;
-        this.subcomName = subcomName;
+        this.subcom = subcom;
     }
 
     @Override
@@ -54,35 +53,23 @@ public class AssignSubcomCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Subcom subcom;
-        if (isNull(subcomName)) {
-            subcom = Subcom.NOSUBCOM;
-        } else {
-            try {
-                subcom = model.getSubcomByName(subcomName);
-            } catch (SubcomNotFoundException e) {
-                throw new CommandException(Messages.MESSAGE_INVALID_SUBCOM_NAME);
-            }
+        try {
+            subcom = model.findSubcom(this.subcom);
+        } catch (SubcomNotFoundException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_SUBCOM_NAME);
         }
 
-        Person editedPerson = createNewPerson(personToEdit, subcom);
+        Person editedPerson = personToEdit.assignSubcom(subcom);
         model.setPerson(personToEdit, editedPerson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedPerson.getName(), subcom),
                 DisplayEntity.PERSON);
-    }
-
-    private Person createNewPerson(Person personToEdit, Subcom subcom) {
-        return new Person(personToEdit.getName(),
-                personToEdit.getPhone(),
-                personToEdit.getEmail(),
-                personToEdit.getRoles(),
-                subcom);
     }
 
     @Override
     public boolean equals(Object o) {
         if (o instanceof AssignSubcomCommand) {
             AssignSubcomCommand command = (AssignSubcomCommand) o;
-            return command.index.equals(this.index) && command.subcomName.equals(this.subcomName);
+            return command.index.equals(this.index) && command.subcom.equals(this.subcom);
         } else {
             return false;
         }
