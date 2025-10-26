@@ -26,6 +26,7 @@ public class AssignRoleCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 r/Treasurer";
 
     public static final String MESSAGE_ASSIGN_ROLE_SUCCESS = "%1$s assigned role: %2$s";
+    public static final String MESSAGE_DUPLICATE_ROLE = "%1$s has already been assigned role: %2$s";
     private final Index index;
     private final Role role;
 
@@ -50,14 +51,17 @@ public class AssignRoleCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
-        Set<Role> updatedRoles = new HashSet<>(personToEdit.getRoles());
-        updatedRoles.add(role);
+        Set<Role> personRoles = new HashSet<>(personToEdit.getRoles());
+
+        if (!personRoles.add(role)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_ROLE, personToEdit.getName(), role));
+        }
 
         Person editedPerson = new Person(
                 personToEdit.getName(),
                 personToEdit.getPhone(),
                 personToEdit.getEmail(),
-                updatedRoles,
+                personRoles,
                 personToEdit.getSubcom()
         );
 
