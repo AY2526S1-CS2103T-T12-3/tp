@@ -8,7 +8,6 @@ import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST;
 import org.junit.jupiter.api.Test;
 
 import seedu.excolink.logic.commands.AssignSubcomCommand;
-import seedu.excolink.model.subcom.Subcom;
 
 /**
  * Unit tests for {@code AssignSubcomCommandParser}.
