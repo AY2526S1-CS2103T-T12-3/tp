@@ -39,6 +39,13 @@ public class AssignRoleCommand extends Command {
         this.rolesToAdd = roles;
     }
 
+    public AssignRoleCommand(Index index, Role role) {
+        requireNonNull(index);
+        requireNonNull(role);
+        this.index = index;
+        this.rolesToAdd = Set.of(role);
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
