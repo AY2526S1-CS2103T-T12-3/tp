@@ -1,5 +1,6 @@
 package seedu.excolink.logic.commands;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOM;
 
@@ -11,6 +12,7 @@ import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.model.subcom.exceptions.SubcomNotFoundException;
 import seedu.excolink.ui.DisplayEntity;
 
 /**
@@ -29,16 +31,16 @@ public class AssignSubcomCommand extends Command {
             + PREFIX_SUBCOM + "publicity";
 
     private Index index;
-    private Subcom subcom;
+    private String subcomName;
+
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param subcom subcomm that the person is assigned to
+     * @param index      of the person in the filtered person list to edit
+     * @param subcomName name of subcomm that the person is assigned to
      */
-    public AssignSubcomCommand(Index index, Subcom subcom) {
+    public AssignSubcomCommand(Index index, String subcomName) {
         requireNonNull(index);
-        requireNonNull(subcom);
         this.index = index;
-        this.subcom = subcom;
+        this.subcomName = subcomName;
     }
 
     @Override
@@ -51,12 +53,20 @@ public class AssignSubcomCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        if (!model.hasSubcom(subcom)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_SUBCOM_NAME);
+        Subcom subcom;
+        if (isNull(subcomName)) {
+            subcom = Subcom.NOSUBCOM;
+        } else {
+            try {
+                subcom = model.getSubcomByName(subcomName);
+            } catch (SubcomNotFoundException e) {
+                throw new CommandException(Messages.MESSAGE_INVALID_SUBCOM_NAME);
+            }
         }
+
         Person editedPerson = createNewPerson(personToEdit, subcom);
         model.setPerson(personToEdit, editedPerson);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedPerson.getName(), subcom.getName()),
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedPerson.getName(), subcom),
                 DisplayEntity.PERSON);
     }
 
@@ -72,7 +82,7 @@ public class AssignSubcomCommand extends Command {
     public boolean equals(Object o) {
         if (o instanceof AssignSubcomCommand) {
             AssignSubcomCommand command = (AssignSubcomCommand) o;
-            return command.index.equals(this.index) && command.subcom.equals(this.subcom);
+            return command.index.equals(this.index) && command.subcomName.equals(this.subcomName);
         } else {
             return false;
         }

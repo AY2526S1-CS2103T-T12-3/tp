@@ -182,6 +182,9 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Subcom getSubcomByName(String subcomName) { return excoLink.getSubcomByName(subcomName); }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

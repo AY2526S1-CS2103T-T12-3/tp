@@ -65,6 +65,15 @@ public class Person {
     }
 
     /**
+     * Removes this person from their associated subcommittee by setting their
+     * {@code subcom} to NOSUBCOM.
+     * @return The modified person.
+     */
+    public Person removeFromSubcom() {
+        return new Person(name, phone, email, roles, Subcom.NOSUBCOM);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -75,14 +84,6 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
-    }
-
-    /**
-     * Removes this person from their associated subcommittee by setting their {@code subcom} to NOSUBCOM.
-     * @return The modified person.
-     */
-    public Person removeFromSubcom() {
-        return new Person(name, phone, email, roles, Subcom.NOSUBCOM);
     }
 
     /**

@@ -37,7 +37,7 @@ public class AssignSubcomCommandParserTest {
     public void parse_validArgs_returnsAssignSubcomCommand() {
         String userInput = INDEX_FIRST.getOneBased() + " " + VALID_SUBCOM;
         AssignSubcomCommand expectedCommand =
-                new AssignSubcomCommand(INDEX_FIRST, new Subcom("Marketing"));
+                new AssignSubcomCommand(INDEX_FIRST, "Marketing");
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
