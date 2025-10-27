@@ -25,10 +25,20 @@ public class AssignRoleCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) r/ROLE\n"
             + "Example: " + COMMAND_WORD + " 1 r/Treasurer";
 
-    public static final String MESSAGE_ASSIGN_ROLE_SUCCESS = "%1$s assigned role: %2$s";
+    public static final String MESSAGE_ASSIGN_ROLE_SUCCESS = "%1$s assigned role(s): %2$s";
     public static final String MESSAGE_DUPLICATE_ROLE = "%1$s has already been assigned role: %2$s";
     private final Index index;
-    private final Role role;
+    private final Set<Role> rolesToAdd;
+
+    /**
+     * Creates an AssignRoleCommand to assign the specified set of {@code Role} to a member
+     */
+    public AssignRoleCommand(Index index, Set<Role> roles) {
+        requireNonNull(index);
+        requireNonNull(roles);
+        this.index = index;
+        this.rolesToAdd = roles;
+    }
 
     /**
      * Creates an AssignRoleCommand to assign the specified {@code Role} to a member
@@ -37,7 +47,7 @@ public class AssignRoleCommand extends Command {
         requireNonNull(index);
         requireNonNull(role);
         this.index = index;
-        this.role = role;
+        this.rolesToAdd = Set.of(role);
     }
 
     @Override
@@ -51,10 +61,13 @@ public class AssignRoleCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
+
         Set<Role> personRoles = new HashSet<>(personToEdit.getRoles());
 
-        if (!personRoles.add(role)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_ROLE, personToEdit.getName(), role));
+        for (Role role: rolesToAdd) {
+            if (!personRoles.add(role)) {
+                throw new CommandException(String.format(MESSAGE_DUPLICATE_ROLE, personToEdit.getName(), role));
+            }
         }
 
         Person editedPerson = new Person(
@@ -68,7 +81,7 @@ public class AssignRoleCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_ROLE_SUCCESS,
-                personToEdit.getName(), role.roleName), DisplayEntity.PERSON);
+                personToEdit.getName(), Messages.formatRoles(rolesToAdd)), DisplayEntity.PERSON);
     }
 
     @Override
@@ -81,11 +94,11 @@ public class AssignRoleCommand extends Command {
         }
         AssignRoleCommand otherCommand = (AssignRoleCommand) other;
         return index.equals(otherCommand.index)
-                && role.equals(otherCommand.role);
+                && rolesToAdd.equals(otherCommand.rolesToAdd);
     }
 
     @Override
     public int hashCode() {
-        return index.hashCode() * 31 + role.hashCode();
+        return index.hashCode() * 31 + rolesToAdd.hashCode();
     }
 }
