@@ -31,7 +31,7 @@ public class AssignRoleCommand extends Command {
     private final Set<Role> rolesToAdd;
 
     /**
-     * Creates an AssignRoleCommand to assign the specified {@code Role} to a member
+     * Creates an AssignRoleCommand to assign the specified set of {@code Role} to a member
      */
     public AssignRoleCommand(Index index, Set<Role> roles) {
         requireNonNull(index);
@@ -40,6 +40,9 @@ public class AssignRoleCommand extends Command {
         this.rolesToAdd = roles;
     }
 
+    /**
+     * Creates an AssignRoleCommand to assign the specified {@code Role} to a member
+     */
     public AssignRoleCommand(Index index, Role role) {
         requireNonNull(index);
         requireNonNull(role);
