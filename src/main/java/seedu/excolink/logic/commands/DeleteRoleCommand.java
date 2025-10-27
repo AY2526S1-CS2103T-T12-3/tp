@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.excolink.commons.core.index.Index;
+import seedu.excolink.logic.Messages;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.person.Person;
@@ -85,7 +86,7 @@ public class DeleteRoleCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
 
         return new CommandResult(
-                String.format(MESSAGE_SUCCESS, personToEdit.getName(), rolesToDelete),
+                String.format(MESSAGE_SUCCESS, personToEdit.getName(), Messages.formatRoles(rolesToDelete)),
                 DisplayEntity.PERSON
         );
     }
