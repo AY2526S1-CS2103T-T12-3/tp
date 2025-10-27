@@ -54,7 +54,7 @@ public class DeleteRoleCommandTest {
         CommandResult result = command.execute(model);
 
         String expectedMessage = String.format(DeleteRoleCommand.MESSAGE_SUCCESS,
-                testPerson.getName(), existingRole.roleName);
+                testPerson.getName(), existingRole);
         assertEquals(expectedMessage, result.getFeedbackToUser());
 
         // Verify the role was actually removed
@@ -69,7 +69,7 @@ public class DeleteRoleCommandTest {
         DeleteRoleCommand command = new DeleteRoleCommand(index, nonExistentRole);
 
         CommandException exception = assertThrows(CommandException.class, () -> command.execute(model));
-        assertEquals(String.format(DeleteRoleCommand.MESSAGE_ROLE_NOT_FOUND, nonExistentRole.roleName),
+        assertEquals(String.format(DeleteRoleCommand.MESSAGE_ROLE_NOT_FOUND, nonExistentRole),
                 exception.getMessage());
     }
 
