@@ -184,8 +184,11 @@ Shows all members belonging to a specified subcommittee.
 
 Format: `list-sc-members sc/SUBCOMMITTEE`
 
+Alternative Format: `list-scm sc/SUBCOMMITTEE`
+
 Examples:
 * `list-sc-members sc/Publicity`
+* `list-scm sc/Tech`
 
 ---
 
