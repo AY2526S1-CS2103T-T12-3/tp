@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.excolink.commons.core.index.Index;
+import seedu.excolink.logic.Messages;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.person.Person;
@@ -30,7 +31,7 @@ public class DeleteRoleCommand extends Command {
     public static final String MESSAGE_ROLE_NOT_FOUND = "Member does not have the role '%1$s'";
 
     private final Index index;
-    private final Role role;
+    private final Set<Role> rolesToDelete;
 
     /**
      * Creates a DeleteRoleCommand to remove the specified {@code Role} of a member
@@ -39,7 +40,17 @@ public class DeleteRoleCommand extends Command {
         requireNonNull(index);
         requireNonNull(role);
         this.index = index;
-        this.role = role;
+        this.rolesToDelete = Set.of(role);
+    }
+
+    /**
+     * Creates a DeleteRoleCommand to remove the specified set of {@code Role} of a member
+     */
+    public DeleteRoleCommand(Index index, Set<Role> roles) {
+        requireNonNull(index);
+        requireNonNull(roles);
+        this.index = index;
+        this.rolesToDelete = roles;
     }
 
     @Override
@@ -54,19 +65,14 @@ public class DeleteRoleCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
-        // Loop through roles to find exact match
-        boolean roleFound = false;
-        Set<Role> updatedRoles = new HashSet<>();
-        for (Role existingRole : personToEdit.getRoles()) {
-            if (existingRole.equals(role)) {
-                roleFound = true;
-            } else {
-                updatedRoles.add(existingRole);
-            }
-        }
+        Set<Role> existingRoles = personToEdit.getRoles();
+        Set<Role> updatedRoles = new HashSet<>(existingRoles);
 
-        if (!roleFound) {
-            throw new CommandException(String.format(MESSAGE_ROLE_NOT_FOUND, role.roleName));
+        for (Role roleToDelete: rolesToDelete) {
+            if (!existingRoles.contains(roleToDelete)) {
+                throw new CommandException(String.format(MESSAGE_ROLE_NOT_FOUND, roleToDelete));
+            }
+            updatedRoles.remove(roleToDelete);
         }
 
         Person editedPerson = new Person(
@@ -80,7 +86,7 @@ public class DeleteRoleCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
 
         return new CommandResult(
-                String.format(MESSAGE_SUCCESS, personToEdit.getName(), role.roleName),
+                String.format(MESSAGE_SUCCESS, personToEdit.getName(), Messages.formatRoles(rolesToDelete)),
                 DisplayEntity.PERSON
         );
     }
@@ -95,11 +101,11 @@ public class DeleteRoleCommand extends Command {
         }
         DeleteRoleCommand otherCommand = (DeleteRoleCommand) other;
         return index.equals(otherCommand.index)
-                && role.equals(otherCommand.role);
+                && rolesToDelete.equals(otherCommand.rolesToDelete);
     }
 
     @Override
     public int hashCode() {
-        return index.hashCode() * 31 + role.hashCode();
+        return index.hashCode() * 31 + rolesToDelete.hashCode();
     }
 }
