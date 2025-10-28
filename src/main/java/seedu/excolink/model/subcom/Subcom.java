@@ -74,6 +74,13 @@ public class Subcom {
     }
 
     /**
+     * Returns true if Subcom is NoSubcom
+     */
+    public boolean isNone() {
+        return false;
+    }
+
+    /**
      * Represents having no subcommittee
      */
     private static class NoSubcom extends Subcom {
@@ -89,6 +96,11 @@ public class Subcom {
         @Override
         public String toString() {
             return NOSUBCOM_STRING;
+        }
+
+        @Override
+        public boolean isNone() {
+            return true;
         }
     }
 }

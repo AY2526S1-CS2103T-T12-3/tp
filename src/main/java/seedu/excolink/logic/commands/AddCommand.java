@@ -1,6 +1,7 @@
 package seedu.excolink.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.excolink.logic.Messages.MESSAGE_INVALID_SUBCOM_NAME;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -12,6 +13,8 @@ import seedu.excolink.logic.Messages;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.person.Person;
+import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.model.subcom.exceptions.SubcomNotFoundException;
 import seedu.excolink.ui.DisplayEntity;
 
 /**
@@ -37,23 +40,31 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
-    private final Person toAdd;
+    private final Person toEdit;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
     public AddCommand(Person person) {
         requireNonNull(person);
-        toAdd = person;
+        toEdit = person;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasPerson(toEdit)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
+        Subcom modelSubcom;
+        try {
+            modelSubcom = model.findSubcom(toEdit.getSubcom());
+        } catch (SubcomNotFoundException e) {
+            throw new CommandException(MESSAGE_INVALID_SUBCOM_NAME);
+        }
+
+        Person toAdd = toEdit.assignSubcom(modelSubcom);
 
         model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)), DisplayEntity.PERSON);
@@ -71,13 +82,13 @@ public class AddCommand extends Command {
         }
 
         AddCommand otherAddCommand = (AddCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
+        return toEdit.equals(otherAddCommand.toEdit);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("toAdd", toAdd)
+                .add("toAdd", toEdit)
                 .toString();
     }
 }

@@ -106,4 +106,9 @@ public class ModelStub implements Model {
     public int getSubcomMemberCount(Subcom subcom) {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public Subcom findSubcom(Subcom subcom) {
+        throw new AssertionError("This method should not be called.");
+    }
 }

@@ -11,7 +11,7 @@ import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.ui.DisplayEntity;
 
 /**
- * Lists members in a  subcommittee.
+ * Lists members in a subcommittee.
  */
 public class ListSubcomMembersCommand extends Command {
     public static final String COMMAND_WORD = "list-sc-members";
@@ -68,4 +68,3 @@ public class ListSubcomMembersCommand extends Command {
                 .toString();
     }
 }
-

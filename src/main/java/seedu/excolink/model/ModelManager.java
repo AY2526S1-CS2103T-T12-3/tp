@@ -47,7 +47,8 @@ public class ModelManager implements Model {
         this(new ExcoLink(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs
+    // ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -82,7 +83,8 @@ public class ModelManager implements Model {
         userPrefs.setExcoLinkFilePath(excoLinkFilePath);
     }
 
-    //=========== ExcoLink ================================================================================
+    // =========== ExcoLink
+    // ================================================================================
 
     @Override
     public void setExcoLink(ReadOnlyExcoLink excoLink) {
@@ -143,10 +145,12 @@ public class ModelManager implements Model {
         excoLink.addSubcom(subcom);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    // =========== Filtered Person List Accessors
+    // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of
      * {@code versionedExcoLink}
      */
     @Override
@@ -170,15 +174,22 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //=========== Subcom List Accessors =============================================================
+    // =========== Subcom List Accessors
+    // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Subcom} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Subcom} backed by the
+     * internal list of
      * {@code versionedExcoLink}
      */
     @Override
     public ObservableList<Subcom> getSubcomList() {
         return subcoms;
+    }
+
+    @Override
+    public Subcom findSubcom(Subcom subcom) {
+        return excoLink.findSubcom(subcom);
     }
 
     @Override

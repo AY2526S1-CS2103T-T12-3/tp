@@ -78,6 +78,15 @@ public class EditCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        if (editPersonDescriptor.getSubcom().isPresent()) {
+            Subcom subcom;
+            try {
+                subcom = model.findSubcom(editPersonDescriptor.getSubcom().get());
+            } catch (Exception e) {
+                throw new CommandException(Messages.MESSAGE_INVALID_SUBCOM_NAME);
+            }
+            editPersonDescriptor.setSubcom(subcom);
+        }
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -89,6 +98,7 @@ public class EditCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)),
                 DisplayEntity.PERSON);
     }
+
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
@@ -141,7 +151,8 @@ public class EditCommand extends Command {
         private Set<Role> roles;
         private Subcom subcom;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * A defensive copy of {@code roles} is used internally.
@@ -194,7 +205,8 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable role set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable role set, which throws
+         * {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code roles} is null.
          */

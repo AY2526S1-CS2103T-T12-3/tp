@@ -11,6 +11,7 @@ import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.model.subcom.exceptions.SubcomNotFoundException;
 import seedu.excolink.ui.DisplayEntity;
 
 /**
@@ -30,13 +31,13 @@ public class AssignSubcomCommand extends Command {
 
     private Index index;
     private Subcom subcom;
+
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param subcom subcomm that the person is assigned to
+     * @param index      of the person in the filtered person list to edit
+     * @param subcomName name of subcomm that the person is assigned to
      */
     public AssignSubcomCommand(Index index, Subcom subcom) {
         requireNonNull(index);
-        requireNonNull(subcom);
         this.index = index;
         this.subcom = subcom;
     }
@@ -51,21 +52,17 @@ public class AssignSubcomCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        if (!model.hasSubcom(subcom)) {
+        Subcom subcom;
+        try {
+            subcom = model.findSubcom(this.subcom);
+        } catch (SubcomNotFoundException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_SUBCOM_NAME);
         }
-        Person editedPerson = createNewPerson(personToEdit, subcom);
-        model.setPerson(personToEdit, editedPerson);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedPerson.getName(), subcom.getName()),
-                DisplayEntity.PERSON);
-    }
 
-    private Person createNewPerson(Person personToEdit, Subcom subcom) {
-        return new Person(personToEdit.getName(),
-                personToEdit.getPhone(),
-                personToEdit.getEmail(),
-                personToEdit.getRoles(),
-                subcom);
+        Person editedPerson = personToEdit.assignSubcom(subcom);
+        model.setPerson(personToEdit, editedPerson);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedPerson.getName(), subcom),
+                DisplayEntity.PERSON);
     }
 
     @Override

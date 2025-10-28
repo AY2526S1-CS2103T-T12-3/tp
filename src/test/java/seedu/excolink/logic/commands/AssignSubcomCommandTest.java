@@ -30,7 +30,7 @@ public class AssignSubcomCommandTest {
     public void execute_validIndex_success() {
         Person personToAssign = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
         Subcom subcom = TECH;
-        AssignSubcomCommand command = new AssignSubcomCommand(INDEX_FIRST, subcom);
+        AssignSubcomCommand command = new AssignSubcomCommand(INDEX_FIRST, TECH);
         String expectedMessage = String.format(AssignSubcomCommand.MESSAGE_SUCCESS, personToAssign.getName(),
                 subcom.getName());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
