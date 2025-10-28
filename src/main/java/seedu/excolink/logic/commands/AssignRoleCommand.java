@@ -21,7 +21,7 @@ public class AssignRoleCommand extends Command {
 
     public static final String COMMAND_WORD = "assign-role";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Assigns a role to the member identified by the index.\n"
+            + ": Assigns a role to the member identified by the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer) r/ROLE\n"
             + "Example: " + COMMAND_WORD + " 1 r/Treasurer";
 
