@@ -12,7 +12,7 @@ box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("list-scm sc/Publicity")
+[-> LogicManager : execute("list-sc-members sc/Publicity")
 activate LogicManager
 
 ' LogicManager creates and executes the command
