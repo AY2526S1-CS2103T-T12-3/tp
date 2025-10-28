@@ -178,14 +178,14 @@ Examples:
 
 ---
 
-### Viewing members in a subcommittee : `list-sc-members`
+### Viewing members in a subcommittee : `list-scm`
 
 Shows all members belonging to a specified subcommittee.
 
-Format: `list-sc-members sc/SUBCOMMITTEE`
+Format: `list-scm sc/SUBCOMMITTEE`
 
 Examples:
-* `list-sc-members sc/Publicity`
+* `list-scm sc/Publicity`
 
 ---
 
@@ -263,7 +263,7 @@ Action | Format, Examples
 **List Subcommittees** | `list-sc`
 **Assign Member to Subcommittee** | `assign-sc INDEX sc/SUBCOMMITTEE` <br> e.g., `assign-sc 1 sc/Tech`
 **Unassign Member from Subcommittee** | `unassign-sc INDEX` <br> e.g., `unassign-sc 1`
-**List Members in Subcommittee** | `list-sc-members sc/SUBCOMMITTEE` <br> e.g., `list-sc-members sc/Publicity`
+**List Members in Subcommittee** | `list-scm sc/SUBCOMMITTEE` <br> e.g., `list-scm sc/Publicity`
 **Assign Role to Member** | `assign-role INDEX r/ROLE` <br> e.g., `assign-role 1 r/President`
 **Delete Role from Member** | `delete-role INDEX r/ROLE` <br> e.g., `delete-role 1 r/Treasurer`
 **Help** | `help`
