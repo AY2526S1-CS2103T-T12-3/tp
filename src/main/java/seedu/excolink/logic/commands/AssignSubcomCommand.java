@@ -34,7 +34,7 @@ public class AssignSubcomCommand extends Command {
 
     /**
      * @param index      of the person in the filtered person list to edit
-     * @param subcomName name of subcomm that the person is assigned to
+     * @param subcom subcom that the person is assigned to
      */
     public AssignSubcomCommand(Index index, Subcom subcom) {
         requireNonNull(index);

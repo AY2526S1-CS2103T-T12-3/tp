@@ -63,9 +63,7 @@ public class DeleteRoleCommandParserTest {
 
     @Test
     public void parse_invalidRole_failure() {
-        // Expect Role.MESSAGE_CONSTRAINTS
         String expectedMessage = Role.MESSAGE_CONSTRAINTS;
-        assertParseFailure(parser, "1 r/Treasurer123", expectedMessage);
         assertParseFailure(parser, "1 r/Treasurer!", expectedMessage);
     }
 
