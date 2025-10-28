@@ -16,6 +16,7 @@ import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.ModelStub;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.model.subcom.exceptions.SubcomNotFoundException;
 import seedu.excolink.ui.DisplayEntity;
 
 class ListSubcomMembersCommandTest {
@@ -35,7 +36,8 @@ class ListSubcomMembersCommandTest {
 
         CommandResult result = command.execute(modelStub);
 
-        assertEquals(String.format(ListSubcomMembersCommand.MESSAGE_SUCCESS, publicity), result.getFeedbackToUser());
+        Subcom subcomToList = modelStub.findSubcom(publicity);
+        assertEquals(String.format(ListSubcomMembersCommand.MESSAGE_SUCCESS, subcomToList.toString()), result.getFeedbackToUser());
         assertEquals(DisplayEntity.PERSON, result.getDisplayEntity());
         assertTrue(modelStub.isFilteredListUpdated);
     }
@@ -46,7 +48,7 @@ class ListSubcomMembersCommandTest {
         ListSubcomMembersCommand command = new ListSubcomMembersCommand(welfare);
 
         assertThrows(CommandException.class, () -> command.execute(modelStub),
-                Messages.MESSAGE_INVALID_SUBCOM_DISPLAYED_INDEX);
+                Messages.MESSAGE_INVALID_SUBCOM_NAME);
     }
 
     @Test
@@ -87,6 +89,15 @@ class ListSubcomMembersCommandTest {
         public boolean hasSubcom(Subcom subcom) {
             return subcoms.stream().anyMatch(s -> s.equals(subcom));
         }
+
+        @Override
+        public Subcom findSubcom(Subcom subcom) {
+            return subcoms.stream()
+                    .filter(s -> s.equals(subcom))
+                    .findFirst()
+                    .orElseThrow(SubcomNotFoundException::new);
+        }
+
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
