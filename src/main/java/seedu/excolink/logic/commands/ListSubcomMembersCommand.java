@@ -1,13 +1,14 @@
 package seedu.excolink.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.excolink.logic.Messages.MESSAGE_INVALID_SUBCOM_NAME;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOM;
 
 import seedu.excolink.commons.util.ToStringBuilder;
+import seedu.excolink.logic.Messages;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.model.subcom.exceptions.SubcomNotFoundException;
 import seedu.excolink.ui.DisplayEntity;
 
 /**
@@ -38,12 +39,13 @@ public class ListSubcomMembersCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasSubcom(this.subcomToList)) {
-            throw new CommandException(MESSAGE_INVALID_SUBCOM_NAME);
+        try {
+            Subcom originalSubcom = model.findSubcom(subcomToList);
+            model.updateFilteredPersonList(person -> person.getSubcom().equals(subcomToList));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, originalSubcom.toString()), DisplayEntity.PERSON);
+        } catch (SubcomNotFoundException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_SUBCOM_NAME);
         }
-
-        model.updateFilteredPersonList(person -> person.getSubcom().equals(subcomToList));
-        return new CommandResult(String.format(MESSAGE_SUCCESS, subcomToList.toString()), DisplayEntity.PERSON);
     }
 
     @Override
