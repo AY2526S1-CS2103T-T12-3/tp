@@ -37,7 +37,8 @@ class ListSubcomMembersCommandTest {
         CommandResult result = command.execute(modelStub);
 
         Subcom subcomToList = modelStub.findSubcom(publicity);
-        assertEquals(String.format(ListSubcomMembersCommand.MESSAGE_SUCCESS, subcomToList.toString()), result.getFeedbackToUser());
+        assertEquals(String.format(ListSubcomMembersCommand.MESSAGE_SUCCESS, subcomToList.toString()),
+                result.getFeedbackToUser());
         assertEquals(DisplayEntity.PERSON, result.getDisplayEntity());
         assertTrue(modelStub.isFilteredListUpdated);
     }

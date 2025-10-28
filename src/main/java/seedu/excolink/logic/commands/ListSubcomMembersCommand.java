@@ -1,7 +1,6 @@
 package seedu.excolink.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.excolink.logic.Messages.MESSAGE_INVALID_SUBCOM_NAME;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOM;
 
 import seedu.excolink.commons.util.ToStringBuilder;
