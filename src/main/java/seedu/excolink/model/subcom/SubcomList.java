@@ -71,9 +71,15 @@ public class SubcomList implements Iterable<Subcom> {
         internalList.setAll(subcoms);
     }
 
+    /**
+     * Returns the subcom, if any, in the subcom list that case-insensitively matches the {@code name}.
+     *
+     * @param name The subcom name to match with.
+     * @return The matched subcom.
+     */
     public Subcom getSubcomByName(String name) throws SubcomNotFoundException {
         for (Subcom subcom : internalList) {
-            if (subcom.getName().toString().equals(name)) {
+            if (subcom.getName().equalsIgnoreCase(name)) {
                 return subcom;
             }
         }

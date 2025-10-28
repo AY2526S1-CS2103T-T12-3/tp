@@ -116,7 +116,7 @@ public class ParserUtil {
      */
     public static Subcom parseSubcom(String subcom) throws ParseException {
         requireNonNull(subcom);
-        String trimmedSubcom = subcom.trim().toLowerCase();
+        String trimmedSubcom = subcom.trim();
         if (!Subcom.isValidSubcomName(trimmedSubcom)) {
             throw new ParseException(Subcom.MESSAGE_CONSTRAINTS);
         }
