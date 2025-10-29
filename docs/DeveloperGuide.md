@@ -415,7 +415,7 @@ Use case ends.
 
 ---
 
-#### UC5: Assign Member to Subcommittee
+#### UC7: Assign Member to Subcommittee
 
 **Preconditions:**
 
@@ -435,7 +435,9 @@ Use case ends.
 
 ---
 
-#### UC6: View Members in Subcommittee
+#### UC8: Unassign Member from Subcommittee
+
+#### UC9: View Members in Subcommittee
 
 **Preconditions:**
 
@@ -451,23 +453,8 @@ Use case ends.
 - 1a. Subcommittee not found → System displays error.
 - 1b. No members in subcommittee → System displays empty message.
 
----
 
-#### UC8: Create Role
-
-**MSS:**
-
-1. User enters command to create role.
-2. System creates the role and displays success message.
-
-**Extensions:**
-
-- 1a. Invalid role name → System displays error.
-- 1b. Duplicate role → System displays error.
-
----
-
-#### UC9: Assign Member to Role
+#### UC10: Assign Member to Role
 
 **Preconditions:**
 
@@ -483,6 +470,8 @@ Use case ends.
 
 - 1a. Invalid index → System displays error.
 - 1b. Role not found → System displays error.
+
+#### UC11: Remove Role of Member
 
 ### Non-Functional Requirements
 
