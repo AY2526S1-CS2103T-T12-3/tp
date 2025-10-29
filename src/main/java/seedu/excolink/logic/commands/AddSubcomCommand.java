@@ -42,8 +42,10 @@ public class AddSubcomCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_SUBCOM);
         }
 
-        model.addSubcom(toAdd);
-
+        boolean success = model.addSubcom(toAdd);
+        if (!success) {
+            throw new CommandException("Failed to add Subcommittee");
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toString()), DisplayEntity.SUBCOM);
     }
 
