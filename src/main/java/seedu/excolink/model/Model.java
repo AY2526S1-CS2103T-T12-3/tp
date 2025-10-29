@@ -8,6 +8,7 @@ import seedu.excolink.commons.core.GuiSettings;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.model.subcom.exceptions.SubcomNotFoundException;
+import seedu.excolink.ui.DisplayEntity;
 
 /**
  * The API of the Model component.
@@ -115,4 +116,10 @@ public interface Model {
 
     /** Returns the subcom corresponding to the name */
     Subcom findSubcom(Subcom subcom) throws SubcomNotFoundException;
+
+    /** Returns the current entity list to display, either Person or Subcom */
+    DisplayEntity getDisplayEntity();
+
+    /** Sets the current entity list to display, either Person or Subcom */
+    void setDisplayEntity(DisplayEntity displayEntity);
 }

@@ -15,6 +15,7 @@ import seedu.excolink.commons.core.GuiSettings;
 import seedu.excolink.commons.core.LogsCenter;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.ui.DisplayEntity;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,6 +28,8 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Subcom> subcoms;
     private final FilteredList<Person> allPersons;
+
+    private DisplayEntity displayEntity;
 
     /**
      * Initializes a ModelManager with the given excoLink and userPrefs.
@@ -192,6 +195,18 @@ public class ModelManager implements Model {
         return excoLink.findSubcom(subcom);
     }
 
+    // ============ Display Entity
+    // =============================================================
+    @Override
+    public DisplayEntity getDisplayEntity() {
+        return this.displayEntity;
+    }
+
+    @Override
+    public void setDisplayEntity(DisplayEntity displayEntity) {
+        this.displayEntity = displayEntity;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -208,5 +223,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
-
 }
