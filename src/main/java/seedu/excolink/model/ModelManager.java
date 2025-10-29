@@ -128,7 +128,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean deleteSubcom(Subcom target) {
-        boolean removed  = excoLink.removeSubcom(target);
+        boolean removed = excoLink.removeSubcom(target);
 
         if (removed) {
             // Remove all members of the deleted subcommittee
