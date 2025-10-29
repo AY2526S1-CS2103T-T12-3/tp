@@ -107,6 +107,7 @@ public class ExcoLinkParser {
             return new ListSubcomsCommand();
 
         case ListSubcomMembersCommand.COMMAND_WORD:
+        case ListSubcomMembersCommand.COMMAND_WORD_ALIAS:
             return new ListSubcomMembersCommandParser().parse(arguments);
 
         default:

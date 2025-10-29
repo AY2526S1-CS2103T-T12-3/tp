@@ -75,11 +75,11 @@ Format: `help`
 
 Adds a member to ExcoLink.
 
-Format: `add n/NAME p/PHONE e/EMAIL`
+Format: `add n/NAME p/PHONE e/EMAIL [sc/SUBCOM]`
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com`
-* `add n/Alice Tan p/91234567 e/alice@example.com`
+* `add n/Alice Tan p/91234567 e/alice@example.com sc/Publicity`
 
 ---
 
@@ -184,8 +184,11 @@ Shows all members belonging to a specified subcommittee.
 
 Format: `list-sc-members sc/SUBCOMMITTEE`
 
+Alternative Format: `list-scm sc/SUBCOMMITTEE`
+
 Examples:
 * `list-sc-members sc/Publicity`
+* `list-scm sc/Tech`
 
 ---
 
@@ -257,6 +260,7 @@ Action | Format, Examples
 --------|------------------
 **Add Member** | `add n/NAME p/PHONE e/EMAIL` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com`
 **Delete Member** | `delete INDEX` <br> e.g., `delete 1`
+**Edit Member** | `edit INDEX n/NAME p/PHONE e/EMAIL r/ROLE sc/SUBCOMMITTEE` <br> e.g., `edit 1 r/team lead` 
 **List Members** | `list`
 **Add Subcommittee** | `add-sc sc/SUBCOMMITTEE` <br> e.g., `add-sc sc/Publicity`
 **Delete Subcommittee** | `delete-sc INDEX` <br> e.g., `delete-sc 1`

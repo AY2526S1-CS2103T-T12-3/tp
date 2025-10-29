@@ -210,10 +210,8 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void showSubcomList() {
-        if (subcomListPanel == null) {
-            subcomListPanel = new SubcomListPanel(logic.getSubcomList(),
-                    subcom -> logic.getSubcomMemberCount(subcom));
-        }
+        subcomListPanel = new SubcomListPanel(logic.getSubcomList(),
+                subcom -> logic.getSubcomMemberCount(subcom));
         listPanelPlaceholder.getChildren().setAll(subcomListPanel.getRoot());
     }
 }
