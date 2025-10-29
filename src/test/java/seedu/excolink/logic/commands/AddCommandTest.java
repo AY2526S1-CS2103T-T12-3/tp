@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.excolink.testutil.Assert.assertThrows;
+import static seedu.excolink.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.excolink.testutil.TypicalPersons.ALICE;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.excolink.logic.Messages;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.ExcoLink;
+import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelStub;
 import seedu.excolink.model.ReadOnlyExcoLink;
 import seedu.excolink.model.person.Person;

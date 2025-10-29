@@ -20,7 +20,9 @@ import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelManager;
 import seedu.excolink.model.UserPrefs;
+import seedu.excolink.model.role.Role;
 import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.testutil.TypicalIndexes;
 import seedu.excolink.ui.DisplayEntity;
 
 /**
@@ -58,6 +60,21 @@ public class DeleteSubcomCommandTest {
         DeleteSubcomCommand command = new DeleteSubcomCommand(outOfBoundIndex);
 
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_SUBCOM_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_wrongDisplayEntity_throwsCommandException() {
+        model.setDisplayEntity(DisplayEntity.PERSON);
+        DeleteSubcomCommand command = new DeleteSubcomCommand(INDEX_FIRST);
+
+        try {
+            command.execute(model);
+        } catch (CommandException e) {
+            assertEquals(
+                    Messages.MESSAGE_WRONG_DISPLAY_ENTITY_FOR_SUBCOM_COMMAND,
+                    e.getMessage()
+            );
+        }
     }
 
     @Test
