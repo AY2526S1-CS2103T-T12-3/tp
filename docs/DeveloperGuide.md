@@ -279,7 +279,7 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​          | I want to …​                                                                    | So that I can …​                                                       |
-| -------- | ---------------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| -------- | ---------------- |---------------------------------------------------------------------------------|------------------------------------------------------------------------|
 | `* * *`  | Exco             | view a list of all current members                                              | have a full overview of the membership                                 |
 | `* * *`  | Exco             | add a new member with their basic information e.g. name and contact information | maintain updated membership records                                    |
 | `* * *`  | Exco             | remove a member                                                                 | eliminate outdated records                                             |
@@ -287,8 +287,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Exco             | create a new sub-committee                                                      | add members to sub-committees                                          |
 | `* * *`  | Exco             | assign members to sub-committees                                                | make responsibilities clear                                            |
 | `* * *`  | Exco             | view the list of members in a sub-committee                                     | contact the members of that sub-committee                              |
-| `* * *`  | Exco             | create a new role                                                               | tag members with roles                                                 |
-| `* * *`  | Exco             | tag members with roles                                                          | retrieve contact information of members of a certain role              |
+| `* * *`  | Exco             | assign members with roles                                                       | retrieve contact information of members of a certain role              |
+| `* * *`  | Exco             | remove a member's role                                                          | update the role of a member                                             |
 | `* *`    | Exco             | search for a member by name                                                     | quickly access their details                                           |
 | `* *`    | Exco             | update a member’s contact information                                           | keep records current                                                   |
 | `* *`    | Exco             | filter out a list of other Exco members                                         | quickly communicate with them                                          |
@@ -430,21 +430,25 @@ the **Actor** is the `user`, unless specified otherwise)
 
 ---
 
-#### UC8: Create Role
+#### UC8: Assign Member to Role
+
+**Preconditions:**
+
+- Member exists
 
 **MSS:**
 
-1. User enters command to create role.
-2. System creates the role and displays success message.
+1. User enters command to assign member to role.
+2. System assigns the role to the member and displays success message.
 
 **Extensions:**
 
-- 1a. Invalid role name → System displays error.
-- 1b. Duplicate role → System displays error.
+- 1a. Invalid index → System displays error.
+- 1b. Invalid role → System displays error.
 
 ---
 
-#### UC9: Assign Member to Role
+#### UC9: Remove Member's Role
 
 **Preconditions:**
 
@@ -453,8 +457,8 @@ the **Actor** is the `user`, unless specified otherwise)
 
 **MSS:**
 
-1. User enters command to assign member to role.
-2. System assigns the role to the member and displays success message.
+1. User enters command to remove a member's role.
+2. System deletes the role of the member and displays success message.
 
 **Extensions:**
 
