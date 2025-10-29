@@ -21,6 +21,7 @@ import seedu.excolink.model.person.Person;
 import seedu.excolink.model.person.Phone;
 import seedu.excolink.model.role.Role;
 import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.ui.DisplayEntity;
 
 public class DeleteRoleCommandTest {
 
@@ -80,6 +81,22 @@ public class DeleteRoleCommandTest {
 
         CommandException exception = assertThrows(CommandException.class, () -> command.execute(model));
         assertEquals(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, exception.getMessage());
+    }
+
+    @Test
+    public void execute_wrongDisplayEntity_throwsCommandException() {
+        model.setDisplayEntity(DisplayEntity.SUBCOM);
+        Index index = Index.fromOneBased(1);
+        DeleteRoleCommand command = new DeleteRoleCommand(index, existingRole);
+
+        try {
+            command.execute(model);
+        } catch (CommandException e) {
+            assertEquals(
+                    Messages.MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND,
+                    e.getMessage()
+            );
+        }
     }
 
     @Test
