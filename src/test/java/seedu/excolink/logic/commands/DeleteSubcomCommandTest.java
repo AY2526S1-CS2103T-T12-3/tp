@@ -35,6 +35,7 @@ public class DeleteSubcomCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalExcoLink(), new UserPrefs());
+        model.setDisplayEntity(DisplayEntity.SUBCOM);
         expectedModel = new ModelManager(model.getExcoLink(), new UserPrefs());
     }
 
@@ -48,7 +49,7 @@ public class DeleteSubcomCommandTest {
 
         expectedModel.deleteSubcom(subcomToDelete);
 
-        assertCommandSuccess(command, model, new CommandResult(expectedMessage, DisplayEntity.SUBCOM), expectedModel);
+        assertCommandSuccess(command, model, new CommandResult(expectedMessage), expectedModel);
     }
 
     @Test

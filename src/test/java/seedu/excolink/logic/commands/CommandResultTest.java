@@ -59,42 +59,7 @@ public class CommandResultTest {
         CommandResult commandResult = new CommandResult("feedback");
         String expected = CommandResult.class.getCanonicalName() + "{feedbackToUser="
                 + commandResult.getFeedbackToUser() + ", showHelp=" + commandResult.isShowHelp()
-                + ", exit=" + commandResult.isExit() + ", displayEntity=" + commandResult.getDisplayEntity() + "}";
+                + ", exit=" + commandResult.isExit() + "}";
         assertEquals(expected, commandResult.toString());
-    }
-
-    @Test
-    public void equals_withDisplayEntity() {
-        CommandResult resultA = new CommandResult("feedback", DisplayEntity.SUBCOM);
-        CommandResult resultB = new CommandResult("feedback", DisplayEntity.SUBCOM);
-        CommandResult resultC = new CommandResult("feedback", DisplayEntity.PERSON);
-
-        // same values -> returns true
-        assertTrue(resultA.equals(resultB));
-
-        // different display entity -> returns false
-        assertFalse(resultA.equals(resultC));
-
-        // same object -> returns true
-        assertTrue(resultA.equals(resultA));
-
-        // null -> returns false
-        assertFalse(resultA.equals(null));
-
-        // different types -> returns false
-        assertFalse(resultA.equals("feedback"));
-    }
-
-    @Test
-    public void hashcode_withDisplayEntity() {
-        CommandResult resultA = new CommandResult("feedback", DisplayEntity.SUBCOM);
-        CommandResult resultB = new CommandResult("feedback", DisplayEntity.SUBCOM);
-        CommandResult resultC = new CommandResult("feedback", DisplayEntity.PERSON);
-
-        // same values -> returns same hashcode
-        assertEquals(resultA.hashCode(), resultB.hashCode());
-
-        // different display entity -> returns different hashcode
-        assertNotEquals(resultA.hashCode(), resultC.hashCode());
     }
 }

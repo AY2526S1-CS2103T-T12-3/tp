@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.ModelStub;
 import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.ui.DisplayEntity;
 
 class AddSubcomCommandTest {
     private final Subcom publicity = new Subcom("Publicity");
@@ -84,6 +85,14 @@ class AddSubcomCommandTest {
         public boolean hasSubcom(Subcom subcom) {
             return this.subcom.equals(subcom);
         }
+
+        @Override
+        public DisplayEntity getDisplayEntity() {
+            return DisplayEntity.SUBCOM;
+        }
+
+        @Override
+        public void setDisplayEntity(DisplayEntity displayEntity) {}
     }
 
     private static class ModelStubAcceptingSubcomAdded extends ModelStub {
@@ -98,5 +107,13 @@ class AddSubcomCommandTest {
         public void addSubcom(Subcom subcom) {
             subcomsAdded.add(subcom);
         }
+
+        @Override
+        public DisplayEntity getDisplayEntity() {
+            return DisplayEntity.SUBCOM;
+        }
+
+        @Override
+        public void setDisplayEntity(DisplayEntity displayEntity) {}
     }
 }

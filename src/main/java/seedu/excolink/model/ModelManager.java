@@ -44,6 +44,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.excoLink.getPersonList());
         this.subcoms = new FilteredList<>(this.excoLink.getSubcomList());
         this.allPersons = new FilteredList<>(this.excoLink.getPersonList());
+        this.displayEntity = DisplayEntity.PERSON;
     }
 
     public ModelManager() {

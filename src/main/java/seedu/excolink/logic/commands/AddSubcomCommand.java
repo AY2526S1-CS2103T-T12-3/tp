@@ -39,10 +39,6 @@ public class AddSubcomCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.getDisplayEntity() != DisplayEntity.SUBCOM) {
-            throw new CommandException(Messages.MESSAGE_WRONG_DISPLAY_ENTITY_FOR_SUBCOM_COMMAND);
-        }
-
         if (model.hasSubcom(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_SUBCOM);
         }

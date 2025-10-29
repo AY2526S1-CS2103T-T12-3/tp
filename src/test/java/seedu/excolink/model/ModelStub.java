@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.excolink.commons.core.GuiSettings;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.ui.DisplayEntity;
 
 /**
  * A default model stub that has all the methods failing.
@@ -109,6 +110,16 @@ public class ModelStub implements Model {
 
     @Override
     public Subcom findSubcom(Subcom subcom) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public DisplayEntity getDisplayEntity() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setDisplayEntity(DisplayEntity displayEntity) {
         throw new AssertionError("This method should not be called.");
     }
 }

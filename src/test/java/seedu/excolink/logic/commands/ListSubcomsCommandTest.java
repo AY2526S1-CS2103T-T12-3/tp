@@ -27,7 +27,7 @@ public class ListSubcomsCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListSubcomsCommand(), model, new CommandResult(ListSubcomsCommand.MESSAGE_SUCCESS,
-                DisplayEntity.SUBCOM), expectedModel);
+        assertCommandSuccess(new ListSubcomsCommand(), model, new CommandResult(ListSubcomsCommand.MESSAGE_SUCCESS),
+                expectedModel);
     }
 }
