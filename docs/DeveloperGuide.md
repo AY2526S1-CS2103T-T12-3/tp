@@ -312,17 +312,24 @@ _{More to be added}_
 the **Actor** is the `user`, unless specified otherwise)
 
 #### UC1: Add Member
-
 **MSS:**
 
 1. User enters command to add member.
 2. System adds the new member and displays success message.
+Use case ends.
 
 **Extensions:**
 
-- 1a. Missing or invalid parameter → System displays error.
-- 1b. Duplicate detected → System rejects entry.
-- 1c. Unknown prefix → System displays error.
+- 1a. System detects missing or invalid parameter.
+  - 1a1. System displays error.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered is correct.  
+Use case ends.
+- 1b. System detects duplicate member to be added.
+    - 1b1. System displays error.
+    - 1b2. User enters new data.
+    - Steps 1b1-1b2 are repeated until the data entered is correct.  
+Use case ends.
 
 **Guarantees:**
 
@@ -332,68 +339,83 @@ the **Actor** is the `user`, unless specified otherwise)
 ---
 
 #### UC2: Remove Member
-
-**Preconditions:**
-
-- Member exists
-
 **MSS:**
 
 1. User enters command to remove member.
 2. System deletes the member and displays success message.
+   Use case ends.
 
 **Extensions:**
 
-- 1a. Invalid or out-of-range index → System displays error.
-- 1b. Empty list → System displays error.
-
+- 1a. User enters invalid index.
+    - 1a1. System displays error.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.  
+    Use case ends.
+  
 ---
 
-#### UC3: View a Member
-
-**Preconditions:**
-
-- Member exists
-
-**MSS:**
-
-1. User enters command to view member.
-2. System displays the member’s full information.
-
-**Extensions:**
-
-- 1a. Invalid or out-of-range index → System displays error.
-
----
-
-#### UC4: View All Members
+#### UC3: View All Members
 
 **MSS:**
 
 1. User enters command to view all members.
-2. System retrieves and displays all members.
-
-**Extensions:**
-
-- 1a. Empty list → System displays “No members found.”
+2. System displays all members.
+Use case ends.
 
 ---
 
-#### UC5: Create Subcommittee
+#### UC4: Create Subcommittee
 
 **MSS:**
 
 1. User enters command to create subcommittee.
-2. System creates the subcommittee and displays success message.
+2. System creates the subcommittee and displays success message.  
+Use case ends.
 
 **Extensions:**
 
-- 1a. Invalid name → System displays error.
-- 1b. Duplicate name → System displays error.
+- 1a. User enters invalid subcommittee name.
+    - 1a1. System displays error.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.
+    Use case ends.
+- 1b. System detects duplicate subcommittee to be added.
+    - 1b1. System displays error.
+    - 1b2. User enters new data.
+    - Steps 1b1-1b2 are repeated until the data entered is correct.
+    Use case ends.
+---
+
+#### UC5: Delete Subcommittee
+
+**MSS:**
+
+1. User enters command to delete subcommittee.
+2. System deletes the subcommittee and displays success message.  
+Use case ends.
+
+**Extensions:**
+
+- 1a. User enters invalid index.
+    - 1a1. System displays error.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.  
+    Use case ends.
 
 ---
 
-#### UC6: Assign Member to Subcommittee
+#### UC6: View all Subcommittees
+
+**MSS:**
+
+1. User enters command to view all subcommittees.
+2. System displays all subcommittees.  
+   Use case ends.
+
+---
+
+#### UC7: Assign Member to Subcommittee
 
 **Preconditions:**
 
@@ -403,7 +425,8 @@ the **Actor** is the `user`, unless specified otherwise)
 **MSS:**
 
 1. User enters command to assign member to subcommittee.
-2. System assigns member to subcommittee and displays success message.
+2. System assigns member to subcommittee and displays success message.  
+Use case ends.
 
 **Extensions:**
 
@@ -412,7 +435,9 @@ the **Actor** is the `user`, unless specified otherwise)
 
 ---
 
-#### UC7: View Members in Subcommittee
+#### UC8: Unassign Member from Subcommittee
+
+#### UC9: View Members in Subcommittee
 
 **Preconditions:**
 
@@ -428,23 +453,8 @@ the **Actor** is the `user`, unless specified otherwise)
 - 1a. Subcommittee not found → System displays error.
 - 1b. No members in subcommittee → System displays empty message.
 
----
 
-#### UC8: Create Role
-
-**MSS:**
-
-1. User enters command to create role.
-2. System creates the role and displays success message.
-
-**Extensions:**
-
-- 1a. Invalid role name → System displays error.
-- 1b. Duplicate role → System displays error.
-
----
-
-#### UC9: Assign Member to Role
+#### UC10: Assign Member to Role
 
 **Preconditions:**
 
@@ -460,6 +470,8 @@ the **Actor** is the `user`, unless specified otherwise)
 
 - 1a. Invalid index → System displays error.
 - 1b. Role not found → System displays error.
+
+#### UC11: Remove Role of Member
 
 ### Non-Functional Requirements
 
