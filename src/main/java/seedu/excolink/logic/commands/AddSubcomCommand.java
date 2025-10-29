@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOM;
 
 import seedu.excolink.commons.util.ToStringBuilder;
+import seedu.excolink.logic.Messages;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.subcom.Subcom;
@@ -38,13 +39,17 @@ public class AddSubcomCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (model.getDisplayEntity() != DisplayEntity.SUBCOM) {
+            throw new CommandException(Messages.MESSAGE_WRONG_DISPLAY_ENTITY_FOR_SUBCOM_COMMAND);
+        }
+
         if (model.hasSubcom(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_SUBCOM);
         }
 
         model.addSubcom(toAdd);
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toString()), DisplayEntity.SUBCOM);
+        model.setDisplayEntity(DisplayEntity.SUBCOM);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toString()));
     }
 
     @Override

@@ -1,6 +1,7 @@
 package seedu.excolink.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.excolink.logic.Messages.MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOM;
 
 import java.util.List;
@@ -45,6 +46,11 @@ public class AssignSubcomCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.getDisplayEntity() != DisplayEntity.PERSON) {
+            throw new CommandException(MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND);
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -61,8 +67,7 @@ public class AssignSubcomCommand extends Command {
 
         Person editedPerson = personToEdit.assignSubcom(subcom);
         model.setPerson(personToEdit, editedPerson);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedPerson.getName(), subcom),
-                DisplayEntity.PERSON);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedPerson.getName(), subcom));
     }
 
     @Override

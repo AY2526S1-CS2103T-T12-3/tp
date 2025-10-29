@@ -1,6 +1,8 @@
 package seedu.excolink.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.excolink.logic.Messages.MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND;
+import static seedu.excolink.logic.Messages.MESSAGE_WRONG_DISPLAY_ENTITY_FOR_SUBCOM_COMMAND;
 
 import java.util.List;
 
@@ -35,6 +37,11 @@ public class DeleteSubcomCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.getDisplayEntity() != DisplayEntity.SUBCOM) {
+            throw new CommandException(MESSAGE_WRONG_DISPLAY_ENTITY_FOR_SUBCOM_COMMAND);
+        }
+
         List<Subcom> subcomList = model.getSubcomList();
 
         if (targetIndex.getZeroBased() >= subcomList.size()) {
@@ -45,8 +52,7 @@ public class DeleteSubcomCommand extends Command {
         // Delete the subcommittee and remove all members from the deleted subcommittee
         model.deleteSubcom(subcomToDelete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_SUBCOM_SUCCESS, subcomToDelete),
-                DisplayEntity.SUBCOM);
+        return new CommandResult(String.format(MESSAGE_DELETE_SUBCOM_SUCCESS, subcomToDelete));
     }
 
     @Override
