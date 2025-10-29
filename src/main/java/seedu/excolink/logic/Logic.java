@@ -10,6 +10,7 @@ import seedu.excolink.logic.parser.exceptions.ParseException;
 import seedu.excolink.model.ReadOnlyExcoLink;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.ui.DisplayEntity;
 
 /**
  * API of the Logic component
@@ -54,4 +55,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    DisplayEntity getDisplayEntity();
 }

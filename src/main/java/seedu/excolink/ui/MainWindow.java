@@ -187,7 +187,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            switch (commandResult.getDisplayEntity()) {
+            switch (logic.getDisplayEntity()) {
             case SUBCOM:
                 showSubcomList();
                 break;
