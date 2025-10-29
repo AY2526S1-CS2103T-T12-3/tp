@@ -42,6 +42,7 @@ public class AddSubcomCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_SUBCOM);
         }
 
+        model.addSubcom(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toString()), DisplayEntity.SUBCOM);
     }
 
