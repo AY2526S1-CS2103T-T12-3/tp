@@ -21,6 +21,10 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_SUBCOM_NAME = "The subcommittee provided does not exist";
+    public static final String MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND =
+            "This command cannot be used in the current view. Please switch to the person list first.";
+    public static final String MESSAGE_WRONG_DISPLAY_ENTITY_FOR_SUBCOM_COMMAND =
+            "This command cannot be used in the current view. Please switch to the subcom list first.";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
