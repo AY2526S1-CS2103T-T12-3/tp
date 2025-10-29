@@ -483,7 +483,7 @@ email.
 - **Participation Record**: Evaluation of the members performance with respect to their roles.
 - **Private contact detail**: A contact detail that is not meant to be shared with others
 - **Role**: The responsibility assigned to a member. Members can have multiple roles.
-- **Subcommittee/PD**: A smaller group under the main Exco, can be responsible for specific functions.
+- **Subcommittee/PD**: A smaller group within the club, responsible for specific tasks such as Publicity, Tech or Logistics. Subcommittees are not necessarily part of the main executive committee.
 
 ---
 
