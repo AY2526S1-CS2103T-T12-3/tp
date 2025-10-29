@@ -75,11 +75,11 @@ Format: `help`
 
 Adds a member to ExcoLink.
 
-Format: `add n/NAME p/PHONE e/EMAIL`
+Format: `add n/NAME p/PHONE e/EMAIL [sc/SUBCOM]`
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com`
-* `add n/Alice Tan p/91234567 e/alice@example.com`
+* `add n/Alice Tan p/91234567 e/alice@example.com sc/Publicity`
 
 ---
 
