@@ -279,8 +279,7 @@ Action | Format, Examples
 - **Member**: A person in the club whose record is stored in the system. Includes basic details like name, phone number,
     email.
 - **Role**: The responsibility assigned to a member. Members can have multiple roles.
-- **Subcommittee**: A smaller group within the main executive committee, responsible for specific tasks such as Publicity, Tech or Logistics. Members may belong
-    to one or more Subcommittees.
+- **Subcommittee**: A smaller group within the main executive committee, responsible for specific tasks such as Publicity, Tech or Logistics.
 
 ### Technical Terms
 
