@@ -20,9 +20,7 @@ import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelManager;
 import seedu.excolink.model.UserPrefs;
-import seedu.excolink.model.role.Role;
 import seedu.excolink.model.subcom.Subcom;
-import seedu.excolink.testutil.TypicalIndexes;
 import seedu.excolink.ui.DisplayEntity;
 
 /**
