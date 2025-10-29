@@ -2,7 +2,6 @@ package seedu.excolink.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.excolink.logic.Messages.MESSAGE_INVALID_SUBCOM_NAME;
-import static seedu.excolink.logic.Messages.MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_PHONE;

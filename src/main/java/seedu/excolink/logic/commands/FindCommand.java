@@ -6,7 +6,6 @@ import seedu.excolink.commons.util.ToStringBuilder;
 import seedu.excolink.logic.Messages;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.person.NameContainsKeywordsPredicate;
-import seedu.excolink.ui.DisplayEntity;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
