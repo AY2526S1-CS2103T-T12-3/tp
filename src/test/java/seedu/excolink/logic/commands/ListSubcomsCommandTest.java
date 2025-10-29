@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelManager;
 import seedu.excolink.model.UserPrefs;
-import seedu.excolink.ui.DisplayEntity;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListSubcomsCommand.
