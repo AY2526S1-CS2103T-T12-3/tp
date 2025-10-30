@@ -421,6 +421,10 @@ the **Actor** is the `user`, unless specified otherwise)
 
 #### UC6: Delete Subcommittee
 
+**Preconditions:**
+
+- UI is displaying subcommmittee list
+
 **MSS:**
 
 1. User enters command to delete subcommittee.
@@ -472,9 +476,7 @@ the **Actor** is the `user`, unless specified otherwise)
   - 1a1. System displays error.
   - 1a2. User enters new data.
   - Steps 1a1-1a2 are repeated until the data entered is correct.
--
-
----
+- ***
 
 #### UC9: Unassign Member from Subcommittee
 
