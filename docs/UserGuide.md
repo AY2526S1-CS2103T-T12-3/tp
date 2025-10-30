@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-ExcoLink is a **desktop app for exco members of large CCAs or clubs to manage their club members and subcommittees, 
+ExcoLink is a **desktop app for exco members of large university CCAs or clubs to manage their club members and subcommittees, 
 optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface 
 (GUI). If you can type fast, ExcoLink can get your member management tasks done faster than traditional GUI apps.
 
@@ -47,7 +47,7 @@ optimized for use via a Command Line Interface (CLI)** while still having the be
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 - Items in square brackets are optional.<br>
-  e.g `assign-role INDEX [r/ROLE]` can be used as `assign-role 1 r/Treasurer`.
+  e.g `add n/NAME p/PHONE e/EMAIL [r/ROLE] [sc/SUBCOMMITTEE]` can be used as `add n/Ernest p/91133915 e/sengernest12@gmail.com`.
 
 - Items with `…` after them can be used multiple times including zero times.<br>
   e.g. `[r/ROLE]…` can be used as ` ` (i.e. 0 times), `r/Treasurer`, `r/President r/Secretary`, etc.
@@ -98,7 +98,7 @@ Format: `list`
 
 Edits the specified field/s of a specified member from ExcoLink.
 
-Format: `edit INDEX n/NAME p/PHONE e/EMAIL r/ROLE sc/SUBCOMMITTEE`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [sc/SUBCOMMITTEE] [r/ROLE] ...`
 
 - Edits the specified `FIELD` of the member at the specified `INDEX`.
 - The index refers to the index number shown in the displayed member list.
