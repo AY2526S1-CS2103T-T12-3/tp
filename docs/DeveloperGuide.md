@@ -463,12 +463,14 @@ the **Actor** is the `user`, unless specified otherwise)
 
 - 1a. User enters invalid index.
   - 1a1. System displays error.
-  - 1a2. User enters new index
+  - 1a2. User enters new index.
   - Steps 1a1-1a2 are repeated until the data entered is correct.
   
     Use case ends.
 - 1b. Member specified does not have a Subcommittee
   - 1b1. System displays error.
+  - 1b2. User enters new index.
+  - Steps 1b2-1b2 are repeated until the data entered is correct.
         
     Use case ends.
 
