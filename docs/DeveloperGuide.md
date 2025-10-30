@@ -437,6 +437,20 @@ the **Actor** is the `user`, unless specified otherwise)
 
 #### UC8: Unassign Member from Subcommittee
 
+**Preconditions:**
+- Member exists
+- Subcommittee exists
+- Member is in Subcommittee
+
+**MSS:**
+1. User enters command to unassign member from subcommittee.
+2. System unassigns member from subcommittee and displays success message.
+
+**Extensions:**
+- 1a. Invalid index → System displays error.
+- 1b. Person not in a Subcommittee → System displays error.
+---
+
 #### UC9: View Members in Subcommittee
 
 **Preconditions:**
