@@ -18,6 +18,7 @@ import seedu.excolink.model.ReadOnlyExcoLink;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.storage.Storage;
+import seedu.excolink.ui.DisplayEntity;
 
 /**
  * The main LogicManager of the app.
@@ -95,5 +96,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public DisplayEntity getDisplayEntity() {
+        return model.getDisplayEntity();
     }
 }

@@ -6,7 +6,6 @@ import seedu.excolink.commons.util.ToStringBuilder;
 import seedu.excolink.logic.Messages;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.person.NameContainsKeywordsPredicate;
-import seedu.excolink.ui.DisplayEntity;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -32,8 +31,7 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()),
-                DisplayEntity.PERSON);
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     @Override

@@ -13,12 +13,14 @@ import org.junit.jupiter.api.Test;
 
 import seedu.excolink.commons.core.index.Index;
 import seedu.excolink.logic.Messages;
+import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelManager;
 import seedu.excolink.model.UserPrefs;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.testutil.PersonBuilder;
+import seedu.excolink.ui.DisplayEntity;
 
 
 /**
@@ -86,6 +88,21 @@ public class UnassignSubcomCommandTest {
         assertCommandFailure(command, model,
                 String.format(UnassignSubcomCommand.MESSAGE_MEMBER_NOT_IN_SUBCOM,
                         personWithNoSubcom.getName().fullName));
+    }
+
+    @Test
+    public void execute_wrongDisplayEntity_throwsCommandException() {
+        model.setDisplayEntity(DisplayEntity.SUBCOM);
+        UnassignSubcomCommand command = new UnassignSubcomCommand(INDEX_FIRST);
+
+        try {
+            command.execute(model);
+        } catch (CommandException e) {
+            assertEquals(
+                    Messages.MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND,
+                    e.getMessage()
+            );
+        }
     }
 
     @Test

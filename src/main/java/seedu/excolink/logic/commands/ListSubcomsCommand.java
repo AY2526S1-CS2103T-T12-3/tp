@@ -18,6 +18,7 @@ public class ListSubcomsCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        return new CommandResult(MESSAGE_SUCCESS, DisplayEntity.SUBCOM);
+        model.setDisplayEntity(DisplayEntity.SUBCOM);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }

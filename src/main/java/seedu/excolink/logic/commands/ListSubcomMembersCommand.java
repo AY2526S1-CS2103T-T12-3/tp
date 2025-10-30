@@ -44,7 +44,8 @@ public class ListSubcomMembersCommand extends Command {
         try {
             Subcom originalSubcom = model.findSubcom(subcomToList);
             model.updateFilteredPersonList(person -> person.getSubcom().equals(subcomToList));
-            return new CommandResult(String.format(MESSAGE_SUCCESS, originalSubcom.toString()), DisplayEntity.PERSON);
+            model.setDisplayEntity(DisplayEntity.PERSON);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, originalSubcom.toString()));
         } catch (SubcomNotFoundException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_SUBCOM_NAME);
         }
