@@ -266,45 +266,41 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-- exco of a large university club with many sub-committees and members with different roles
+- exco members of large university clubs or CCAs with many sub-committees and members with different roles
 - prefer desktop apps over other types
 - can type fast
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-**Value proposition**: allows excos to quickly retrieve and manage the information of their members, such as their contact information, sub-committee, participation record etc.
+**Value proposition**: allows exco members to quickly retrieve and manage the information of their members, such as their contact information, sub-committee etc.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​          | I want to …​                                                                    | So that I can …​                                                       |
-| -------- | ---------------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | Exco             | view a list of all current members                                              | have a full overview of the membership                                 |
-| `* * *`  | Exco             | add a new member with their basic information e.g. name and contact information | maintain updated membership records                                    |
-| `* * *`  | Exco             | remove a member                                                                 | eliminate outdated records                                             |
-| `* * *`  | Exco             | view a member’s contact information                                             | communicate with them easily                                           |
-| `* * *`  | Exco             | create a new sub-committee                                                      | add members to sub-committees                                          |
-| `* * *`  | Exco             | assign members to sub-committees                                                | make responsibilities clear                                            |
-| `* * *`  | Exco             | view the list of members in a sub-committee                                     | contact the members of that sub-committee                              |
-| `* * *`  | Exco             | create a new role                                                               | tag members with roles                                                 |
-| `* * *`  | Exco             | tag members with roles                                                          | retrieve contact information of members of a certain role              |
-| `* *`    | Exco             | search for a member by name                                                     | quickly access their details                                           |
-| `* *`    | Exco             | update a member’s contact information                                           | keep records current                                                   |
-| `* *`    | Exco             | filter out a list of other Exco members                                         | quickly communicate with them                                          |
-| `* *`    | Exco             | view a member’s participation record                                            | evaluate their involvement                                             |
-| `* *`    | Exco             | mark attendance for an event                                                    | track participation                                                    |
-| `* *`    | Exco             | filter members by sub-committee                                                 | focus on a specific group                                              |
-| `* *`    | Exco             | retrieve a list of the contact information of all sub-committee leaders         | easily contact leaders and delegate tasks                              |
-| `* *`    | new Exco member  | view a list of all sub-committees                                               | understand the structure of the exco                                   |
-| `* *`    | Exco             | reassign members to a different sub-committee                                   | keep responsibilities flexible                                         |
-| `* *`    | Exco             | filter members by role                                                          | retrieve contact information of members with specific responsibilities |
-| `* *`    | Exco             | view the roles of each member                                                   | know who to contact for role-specific tasks                            |
-| `*`      | PD               | view the distribution of members across sub-committees                          | spot imbalances                                                        |
-| `*`      | Exco             | search members by year of joining                                               | identify seniority                                                     |
-| `*`      | Sub-committee/PD | log notes on member performance                                                 | keep comprehensive records                                             |
-
-_{More to be added}_
+| Priority | As a …​          | I want to …​                                                             | So that I can …​                                                       |
+|-------|------------------|--------------------------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *` | Exco member      | view a list of all current members                                       | have a full overview of the membership                                 |
+| `* * *` | Exco member      | add new members with their information e.g. name and contact information | maintain updated membership records                                    |
+| `* * *` | Exco member      | remove a member                                                          | eliminate outdated records                                             |
+| `* * *` | Exco member      | view a member’s information fields                                       | know their details easily                                              |
+| `* * *` | Exco member      | create a new sub-committee                                               | add members to sub-committees                                          |
+| `* * *` | Exco member      | delete a sub-committee                                                   | update the existing sub-comittees                                      |
+| `* * *` | Exco member      | assign members to sub-committees                                         | make responsibilities clear                                            |
+| `* * *` | Exco member      | unassign members from a sub-comittee                                     | update the responsibilities of a member                                |
+| `* * *` | Exco member      | view the list of members in a sub-committee                              | contact the members of that sub-committee                              |
+| `* * * ` | Exco member      | view a list of all sub-committees                                        | understand the structure of the exco                                   |
+| `* * *` | Exco member      | assign members roles                                                     | retrieve contact information of members of a certain role              |
+| `* * *` | Exco member      | unassign a member's role                                                 | update the role of a member                                            |
+| `* *` | Exco member      | search for a member by name                                              | quickly access their details                                           |
+| `* *` | Exco member      | update a member’s information fields                                     | keep records current                                                   |
+| `* *` | Exco member      | reassign members to a different sub-committee                            | keep responsibilities flexible                                         |
+| `*`   | Exco member      | view a member’s participation record                                     | evaluate their involvement                                             |
+| `*`   | Exco member      | mark attendance for an event                                             | track participation                                                    |
+| `*`   | Exco member      | filter members by role                                                   | retrieve contact information of members with specific responsibilities |
+| `*`   | Exco member      | search members by year of joining                                        | identify seniority                                                     |
+| `*`   | PD               | view the distribution of members across sub-committees                   | spot imbalances                                                        |
+| `*`   | Sub-committee/PD | log notes on member performance                                          | keep comprehensive records                                             |
 
 ### Use cases
 
@@ -357,7 +353,33 @@ the **Actor** is the `user`, unless specified otherwise)
 
 ---
 
-#### UC3: View All Members
+#### UC3: Edit Member
+
+**MSS:**
+
+1. User enters command to edit a member's information field.
+2. System edits the member's specified field and displays success message.
+   Use case ends.
+
+**Extensions:**
+
+- 1a. User enters invalid index.
+    - 1a1. System displays error.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.  
+      Use case ends.
+  
+- 1b. User enters an invalid information field
+    - 1b1. System displays error.
+    - 1b2. User enters new data.
+    - Steps 1b1-1b2 are repeated until the data entered is correct.  
+      Use case ends.
+  
+---
+
+
+
+#### UC4: View All Members
 
 **MSS:**
 
@@ -367,7 +389,7 @@ the **Actor** is the `user`, unless specified otherwise)
 
 ---
 
-#### UC4: Create Subcommittee
+#### UC5: Create Subcommittee
 
 **MSS:**
 
@@ -390,7 +412,7 @@ the **Actor** is the `user`, unless specified otherwise)
 
 ---
 
-#### UC5: Delete Subcommittee
+#### UC6: Delete Subcommittee
 
 **MSS:**
 
@@ -408,7 +430,7 @@ the **Actor** is the `user`, unless specified otherwise)
 
 ---
 
-#### UC6: View all Subcommittees
+#### UC7: View all Subcommittees
 
 **MSS:**
         
@@ -417,37 +439,6 @@ the **Actor** is the `user`, unless specified otherwise)
    Use case ends.
 
 ---
-
-#### UC7: View all Subcommittee Members
-
-**Preconditions:**
-
-- Subcommittee exists
-
-**MSS:**
-
-1. User enters command to list all members of the specified subcommittee.
-2. System retrieves all members belonging to that subcommittee.
-3. System displays the list of members in the subcommittee. 
-
-   Use case ends.
-
-**Extensions:**
-
-- 1a. User enters invalid subcommittee name.
-    - 1a1. System displays error.
-    - 1a2. User enters new data.
-    - Steps 1a1-1a2 are repeated until the data entered is correct.
-  
-      Use case ends.
-- 1b. The specified subcommittee has no members.
-    - 1a1. System displays an empty list indicating there are no members currently assigned to this subcommittee.
-       
-      Use case ends.
-    
-
----
-
 
 #### UC8: Assign Member to Subcommittee
 
@@ -497,7 +488,7 @@ the **Actor** is the `user`, unless specified otherwise)
     Use case ends.
 ---
 
-#### UC10: View Members in Subcommittee
+#### UC10: View all Members in Subcommittee
 
 **Preconditions:**
 
@@ -505,13 +496,24 @@ the **Actor** is the `user`, unless specified otherwise)
 
 **MSS:**
 
-1. User enters command to view all members in subcommittee.
-2. System retrieves and displays members assigned.
+1. User enters command to list all members of the specified subcommittee.
+2. System retrieves all members belonging to that subcommittee.
+3. System displays the list of members in the subcommittee.
+
+   Use case ends.
 
 **Extensions:**
 
-- 1a. Subcommittee not found → System displays error.
-- 1b. No members in subcommittee → System displays empty message.
+- 1a. User enters invalid subcommittee name.
+    - 1a1. System displays error.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.
+
+      Use case ends.
+- 1b. The specified subcommittee has no members.
+    - 1a1. System displays an empty list indicating there are no members currently assigned to this subcommittee.
+
+      Use case ends.
 
 ---
 
