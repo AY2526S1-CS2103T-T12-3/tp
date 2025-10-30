@@ -446,9 +446,17 @@ the **Actor** is the `user`, unless specified otherwise)
 1. User enters command to unassign member from subcommittee.
 2. System unassigns member from subcommittee and displays success message.
 
+    Use case ends.
+
 **Extensions:**
-- 1a. Invalid index → System displays error.
-- 1b. Person not in a Subcommittee → System displays error.
+- 1a. Invalid index
+  - 1a1. System displays error.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered is correct.
+- 1b. Person not in a Subcommittee 
+  - 1b1. System displays error.
+  - 1b2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered is correct.
 ---
 
 #### UC9: View Members in Subcommittee
