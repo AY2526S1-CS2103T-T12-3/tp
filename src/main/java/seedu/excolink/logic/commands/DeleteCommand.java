@@ -1,6 +1,7 @@
 package seedu.excolink.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.excolink.logic.Messages.MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND;
 
 import java.util.List;
 
@@ -35,6 +36,12 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.getDisplayEntity() != DisplayEntity.PERSON) {
+            throw new CommandException(MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND);
+        }
+
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -43,8 +50,7 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)),
-                DisplayEntity.PERSON);
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
 
     @Override

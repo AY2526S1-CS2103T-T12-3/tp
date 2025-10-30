@@ -12,11 +12,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.excolink.commons.core.index.Index;
 import seedu.excolink.logic.Messages;
+import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelManager;
 import seedu.excolink.model.UserPrefs;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
+import seedu.excolink.ui.DisplayEntity;
 
 /**
  * Contains unit and integration tests for {@code AssignSubcomCommand}.
@@ -51,6 +53,21 @@ public class AssignSubcomCommandTest {
         AssignSubcomCommand command = new AssignSubcomCommand(validIndex, invalidSubcom);
 
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_SUBCOM_NAME);
+    }
+
+    @Test
+    public void execute_wrongDisplayEntity_throwsCommandException() {
+        model.setDisplayEntity(DisplayEntity.SUBCOM);
+        AssignSubcomCommand command = new AssignSubcomCommand(INDEX_FIRST, TECH);
+
+        try {
+            command.execute(model);
+        } catch (CommandException e) {
+            assertEquals(
+                    Messages.MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND,
+                    e.getMessage()
+            );
+        }
     }
 
     @Test

@@ -39,7 +39,6 @@ class ListSubcomMembersCommandTest {
         Subcom subcomToList = modelStub.findSubcom(publicity);
         assertEquals(String.format(ListSubcomMembersCommand.MESSAGE_SUCCESS, subcomToList.toString()),
                 result.getFeedbackToUser());
-        assertEquals(DisplayEntity.PERSON, result.getDisplayEntity());
         assertTrue(modelStub.isFilteredListUpdated);
     }
 
@@ -76,14 +75,21 @@ class ListSubcomMembersCommandTest {
         assertEquals(expected, command.toString());
     }
 
-
-
     private static class ModelStubWithSubcom extends ModelStub {
         private final List<Subcom> subcoms = new ArrayList<>();
         private boolean isFilteredListUpdated = false;
 
         ModelStubWithSubcom(Subcom subcom) {
             subcoms.add(subcom);
+        }
+
+        @Override
+        public DisplayEntity getDisplayEntity() {
+            return DisplayEntity.PERSON;
+        }
+
+        @Override
+        public void setDisplayEntity(DisplayEntity displayEntity) {
         }
 
         @Override
@@ -98,7 +104,6 @@ class ListSubcomMembersCommandTest {
                     .findFirst()
                     .orElseThrow(SubcomNotFoundException::new);
         }
-
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
