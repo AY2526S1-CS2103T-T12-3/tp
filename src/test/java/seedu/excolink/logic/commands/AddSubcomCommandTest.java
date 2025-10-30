@@ -104,8 +104,8 @@ class AddSubcomCommandTest {
         }
 
         @Override
-        public void addSubcom(Subcom subcom) {
-            subcomsAdded.add(subcom);
+        public boolean addSubcom(Subcom subcom) {
+            return subcomsAdded.add(subcom);
         }
 
         @Override

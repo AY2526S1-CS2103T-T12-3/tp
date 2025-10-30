@@ -34,23 +34,25 @@ public class SubcomList implements Iterable<Subcom> {
      * Adds a subcom to the list.
      * The subcom must not already exist in the list.
      */
-    public void add(Subcom toAdd) {
+    public boolean add(Subcom toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateSubcomException();
         }
         internalList.add(toAdd);
+        return true;
     }
 
     /**
      * Removes the equivalent subcom from the list.
      * The subcom must exist in the list.
      */
-    public void remove(Subcom toRemove) {
+    public boolean remove(Subcom toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new SubcomNotFoundException();
         }
+        return true;
     }
 
     public void setSubcoms(SubcomList replacement) {

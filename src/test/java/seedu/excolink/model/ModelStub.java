@@ -89,12 +89,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void addSubcom(Subcom subcom) {
+    public boolean addSubcom(Subcom subcom) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void deleteSubcom(Subcom target) {
+    public boolean deleteSubcom(Subcom target) {
         throw new AssertionError("This method should not be called.");
     }
 
