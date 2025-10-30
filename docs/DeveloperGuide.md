@@ -279,28 +279,28 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​          | I want to …​                                                             | So that I can …​                                                       |
-|-------|------------------|--------------------------------------------------------------------------|------------------------------------------------------------------------|
-| `* * *` | Exco member      | view a list of all current members                                       | have a full overview of the membership                                 |
-| `* * *` | Exco member      | add new members with their information e.g. name and contact information | maintain updated membership records                                    |
-| `* * *` | Exco member      | remove a member                                                          | eliminate outdated records                                             |
-| `* * *` | Exco member      | view a member’s information fields                                       | know their details easily                                              |
-| `* * *` | Exco member      | create a new sub-committee                                               | add members to sub-committees                                          |
-| `* * *` | Exco member      | delete a sub-committee                                                   | update the existing sub-comittees                                      |
-| `* * *` | Exco member      | assign members to sub-committees                                         | make responsibilities clear                                            |
-| `* * *` | Exco member      | unassign members from a sub-comittee                                     | update the responsibilities of a member                                |
-| `* * *` | Exco member      | view the list of members in a sub-committee                              | contact the members of that sub-committee                              |
+| -------- | ---------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| `* * *`  | Exco member      | view a list of all current members                                       | have a full overview of the membership                                 |
+| `* * *`  | Exco member      | add new members with their information e.g. name and contact information | maintain updated membership records                                    |
+| `* * *`  | Exco member      | remove a member                                                          | eliminate outdated records                                             |
+| `* * *`  | Exco member      | view a member’s information fields                                       | know their details easily                                              |
+| `* * *`  | Exco member      | create a new sub-committee                                               | add members to sub-committees                                          |
+| `* * *`  | Exco member      | delete a sub-committee                                                   | update the existing sub-comittees                                      |
+| `* * *`  | Exco member      | assign members to sub-committees                                         | make responsibilities clear                                            |
+| `* * *`  | Exco member      | unassign members from a sub-comittee                                     | update the responsibilities of a member                                |
+| `* * *`  | Exco member      | view the list of members in a sub-committee                              | contact the members of that sub-committee                              |
 | `* * * ` | Exco member      | view a list of all sub-committees                                        | understand the structure of the exco                                   |
-| `* * *` | Exco member      | assign members roles                                                     | retrieve contact information of members of a certain role              |
-| `* * *` | Exco member      | unassign a member's role                                                 | update the role of a member                                            |
-| `* *` | Exco member      | search for a member by name                                              | quickly access their details                                           |
-| `* *` | Exco member      | update a member’s information fields                                     | keep records current                                                   |
-| `* *` | Exco member      | reassign members to a different sub-committee                            | keep responsibilities flexible                                         |
-| `*`   | Exco member      | view a member’s participation record                                     | evaluate their involvement                                             |
-| `*`   | Exco member      | mark attendance for an event                                             | track participation                                                    |
-| `*`   | Exco member      | filter members by role                                                   | retrieve contact information of members with specific responsibilities |
-| `*`   | Exco member      | search members by year of joining                                        | identify seniority                                                     |
-| `*`   | PD               | view the distribution of members across sub-committees                   | spot imbalances                                                        |
-| `*`   | Sub-committee/PD | log notes on member performance                                          | keep comprehensive records                                             |
+| `* * *`  | Exco member      | assign members roles                                                     | retrieve contact information of members of a certain role              |
+| `* * *`  | Exco member      | unassign a member's role                                                 | update the role of a member                                            |
+| `* *`    | Exco member      | search for a member by name                                              | quickly access their details                                           |
+| `* *`    | Exco member      | update a member’s information fields                                     | keep records current                                                   |
+| `* *`    | Exco member      | reassign members to a different sub-committee                            | keep responsibilities flexible                                         |
+| `*`      | Exco member      | view a member’s participation record                                     | evaluate their involvement                                             |
+| `*`      | Exco member      | mark attendance for an event                                             | track participation                                                    |
+| `*`      | Exco member      | filter members by role                                                   | retrieve contact information of members with specific responsibilities |
+| `*`      | Exco member      | search members by year of joining                                        | identify seniority                                                     |
+| `*`      | PD               | view the distribution of members across sub-committees                   | spot imbalances                                                        |
+| `*`      | Sub-committee/PD | log notes on member performance                                          | keep comprehensive records                                             |
 
 ### Use cases
 
@@ -337,6 +337,11 @@ the **Actor** is the `user`, unless specified otherwise)
 
 #### UC2: Remove Member
 
+**Preconditions:**
+
+- Member exists
+- UI is displaying member list
+
 **MSS:**
 
 1. User enters command to remove member.
@@ -355,6 +360,11 @@ the **Actor** is the `user`, unless specified otherwise)
 
 #### UC3: Edit Member
 
+**Preconditions:**
+
+- User exists
+- UI is displaying member list
+
 **MSS:**
 
 1. User enters command to edit a member's information field.
@@ -364,20 +374,17 @@ the **Actor** is the `user`, unless specified otherwise)
 **Extensions:**
 
 - 1a. User enters invalid index.
-    - 1a1. System displays error.
-    - 1a2. User enters new data.
-    - Steps 1a1-1a2 are repeated until the data entered is correct.  
-      Use case ends.
-  
+  - 1a1. System displays error.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered is correct.  
+    Use case ends.
 - 1b. User enters an invalid information field
-    - 1b1. System displays error.
-    - 1b2. User enters new data.
-    - Steps 1b1-1b2 are repeated until the data entered is correct.  
-      Use case ends.
-  
+  - 1b1. System displays error.
+  - 1b2. User enters new data.
+  - Steps 1b1-1b2 are repeated until the data entered is correct.  
+    Use case ends.
+
 ---
-
-
 
 #### UC4: View All Members
 
@@ -433,7 +440,7 @@ the **Actor** is the `user`, unless specified otherwise)
 #### UC7: View all Subcommittees
 
 **MSS:**
-        
+
 1. User enters command to view all subcommittees.
 2. System displays all subcommittees.  
    Use case ends.
@@ -446,7 +453,7 @@ the **Actor** is the `user`, unless specified otherwise)
 
 - Member exists
 - Subcommittee exists
-- UI is showing members list
+- UI is displaying member list
 
 **MSS:**
 
@@ -456,38 +463,53 @@ the **Actor** is the `user`, unless specified otherwise)
 
 **Extensions:**
 
-- 1a. Invalid index → System displays error.
-- 1b. Subcommittee not found → System displays error.
-- 1c. UI is display subcommittees → System display error and prompts user to change to members view
+- 1a. User enters invalid index.
+  - 1a1. System displays error.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered is correct.  
+    Use case ends.
+- 1b. User enters an invalid subcommittee name
+  - 1a1. System displays error.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered is correct.
+-
 
 ---
 
 #### UC9: Unassign Member from Subcommittee
 
 **Preconditions:**
+
 - Member exists
 - Subcommittee exists
-- Member is in Subcommittee
+- Member is in a subcommittee
+- UI is displaying member list
 
 **MSS:**
+
 1. User enters command to unassign member from subcommittee.
 2. System unassigns member from subcommittee and displays success message.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions:**
+
 - 1a. User enters invalid index.
+
   - 1a1. System displays error message.
   - 1a2. User enters new index.
   - Steps 1a1-1a2 are repeated until the data entered is correct.
 
     Use case ends.
+
 - 1b. Member is not in a Subcommittee.
+
   - 1b1. System displays error message.
   - 1b2. User enters new index.
   - Steps 1b1-1b2 are repeated until the data entered is correct.
 
     Use case ends.
+
 ---
 
 #### UC10: View all Members in Subcommittee
@@ -507,15 +529,18 @@ the **Actor** is the `user`, unless specified otherwise)
 **Extensions:**
 
 - 1a. User enters invalid subcommittee name.
-    - 1a1. System displays error.
-    - 1a2. User enters new data.
-    - Steps 1a1-1a2 are repeated until the data entered is correct.
 
-      Use case ends.
+  - 1a1. System displays error.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered is correct.
+
+    Use case ends.
+
 - 1b. The specified subcommittee has no members.
-    - 1a1. System displays an empty list indicating there are no members currently assigned to this subcommittee.
 
-      Use case ends.
+  - 1a1. System displays an empty list indicating there are no members currently assigned to this subcommittee.
+
+    Use case ends.
 
 ---
 
@@ -524,6 +549,7 @@ the **Actor** is the `user`, unless specified otherwise)
 **Preconditions:**
 
 - Member exists
+- UI is displaying member list
 
 **MSS:**
 
@@ -556,6 +582,7 @@ the **Actor** is the `user`, unless specified otherwise)
 
 - Member exists
 - Role exists
+- UI is displaying member list
 
 **MSS:**
 
