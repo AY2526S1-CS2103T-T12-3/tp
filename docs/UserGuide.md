@@ -75,11 +75,11 @@ Format: `help`
 
 Adds a member to ExcoLink.
 
-Format: `add n/NAME p/PHONE e/EMAIL`
+Format: `add n/NAME p/PHONE e/EMAIL [sc/SUBCOM]`
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com`
-* `add n/Alice Tan p/91234567 e/alice@example.com`
+* `add n/Alice Tan p/91234567 e/alice@example.com sc/Publicity`
 
 ---
 
@@ -88,6 +88,22 @@ Examples:
 Shows a list of all members in ExcoLink.
 
 Format: `list`
+
+---
+
+### Editing a member : `edit`
+
+Edits the specified field/s of a specified member from ExcoLink.
+
+Format: `edit INDEX n/NAME p/PHONE e/EMAIL r/ROLE sc/SUBCOMMITTEE`
+
+* Edits the specified `FIELD` of the member at the specified `INDEX`.
+* The index refers to the index number shown in the displayed member list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* At least **1 out of the 5** fields are compulsory in the command.
+
+Example:
+* `list` followed by `edit 2 r/team lead` edits the role of the 2nd member in the list to "team lead".
 
 ---
 
@@ -168,8 +184,11 @@ Shows all members belonging to a specified subcommittee.
 
 Format: `list-sc-members sc/SUBCOMMITTEE`
 
+Alternative Format: `list-scm sc/SUBCOMMITTEE`
+
 Examples:
 * `list-sc-members sc/Publicity`
+* `list-scm sc/Tech`
 
 ---
 
@@ -241,6 +260,7 @@ Action | Format, Examples
 --------|------------------
 **Add Member** | `add n/NAME p/PHONE e/EMAIL` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com`
 **Delete Member** | `delete INDEX` <br> e.g., `delete 1`
+**Edit Member** | `edit INDEX n/NAME p/PHONE e/EMAIL r/ROLE sc/SUBCOMMITTEE` <br> e.g., `edit 1 r/team lead` 
 **List Members** | `list`
 **Add Subcommittee** | `add-sc sc/SUBCOMMITTEE` <br> e.g., `add-sc sc/Publicity`
 **Delete Subcommittee** | `delete-sc INDEX` <br> e.g., `delete-sc 1`
@@ -252,3 +272,22 @@ Action | Format, Examples
 **Delete Role from Member** | `delete-role INDEX r/ROLE` <br> e.g., `delete-role 1 r/Treasurer`
 **Help** | `help`
 **Exit** | `exit`
+
+---
+
+## Glossary
+
+### App terms
+
+- **Exco**: (Executive committee) Executive committee of the club. Includes all members in leadership or administrative roles.
+- **Member**: A person in the club whose record is stored in the system. Includes basic details like name, phone number,
+    email.
+- **Role**: The responsibility assigned to a member. Members can have multiple roles.
+- **Subcommittee**: A smaller group within the club, responsible for specific tasks such as Publicity, Tech or Logistics. Subcommittees are not necessarily part of the main executive committee.
+
+### Technical Terms
+
+- **CLI**: (Command Line Interface) A text-based interface where users interact with the system using commands.
+- **GUI**: (Graphical User Interface) A visual interface that allows users to use software through graphical elements like buttons, icons, and windows.
+- **Java 17**: A version of the Java programming language and platform required to run ExcoLink. It must be installed on your computer before using the app.
+- **JSON**: (JavaScript Object Notation) A text-based format used to store data. 

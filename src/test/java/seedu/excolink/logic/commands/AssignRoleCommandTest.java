@@ -50,7 +50,7 @@ public class AssignRoleCommandTest {
         CommandResult result = command.execute(model);
 
         String expectedMessage = String.format(AssignRoleCommand.MESSAGE_ASSIGN_ROLE_SUCCESS,
-                testPerson.getName(), role.roleName);
+                testPerson.getName(), role);
         assertEquals(expectedMessage, result.getFeedbackToUser());
 
         // Verify that the role was actually added

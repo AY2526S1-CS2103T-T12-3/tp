@@ -3,6 +3,8 @@ package seedu.excolink.logic.parser;
 import static seedu.excolink.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_ROLE;
 
+import java.util.Set;
+
 import seedu.excolink.commons.core.index.Index;
 import seedu.excolink.logic.commands.AssignRoleCommand;
 import seedu.excolink.logic.parser.exceptions.ParseException;
@@ -25,9 +27,9 @@ public class AssignRoleCommandParser implements Parser<AssignRoleCommand> {
             String preamble = argMultimap.getPreamble().trim();
             Index index = ParserUtil.parseIndex(preamble);
 
-            Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
+            Set<Role> roles = ParserUtil.parseRoles(argMultimap.getAllValues(PREFIX_ROLE));
 
-            return new AssignRoleCommand(index, role);
+            return new AssignRoleCommand(index, roles);
 
         } catch (ParseException pe) {
             if (pe.getMessage().contains("Index")) {

@@ -10,6 +10,7 @@ import seedu.excolink.model.person.Person;
 import seedu.excolink.model.person.UniquePersonList;
 import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.model.subcom.SubcomList;
+import seedu.excolink.model.subcom.exceptions.SubcomNotFoundException;
 
 /**
  * Wraps all data at the address-book level
@@ -20,11 +21,14 @@ public class ExcoLink implements ReadOnlyExcoLink {
     private final UniquePersonList persons;
 
     /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     * The 'unusual' code block below is a non-static initialization block,
+     * sometimes used to avoid duplication
+     * between constructors. See
+     * https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+     * Note that non-static init blocks are not recommended to use. There are other
+     * ways to avoid duplication
+     * among constructors.
      */
     {
         persons = new UniquePersonList();
@@ -32,7 +36,8 @@ public class ExcoLink implements ReadOnlyExcoLink {
 
     private final SubcomList subcoms = new SubcomList();
 
-    public ExcoLink() {}
+    public ExcoLink() {
+    }
 
     /**
      * Creates an ExcoLink using the Persons in the {@code toBeCopied}
@@ -73,7 +78,8 @@ public class ExcoLink implements ReadOnlyExcoLink {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the address book.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -89,9 +95,11 @@ public class ExcoLink implements ReadOnlyExcoLink {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given person {@code target} in the list with
+     * {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the address book.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -110,7 +118,8 @@ public class ExcoLink implements ReadOnlyExcoLink {
     //// subcom-level operations
 
     /**
-     * Returns true if a subcom with the same identity as {@code subcom} exists in the app.
+     * Returns true if a subcom with the same identity as {@code subcom} exists in
+     * the app.
      */
     public boolean hasSubcom(Subcom subcom) {
         requireNonNull(subcom);
@@ -118,19 +127,31 @@ public class ExcoLink implements ReadOnlyExcoLink {
     }
 
     /**
+     * Returns the subcom referenced in subcoms
+     * @param subcom new subcom with the same properties as the correct subcom
+     * @return subcom that is within subcoms
+     */
+    public Subcom findSubcom(Subcom subcom) throws SubcomNotFoundException {
+        if (subcom.isNone()) {
+            return subcom;
+        }
+        return subcoms.getSubcomByName(subcom.getName());
+    }
+
+    /**
      * Adds a subcom to the app.
      * The subcom must not already exist in the app.
      */
-    public void addSubcom(Subcom subcom) {
-        subcoms.add(subcom);
+    public boolean addSubcom(Subcom subcom) {
+        return subcoms.add(subcom);
     }
 
     /**
      * Removes {@code key} from this {@code ExcoLink}.
      * {@code key} must exist in the app.
      */
-    public void removeSubcom(Subcom key) {
-        subcoms.remove(key);
+    public boolean removeSubcom(Subcom key) {
+        return subcoms.remove(key);
     }
 
     //// util methods

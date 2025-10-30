@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.excolink.logic.parser.Prefix;
 import seedu.excolink.model.person.Person;
+import seedu.excolink.model.role.Role;
 
 /**
  * Container for user visible messages.
@@ -48,4 +49,12 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats a set of {@code roles} for display to the user.
+     */
+    public static String formatRoles(Set<Role> roles) {
+        final StringBuilder builder = new StringBuilder();
+        roles.forEach(builder::append);
+        return builder.toString();
+    }
 }

@@ -12,14 +12,15 @@ import seedu.excolink.model.subcom.exceptions.DuplicateSubcomException;
 import seedu.excolink.model.subcom.exceptions.SubcomNotFoundException;
 
 /**
- * A list of subcoms that enforces uniqueness between its elements and does not allow nulls.
+ * A list of subcoms that enforces uniqueness between its elements and does not
+ * allow nulls.
  *
  * Supports a minimal set of list operations.
  */
 public class SubcomList implements Iterable<Subcom> {
     private final ObservableList<Subcom> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Subcom> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Subcom> internalUnmodifiableList = FXCollections
+            .unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent subcom as the given argument.
@@ -33,23 +34,25 @@ public class SubcomList implements Iterable<Subcom> {
      * Adds a subcom to the list.
      * The subcom must not already exist in the list.
      */
-    public void add(Subcom toAdd) {
+    public boolean add(Subcom toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateSubcomException();
         }
         internalList.add(toAdd);
+        return true;
     }
 
     /**
      * Removes the equivalent subcom from the list.
      * The subcom must exist in the list.
      */
-    public void remove(Subcom toRemove) {
+    public boolean remove(Subcom toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new SubcomNotFoundException();
         }
+        return true;
     }
 
     public void setSubcoms(SubcomList replacement) {
@@ -68,6 +71,21 @@ public class SubcomList implements Iterable<Subcom> {
         }
 
         internalList.setAll(subcoms);
+    }
+
+    /**
+     * Returns the subcom, if any, in the subcom list that case-insensitively matches the {@code name}.
+     *
+     * @param name The subcom name to match with.
+     * @return The matched subcom.
+     */
+    public Subcom getSubcomByName(String name) throws SubcomNotFoundException {
+        for (Subcom subcom : internalList) {
+            if (subcom.getName().equalsIgnoreCase(name)) {
+                return subcom;
+            }
+        }
+        throw new SubcomNotFoundException();
     }
 
     /**

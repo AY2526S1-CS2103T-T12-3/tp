@@ -47,7 +47,8 @@ public class ModelManager implements Model {
         this(new ExcoLink(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs
+    // ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -82,7 +83,8 @@ public class ModelManager implements Model {
         userPrefs.setExcoLinkFilePath(excoLinkFilePath);
     }
 
-    //=========== ExcoLink ================================================================================
+    // =========== ExcoLink
+    // ================================================================================
 
     @Override
     public void setExcoLink(ReadOnlyExcoLink excoLink) {
@@ -125,28 +127,34 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteSubcom(Subcom target) {
-        excoLink.removeSubcom(target);
+    public boolean deleteSubcom(Subcom target) {
+        boolean removed = excoLink.removeSubcom(target);
 
-        // Remove all members of the deleted subcommittee
-        List<Person> allPersons = new ArrayList<>(excoLink.getPersonList());
-        for (Person person : allPersons) {
-            if (person.getSubcom().equals(target)) {
-                Person updatedPerson = person.removeFromSubcom();
-                setPerson(person, updatedPerson);
+        if (removed) {
+            // Remove all members of the deleted subcommittee
+            List<Person> allPersons = new ArrayList<>(excoLink.getPersonList());
+            for (Person person : allPersons) {
+                if (person.getSubcom().equals(target)) {
+                    Person updatedPerson = person.removeFromSubcom();
+                    setPerson(person, updatedPerson);
+                }
             }
         }
+
+        return removed;
     }
 
     @Override
-    public void addSubcom(Subcom subcom) {
-        excoLink.addSubcom(subcom);
+    public boolean addSubcom(Subcom subcom) {
+        return excoLink.addSubcom(subcom);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    // =========== Filtered Person List Accessors
+    // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of
      * {@code versionedExcoLink}
      */
     @Override
@@ -170,15 +178,22 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //=========== Subcom List Accessors =============================================================
+    // =========== Subcom List Accessors
+    // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Subcom} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Subcom} backed by the
+     * internal list of
      * {@code versionedExcoLink}
      */
     @Override
     public ObservableList<Subcom> getSubcomList() {
         return subcoms;
+    }
+
+    @Override
+    public Subcom findSubcom(Subcom subcom) {
+        return excoLink.findSubcom(subcom);
     }
 
     @Override

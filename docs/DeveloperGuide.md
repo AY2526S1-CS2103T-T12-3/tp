@@ -234,13 +234,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 - **Alternative 1 (current choice):** Saves the entire address book.
 
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
+    - Pros: Easy to implement.
+    - Cons: May have performance issues in terms of memory usage.
 
 - **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
+    - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    - Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -312,17 +312,24 @@ _{More to be added}_
 the **Actor** is the `user`, unless specified otherwise)
 
 #### UC1: Add Member
-
 **MSS:**
 
 1. User enters command to add member.
 2. System adds the new member and displays success message.
+   Use case ends.
 
 **Extensions:**
 
-- 1a. Missing or invalid parameter → System displays error.
-- 1b. Duplicate detected → System rejects entry.
-- 1c. Unknown prefix → System displays error.
+- 1a. System detects missing or invalid parameter.
+    - 1a1. System displays error.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.  
+      Use case ends.
+- 1b. System detects duplicate member to be added.
+    - 1b1. System displays error.
+    - 1b2. User enters new data.
+    - Steps 1b1-1b2 are repeated until the data entered is correct.  
+      Use case ends.
 
 **Guarantees:**
 
@@ -332,68 +339,83 @@ the **Actor** is the `user`, unless specified otherwise)
 ---
 
 #### UC2: Remove Member
-
-**Preconditions:**
-
-- Member exists
-
 **MSS:**
 
 1. User enters command to remove member.
 2. System deletes the member and displays success message.
+   Use case ends.
 
 **Extensions:**
 
-- 1a. Invalid or out-of-range index → System displays error.
-- 1b. Empty list → System displays error.
+- 1a. User enters invalid index.
+    - 1a1. System displays error.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.  
+      Use case ends.
 
 ---
 
-#### UC3: View a Member
-
-**Preconditions:**
-
-- Member exists
-
-**MSS:**
-
-1. User enters command to view member.
-2. System displays the member’s full information.
-
-**Extensions:**
-
-- 1a. Invalid or out-of-range index → System displays error.
-
----
-
-#### UC4: View All Members
+#### UC3: View All Members
 
 **MSS:**
 
 1. User enters command to view all members.
-2. System retrieves and displays all members.
-
-**Extensions:**
-
-- 1a. Empty list → System displays “No members found.”
+2. System displays all members.
+   Use case ends.
 
 ---
 
-#### UC5: Create Subcommittee
+#### UC4: Create Subcommittee
 
 **MSS:**
 
 1. User enters command to create subcommittee.
-2. System creates the subcommittee and displays success message.
+2. System creates the subcommittee and displays success message.  
+   Use case ends.
 
 **Extensions:**
 
-- 1a. Invalid name → System displays error.
-- 1b. Duplicate name → System displays error.
+- 1a. User enters invalid subcommittee name.
+    - 1a1. System displays error.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.
+      Use case ends.
+- 1b. System detects duplicate subcommittee to be added.
+    - 1b1. System displays error.
+    - 1b2. User enters new data.
+    - Steps 1b1-1b2 are repeated until the data entered is correct.
+      Use case ends.
+---
+
+#### UC5: Delete Subcommittee
+
+**MSS:**
+
+1. User enters command to delete subcommittee.
+2. System deletes the subcommittee and displays success message.  
+   Use case ends.
+
+**Extensions:**
+
+- 1a. User enters invalid index.
+    - 1a1. System displays error.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.  
+      Use case ends.
 
 ---
 
-#### UC6: Assign Member to Subcommittee
+#### UC6: View all Subcommittees
+
+**MSS:**
+
+1. User enters command to view all subcommittees.
+2. System displays all subcommittees.  
+   Use case ends.
+
+---
+
+#### UC7: Assign Member to Subcommittee
 
 **Preconditions:**
 
@@ -403,7 +425,8 @@ the **Actor** is the `user`, unless specified otherwise)
 **MSS:**
 
 1. User enters command to assign member to subcommittee.
-2. System assigns member to subcommittee and displays success message.
+2. System assigns member to subcommittee and displays success message.  
+   Use case ends.
 
 **Extensions:**
 
@@ -412,7 +435,9 @@ the **Actor** is the `user`, unless specified otherwise)
 
 ---
 
-#### UC7: View Members in Subcommittee
+#### UC8: Unassign Member from Subcommittee
+
+#### UC9: View Members in Subcommittee
 
 **Preconditions:**
 
@@ -430,26 +455,11 @@ the **Actor** is the `user`, unless specified otherwise)
 
 ---
 
-#### UC8: Create Role
-
-**MSS:**
-
-1. User enters command to create role.
-2. System creates the role and displays success message.
-
-**Extensions:**
-
-- 1a. Invalid role name → System displays error.
-- 1b. Duplicate role → System displays error.
-
----
-
-#### UC9: Assign Member to Role
+#### UC10: Assign Member to Role
 
 **Preconditions:**
 
 - Member exists
-- Role exists
 
 **MSS:**
 
@@ -458,8 +468,47 @@ the **Actor** is the `user`, unless specified otherwise)
 
 **Extensions:**
 
-- 1a. Invalid index → System displays error.
-- 1b. Role not found → System displays error.
+- 1a. User enters invalid index.
+    - 1a1. System displays error.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.  
+      Use case ends.
+- 1b. User enters invalid role name.
+    - 1b1. System displays error.
+    - 1b2. User enters new data.
+    - Steps 1b1-1b2 are repeated until the data entered is correct.
+      Use case ends.
+- 1c. System detects duplicate role to be added.
+    - 1c1. System displays error.
+    - 1c2. User enters new data.
+    - Steps 1c1-1c2 are repeated until the data entered is correct.
+      Use case ends.
+---
+
+#### UC11: Remove Role of Member
+
+**Preconditions:**
+
+- Member exists
+- Role exists
+
+**MSS:**
+
+1. User enters command to remove a role from member.
+2. System deletes the role of the member and displays success message.
+
+**Extensions:**
+
+- 1a. User enters invalid index.
+    - 1a1. System displays error.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.  
+      Use case ends.
+- 1b. System cannot find role to be deleted.
+    - 1b1. System displays error.
+    - 1b2. User enters new data.
+    - Steps 1b1-b2 are repeated until the data entered is correct.
+      Use case ends.
 
 ### Non-Functional Requirements
 
@@ -479,13 +528,13 @@ the **Actor** is the `user`, unless specified otherwise)
 - **Exco**: Executive committee of the club. Includes all members in leadership or administrative roles.
 - **Mainstream OS**: Windows, Linux, Unix, MacOS
 - **Member**: A person in the club whose record is stored in the system. Includes basic details like name, phone number,
-email.
+  email.
 - **New Exco Member**: New executive committee member of the club. The member is new to the system.
 - **Participation Record**: Evaluation of the members performace with repect to their roles.
 - **Private contact detail**: A contact detail that is not meant to be shared with others
 - **Role**: The responsibility assigned to a member. Members can have multiple roles.
-- **Sub-committee/PD**: A smaller group under the main Exco, can be responsible for specific functions. Members may belong 
-to one or more Sub-committees.
+- **Sub-committee/PD**: A smaller group under the main Exco, can be responsible for specific functions. Members may belong
+  to one or more Sub-committees.
 
 ---
 
@@ -502,16 +551,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The most recent window size and location is retained.
+    1. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
@@ -519,16 +568,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -536,6 +585,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_

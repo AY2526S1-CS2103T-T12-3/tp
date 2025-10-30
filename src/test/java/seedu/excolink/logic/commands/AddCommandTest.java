@@ -18,6 +18,7 @@ import seedu.excolink.model.ExcoLink;
 import seedu.excolink.model.ModelStub;
 import seedu.excolink.model.ReadOnlyExcoLink;
 import seedu.excolink.model.person.Person;
+import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -118,6 +119,11 @@ public class AddCommandTest {
         @Override
         public ReadOnlyExcoLink getExcoLink() {
             return new ExcoLink();
+        }
+
+        @Override
+        public Subcom findSubcom(Subcom subcom) {
+            return subcom;
         }
     }
 
