@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-ExcoLink is a **desktop app for managing club members and subcommittees, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ExcoLink can get your member management tasks done faster than traditional GUI apps.
+ExcoLink is a **desktop app for exco members of large CCAs or clubs to manage their club members and subcommittees, 
+optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface 
+(GUI). If you can type fast, ExcoLink can get your member management tasks done faster than traditional GUI apps.
 
 - Table of Contents
   {:toc}
