@@ -353,7 +353,33 @@ the **Actor** is the `user`, unless specified otherwise)
 
 ---
 
-#### UC3: View All Members
+#### UC3: Edit Member
+
+**MSS:**
+
+1. User enters command to edit a member's information field.
+2. System edits the member's specified field and displays success message.
+   Use case ends.
+
+**Extensions:**
+
+- 1a. User enters invalid index.
+    - 1a1. System displays error.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.  
+      Use case ends.
+  
+- 1b. User enters an invalid information field
+    - 1b1. System displays error.
+    - 1b2. User enters new data.
+    - Steps 1b1-1b2 are repeated until the data entered is correct.  
+      Use case ends.
+  
+---
+
+
+
+#### UC4: View All Members
 
 **MSS:**
 
@@ -363,7 +389,7 @@ the **Actor** is the `user`, unless specified otherwise)
 
 ---
 
-#### UC4: Create Subcommittee
+#### UC5: Create Subcommittee
 
 **MSS:**
 
@@ -386,7 +412,7 @@ the **Actor** is the `user`, unless specified otherwise)
 
 ---
 
-#### UC5: Delete Subcommittee
+#### UC6: Delete Subcommittee
 
 **MSS:**
 
@@ -404,7 +430,7 @@ the **Actor** is the `user`, unless specified otherwise)
 
 ---
 
-#### UC6: View all Subcommittees
+#### UC7: View all Subcommittees
 
 **MSS:**
         
@@ -413,37 +439,6 @@ the **Actor** is the `user`, unless specified otherwise)
    Use case ends.
 
 ---
-
-#### UC7: View all Subcommittee Members
-
-**Preconditions:**
-
-- Subcommittee exists
-
-**MSS:**
-
-1. User enters command to list all members of the specified subcommittee.
-2. System retrieves all members belonging to that subcommittee.
-3. System displays the list of members in the subcommittee. 
-
-   Use case ends.
-
-**Extensions:**
-
-- 1a. User enters invalid subcommittee name.
-    - 1a1. System displays error.
-    - 1a2. User enters new data.
-    - Steps 1a1-1a2 are repeated until the data entered is correct.
-  
-      Use case ends.
-- 1b. The specified subcommittee has no members.
-    - 1a1. System displays an empty list indicating there are no members currently assigned to this subcommittee.
-       
-      Use case ends.
-    
-
----
-
 
 #### UC8: Assign Member to Subcommittee
 
@@ -493,7 +488,7 @@ the **Actor** is the `user`, unless specified otherwise)
     Use case ends.
 ---
 
-#### UC10: View Members in Subcommittee
+#### UC10: View all Members in Subcommittee
 
 **Preconditions:**
 
@@ -501,13 +496,24 @@ the **Actor** is the `user`, unless specified otherwise)
 
 **MSS:**
 
-1. User enters command to view all members in subcommittee.
-2. System retrieves and displays members assigned.
+1. User enters command to list all members of the specified subcommittee.
+2. System retrieves all members belonging to that subcommittee.
+3. System displays the list of members in the subcommittee.
+
+   Use case ends.
 
 **Extensions:**
 
-- 1a. Subcommittee not found → System displays error.
-- 1b. No members in subcommittee → System displays empty message.
+- 1a. User enters invalid subcommittee name.
+    - 1a1. System displays error.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.
+
+      Use case ends.
+- 1b. The specified subcommittee has no members.
+    - 1a1. System displays an empty list indicating there are no members currently assigned to this subcommittee.
+
+      Use case ends.
 
 ---
 
