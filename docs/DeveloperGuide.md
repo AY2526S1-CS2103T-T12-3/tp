@@ -415,7 +415,38 @@ the **Actor** is the `user`, unless specified otherwise)
 
 ---
 
-#### UC7: Assign Member to Subcommittee
+#### UC7: View all Subcommittee Members
+
+**Preconditions:**
+
+- Subcommittee exists
+
+**MSS:**
+
+1. User enters command to list all members of the specified subcommittee.
+2. System retrieves all members belonging to that subcommittee.
+3. System displays the list of members in the subcommittee. 
+
+   Use case ends.
+
+**Extensions:**
+
+- 1a. User enters invalid subcommittee name.
+    - 1a1. System displays error.
+    - 1a2. User enters new data.
+    - Steps 1a1-1a2 are repeated until the data entered is correct.
+  
+      Use case ends.
+- 1b. The specified subcommittee has no members.
+    - 1a1. System displays an empty list indicating there are no members currently assigned to this subcommittee.
+       
+      Use case ends.
+    
+
+---
+
+
+#### UC8: Assign Member to Subcommittee
 
 **Preconditions:**
 
@@ -435,9 +466,9 @@ the **Actor** is the `user`, unless specified otherwise)
 
 ---
 
-#### UC8: Unassign Member from Subcommittee
+#### UC9: Unassign Member from Subcommittee
 
-#### UC9: View Members in Subcommittee
+#### UC10: View Members in Subcommittee
 
 **Preconditions:**
 
@@ -455,7 +486,7 @@ the **Actor** is the `user`, unless specified otherwise)
 
 ---
 
-#### UC10: Assign Member to Role
+#### UC11: Assign Member to Role
 
 **Preconditions:**
 
@@ -485,7 +516,7 @@ the **Actor** is the `user`, unless specified otherwise)
       Use case ends.
 ---
 
-#### UC11: Remove Role of Member
+#### UC12: Remove Role of Member
 
 **Preconditions:**
 
