@@ -446,6 +446,7 @@ the **Actor** is the `user`, unless specified otherwise)
 
 - Member exists
 - Subcommittee exists
+- UI is showing members list
 
 **MSS:**
 
@@ -457,6 +458,7 @@ the **Actor** is the `user`, unless specified otherwise)
 
 - 1a. Invalid index → System displays error.
 - 1b. Subcommittee not found → System displays error.
+- 1c. UI is display subcommittees → System display error and prompts user to change to members view
 
 ---
 
