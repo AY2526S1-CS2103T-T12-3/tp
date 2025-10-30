@@ -20,6 +20,7 @@ import seedu.excolink.model.ReadOnlyExcoLink;
 import seedu.excolink.model.person.Person;
 import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.testutil.PersonBuilder;
+import seedu.excolink.ui.DisplayEntity;
 
 public class AddCommandTest {
 
@@ -92,6 +93,14 @@ public class AddCommandTest {
         }
 
         @Override
+        public DisplayEntity getDisplayEntity() {
+            return DisplayEntity.PERSON;
+        }
+
+        @Override
+        public void setDisplayEntity(DisplayEntity displayEntity) {}
+
+        @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
@@ -103,6 +112,14 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+
+        @Override
+        public DisplayEntity getDisplayEntity() {
+            return DisplayEntity.PERSON;
+        }
+
+        @Override
+        public void setDisplayEntity(DisplayEntity displayEntity) {}
 
         @Override
         public boolean hasPerson(Person person) {

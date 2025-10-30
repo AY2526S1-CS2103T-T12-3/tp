@@ -21,6 +21,7 @@ import seedu.excolink.model.person.Phone;
 import seedu.excolink.model.role.Role;
 import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.testutil.PersonBuilder;
+import seedu.excolink.ui.DisplayEntity;
 
 public class AssignRoleCommandTest {
 
@@ -57,6 +58,7 @@ public class AssignRoleCommandTest {
         Person updatedPerson = model.getFilteredPersonList().get(0);
         assertEquals(Collections.singleton(role), updatedPerson.getRoles());
     }
+
     @Test
     public void execute_duplicateRole_throwsCommandException() {
         Index index = Index.fromOneBased(1);
@@ -91,6 +93,23 @@ public class AssignRoleCommandTest {
             command.execute(model);
         } catch (CommandException e) {
             assertEquals(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, e.getMessage());
+        }
+    }
+
+    @Test
+    public void execute_wrongDisplayEntity_throwsCommandException() {
+        model.setDisplayEntity(DisplayEntity.SUBCOM);
+        Index index = Index.fromOneBased(1);
+        Role role = new Role("Treasurer");
+        AssignRoleCommand command = new AssignRoleCommand(index, role);
+
+        try {
+            command.execute(model);
+        } catch (CommandException e) {
+            assertEquals(
+                    Messages.MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND,
+                    e.getMessage()
+            );
         }
     }
 

@@ -2,6 +2,7 @@ package seedu.excolink.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.excolink.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.excolink.logic.Messages.MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND;
 
 import java.util.HashSet;
 import java.util.List;
@@ -57,6 +58,10 @@ public class DeleteRoleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (model.getDisplayEntity() != DisplayEntity.PERSON) {
+            throw new CommandException(MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND);
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -85,10 +90,8 @@ public class DeleteRoleCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
 
-        return new CommandResult(
-                String.format(MESSAGE_SUCCESS, personToEdit.getName(), Messages.formatRoles(rolesToDelete)),
-                DisplayEntity.PERSON
-        );
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personToEdit.getName(),
+                Messages.formatRoles(rolesToDelete)));
     }
 
     @Override

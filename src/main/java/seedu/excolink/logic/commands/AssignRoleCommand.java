@@ -1,6 +1,7 @@
 package seedu.excolink.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.excolink.logic.Messages.MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND;
 
 import java.util.HashSet;
 import java.util.List;
@@ -53,6 +54,11 @@ public class AssignRoleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.getDisplayEntity() != DisplayEntity.PERSON) {
+            throw new CommandException(MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND);
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -81,7 +87,7 @@ public class AssignRoleCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_ROLE_SUCCESS,
-                personToEdit.getName(), Messages.formatRoles(rolesToAdd)), DisplayEntity.PERSON);
+                personToEdit.getName(), Messages.formatRoles(rolesToAdd)));
     }
 
     @Override

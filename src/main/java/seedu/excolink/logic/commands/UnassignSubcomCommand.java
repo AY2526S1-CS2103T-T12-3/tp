@@ -1,6 +1,7 @@
 package seedu.excolink.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.excolink.logic.Messages.MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND;
 
 import java.util.Objects;
 
@@ -38,6 +39,11 @@ public class UnassignSubcomCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+
+        if (model.getDisplayEntity() != DisplayEntity.PERSON) {
+            throw new CommandException(MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND);
+        }
+
         if (targetIndex.getZeroBased() >= model.getFilteredPersonList().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
@@ -56,8 +62,8 @@ public class UnassignSubcomCommand extends Command {
         Person editedPerson = personToEdit.removeFromSubcom();
 
         model.setPerson(personToEdit, editedPerson);
-        return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, personToEdit.getName().fullName, previousSubcom),
-                DisplayEntity.PERSON);
+        return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS,
+                personToEdit.getName().fullName, previousSubcom));
     }
 
     @Override

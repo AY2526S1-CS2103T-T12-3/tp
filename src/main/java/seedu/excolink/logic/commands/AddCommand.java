@@ -67,7 +67,8 @@ public class AddCommand extends Command {
         Person toAdd = toEdit.assignSubcom(modelSubcom);
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)), DisplayEntity.PERSON);
+        model.setDisplayEntity(DisplayEntity.PERSON);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
     @Override

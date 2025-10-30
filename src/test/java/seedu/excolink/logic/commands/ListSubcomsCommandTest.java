@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelManager;
 import seedu.excolink.model.UserPrefs;
-import seedu.excolink.ui.DisplayEntity;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListSubcomsCommand.
@@ -27,7 +26,7 @@ public class ListSubcomsCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListSubcomsCommand(), model, new CommandResult(ListSubcomsCommand.MESSAGE_SUCCESS,
-                DisplayEntity.SUBCOM), expectedModel);
+        assertCommandSuccess(new ListSubcomsCommand(), model, new CommandResult(ListSubcomsCommand.MESSAGE_SUCCESS),
+                expectedModel);
     }
 }

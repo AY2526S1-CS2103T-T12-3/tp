@@ -14,10 +14,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.excolink.commons.core.index.Index;
 import seedu.excolink.logic.Messages;
+import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelManager;
 import seedu.excolink.model.UserPrefs;
 import seedu.excolink.model.person.Person;
+import seedu.excolink.ui.DisplayEntity;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -77,6 +79,21 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_wrongDisplayEntity_throwsCommandException() {
+        model.setDisplayEntity(DisplayEntity.SUBCOM);
+        DeleteCommand command = new DeleteCommand(INDEX_FIRST);
+
+        try {
+            command.execute(model);
+        } catch (CommandException e) {
+            assertEquals(
+                    Messages.MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND,
+                    e.getMessage()
+            );
+        }
     }
 
     @Test

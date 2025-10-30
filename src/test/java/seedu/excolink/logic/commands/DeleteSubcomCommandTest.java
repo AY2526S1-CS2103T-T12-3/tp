@@ -35,6 +35,7 @@ public class DeleteSubcomCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalExcoLink(), new UserPrefs());
+        model.setDisplayEntity(DisplayEntity.SUBCOM);
         expectedModel = new ModelManager(model.getExcoLink(), new UserPrefs());
     }
 
@@ -48,7 +49,7 @@ public class DeleteSubcomCommandTest {
 
         expectedModel.deleteSubcom(subcomToDelete);
 
-        assertCommandSuccess(command, model, new CommandResult(expectedMessage, DisplayEntity.SUBCOM), expectedModel);
+        assertCommandSuccess(command, model, new CommandResult(expectedMessage), expectedModel);
     }
 
     @Test
@@ -57,6 +58,21 @@ public class DeleteSubcomCommandTest {
         DeleteSubcomCommand command = new DeleteSubcomCommand(outOfBoundIndex);
 
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_SUBCOM_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_wrongDisplayEntity_throwsCommandException() {
+        model.setDisplayEntity(DisplayEntity.PERSON);
+        DeleteSubcomCommand command = new DeleteSubcomCommand(INDEX_FIRST);
+
+        try {
+            command.execute(model);
+        } catch (CommandException e) {
+            assertEquals(
+                    Messages.MESSAGE_WRONG_DISPLAY_ENTITY_FOR_SUBCOM_COMMAND,
+                    e.getMessage()
+            );
+        }
     }
 
     @Test
