@@ -44,7 +44,6 @@ public class DeleteSubcomCommand extends Command {
         Subcom subcomToDelete = subcomList.get(targetIndex.getZeroBased());
         // Delete the subcommittee and remove all members from the deleted subcommittee
         model.deleteSubcom(subcomToDelete);
-
         return new CommandResult(String.format(MESSAGE_DELETE_SUBCOM_SUCCESS, subcomToDelete),
                 DisplayEntity.SUBCOM);
     }

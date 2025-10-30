@@ -142,16 +142,16 @@ public class ExcoLink implements ReadOnlyExcoLink {
      * Adds a subcom to the app.
      * The subcom must not already exist in the app.
      */
-    public void addSubcom(Subcom subcom) {
-        subcoms.add(subcom);
+    public boolean addSubcom(Subcom subcom) {
+        return subcoms.add(subcom);
     }
 
     /**
      * Removes {@code key} from this {@code ExcoLink}.
      * {@code key} must exist in the app.
      */
-    public void removeSubcom(Subcom key) {
-        subcoms.remove(key);
+    public boolean removeSubcom(Subcom key) {
+        return subcoms.remove(key);
     }
 
     //// util methods
