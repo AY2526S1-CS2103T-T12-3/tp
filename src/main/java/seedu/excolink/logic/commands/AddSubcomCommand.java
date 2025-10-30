@@ -43,7 +43,6 @@ public class AddSubcomCommand extends Command {
         }
 
         model.addSubcom(toAdd);
-
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toString()), DisplayEntity.SUBCOM);
     }
 
