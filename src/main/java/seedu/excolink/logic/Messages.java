@@ -46,6 +46,7 @@ public class Messages {
                 .append(person.getEmail())
                 .append("; Roles: ");
         person.getRoles().forEach(builder::append);
+        builder.append("; Subcom: ").append(person.getSubcom());
         return builder.toString();
     }
 

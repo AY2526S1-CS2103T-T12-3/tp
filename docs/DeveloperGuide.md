@@ -408,7 +408,7 @@ the **Actor** is the `user`, unless specified otherwise)
 #### UC6: View all Subcommittees
 
 **MSS:**
-
+        
 1. User enters command to view all subcommittees.
 2. System displays all subcommittees.  
    Use case ends.
