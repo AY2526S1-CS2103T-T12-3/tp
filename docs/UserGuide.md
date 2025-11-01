@@ -104,6 +104,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [sc/SUBCOMMITTEE] [r/ROLE] ...`
 - The index refers to the index number shown in the displayed member list.
 - The index **must be a positive integer** 1, 2, 3, …​
 - At least **1 out of the 5** fields are compulsory in the command.
+- View cannot be displaying list of subcommittee.
 
 Example:
 
@@ -120,6 +121,7 @@ Format: `delete INDEX`
 - Deletes the member at the specified `INDEX`.
 - The index refers to the index number shown in the displayed member list.
 - The index **must be a positive integer** 1, 2, 3, …​
+- View cannot be displaying list of subcommittee.
 
 Examples:
 
@@ -153,6 +155,7 @@ Deletes the specified subcommittee.
 
 Format: `delete-sc INDEX`
 
+- User has to run `list-sc` command first to get the view of the list of subcommittees.
 - Deletes the subcommittee at the specified `INDEX`.
 - The index refers to the index number shown in the displayed subcommittee list.
 - The index **must be a positive integer** 1, 2, 3, …​
@@ -169,6 +172,8 @@ Assigns a member to a subcommittee.
 
 Format: `assign-sc INDEX sc/SUBCOMMITTEE`
 
+- View cannot be displaying the list of subcommittee.
+
 Examples:
 
 - `assign-sc 2 sc/Publicity`
@@ -180,6 +185,8 @@ Examples:
 Removes a member from their assigned subcommittee.
 
 Format: `unassign-sc INDEX`
+
+- View cannot be displaying the list of subcommittee.
 
 Examples:
 
@@ -208,6 +215,8 @@ Assigns a role to a member. Members can hold multiple roles.
 
 Format: `assign-role INDEX r/ROLE`
 
+- View cannot be displaying list of subcommittee.
+
 Examples:
 
 - `assign-role 1 r/Treasurer`
@@ -220,6 +229,8 @@ Examples:
 Removes a role from a member.
 
 Format: `delete-role INDEX r/ROLE`
+
+- View cannot be displaying list of subcommittee.
 
 Examples:
 
