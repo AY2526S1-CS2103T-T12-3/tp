@@ -284,6 +284,14 @@ Examples:
 - `find tim tom` returns `Tim Tan`, `Tom Lee`
 
 ---
+
+### Clearing all entries: `clear`
+Clears all entries from the app.
+
+Format: `clear`
+
+---
+
 ### Exiting the program : `exit`
 
 Exits the program.
