@@ -233,11 +233,13 @@ Format: `assign-role INDEX r/ROLE`
 - Unable to assign role when displaying list of subcommittee.
 - The index refers to the index number shown in the displayed list.
 - The index **must be a positive integer** 1, 2, 3, …​
+- User can assign multiple roles for a member at the same time.
 
 Examples:
 
 - `assign-role 1 r/Treasurer`
 - `assign-role 3 r/President`
+- `assign-role 2 r/Treasurer r/Secretary`
 
 ---
 
@@ -252,10 +254,14 @@ Format: `delete-role INDEX r/ROLE`
 - Unable to remove a role when displaying list of subcommittee.
 - The index refers to the index number shown in the displayed list.
 - The index **must be a positive integer** 1, 2, 3, …​
+- User can delete multiple roles for a member at the same time.
+- If user wishes to remove multiple roles from a member, the member has to have all roles 
+else the command will not go through.
 
 Examples:
 
 - `delete-role 1 r/Treasurer`
+- `delete-role 3 r/Secretary r/Treasurer`
 
 ---
 
