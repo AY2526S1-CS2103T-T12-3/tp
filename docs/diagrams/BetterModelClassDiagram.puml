@@ -5,18 +5,17 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 ExcoLink *-right-> "1" UniquePersonList
-ExcoLink *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+ExcoLink *-right-> "1" SubcomList
 
-UniqueTagList -right-> "*" Tag
+
+
 UniquePersonList -right-> Person
 
-Person -up-> "*" Tag
+SubcomList *-right-> "*" Subcom
 
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Role
-Person *--> Subcom
+Person *--> "*" Role
+Person *--> "1" Subcom
 @enduml
