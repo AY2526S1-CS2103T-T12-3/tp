@@ -227,6 +227,22 @@ Examples:
 
 ---
 
+### Finding a member : `find`
+
+Finds either one or a list of members whose name/names match the provided keyword.
+
+Format: `find KEYWORD`
+
+- Finds all members whose name include the keyword.
+- Member's name must match exactly to the keyword.
+- Keyword is case-insensitive.
+
+Examples: 
+
+- `find John`
+- `find tan`
+
+---
 ### Exiting the program : `exit`
 
 Exits the program.
