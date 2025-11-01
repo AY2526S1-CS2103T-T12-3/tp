@@ -79,6 +79,8 @@ Adds a member to ExcoLink.
 
 Format: `add n/NAME p/PHONE e/EMAIL [sc/SUBCOM] [r/ROLE]...`
 
+- Unable to add member with the same name(case-insensitive)
+
 Examples:
 
 - `add n/John Doe p/98765432 e/johnd@example.com`
