@@ -8,9 +8,12 @@ title: Developer Guide
 
 ---
 
-## **Acknowledgements**
+## Acknowledgements
 
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+ExcoLink is based on the [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/) project developed by the [SE-EDU initiative](https://se-education.org/).
+The original AB3 project provided the foundational architecture, design patterns, and testing framework for ExcoLink.
+Portions of the source code and documentation were adapted or extended from AB3. 
+We thank the SE-EDU team for their open-source contribution, which made this project possible.
 
 ---
 
