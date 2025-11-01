@@ -104,6 +104,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [sc/SUBCOMMITTEE] [r/ROLE] ...`
 - The index refers to the index number shown in the displayed member list.
 - The index **must be a positive integer** 1, 2, 3, …​
 - At least **1 out of the 5** fields are compulsory in the command.
+- User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
+first to edit a member.
+- Unable to edit when displaying list of subcommittee.
 
 Example:
 
@@ -120,6 +123,9 @@ Format: `delete INDEX`
 - Deletes the member at the specified `INDEX`.
 - The index refers to the index number shown in the displayed member list.
 - The index **must be a positive integer** 1, 2, 3, …​
+- User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
+  first to delete a member.
+- Unable to delete when displaying list of subcommittee.
 
 Examples:
 
@@ -153,9 +159,11 @@ Deletes the specified subcommittee.
 
 Format: `delete-sc INDEX`
 
+- User has to run `list-sc` command first to get the view of the list of subcommittees.
 - Deletes the subcommittee at the specified `INDEX`.
 - The index refers to the index number shown in the displayed subcommittee list.
 - The index **must be a positive integer** 1, 2, 3, …​
+- Members that were in the subcommittee will be be removed from the subcommittee. 
 
 Examples:
 
@@ -169,6 +177,12 @@ Assigns a member to a subcommittee.
 
 Format: `assign-sc INDEX sc/SUBCOMMITTEE`
 
+- User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
+  first to display members.
+- Unable to assign when displaying list of subcommittee.
+- The index refers to the index number shown in the displayed list.
+- The index **must be a positive integer** 1, 2, 3, …​
+
 Examples:
 
 - `assign-sc 2 sc/Publicity`
@@ -180,6 +194,12 @@ Examples:
 Removes a member from their assigned subcommittee.
 
 Format: `unassign-sc INDEX`
+
+- User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
+  first to display members.
+- Unable to unassign when displaying list of subcommittee.
+- The index refers to the index number shown in the displayed list.
+- The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
@@ -208,6 +228,12 @@ Assigns a role to a member. Members can hold multiple roles.
 
 Format: `assign-role INDEX r/ROLE`
 
+- User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
+  first to display members.
+- Unable to assign role when displaying list of subcommittee.
+- The index refers to the index number shown in the displayed list.
+- The index **must be a positive integer** 1, 2, 3, …​
+
 Examples:
 
 - `assign-role 1 r/Treasurer`
@@ -220,6 +246,12 @@ Examples:
 Removes a role from a member.
 
 Format: `delete-role INDEX r/ROLE`
+
+- User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
+  first to display members.
+- Unable to remove a role when displaying list of subcommittee.
+- The index refers to the index number shown in the displayed list.
+- The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
