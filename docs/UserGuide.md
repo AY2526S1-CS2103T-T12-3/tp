@@ -104,7 +104,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [sc/SUBCOMMITTEE] [r/ROLE] ...`
 - The index refers to the index number shown in the displayed member list.
 - The index **must be a positive integer** 1, 2, 3, …​
 - At least **1 out of the 5** fields are compulsory in the command.
-- View cannot be displaying list of subcommittee.
+- User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
+first to edit a member.
+- Unable to edit when displaying list of subcommittee.
 
 Example:
 
@@ -121,7 +123,9 @@ Format: `delete INDEX`
 - Deletes the member at the specified `INDEX`.
 - The index refers to the index number shown in the displayed member list.
 - The index **must be a positive integer** 1, 2, 3, …​
-- View cannot be displaying list of subcommittee.
+- User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
+  first to delete a member.
+- Unable to delete when displaying list of subcommittee.
 
 Examples:
 
@@ -172,7 +176,11 @@ Assigns a member to a subcommittee.
 
 Format: `assign-sc INDEX sc/SUBCOMMITTEE`
 
-- View cannot be displaying the list of subcommittee.
+- User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
+  first to display members.
+- Unable to assign when displaying list of subcommittee.
+- The index refers to the index number shown in the displayed subcommittee list.
+- The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
