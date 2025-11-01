@@ -232,6 +232,8 @@ Format: `assign-role INDEX r/ROLE`
 - User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
   first to display members.
 - Unable to assign role when displaying list of subcommittee.
+- Unable to assign role which member already has
+- Roles are case insensitive
 - The index refers to the index number shown in the displayed list.
 - The index **must be a positive integer** 1, 2, 3, …​
 - User can assign multiple roles for a member at the same time.
