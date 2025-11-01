@@ -18,7 +18,7 @@ import seedu.excolink.model.subcom.Subcom;
  */
 public class SampleDataUtil {
     private static Subcom tech = new Subcom("Tech");
-    private static Subcom uiUx = new Subcom("UI/UX");
+    private static Subcom design = new Subcom("Design");
     private static Subcom brandingAndMarketing = new Subcom("Branding & Marketing");
 
     public static Person[] getSamplePersons() {
@@ -28,7 +28,7 @@ public class SampleDataUtil {
                     tech),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                     getRoleSet("UI designer"),
-                    uiUx),
+                    design),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                     getRoleSet("branding", "marketing"),
                     brandingAndMarketing),
@@ -37,7 +37,7 @@ public class SampleDataUtil {
                     tech),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                     getRoleSet("designer"),
-                    uiUx),
+                    design),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     getRoleSet("marketing"),
                     brandingAndMarketing)
@@ -50,7 +50,7 @@ public class SampleDataUtil {
             sampleExcoLink.addPerson(samplePerson);
         }
         sampleExcoLink.addSubcom(tech);
-        sampleExcoLink.addSubcom(uiUx);
+        sampleExcoLink.addSubcom(design);
         sampleExcoLink.addSubcom(brandingAndMarketing);
         return sampleExcoLink;
     }

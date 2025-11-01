@@ -12,12 +12,12 @@ import seedu.excolink.model.subcom.Subcom;
 public class TypicalSubcoms {
 
     public static final Subcom TECH = new Subcom("Tech");
-    public static final Subcom UI_UX = new Subcom("UI/UX");
+    public static final Subcom DESIGN = new Subcom("Design");
     public static final Subcom BRANDING_AND_MARKETING = new Subcom("Branding & Marketing");
 
     private TypicalSubcoms() {} // prevents instantiation
 
     public static List<Subcom> getTypicalSubcoms() {
-        return new ArrayList<>(Arrays.asList(TECH, UI_UX, BRANDING_AND_MARKETING));
+        return new ArrayList<>(Arrays.asList(TECH, DESIGN, BRANDING_AND_MARKETING));
     }
 }
