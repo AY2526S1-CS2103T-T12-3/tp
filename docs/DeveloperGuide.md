@@ -624,6 +624,7 @@ the **Actor** is the `user`, unless specified otherwise)
 - **Mainstream OS**: Windows, Linux, Unix, MacOS
 - **Member**: A person in the club whose record is stored in the system. Includes basic details like name, phone number,
   email.
+- **PD**: Project Director, person who oversees one or more major events or projects within the club
 - **New Exco Member**: New executive committee member of the club. The member is new to the system.
 - **Role**: The responsibility assigned to a member. Members can have multiple roles.
 - **Subcommittee**: A smaller group under the main Exco, can be responsible for specific functions. Members may belong
