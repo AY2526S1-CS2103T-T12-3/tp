@@ -227,6 +227,25 @@ Examples:
 
 ---
 
+### Locating members by name : `find`
+
+Finds members whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+- The search is case-insensitive, e.g `tan` will match `Tan`
+- The order of the keyword does not matter e.g `tan John` will match `John Tan`
+- Only the name is searched.
+- Only full words will be matched e.g `Tim` will not match `Tims`
+- Persons matching at least one keyword will be returned (i.e `OR` search). 
+e.g `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples: 
+
+- `find John` returns `john` and `John Doe`
+- `find tim tom` returns `Tim Tan`, `Tom Lee`
+
+---
 ### Exiting the program : `exit`
 
 Exits the program.
