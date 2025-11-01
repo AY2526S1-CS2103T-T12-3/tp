@@ -431,7 +431,8 @@ the **Actor** is the `user`, unless specified otherwise)
 **MSS:**
 
 1. User enters command to delete subcommittee.
-2. System deletes the subcommittee and displays success message.  
+2. System unassigns all members in the subcommittee.
+3. System deletes the subcommittee and displays success message.  
    Use case ends.
 
 **Extensions:**
