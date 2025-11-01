@@ -320,17 +320,16 @@ the **Actor** is the `user`, unless specified otherwise)
 
 **Extensions:**
 
-- 1a. System detects duplicate member to be added.
-    - 1a1. System displays error.
-    - 1a2. User enters new data.
-    - Steps 1a1-1a2 are repeated until the data entered is correct.  
-      Use case ends.
-- 1b. System detects missing or invalid parameter.
+- 1a. System detects missing or invalid parameter.
+  - 1a1. System displays error.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered is correct.  
+    Use case ends.
+- 1b. System detects duplicate member to be added.
   - 1b1. System displays error.
   - 1b2. User enters new data.
   - Steps 1b1-1b2 are repeated until the data entered is correct.  
     Use case ends.
-
 
 **Guarantees:**
 
