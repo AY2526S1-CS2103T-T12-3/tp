@@ -8,14 +8,9 @@ import static seedu.excolink.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable
  */
 public class Subcom {
-    public static final String MESSAGE_CONSTRAINTS = "Subcommittee names can take any values, "
-            + "and it should not be blank";
-
-    /*
-     * The first character of the subcommittee name must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "\\S.*";
+    public static final String MESSAGE_CONSTRAINTS = "Subcommittee names should only contain letters, numbers, spaces, "
+            + "hyphens, ampersands, and parentheses, and cannot be blank";
+    public static final String VALIDATION_REGEX = "^[A-Za-z0-9&()\\- ]+$";
     public static final Subcom NOSUBCOM = new NoSubcom();
     public static final String NOSUBCOM_STRING = "No subcommittee";
 
