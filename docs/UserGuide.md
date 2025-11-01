@@ -98,12 +98,15 @@ Format: `list`
 
 Edits the specified field/s of a specified member from ExcoLink.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [sc/SUBCOMMITTEE] [r/ROLE] ...`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [sc/SUBCOMMITTEE] [r/ROLE]...`
 
 - Edits the specified `FIELD` of the member at the specified `INDEX`.
 - The index refers to the index number shown in the displayed member list.
 - The index **must be a positive integer** 1, 2, 3, …​
 - At least **1 out of the 5** fields are compulsory in the command.
+- User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
+first to edit a member.
+- Unable to edit when displaying list of subcommittee.
 
 Example:
 
@@ -120,6 +123,9 @@ Format: `delete INDEX`
 - Deletes the member at the specified `INDEX`.
 - The index refers to the index number shown in the displayed member list.
 - The index **must be a positive integer** 1, 2, 3, …​
+- User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
+  first to delete a member.
+- Unable to delete when displaying list of subcommittee.
 
 Examples:
 
@@ -153,9 +159,11 @@ Deletes the specified subcommittee.
 
 Format: `delete-sc INDEX`
 
+- User has to run `list-sc` command first to get the view of the list of subcommittees.
 - Deletes the subcommittee at the specified `INDEX`.
 - The index refers to the index number shown in the displayed subcommittee list.
 - The index **must be a positive integer** 1, 2, 3, …​
+- Members that were in the subcommittee will be be removed from the subcommittee. 
 
 Examples:
 
@@ -169,6 +177,12 @@ Assigns a member to a subcommittee.
 
 Format: `assign-sc INDEX sc/SUBCOMMITTEE`
 
+- User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
+  first to display members.
+- Unable to assign when displaying list of subcommittee.
+- The index refers to the index number shown in the displayed list.
+- The index **must be a positive integer** 1, 2, 3, …​
+
 Examples:
 
 - `assign-sc 2 sc/Publicity`
@@ -180,6 +194,12 @@ Examples:
 Removes a member from their assigned subcommittee.
 
 Format: `unassign-sc INDEX`
+
+- User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
+  first to display members.
+- Unable to unassign when displaying list of subcommittee.
+- The index refers to the index number shown in the displayed list.
+- The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
@@ -208,10 +228,18 @@ Assigns a role to a member. Members can hold multiple roles.
 
 Format: `assign-role INDEX r/ROLE`
 
+- User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
+  first to display members.
+- Unable to assign role when displaying list of subcommittee.
+- The index refers to the index number shown in the displayed list.
+- The index **must be a positive integer** 1, 2, 3, …​
+- User can assign multiple roles for a member at the same time.
+
 Examples:
 
 - `assign-role 1 r/Treasurer`
 - `assign-role 3 r/President`
+- `assign-role 2 r/Treasurer r/Secretary`
 
 ---
 
@@ -221,9 +249,39 @@ Removes a role from a member.
 
 Format: `delete-role INDEX r/ROLE`
 
+- User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
+  first to display members.
+- Unable to remove a role when displaying list of subcommittee.
+- The index refers to the index number shown in the displayed list.
+- The index **must be a positive integer** 1, 2, 3, …​
+- User can delete multiple roles for a member at the same time.
+- If user wishes to remove multiple roles from a member, the member has to have all roles 
+else the command will not go through.
+
 Examples:
 
 - `delete-role 1 r/Treasurer`
+- `delete-role 3 r/Secretary r/Treasurer`
+
+---
+
+### Locating members by name : `find`
+
+Finds members whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+- The search is case-insensitive, e.g `tan` will match `Tan`
+- The order of the keyword does not matter e.g `tan John` will match `John Tan`
+- Only the name is searched.
+- Only full words will be matched e.g `Tim` will not match `Tims`
+- Members matching at least one keyword will be returned (i.e `OR` search). 
+e.g `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples: 
+
+- `find John` returns `john` and `John Doe`
+- `find tim tom` returns `Tim Tan`, `Tom Lee`
 
 ---
 
@@ -277,9 +335,9 @@ Furthermore, certain edits can cause the ExcoLink to behave in unexpected ways (
 
 | Action                                | Format, Examples                                                                           |
 | ------------------------------------- | ------------------------------------------------------------------------------------------ |
-| **Add Member**                        | `add n/NAME p/PHONE e/EMAIL` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com`    |
+| **Add Member**                        | `add n/NAME p/PHONE e/EMAIL [sc/SUBCOM] [r/ROLE]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com`    |
 | **Delete Member**                     | `delete INDEX` <br> e.g., `delete 1`                                                       |
-| **Edit Member**                       | `edit INDEX n/NAME p/PHONE e/EMAIL r/ROLE sc/SUBCOMMITTEE` <br> e.g., `edit 1 r/team lead` |
+| **Edit Member**                       | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [sc/SUBCOMMITTEE] [r/ROLE]...` <br> e.g., `edit 1 r/team lead` |
 | **List Members**                      | `list`                                                                                     |
 | **Add Subcommittee**                  | `add-sc sc/SUBCOMMITTEE` <br> e.g., `add-sc sc/Publicity`                                  |
 | **Delete Subcommittee**               | `delete-sc INDEX` <br> e.g., `delete-sc 1`                                                 |
