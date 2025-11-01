@@ -227,6 +227,13 @@ Examples:
 
 ---
 
+### Clearing all entries: `clear`
+Clears all entries from the app.
+
+Format: `clear`
+
+---
+
 ### Exiting the program : `exit`
 
 Exits the program.
