@@ -41,7 +41,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/excoLink-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/excoLink-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com//AY2526S1-CS2103T-T12-3/tp/tree/master/src/main/java/seedu/excolink/Main.java) and [`MainApp`](https://github.com//AY2526S1-CS2103T-T12-3/tp/tree/master/src/main/java/seedu/excolink/MainApp.java)) is in charge of the app launch and shut down.
 
 - At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 - At shut down, it shuts down the other components and invokes cleanup methods where necessary.
@@ -74,13 +74,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/excoLink-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com//AY2526S1-CS2103T-T12-3/tp/tree/master/src/main/java/seedu/excolink/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/excoLink-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/excoLink-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com//AY2526S1-CS2103T-T12-3/tp/tree/master/src/main/java/seedu/excolink/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com//AY2526S1-CS2103T-T12-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -91,7 +91,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/excoLink-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com//AY2526S1-CS2103T-T12-3/tp/tree/master/src/main/java/seedu/excolink/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -123,7 +123,7 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/excoLink-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com//AY2526S1-CS2103T-T12-3/tp/tree/master/src/main/java/seedu/excolink/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -142,7 +142,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/excoLink-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com//AY2526S1-CS2103T-T12-3/tp/tree/master/src/main/java/seedu/excolink/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -180,11 +180,11 @@ Step 1. The user launches the application for the first time. The `VersionedExco
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the app. The `delete` command calls `Model#commitExcoLink()`, causing the modified state of the app after the `delete 5` command executes to be saved in the `excoLinkStateList`, and the `currentStatePointer` is shifted to the newly inserted app state.
+Step 2. The user executes `delete 5` command to delete the 5th member in the app. The `delete` command calls `Model#commitExcoLink()`, causing the modified state of the app after the `delete 5` command executes to be saved in the `excoLinkStateList`, and the `currentStatePointer` is shifted to the newly inserted app state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitExcoLink()`, causing another modified app state to be saved into the `excoLinkStateList`.
+Step 3. The user executes `add n/David …​` to add a new member. The `add` command also calls `Model#commitExcoLink()`, causing another modified app state to be saved into the `excoLinkStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -192,7 +192,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoExcoLink()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous app state, and restores the app to that state.
+Step 4. The user now decides that adding the member was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoExcoLink()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous app state, and restores the app to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -242,7 +242,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 - **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  - Pros: Will use less memory (e.g. for `delete`, just save the member being deleted).
   - Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -610,7 +610,7 @@ the **Actor** is the `user`, unless specified otherwise)
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 members without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Member attributes (e.g., name, role, subcom) must be persistent and retained until explicitly deleted by an admin.
 5.  All data must be stored in a json file
@@ -656,17 +656,17 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location are retained.
 
-### Deleting a person
+### Deleting a member
 
-1. Deleting a person while all persons are being shown
+1. Deleting a member while all members are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all members using the `list` command. Multiple members in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No member is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
