@@ -16,7 +16,7 @@ public class SubcomTest {
 
     @Test
     public void constructor_invalidSubcom_throwsIllegalArgumentException() {
-        String invalidName = " ";
+        String invalidName = "";
         assertThrows(IllegalArgumentException.class, () -> new Subcom(invalidName));
     }
 
@@ -26,14 +26,15 @@ public class SubcomTest {
         assertThrows(NullPointerException.class, () -> Subcom.isValidSubcomName(null));
 
         // invalid
-        assertFalse(Subcom.isValidSubcomName(" "));
+        assertFalse(Subcom.isValidSubcomName(""));
         assertFalse(Subcom.isValidSubcomName("\t"));
+        assertFalse(Subcom.isValidSubcomName("!@#$%"));
+        assertFalse(Subcom.isValidSubcomName("ma r/keting"));
 
         // valid
         assertTrue(Subcom.isValidSubcomName("Publicity"));
         assertTrue(Subcom.isValidSubcomName("Logistics Committee"));
         assertTrue(Subcom.isValidSubcomName("123"));
-        assertTrue(Subcom.isValidSubcomName("!@#$%"));
     }
 
     @Test
