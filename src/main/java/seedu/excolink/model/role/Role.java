@@ -10,8 +10,8 @@ import static seedu.excolink.commons.util.AppUtil.checkArgument;
 public class Role {
 
     public static final String MESSAGE_CONSTRAINTS = "Role names should only contain letters, numbers, spaces, "
-            + "hyphens, ampersands, and parentheses, and cannot be blank";
-    public static final String VALIDATION_REGEX = "^[A-Za-z0-9&()\\- ]+$";
+            + "hyphens, ampersands, underscore, and parentheses, and cannot be blank";
+    public static final String VALIDATION_REGEX = "^[A-Za-z0-9_&()\\- ]+$";
 
     public final String roleName;
 
