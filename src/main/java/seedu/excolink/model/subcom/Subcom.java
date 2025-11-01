@@ -10,7 +10,8 @@ import static seedu.excolink.commons.util.AppUtil.checkArgument;
 public class Subcom {
     public static final String MESSAGE_CONSTRAINTS = "Subcommittee names should only contain letters, numbers, spaces, "
             + "hyphens, ampersands, and parentheses, and cannot be blank";
-    public static final String VALIDATION_REGEX = "^[A-Za-z0-9&()\\- ]+$";
+    public static final String VALIDATION_REGEX = "^(?!\\s*$)[A-Za-z0-9&()\\- ]+$";
+
     public static final Subcom NOSUBCOM = new NoSubcom();
     public static final String NOSUBCOM_STRING = "No subcommittee";
 
