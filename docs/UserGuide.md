@@ -163,6 +163,7 @@ Format: `delete-sc INDEX`
 - Deletes the subcommittee at the specified `INDEX`.
 - The index refers to the index number shown in the displayed subcommittee list.
 - The index **must be a positive integer** 1, 2, 3, …​
+- Members that were in the subcommittee will be be removed from the subcommittee. 
 
 Examples:
 
