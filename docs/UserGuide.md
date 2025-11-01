@@ -104,6 +104,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [sc/SUBCOMMITTEE] [r/ROLE]...`
 - The index refers to the index number shown in the displayed member list.
 - The index **must be a positive integer** 1, 2, 3, …​
 - At least **1 out of the 5** fields are compulsory in the command.
+- For editing roles, the edit is non-cumulative, so previous roles would be removed eg. PersonA has the role role1 and role2. Running the command `edit 1 r/role3` would lead to PersonA only having role3
 - User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
 first to edit a member.
 - Unable to edit when displaying list of subcommittee.
