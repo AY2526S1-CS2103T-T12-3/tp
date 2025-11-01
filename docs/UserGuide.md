@@ -98,7 +98,7 @@ Format: `list`
 
 Edits the specified field/s of a specified member from ExcoLink.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [sc/SUBCOMMITTEE] [r/ROLE] ...`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [sc/SUBCOMMITTEE] [r/ROLE]...`
 
 - Edits the specified `FIELD` of the member at the specified `INDEX`.
 - The index refers to the index number shown in the displayed member list.
@@ -321,9 +321,9 @@ Furthermore, certain edits can cause the ExcoLink to behave in unexpected ways (
 
 | Action                                | Format, Examples                                                                           |
 | ------------------------------------- | ------------------------------------------------------------------------------------------ |
-| **Add Member**                        | `add n/NAME p/PHONE e/EMAIL` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com`    |
+| **Add Member**                        | `add n/NAME p/PHONE e/EMAIL [sc/SUBCOM] [r/ROLE]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com`    |
 | **Delete Member**                     | `delete INDEX` <br> e.g., `delete 1`                                                       |
-| **Edit Member**                       | `edit INDEX n/NAME p/PHONE e/EMAIL r/ROLE sc/SUBCOMMITTEE` <br> e.g., `edit 1 r/team lead` |
+| **Edit Member**                       | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [sc/SUBCOMMITTEE] [r/ROLE]...` <br> e.g., `edit 1 r/team lead` |
 | **List Members**                      | `list`                                                                                     |
 | **Add Subcommittee**                  | `add-sc sc/SUBCOMMITTEE` <br> e.g., `add-sc sc/Publicity`                                  |
 | **Delete Subcommittee**               | `delete-sc INDEX` <br> e.g., `delete-sc 1`                                                 |
