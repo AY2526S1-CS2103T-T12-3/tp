@@ -50,7 +50,7 @@ public class Role {
 
     @Override
     public int hashCode() {
-        return roleName.hashCode();
+        return roleName.toLowerCase().hashCode();
     }
 
     /**

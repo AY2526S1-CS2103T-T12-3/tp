@@ -79,6 +79,8 @@ Adds a member to ExcoLink.
 
 Format: `add n/NAME p/PHONE e/EMAIL [sc/SUBCOM] [r/ROLE]...`
 
+- Unable to add member with the same name(case-insensitive)
+
 Examples:
 
 - `add n/John Doe p/98765432 e/johnd@example.com`
@@ -104,6 +106,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [sc/SUBCOMMITTEE] [r/ROLE]...`
 - The index refers to the index number shown in the displayed member list.
 - The index **must be a positive integer** 1, 2, 3, …​
 - At least **1 out of the 5** fields are compulsory in the command.
+- For editing roles, the edit is non-cumulative, so previous roles would be removed eg. PersonA has the role role1 and role2. Running the command `edit 1 r/role3` would lead to PersonA only having role3
 - User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
 first to edit a member.
 - Unable to edit when displaying list of subcommittee.
@@ -136,6 +139,8 @@ Examples:
 ### Creating a subcommittee : `add-sc`
 
 Creates a new subcommittee.
+Subcommittee names can only contain letters, numbers, spaces, hyphens (`-`), ampersands (`&`), and parentheses (`(` and `)`).
+Subcommittee names cannot be blank.
 
 Format: `add-sc sc/SUBCOMMITTEE`
 
@@ -231,6 +236,8 @@ Format: `assign-role INDEX r/ROLE`
 - User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
   first to display members.
 - Unable to assign role when displaying list of subcommittee.
+- Unable to assign role which member already has
+- Roles are case insensitive
 - The index refers to the index number shown in the displayed list.
 - The index **must be a positive integer** 1, 2, 3, …​
 - User can assign multiple roles for a member at the same time.
