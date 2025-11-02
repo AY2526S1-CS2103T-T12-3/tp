@@ -26,8 +26,9 @@ public class DeleteRoleCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a role from the member identified by the index.\n"
-            + "Parameters: INDEX (must be a positive integer) r/ROLE\n"
-            + "Example: " + COMMAND_WORD + " 1 r/Team Lead";
+            + "Parameters: INDEX (must be a positive integer) r/ROLE...\n"
+            + "Example: " + COMMAND_WORD + " 1 r/Team Lead"
+            + "Example: " + COMMAND_WORD + " 1 r/Team Lead r/Treasurer";
 
     public static final String MESSAGE_SUCCESS = "%1$s unassigned role: %2$s";
     public static final String MESSAGE_ROLE_NOT_FOUND = "Member does not have the role '%1$s'";

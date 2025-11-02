@@ -231,7 +231,7 @@ Examples:
 
 Assigns a role to a member. Members can hold multiple roles.
 
-Format: `assign-role INDEX r/ROLE`
+Format: `assign-role INDEX r/ROLE...`
 
 - User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
   first to display members.
@@ -252,9 +252,9 @@ Examples:
 
 ### Removing a role from a member : `delete-role`
 
-Removes a role from a member.
+Removes a role from a member. User can delete multiple roles at once.
 
-Format: `delete-role INDEX r/ROLE`
+Format: `delete-role INDEX r/ROLE...`
 
 - User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
   first to display members.

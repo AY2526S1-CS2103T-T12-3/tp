@@ -23,8 +23,9 @@ public class AssignRoleCommand extends Command {
     public static final String COMMAND_WORD = "assign-role";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Assigns a role to the member identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer) r/ROLE\n"
-            + "Example: " + COMMAND_WORD + " 1 r/Treasurer";
+            + "Parameters: INDEX (must be a positive integer) r/ROLE...\n"
+            + "Example: " + COMMAND_WORD + " 1 r/Treasurer"
+            + "Example: " + COMMAND_WORD + " 1 r/Team Lead r/Treasurer";
 
     public static final String MESSAGE_ASSIGN_ROLE_SUCCESS = "%1$s assigned role(s): %2$s";
     public static final String MESSAGE_DUPLICATE_ROLE = "%1$s has already been assigned role: %2$s";
