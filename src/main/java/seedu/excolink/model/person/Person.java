@@ -91,12 +91,14 @@ public class Person {
         if (otherPerson == this) {
             return true;
         }
+        if(otherPerson == null) {
+            return false;
+        }
 
         String thisPersonName = getName().fullName.replaceAll("\\s+", " ").toLowerCase();
         String otherPersonName = otherPerson.getName().fullName.replaceAll("\\s+", " ").toLowerCase();
 
-        return otherPerson != null
-                && otherPersonName.equals(thisPersonName);
+        return otherPersonName.equals(thisPersonName);
     }
 
     /**
