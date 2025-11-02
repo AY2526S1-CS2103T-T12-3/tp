@@ -43,7 +43,7 @@ public class ListSubcomMembersCommand extends Command {
 
         try {
             Subcom originalSubcom = model.findSubcom(subcomToList);
-            model.updateFilteredPersonList(person -> person.getSubcom().equals(subcomToList));
+            model.updateFilteredPersonList(person -> person.getSubcom().equals(originalSubcom));
             model.setDisplayEntity(DisplayEntity.PERSON);
             return new CommandResult(String.format(MESSAGE_SUCCESS, originalSubcom.toString()));
         } catch (SubcomNotFoundException e) {

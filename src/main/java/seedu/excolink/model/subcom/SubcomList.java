@@ -80,8 +80,12 @@ public class SubcomList implements Iterable<Subcom> {
      * @return The matched subcom.
      */
     public Subcom getSubcomByName(String name) throws SubcomNotFoundException {
+        requireNonNull(name);
+
+        String trimmedInput = name.trim().replaceAll("\\s+", " ");
         for (Subcom subcom : internalList) {
-            if (subcom.getName().equalsIgnoreCase(name)) {
+            String normalizedSubcomName = subcom.getName().trim().replaceAll("\\s+", " ");
+            if (normalizedSubcomName.equalsIgnoreCase(trimmedInput)) {
                 return subcom;
             }
         }
