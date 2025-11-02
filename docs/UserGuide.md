@@ -231,6 +231,8 @@ Examples:
 
 Assigns a role to a member. Members can hold multiple roles.
 
+Users can add multiple roles at once.
+
 Format: `assign-role INDEX r/ROLE...`
 
 - User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command

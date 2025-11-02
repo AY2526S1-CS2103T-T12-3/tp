@@ -25,7 +25,7 @@ public class DeleteRoleCommand extends Command {
     public static final String COMMAND_WORD = "delete-role";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a role from the member identified by the index.\n"
+            + ": Deletes one or more roles from the member identified by the index.\n"
             + "Parameters: INDEX (must be a positive integer) r/ROLE...\n"
             + "Example: " + COMMAND_WORD + " 1 r/Team Lead"
             + "Example: " + COMMAND_WORD + " 1 r/Team Lead r/Treasurer";
