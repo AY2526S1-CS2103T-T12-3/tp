@@ -26,7 +26,7 @@ public class AssignSubcomCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer)"
-            + "[" + PREFIX_SUBCOM + "SUBCOMMITTEE]\n"
+            + PREFIX_SUBCOM + "SUBCOMMITTEE\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_SUBCOM + "publicity";
 

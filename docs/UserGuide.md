@@ -77,7 +77,7 @@ Format: `help`
 
 Adds a member to ExcoLink.
 
-Format: `add n/NAME p/PHONE e/EMAIL [sc/SUBCOM] [r/ROLE]...`
+Format: `add n/NAME p/PHONE e/EMAIL [sc/SUBCOMMITEE] [r/ROLE]...`
 
 - Unable to add member with the same name(case-insensitive)
 
@@ -231,7 +231,9 @@ Examples:
 
 Assigns a role to a member. Members can hold multiple roles.
 
-Format: `assign-role INDEX r/ROLE`
+Users can add multiple roles at once.
+
+Format: `assign-role INDEX r/ROLE...`
 
 - User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
   first to display members.
@@ -252,9 +254,9 @@ Examples:
 
 ### Removing a role from a member : `delete-role`
 
-Removes a role from a member.
+Removes a role from a member. User can delete multiple roles at once.
 
-Format: `delete-role INDEX r/ROLE`
+Format: `delete-role INDEX r/ROLE...`
 
 - User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
   first to display members.
@@ -340,22 +342,22 @@ Furthermore, certain edits can cause the ExcoLink to behave in unexpected ways (
 
 ## Command summary
 
-| Action                                | Format, Examples                                                                           |
-| ------------------------------------- | ------------------------------------------------------------------------------------------ |
-| **Add Member**                        | `add n/NAME p/PHONE e/EMAIL [sc/SUBCOM] [r/ROLE]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com`    |
-| **Delete Member**                     | `delete INDEX` <br> e.g., `delete 1`                                                       |
-| **Edit Member**                       | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [sc/SUBCOMMITTEE] [r/ROLE]...` <br> e.g., `edit 1 r/team lead` |
-| **List Members**                      | `list`                                                                                     |
-| **Add Subcommittee**                  | `add-sc sc/SUBCOMMITTEE` <br> e.g., `add-sc sc/Publicity`                                  |
-| **Delete Subcommittee**               | `delete-sc INDEX` <br> e.g., `delete-sc 1`                                                 |
-| **List Subcommittees**                | `list-sc`                                                                                  |
-| **Assign Member to Subcommittee**     | `assign-sc INDEX sc/SUBCOMMITTEE` <br> e.g., `assign-sc 1 sc/Tech`                         |
-| **Unassign Member from Subcommittee** | `unassign-sc INDEX` <br> e.g., `unassign-sc 1`                                             |
-| **List Members in Subcommittee**      | `list-sc-members sc/SUBCOMMITTEE` <br> e.g., `list-sc-members sc/Publicity`                |
-| **Assign Role to Member**             | `assign-role INDEX r/ROLE` <br> e.g., `assign-role 1 r/President`                          |
-| **Delete Role from Member**           | `delete-role INDEX r/ROLE` <br> e.g., `delete-role 1 r/Treasurer`                          |
-| **Help**                              | `help`                                                                                     |
-| **Exit**                              | `exit`                                                                                     |
+| Action                                | Format, Examples                                                                                                |
+| ------------------------------------- |-----------------------------------------------------------------------------------------------------------------|
+| **Add Member**                        | `add n/NAME p/PHONE e/EMAIL [sc/SUBCOMMITEE] [r/ROLE]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com` |
+| **Delete Member**                     | `delete INDEX` <br> e.g., `delete 1`                                                                            |
+| **Edit Member**                       | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [sc/SUBCOMMITTEE] [r/ROLE]...` <br> e.g., `edit 1 r/team lead`         |
+| **List Members**                      | `list`                                                                                                          |
+| **Add Subcommittee**                  | `add-sc sc/SUBCOMMITTEE` <br> e.g., `add-sc sc/Publicity`                                                       |
+| **Delete Subcommittee**               | `delete-sc INDEX` <br> e.g., `delete-sc 1` must obtain subcom index first using `list-sc`                       |
+| **List Subcommittees**                | `list-sc`                                                                                                       |
+| **Assign Member to Subcommittee**     | `assign-sc INDEX sc/SUBCOMMITTEE` <br> e.g., `assign-sc 1 sc/Tech`                                              |
+| **Unassign Member from Subcommittee** | `unassign-sc INDEX` <br> e.g., `unassign-sc 1`                                                                  |
+| **List Members in Subcommittee**      | `list-sc-members sc/SUBCOMMITTEE` <br> e.g., `list-sc-members sc/Publicity`                                     |
+| **Assign Role to Member**             | `assign-role INDEX r/ROLE` <br> e.g., `assign-role 1 r/President`                                               |
+| **Delete Role from Member**           | `delete-role INDEX r/ROLE` <br> e.g., `delete-role 1 r/Treasurer`                                               |
+| **Help**                              | `help`                                                                                                          |
+| **Exit**                              | `exit`                                                                                                          |
 
 ---
 
