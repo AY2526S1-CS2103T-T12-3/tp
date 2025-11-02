@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.excolink.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.excolink.logic.Messages.MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,9 +25,10 @@ public class DeleteRoleCommand extends Command {
     public static final String COMMAND_WORD = "delete-role";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a role from the member identified by the index.\n"
-            + "Parameters: INDEX (must be a positive integer) r/ROLE\n"
-            + "Example: " + COMMAND_WORD + " 1 r/Team Lead";
+            + ": Deletes one or more roles from the member identified by the index.\n"
+            + "Parameters: INDEX (must be a positive integer) r/ROLE...\n"
+            + "Example: " + COMMAND_WORD + " 1 r/Team Lead"
+            + "Example: " + COMMAND_WORD + " 1 r/Team Lead r/Treasurer";
 
     public static final String MESSAGE_SUCCESS = "%1$s unassigned role: %2$s";
     public static final String MESSAGE_ROLE_NOT_FOUND = "Member does not have the role '%1$s'";
@@ -72,12 +74,18 @@ public class DeleteRoleCommand extends Command {
 
         Set<Role> existingRoles = personToEdit.getRoles();
         Set<Role> updatedRoles = new HashSet<>(existingRoles);
+        List<String> missingRolesString = new ArrayList<>();
 
         for (Role roleToDelete: rolesToDelete) {
             if (!existingRoles.contains(roleToDelete)) {
-                throw new CommandException(String.format(MESSAGE_ROLE_NOT_FOUND, roleToDelete));
+                missingRolesString.add(roleToDelete.toString());
             }
             updatedRoles.remove(roleToDelete);
+        }
+
+        if (!missingRolesString.isEmpty()) {
+            throw new CommandException(String.format(MESSAGE_ROLE_NOT_FOUND,
+                    String.join(", ", missingRolesString)));
         }
 
         Person editedPerson = new Person(
