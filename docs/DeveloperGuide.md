@@ -621,6 +621,7 @@ the **Actor** is the `user`, unless specified otherwise)
 
 - **CLI**: (Command Line Interface) A text based interface where users interact with the system using commands.
 - **Exco**: Executive committee of the club. Includes all members in leadership or administrative roles.
+- **GUI**: (Graphical User Interface) A visual interface that allows users to use software through graphical elements like buttons, icons, and windows.
 - **Mainstream OS**: Windows, Linux, Unix, MacOS
 - **Member**: A person in the club whose record is stored in the system. Includes basic details like name, phone number,
   email.
