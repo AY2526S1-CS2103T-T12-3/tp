@@ -91,7 +91,7 @@ public class Person {
         if (otherPerson == this) {
             return true;
         }
-        if(otherPerson == null) {
+        if (otherPerson == null) {
             return false;
         }
 
