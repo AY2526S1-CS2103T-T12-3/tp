@@ -240,16 +240,11 @@ The following activity diagram summarizes what happens when a user executes a ne
   - Pros: Easy to implement.
   - Cons: May have performance issues in terms of memory usage.
 
-  - **Alternative 2:** Individual command knows how to undo/redo by
-    itself.
-    - Pros: Will use less memory (e.g. for `delete`, just save the member being deleted).
-    - Cons: We must ensure that the implementation of each individual command are correct.
+- **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+  - Pros: Will use less memory (e.g. for `delete`, just save the member being deleted).
+  - Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 ---
 
