@@ -44,14 +44,14 @@ Given below is a quick overview of main components and how they interact with ea
 **`Main`** (consisting of classes [`Main`](https://github.com//AY2526S1-CS2103T-T12-3/tp/tree/master/src/main/java/seedu/excolink/Main.java) and [`MainApp`](https://github.com//AY2526S1-CS2103T-T12-3/tp/tree/master/src/main/java/seedu/excolink/MainApp.java)) is in charge of the app launch and shut down.
 
 - At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
-  - At shut down, it shuts down the other components and invokes cleanup methods where necessary.
+- At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
 The bulk of the app's work is done by the following four components:
 
 - [**`UI`**](#ui-component): The UI of the App.
-  - [**`Logic`**](#logic-component): The command executor.
-  - [**`Model`**](#model-component): Holds the data of the App in memory.
-  - [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+- [**`Logic`**](#logic-component): The command executor.
+- [**`Model`**](#model-component): Holds the data of the App in memory.
+- [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
@@ -64,7 +64,7 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 - defines its _API_ in an `interface` with the same name as the Component.
-  - implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -85,9 +85,9 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 The `UI` component,
 
 - executes user commands using the `Logic` component.
-  - listens for changes to `Model` data so that the UI can be updated with the modified data.
-  - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-  - depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- listens for changes to `Model` data so that the UI can be updated with the modified data.
+- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 ### Logic component
 
@@ -107,10 +107,10 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `ExcoLinkParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-   1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-   1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
-      Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
-   1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
+   Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -119,7 +119,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 
 - When called upon to parse a user command, the `ExcoLinkParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ExcoLinkParser` returns back as a `Command` object.
-  - All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
@@ -130,9 +130,9 @@ How the parsing works:
 The `Model` component,
 
 - stores the ExcoLink data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-  - stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-  - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-  - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ExcoLink`, which `Person` references. This allows `ExcoLink` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
@@ -149,8 +149,8 @@ The `Model` component,
 The `Storage` component,
 
 - can save both ExcoLink data and user preference data in JSON format, and read them back into corresponding objects.
-  - inherits from both `ExcoLinkStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-  - depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+- inherits from both `ExcoLinkStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
@@ -251,10 +251,10 @@ The following activity diagram summarizes what happens when a user executes a ne
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 - [Documentation guide](Documentation.md)
-  - [Testing guide](Testing.md)
-  - [Logging guide](Logging.md)
-  - [Configuration guide](Configuration.md)
-  - [DevOps guide](DevOps.md)
+- [Testing guide](Testing.md)
+- [Logging guide](Logging.md)
+- [Configuration guide](Configuration.md)
+- [DevOps guide](DevOps.md)
 
 ---
 
@@ -265,10 +265,10 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Target user profile**:
 
 - exco members of large university clubs or CCAs with many sub-committees and members with different roles
-  - prefer desktop apps over other types
-  - can type fast
-  - prefers typing to mouse interactions
-  - is reasonably comfortable using CLI apps
+- prefer desktop apps over other types
+- can type fast
+- prefers typing to mouse interactions
+- is reasonably comfortable using CLI apps
 
 **Value proposition**: allows exco members to quickly retrieve and manage the information of their members, such as their contact information, sub-committee etc.
 
@@ -642,12 +642,12 @@ the **Actor** is the `user`, unless specified otherwise)
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` installed.
-   2.  Should be able to hold up to 1000 members without a noticeable sluggishness in performance for typical usage.
-      3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-      4.  Member attributes (e.g., name, role, subcom) must be persistent and retained until explicitly deleted by an admin.
-      5.  All data must be stored in a json file
-      6.  The system must respond to user actions (e.g., creating a subcom, editing a user) within 2 seconds under normal load.
-      7.  The system must be usable by a non-technical club leader with less than 1 hour of onboarding/training.
+2.  Should be able to hold up to 1000 members without a noticeable sluggishness in performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Member attributes (e.g., name, role, subcom) must be persistent and retained until explicitly deleted by an admin.
+5.  All data must be stored in a json file
+6.  The system must respond to user actions (e.g., creating a subcom, editing a user) within 2 seconds under normal load.
+7.  The system must be usable by a non-technical club leader with less than 1 hour of onboarding/training.
 
 ### Glossary
 
