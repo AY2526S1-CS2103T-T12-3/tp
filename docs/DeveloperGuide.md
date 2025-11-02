@@ -31,12 +31,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 </div>
 
-<div style="page-break-inside: avoid; page-break-before: auto; page-break-after: auto;">
+### Architecture
 
-### Architecture 
-![Architecture Diagram](images/ArchitectureDiagram.png)
-
-</div>
+<img src="images/ArchitectureDiagram.png" width="280" />
 
 The **_Architecture Diagram_** given above explains the high-level design of the App.
 
