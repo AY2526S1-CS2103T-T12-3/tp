@@ -42,7 +42,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            if (pe.getMessage().equals(MESSAGE_INVALID_INDEX)){
+            if (pe.getMessage().equals(MESSAGE_INVALID_INDEX)) {
                 throw pe;
             } else {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
