@@ -127,6 +127,7 @@ Required view: member list
 - At least **1 out of the 5** fields are compulsory in the command.
 - For editing roles, the edit is non-cumulative, so previous roles would be removed eg. PersonA has the role role1 and role2. Running the command `edit 1 r/role3` would lead to PersonA only having role3
 - Entering `r/` without specifying any roles after it will remove all the member's roles.
+- Entering `sc/` without specifying a subcom after it will remove the member from their current subcom.
 
 Example:
 

@@ -24,6 +24,7 @@ import static seedu.excolink.logic.commands.CommandTestUtil.VALID_SUBCOM_PUBLICI
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOM;
 import static seedu.excolink.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.excolink.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.excolink.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
@@ -217,6 +218,15 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + INVALID_SUBCOM_DESC;
         assertParseFailure(parser, userInput, Subcom.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_subcomWithEmptyString_returnsEmptySubcom() throws Exception {
+        Index targetIndex = INDEX_FIRST;
+        String userInput = targetIndex.getOneBased() + " " + PREFIX_SUBCOM + " ";
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
