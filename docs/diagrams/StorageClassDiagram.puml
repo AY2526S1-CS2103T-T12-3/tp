@@ -41,4 +41,3 @@ JsonSerializableExcoLink --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
 
 @enduml
-
