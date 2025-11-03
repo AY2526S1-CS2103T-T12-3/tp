@@ -719,3 +719,12 @@ testers are expected to do more *exploratory* testing.
     1. Corrupt the `data/excoLink.json` file.
     2. Relaunch the app.
        Expected: The app launches with empty data.
+
+## **Appendix: Planned Enhancements**
+Team size: 5
+
+1. **Modify member name constraints to allow slashes (`/`)**:
+    Currently, member names are not allowed to contain slashes (`/`) as it is used as a command delimiter. However, 
+this prevents adding valid values like `s/o`. We plan to change the command delimiter to another symbol such as
+`=` or `:` which are extremely unlikely, if not impossible, to be a valid part of a name. 
+2. **Implement split-screen view**:
