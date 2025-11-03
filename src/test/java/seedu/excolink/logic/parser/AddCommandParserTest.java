@@ -1,6 +1,9 @@
 package seedu.excolink.logic.parser;
 
 import static seedu.excolink.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.excolink.logic.Messages.MESSAGE_MISSING_EMAIL;
+import static seedu.excolink.logic.Messages.MESSAGE_MISSING_NAME;
+import static seedu.excolink.logic.Messages.MESSAGE_MISSING_PHONE;
 import static seedu.excolink.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.excolink.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.excolink.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
@@ -16,9 +19,6 @@ import static seedu.excolink.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.excolink.logic.commands.CommandTestUtil.ROLE_DESC_MEMBER;
 import static seedu.excolink.logic.commands.CommandTestUtil.ROLE_DESC_TEAM_LEAD;
 import static seedu.excolink.logic.commands.CommandTestUtil.SUBCOM_DESC_PUBLICITY;
-import static seedu.excolink.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.excolink.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.excolink.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_ROLE_MEMBER;
 import static seedu.excolink.logic.commands.CommandTestUtil.VALID_ROLE_TEAM_LEAD;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -128,23 +128,17 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
-
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB,
-                expectedMessage);
+        assertParseFailure(parser, PHONE_DESC_BOB + EMAIL_DESC_BOB,
+                String.format(MESSAGE_MISSING_NAME, AddCommand.MESSAGE_USAGE));
 
         // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB,
-                expectedMessage);
+        assertParseFailure(parser, NAME_DESC_BOB + EMAIL_DESC_BOB,
+                String.format(MESSAGE_MISSING_PHONE, AddCommand.MESSAGE_USAGE));
 
         // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB,
-                expectedMessage);
-
-        // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB,
-                expectedMessage);
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB,
+                String.format(MESSAGE_MISSING_EMAIL, AddCommand.MESSAGE_USAGE));
     }
 
     @Test
