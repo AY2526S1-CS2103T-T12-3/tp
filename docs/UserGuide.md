@@ -61,8 +61,8 @@ optimized for use via a Command Line Interface (CLI)** while still having the be
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 - The GUI can display 2 alternative list views: member list view and subcommittee list view.
-  Certain commands can be run only in member list view, or only in subcommittee list view.
-  The required list view, if any, will be stated in "Required view" under the command format.
+  Certain commands can be run only in member list view, or only in subcommittee list view. In such cases, the user can
+  use `list` to switch to the member list view and `list-sc` to switch to the subcommittee list view.
 
 - In the **member list view**, each member card shows their name, phone number, email, roles, and subcommittee. 
   - If a member **has a subcommittee assigned**, it will be displayed in **bold text**.
