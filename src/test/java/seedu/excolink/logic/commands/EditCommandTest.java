@@ -26,6 +26,7 @@ import seedu.excolink.model.Model;
 import seedu.excolink.model.ModelManager;
 import seedu.excolink.model.UserPrefs;
 import seedu.excolink.model.person.Person;
+import seedu.excolink.model.person.Phone;
 import seedu.excolink.testutil.EditPersonDescriptorBuilder;
 import seedu.excolink.testutil.PersonBuilder;
 import seedu.excolink.ui.DisplayEntity;
@@ -198,4 +199,18 @@ public class EditCommandTest {
         assertEquals(expected, editCommand.toString());
     }
 
+    @Test
+    public void execute_editPhoneWithNonNumericCharacters_success() {
+        Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone("+65-9123-4567").build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST, descriptor);
+
+        try {
+            CommandResult commandResult = editCommand.execute(model);
+            assertTrue(commandResult.getFeedbackToUser().contains(Phone.MESSAGE_NON_NUMERIC_WARNING));
+        } catch (CommandException e) {
+            // Test should not throw exception
+            assertFalse(true);
+        }
+    }
 }
