@@ -92,6 +92,8 @@ Format: `add n/NAME p/PHONE e/EMAIL [sc/SUBCOMMITEE] [r/ROLE]...`
 - `NAME` should only contain alphanumeric characters, apostrophes (`'`), hyphens (`-`) and spaces, and it should not be blank.
 - Email provided must have a domain e.g @gmail, and also a valid Top Level Domain e.g .com, .sg.
 - If currently in the subcommittee list view, running this command will switch to the member list view.
+- Phone number can contain non-numeric characters to allow for different formats of phone number to be added,
+but a warning message will be shown to warn users.
 
 Examples:
 
