@@ -34,7 +34,7 @@ public class PhoneTest {
         assertTrue(Phone.isValidPhone("93121534"));
         assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
         assertTrue(Phone.isValidPhone("+65 9282 1726")); // number with non-numeric character
-        assertTrue(Phone.isValidPhone("91290192 (Personal) 67287652 (Home)")); // Letters and other non-numeric characters
+        assertTrue(Phone.isValidPhone("91290192 (Personal) 67287652 (Home)"));
     }
 
     @Test
