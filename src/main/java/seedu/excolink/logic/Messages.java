@@ -15,6 +15,11 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
+
+    public static final String MESSAGE_MISSING_NAME = "Name is missing! \n%1$s";
+    public static final String MESSAGE_MISSING_PHONE = "Phone number is missing! \n%1$s";
+    public static final String MESSAGE_MISSING_EMAIL = "Email is missing! \n%1$s";
+
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_INVALID_SUBCOM_DISPLAYED_INDEX = "The subcommittee index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
@@ -22,10 +27,10 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_SUBCOM_NAME = "The subcommittee provided does not exist";
     public static final String MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND =
-            "This command cannot be used in the current view. Please switch to the person list first.\n"
+            "This command cannot be used in the current view. Please switch to the member list first.\n"
             + "Command: list";
     public static final String MESSAGE_WRONG_DISPLAY_ENTITY_FOR_SUBCOM_COMMAND =
-            "This command cannot be used in the current view. Please switch to the subcom list first.\n"
+            "This command cannot be used in the current view. Please switch to the subcommittee list first.\n"
             + "Command: list-sc";
 
     /**

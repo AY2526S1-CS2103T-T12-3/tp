@@ -41,7 +41,7 @@ optimized for use via a Command Line Interface (CLI)** while still having the be
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**information_source: Notes about the command format:**<br>
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -59,14 +59,17 @@ optimized for use via a Command Line Interface (CLI)** while still having the be
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-</div>
 
 - The GUI can display 2 alternative list views: member list view and subcommittee list view.
-  Certain commands can be run only in member list view, or only in subcommittee list view.
-  The required list view, if any, will be stated in "Required view" under the command format.
+  Certain commands can be run only in member list view, or only in subcommittee list view. In such cases, the user can
+  use `list` to switch to the member list view and `list-sc` to switch to the subcommittee list view.
+
 - In the **member list view**, each member card shows their name, phone number, email, roles, and subcommittee. 
   - If a member **has a subcommittee assigned**, it will be displayed in **bold text**.
   - If a member **is not assigned to a subcommittee**, **“No Subcommittee”** will appear instead in **unbolded text**.
+
+</div>
+
 ---
 
 ### Viewing help : `help`
@@ -76,8 +79,6 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
-Required view: any
 
 ---
 
@@ -89,6 +90,7 @@ Format: `add n/NAME p/PHONE e/EMAIL [sc/SUBCOMMITEE] [r/ROLE]...`
 
 - Unable to add member with the same name (case-insensitive) and same phone number as an existing member.
 - `NAME` should only contain alphanumeric characters, apostrophes (`'`), hyphens (`-`) and spaces, and it should not be blank.
+- Email provided must have a domain e.g @gmail, and also a valid Top Level Domain e.g .com, .sg.
 - If currently in the subcommittee list view, running this command will switch to the member list view.
 
 Required view: any
