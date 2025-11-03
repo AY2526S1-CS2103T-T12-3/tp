@@ -169,8 +169,8 @@ This section describes some noteworthy details on how certain features are imple
 The proposed undo/redo mechanism is facilitated by `VersionedExcoLink`. It extends `ExcoLink` with an undo/redo history, stored internally as an `excoLinkStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 - `VersionedExcoLink#commit()` — Saves the current ExcoLink book state in its history.
-- `VersionedExcoLink#undo()` — Restores the previous ExcoLink book state from its history.
-- `VersionedExcoLink#redo()` — Restores a previously undone ExcoLink book state from its history.
+  - `VersionedExcoLink#undo()` — Restores the previous ExcoLink book state from its history.
+  - `VersionedExcoLink#redo()` — Restores a previously undone ExcoLink book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitExcoLink()`, `Model#undoExcoLink()` and `Model#redoExcoLink()` respectively.
 
@@ -245,11 +245,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   - Pros: Will use less memory (e.g. for `delete`, just save the member being deleted).
   - Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 ---
 
@@ -316,6 +311,7 @@ the **Actor** is the `user`, unless specified otherwise)
 
 1. User enters command to add member.
 2. System adds the new member and displays success message.
+
    Use case ends.
 
 **Extensions:**
@@ -324,11 +320,13 @@ the **Actor** is the `user`, unless specified otherwise)
   - 1a1. System displays error.
   - 1a2. User enters new data.
   - Steps 1a1-1a2 are repeated until the data entered is correct.  
+  
     Use case ends.
 - 1b. System detects duplicate member to be added.
   - 1b1. System displays error.
   - 1b2. User enters new data.
-  - Steps 1b1-1b2 are repeated until the data entered is correct.  
+  - Steps 1b1-1b2 are repeated until the data entered is correct. 
+    
     Use case ends.
 
 **Guarantees:**
@@ -345,10 +343,13 @@ the **Actor** is the `user`, unless specified otherwise)
 - Member exists
 - UI is displaying member list
 
+  Use case ends.
+
 **MSS:**
 
 1. User enters command to remove member.
 2. System deletes the member and displays success message.
+
    Use case ends.
 
 **Extensions:**
@@ -357,6 +358,7 @@ the **Actor** is the `user`, unless specified otherwise)
   - 1a1. System displays error.
   - 1a2. User enters new data.
   - Steps 1a1-1a2 are repeated until the data entered is correct.  
+  
     Use case ends.
 
 ---
@@ -372,6 +374,7 @@ the **Actor** is the `user`, unless specified otherwise)
 
 1. User enters command to edit a member's information field.
 2. System edits the member's specified field and displays success message.
+
    Use case ends.
 
 **Extensions:**
@@ -380,11 +383,13 @@ the **Actor** is the `user`, unless specified otherwise)
   - 1a1. System displays error.
   - 1a2. User enters new data.
   - Steps 1a1-1a2 are repeated until the data entered is correct.  
+  
     Use case ends.
 - 1b. User enters an invalid information field
   - 1b1. System displays error.
   - 1b2. User enters new data.
-  - Steps 1b1-1b2 are repeated until the data entered is correct.  
+  - Steps 1b1-1b2 are repeated until the data entered is correct. 
+    
     Use case ends.
 
 ---
@@ -395,6 +400,7 @@ the **Actor** is the `user`, unless specified otherwise)
 
 1. User enters command to view all members.
 2. System displays all members.
+
    Use case ends.
 
 ---
@@ -404,7 +410,8 @@ the **Actor** is the `user`, unless specified otherwise)
 **MSS:**
 
 1. User enters command to create subcommittee.
-2. System creates the subcommittee and displays success message.  
+2. System creates the subcommittee and displays success message. 
+
    Use case ends.
 
 **Extensions:**
@@ -413,11 +420,13 @@ the **Actor** is the `user`, unless specified otherwise)
   - 1a1. System displays error.
   - 1a2. User enters new data.
   - Steps 1a1-1a2 are repeated until the data entered is correct.
+  
     Use case ends.
 - 1b. System detects duplicate subcommittee to be added.
   - 1b1. System displays error.
   - 1b2. User enters new data.
   - Steps 1b1-1b2 are repeated until the data entered is correct.
+  
     Use case ends.
 
 ---
@@ -432,6 +441,7 @@ the **Actor** is the `user`, unless specified otherwise)
 
 1. User enters command to delete subcommittee.
 2. System deletes the subcommittee and displays success message.  
+
    Use case ends.
 
 **Extensions:**
@@ -439,7 +449,8 @@ the **Actor** is the `user`, unless specified otherwise)
 - 1a. User enters invalid index.
   - 1a1. System displays error.
   - 1a2. User enters new data.
-  - Steps 1a1-1a2 are repeated until the data entered is correct.  
+  - Steps 1a1-1a2 are repeated until the data entered is correct. 
+  
     Use case ends.
 
 ---
@@ -450,6 +461,7 @@ the **Actor** is the `user`, unless specified otherwise)
 
 1. User enters command to view all subcommittees.
 2. System displays all subcommittees.  
+
    Use case ends.
 
 ---
@@ -466,6 +478,7 @@ the **Actor** is the `user`, unless specified otherwise)
 
 1. User enters command to assign member to subcommittee.
 2. System assigns member to subcommittee and displays success message.  
+
    Use case ends.
 
 **Extensions:**
@@ -473,13 +486,15 @@ the **Actor** is the `user`, unless specified otherwise)
 - 1a. User enters invalid index.
   - 1a1. System displays error.
   - 1a2. User enters new data.
-  - Steps 1a1-1a2 are repeated until the data entered is correct.  
+  - Steps 1a1-1a2 are repeated until the data entered is correct. 
+  
     Use case ends.
 - 1b. User enters an invalid subcommittee name
   - 1a1. System displays error.
   - 1a2. User enters new data.
   - Steps 1a1-1a2 are repeated until the data entered is correct.
-- ***
+    
+    Use case ends.
 
 #### UC9: Unassign Member from Subcommittee
 
@@ -500,7 +515,6 @@ the **Actor** is the `user`, unless specified otherwise)
 **Extensions:**
 
 - 1a. User enters invalid index.
-
   - 1a1. System displays error message.
   - 1a2. User enters new index.
   - Steps 1a1-1a2 are repeated until the data entered is correct.
@@ -508,7 +522,6 @@ the **Actor** is the `user`, unless specified otherwise)
     Use case ends.
 
 - 1b. Member is not in a Subcommittee.
-
   - 1b1. System displays error message.
   - 1b2. User enters new index.
   - Steps 1b1-1b2 are repeated until the data entered is correct.
@@ -534,16 +547,13 @@ the **Actor** is the `user`, unless specified otherwise)
 **Extensions:**
 
 - 1a. User enters invalid subcommittee name.
-
   - 1a1. System displays error.
   - 1a2. User enters new data.
   - Steps 1a1-1a2 are repeated until the data entered is correct.
 
     Use case ends.
-
 - 1b. The specified subcommittee has no members.
-
-  - 1a1. System displays an empty list indicating there are no members currently assigned to this subcommittee.
+  - 1b1. System displays an empty list indicating there are no members currently assigned to this subcommittee. 
 
     Use case ends.
 
@@ -561,22 +571,33 @@ the **Actor** is the `user`, unless specified otherwise)
 1. User enters command to assign member to role.
 2. System assigns the role to the member and displays success message.
 
+   Use case ends.
+
 **Extensions:**
 
 - 1a. User enters invalid index.
   - 1a1. System displays error.
   - 1a2. User enters new data.
   - Steps 1a1-1a2 are repeated until the data entered is correct.  
+    
     Use case ends.
-- 1b. User enters invalid role name.
-  - 1b1. System displays error.
-  - 1b2. User enters new data.
-  - Steps 1b1-1b2 are repeated until the data entered is correct.
+  - 1b. User enters invalid role name.
+    - 1b1. System displays error.
+    - 1b2. User enters new data.
+    - Steps 1b1-1b2 are repeated until the data entered is correct.
+    
     Use case ends.
-- 1c. System detects duplicate role to be added.
-  - 1c1. System displays error.
-  - 1c2. User enters new data.
-  - Steps 1c1-1c2 are repeated until the data entered is correct.
+  - 1c. User enters a role that is a duplicate of the member's existing role.
+    - 1c1. System displays error.
+    - 1c2. User enters new data.
+    - Steps 1c1-1c2 are repeated until the data entered is correct.
+      
+    Use case ends.
+  - 1d. User enters multiple roles, of which one or more are duplicates of the member's existing role(s).
+    - 1d1. System rejects the command with an error and adds none of the roles.
+    - 1d2. User enters new data.
+    - Steps 1d1-1d2 are repeated until the data entered is correct.
+      
     Use case ends.
 
 ---
@@ -586,13 +607,15 @@ the **Actor** is the `user`, unless specified otherwise)
 **Preconditions:**
 
 - Member exists
-- Role exists
-- UI is displaying member list
+  - Role exists
+  - UI is displaying member list
 
 **MSS:**
 
 1. User enters command to remove a role from member.
 2. System deletes the role of the member and displays success message.
+
+   Use case ends.
 
 **Extensions:**
 
@@ -600,12 +623,21 @@ the **Actor** is the `user`, unless specified otherwise)
   - 1a1. System displays error.
   - 1a2. User enters new data.
   - Steps 1a1-1a2 are repeated until the data entered is correct.  
+    
     Use case ends.
 - 1b. System cannot find role to be deleted.
   - 1b1. System displays error.
   - 1b2. User enters new data.
-  - Steps 1b1-b2 are repeated until the data entered is correct.
+  - Steps 1b1-1b2 are repeated until the data entered is correct.
+  
     Use case ends.
+- 1c. User enters multiple roles, with 1 or more invalid roles.
+  - 1c1. System rejects the command with an error and deletes none of the roles.
+  - 1c2. User enters new data.
+  - Steps 1c1-1c2 are repeated until the data entered is correct.
+
+    Use case ends. 
+  
 
 ### Non-Functional Requirements
 
@@ -651,12 +683,12 @@ testers are expected to do more *exploratory* testing.
    1. Double-click the jar file  
       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+   1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+      1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The most recent window size and location are retained.
+      1. Re-launch the app by double-clicking the jar file.<br>
+         Expected: The most recent window size and location are retained.
 
 ### Deleting a member
 
