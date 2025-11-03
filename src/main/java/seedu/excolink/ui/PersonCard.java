@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.excolink.model.person.Person;
+import seedu.excolink.model.subcom.Subcom;
 
 /**
  * A UI component that displays information of a {@code Person}.
@@ -52,8 +53,12 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
         subcom.setText(person.getSubcom().value);
+        subcom.setStyle(person.getSubcom().equals(Subcom.NOSUBCOM) ? "-fx-font-weight: normal;"
+                                                                   : ("-fx-font-weight: bold;"));
+
         person.getRoles().stream()
                 .sorted(Comparator.comparing(role -> role.roleName))
                 .forEach(role -> roles.getChildren().add(new Label(role.roleName)));
     }
+
 }

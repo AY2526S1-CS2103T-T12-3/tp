@@ -64,6 +64,9 @@ optimized for use via a Command Line Interface (CLI)** while still having the be
 - The GUI can display 2 alternative list views: member list view and subcommittee list view.
   Certain commands can be run only in member list view, or only in subcommittee list view.
   The required list view, if any, will be stated in "Required view" under the command format.
+- In the **member list view**, each member card shows their name, phone number, email, roles, and subcommittee. 
+  - If a member **has a subcommittee assigned**, it will be displayed in **bold text**.
+  - If a member **is not assigned to a subcommittee**, **“No Subcommittee”** will appear instead in **unbolded text**.
 ---
 
 ### Viewing help : `help`
@@ -114,7 +117,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [sc/SUBCOMMITTEE] [r/ROLE]...`
 
 Required view: member list
 
-- 
 - Edits the specified `FIELD` of the member at the specified `INDEX`.
 - The index refers to the index number shown in the displayed member list.
 - The index **must be a positive integer** 1, 2, 3, …​
