@@ -61,7 +61,9 @@ optimized for use via a Command Line Interface (CLI)** while still having the be
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-- 
+- The GUI can display 2 alternative list views: member list view and subcommittee list view.
+  Certain commands can be run only in member list view, or only in subcommittee list view.
+  The required list view, if any, will be stated in "Required view" under the command format.
 ---
 
 ### Viewing help : `help`
@@ -71,6 +73,8 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
+Required view: any
 
 ---
 
@@ -82,6 +86,8 @@ Format: `add n/NAME p/PHONE e/EMAIL [sc/SUBCOMMITEE] [r/ROLE]...`
 
 - Unable to add member with the same name(case-insensitive)
 - If currently in the subcommittee list view, running this command will switch to the member list view.
+
+Required view: any
 
 Examples:
 
@@ -96,6 +102,8 @@ Shows a list of all members in ExcoLink.
 
 Format: `list`
 
+Required view: any
+
 ---
 
 ### Editing a member : `edit`
@@ -104,6 +112,9 @@ Edits the specified field/s of a specified member from ExcoLink.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [sc/SUBCOMMITTEE] [r/ROLE]...`
 
+Required view: member list
+
+- 
 - Edits the specified `FIELD` of the member at the specified `INDEX`.
 - The index refers to the index number shown in the displayed member list.
 - The index **must be a positive integer** 1, 2, 3, …​
@@ -125,6 +136,8 @@ Deletes the specified member from ExcoLink.
 
 Format: `delete INDEX`
 
+Required view: member list
+
 - Deletes the member at the specified `INDEX`.
 - The index refers to the index number shown in the displayed member list.
 - The index **must be a positive integer** 1, 2, 3, …​
@@ -144,11 +157,13 @@ Creates a new subcommittee.
 
 Format: `add-sc sc/SUBCOMMITTEE`
 
+Required view: member list
+
 - Subcommittee names can only contain letters, numbers, spaces, hyphens (`-`), ampersands (`&`), and parentheses (`(` and `)`).
 - Subcommittee names cannot be blank.
 - If currently in the member list view, running this command will switch to the subcommittee list view.
 
-- Examples:
+Examples:
 
 - `add-sc sc/Publicity`
 
@@ -160,6 +175,8 @@ Shows a list of all subcommittees in ExcoLink.
 
 Format: `list-sc`
 
+Required view: any
+
 ---
 
 ### Deleting a subcommittee : `delete-sc`
@@ -168,11 +185,12 @@ Deletes the specified subcommittee.
 
 Format: `delete-sc INDEX`
 
-- User has to run `list-sc` command first to get the view of the list of subcommittees.
+Required view: subcommittee list
+
 - Deletes the subcommittee at the specified `INDEX`.
 - The index refers to the index number shown in the displayed subcommittee list.
 - The index **must be a positive integer** 1, 2, 3, …​
-- Members that were in the subcommittee will be be removed from the subcommittee. 
+- Members that were in the subcommittee will be removed from the subcommittee. 
 
 Examples:
 
@@ -186,9 +204,8 @@ Assigns a member to a subcommittee.
 
 Format: `assign-sc INDEX sc/SUBCOMMITTEE`
 
-- User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
-  first to display members.
-- Unable to assign when displaying list of subcommittee.
+Required view: member list
+
 - The index refers to the index number shown in the displayed list.
 - The index **must be a positive integer** 1, 2, 3, …​
 
@@ -204,9 +221,8 @@ Removes a member from their assigned subcommittee.
 
 Format: `unassign-sc INDEX`
 
-- User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
-  first to display members.
-- Unable to unassign when displaying list of subcommittee.
+Required view: member list
+
 - The index refers to the index number shown in the displayed list.
 - The index **must be a positive integer** 1, 2, 3, …​
 
@@ -221,8 +237,9 @@ Examples:
 Shows all members belonging to a specified subcommittee.
 
 Format: `list-sc-members sc/SUBCOMMITTEE`
-
 Alternative Format: `list-scm sc/SUBCOMMITTEE`
+
+Required view: any
 
 Examples:
 
@@ -235,15 +252,12 @@ Examples:
 
 Assigns a role to a member. Members can hold multiple roles.
 
-Users can add multiple roles at once.
-
 Format: `assign-role INDEX r/ROLE...`
 
-- User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
-  first to display members.
-- Unable to assign role when displaying list of subcommittee.
+Required view: member list
+
 - Unable to assign role which member already has
-- Roles are case insensitive
+- Roles are case-insensitive
 - The index refers to the index number shown in the displayed list.
 - The index **must be a positive integer** 1, 2, 3, …​
 - User can assign multiple roles for a member at the same time.
@@ -258,13 +272,12 @@ Examples:
 
 ### Removing a role from a member : `delete-role`
 
-Removes a role from a member. User can delete multiple roles at once.
+Removes a role from a member.
 
 Format: `delete-role INDEX r/ROLE...`
 
-- User has to either run `list` command or `list-sc-members sc/SUBCOMMITTEE` command
-  first to display members.
-- Unable to remove a role when displaying list of subcommittee.
+Required view: member list
+
 - The index refers to the index number shown in the displayed list.
 - The index **must be a positive integer** 1, 2, 3, …​
 - User can delete multiple roles for a member at the same time.
@@ -283,6 +296,8 @@ Examples:
 Finds members whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
+
+Required view: any
 
 - The search is case-insensitive, e.g `tan` will match `Tan`
 - The order of the keyword does not matter e.g `tan John` will match `John Tan`
