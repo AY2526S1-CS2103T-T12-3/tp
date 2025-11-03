@@ -8,7 +8,6 @@ import static seedu.excolink.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_SUBCOM;
-import static seedu.excolink.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 
 import java.util.Collection;
 import java.util.Collections;
