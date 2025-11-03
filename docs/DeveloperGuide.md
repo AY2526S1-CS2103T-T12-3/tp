@@ -168,9 +168,9 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedExcoLink`. It extends `ExcoLink` with an undo/redo history, stored internally as an `excoLinkStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-- `VersionedExcoLink#commit()` — Saves the current ExcoLink book state in its history.
-  - `VersionedExcoLink#undo()` — Restores the previous ExcoLink book state from its history.
-  - `VersionedExcoLink#redo()` — Restores a previously undone ExcoLink book state from its history.
+- `VersionedExcoLink#commit()` — Saves the current ExcoLink state in its history.
+  - `VersionedExcoLink#undo()` — Restores the previous ExcoLink state from its history.
+  - `VersionedExcoLink#redo()` — Restores a previously undone ExcoLink state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitExcoLink()`, `Model#undoExcoLink()` and `Model#redoExcoLink()` respectively.
 
