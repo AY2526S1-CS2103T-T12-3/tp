@@ -254,7 +254,9 @@ Format: `assign-role INDEX r/ROLE...`
 Required view: member list
 
 - Unable to assign role which member already has
-- Roles are case-insensitive
+- Roles are case-insensitive.
+- Roles can only contain letters, numbers, spaces, hyphens (`-`), ampersands (`&`), and parentheses (`(` and `)`).
+- Roles cannot be blank.
 - The index refers to the index number shown in the displayed list.
 - The index **must be a positive integer** 1, 2, 3, …​
 - User can assign multiple roles for a member at the same time.
