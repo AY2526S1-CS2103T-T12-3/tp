@@ -1,6 +1,9 @@
 package seedu.excolink.logic.parser;
 
 import static seedu.excolink.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.excolink.logic.Messages.MESSAGE_MISSING_EMAIL;
+import static seedu.excolink.logic.Messages.MESSAGE_MISSING_NAME;
+import static seedu.excolink.logic.Messages.MESSAGE_MISSING_PHONE;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.excolink.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -33,9 +36,20 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_ROLE, PREFIX_SUBCOM);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+
+        if (argMultimap.getValue(PREFIX_NAME).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_MISSING_NAME, AddCommand.MESSAGE_USAGE));
+        }
+
+        if (argMultimap.getValue(PREFIX_PHONE).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_MISSING_PHONE, AddCommand.MESSAGE_USAGE));
+        }
+
+        if (argMultimap.getValue(PREFIX_EMAIL).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_MISSING_EMAIL, AddCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SUBCOM);
