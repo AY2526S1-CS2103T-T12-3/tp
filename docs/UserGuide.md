@@ -41,7 +41,7 @@ optimized for use via a Command Line Interface (CLI)** while still having the be
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**information_source: Notes about the command format:**<br>
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -88,7 +88,7 @@ Adds a member to ExcoLink.
 Format: `add n/NAME p/PHONE e/EMAIL [sc/SUBCOMMITEE] [r/ROLE]...`
 
 - Unable to add member with the same name(case-insensitive) and same phone number.
-- Email provided must have a valid Top Level Domain e.g .com, .sg
+- Email provided must have a domain e.g @gmail, and also a valid Top Level Domain e.g .com, .sg.
 - If currently in the subcommittee list view, running this command will switch to the member list view.
 
 Required view: any
