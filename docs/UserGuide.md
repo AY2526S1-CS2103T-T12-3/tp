@@ -88,6 +88,7 @@ Adds a member to ExcoLink.
 Format: `add n/NAME p/PHONE e/EMAIL [sc/SUBCOMMITEE] [r/ROLE]...`
 
 - Unable to add member with the same name(case-insensitive) and same phone number.
+- Email provided must have a valid Top Level Domain e.g .com, .sg
 - If currently in the subcommittee list view, running this command will switch to the member list view.
 
 Required view: any
