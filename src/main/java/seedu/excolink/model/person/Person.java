@@ -98,7 +98,8 @@ public class Person {
         String thisPersonName = getName().fullName.replaceAll("\\s+", " ").toLowerCase();
         String otherPersonName = otherPerson.getName().fullName.replaceAll("\\s+", " ").toLowerCase();
 
-        return otherPersonName.equals(thisPersonName);
+        return otherPersonName.equals(thisPersonName)
+                && phone.equals(otherPerson.phone);
     }
 
     /**
