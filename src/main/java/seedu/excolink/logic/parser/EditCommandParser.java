@@ -18,6 +18,7 @@ import seedu.excolink.logic.commands.EditCommand;
 import seedu.excolink.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.excolink.logic.parser.exceptions.ParseException;
 import seedu.excolink.model.role.Role;
+import seedu.excolink.model.subcom.Subcom;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -55,9 +56,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         parseRolesForEdit(argMultimap.getAllValues(PREFIX_ROLE)).ifPresent(editPersonDescriptor::setRoles);
-        if (argMultimap.getValue(PREFIX_SUBCOM).isPresent()) {
-            editPersonDescriptor.setSubcom(ParserUtil.parseSubcom(argMultimap.getValue(PREFIX_SUBCOM).get()));
-        }
+        parseSubcomForEdit(argMultimap.getValue(PREFIX_SUBCOM)).ifPresent(editPersonDescriptor::setSubcom);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -79,6 +78,19 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> roleSet = roles.size() == 1 && roles.contains("") ? Collections.emptySet() : roles;
         return Optional.of(ParserUtil.parseRoles(roleSet));
+    }
+
+    private Optional<Subcom> parseSubcomForEdit(Optional<String> subcom) throws ParseException {
+        assert subcom != null;
+        if (subcom.isPresent()) {
+            if (subcom.get().isEmpty()) {
+                return Optional.of(Subcom.NOSUBCOM);
+            } else {
+                return Optional.of(ParserUtil.parseSubcom(subcom.get()));
+            }
+        } else {
+            return Optional.empty();
+        }
     }
 
 }
