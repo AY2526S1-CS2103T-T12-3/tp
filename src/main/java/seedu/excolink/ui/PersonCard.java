@@ -48,13 +48,13 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
         subcom.setText(person.getSubcom().value);
-        subcom.setStyle(person.getSubcom().equals(Subcom.NOSUBCOM) ? "-fx-font-weight: normal;" : ("-fx-font-weight: bold;"));
+        subcom.setStyle(person.getSubcom().equals(Subcom.NOSUBCOM) ? "-fx-font-weight: normal;"
+                                                                   : ("-fx-font-weight: bold;"));
 
         person.getRoles().stream()
                 .sorted(Comparator.comparing(role -> role.roleName))
