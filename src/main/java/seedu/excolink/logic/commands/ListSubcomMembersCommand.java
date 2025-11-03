@@ -18,13 +18,13 @@ public class ListSubcomMembersCommand extends Command {
     public static final String COMMAND_WORD = "list-sc-members";
     public static final String COMMAND_WORD_ALIAS = "list-scm";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " Lists all persons who are members of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " Lists all members of "
             + "the specified Subcom (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: SUBCOM_NAME\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_SUBCOM + " Publicity\n"
             + "Alternative format example: " + COMMAND_WORD_ALIAS + " " + PREFIX_SUBCOM + " Publicity";;
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons in subcommittee: %s";
+    public static final String MESSAGE_SUCCESS = "Listed all members in subcommittee: %s";
 
     private final Subcom subcomToList;
 
