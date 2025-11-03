@@ -61,6 +61,7 @@ optimized for use via a Command Line Interface (CLI)** while still having the be
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
+- 
 ---
 
 ### Viewing help : `help`
@@ -80,6 +81,7 @@ Adds a member to ExcoLink.
 Format: `add n/NAME p/PHONE e/EMAIL [sc/SUBCOMMITEE] [r/ROLE]...`
 
 - Unable to add member with the same name(case-insensitive)
+- If currently in the subcommittee list view, running this command will switch to the member list view.
 
 Examples:
 
@@ -139,12 +141,14 @@ Examples:
 ### Creating a subcommittee : `add-sc`
 
 Creates a new subcommittee.
-Subcommittee names can only contain letters, numbers, spaces, hyphens (`-`), ampersands (`&`), and parentheses (`(` and `)`).
-Subcommittee names cannot be blank.
 
 Format: `add-sc sc/SUBCOMMITTEE`
 
-Examples:
+- Subcommittee names can only contain letters, numbers, spaces, hyphens (`-`), ampersands (`&`), and parentheses (`(` and `)`).
+- Subcommittee names cannot be blank.
+- If currently in the member list view, running this command will switch to the subcommittee list view.
+
+- Examples:
 
 - `add-sc sc/Publicity`
 
