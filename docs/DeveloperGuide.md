@@ -587,14 +587,14 @@ the **Actor** is the `user`, unless specified otherwise)
     - Steps 1b1-1b2 are repeated until the data entered is correct.
     
     Use case ends.
-  - 1c. System detects duplicate role to be added.
+  - 1c. User enters a role that is a duplicate of the member's existing role.
     - 1c1. System displays error.
     - 1c2. User enters new data.
     - Steps 1c1-1c2 are repeated until the data entered is correct.
       
     Use case ends.
-  - 1d. User enters User enters multiple roles, with one ore more duplicates.
-    - 1d1. System detects the duplicate roles and rejects the command entirely.
+  - 1d. User enters multiple roles, of which one or more are duplicates of the member's existing role(s).
+    - 1d1. System rejects the command with an error and adds none of the roles.
     - 1d2. User enters new data.
     - Steps 1d1-1d2 are repeated until the data entered is correct.
       
@@ -632,7 +632,7 @@ the **Actor** is the `user`, unless specified otherwise)
   
     Use case ends.
 - 1c. User enters multiple roles, with 1 or more invalid roles.
-  - 1c1. System detects the invalid error and rejects the command entirely.
+  - 1c1. System rejects the command with an error and deletes none of the roles.
   - 1c2. User enters new data.
   - Steps 1c1-1c2 are repeated until the data entered is correct.
 
