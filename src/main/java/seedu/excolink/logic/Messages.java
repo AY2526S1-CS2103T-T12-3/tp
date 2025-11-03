@@ -27,10 +27,10 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_SUBCOM_NAME = "The subcommittee provided does not exist";
     public static final String MESSAGE_WRONG_DISPLAY_ENTITY_FOR_PERSON_COMMAND =
-            "This command cannot be used in the current view. Please switch to the person list first.\n"
+            "This command cannot be used in the current view. Please switch to the member list first.\n"
             + "Command: list";
     public static final String MESSAGE_WRONG_DISPLAY_ENTITY_FOR_SUBCOM_COMMAND =
-            "This command cannot be used in the current view. Please switch to the subcom list first.\n"
+            "This command cannot be used in the current view. Please switch to the subcommittee list first.\n"
             + "Command: list-sc";
 
     /**

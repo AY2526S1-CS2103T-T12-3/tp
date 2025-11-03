@@ -12,7 +12,7 @@ public class ListSubcomsCommand extends Command {
 
     public static final String COMMAND_WORD = "list-sc";
 
-    public static final String MESSAGE_SUCCESS = "Listed all subcoms";
+    public static final String MESSAGE_SUCCESS = "Listed all subcommittees";
 
 
     @Override
