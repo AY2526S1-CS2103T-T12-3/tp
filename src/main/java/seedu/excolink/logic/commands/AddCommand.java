@@ -13,6 +13,7 @@ import seedu.excolink.logic.Messages;
 import seedu.excolink.logic.commands.exceptions.CommandException;
 import seedu.excolink.model.Model;
 import seedu.excolink.model.person.Person;
+import seedu.excolink.model.person.Phone;
 import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.model.subcom.exceptions.SubcomNotFoundException;
 import seedu.excolink.ui.DisplayEntity;
@@ -68,7 +69,12 @@ public class AddCommand extends Command {
 
         model.addPerson(toAdd);
         model.setDisplayEntity(DisplayEntity.PERSON);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        String successMessage = String.format(MESSAGE_SUCCESS, Messages.format(toAdd));
+        if (toAdd.getPhone().hasNonNumericCharacters()) {
+            successMessage += "\n" + Phone.MESSAGE_NON_NUMERIC_WARNING;
+        }
+
+        return new CommandResult(successMessage);
     }
 
     @Override

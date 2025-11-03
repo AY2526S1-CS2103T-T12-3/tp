@@ -11,8 +11,10 @@ public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Phone numbers should be at least 3 characters long";
+    public static final String MESSAGE_NON_NUMERIC_WARNING =
+            "Warning: Phone number contains non-numeric characters, which may not follow standard conventions.";
+    public static final String VALIDATION_REGEX = ".{3,}";
     public final String value;
 
     /**
@@ -31,6 +33,13 @@ public class Phone {
      */
     public static boolean isValidPhone(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if this phone number contains non-numeric characters.
+     */
+    public boolean hasNonNumericCharacters() {
+        return !value.matches("\\d+");
     }
 
     @Override

@@ -102,7 +102,13 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        String successMessage = String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+        if (editPersonDescriptor.getPhone().isPresent()
+                && editedPerson.getPhone().hasNonNumericCharacters()) {
+            successMessage += "\n" + Phone.MESSAGE_NON_NUMERIC_WARNING;
+        }
+
+        return new CommandResult(successMessage);
     }
 
     /**
