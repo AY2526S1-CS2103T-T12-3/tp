@@ -87,7 +87,8 @@ Adds a member to ExcoLink.
 
 Format: `add n/NAME p/PHONE e/EMAIL [sc/SUBCOMMITEE] [r/ROLE]...`
 
-- Unable to add member with the same name(case-insensitive) and same phone number.
+- Unable to add member with the same name (case-insensitive) and same phone number as an existing member.
+- `NAME` should only contain alphanumeric characters, apostrophes (`'`), hyphens (`-`) and spaces, and it should not be blank.
 - If currently in the subcommittee list view, running this command will switch to the member list view.
 
 Required view: any
