@@ -727,4 +727,9 @@ Team size: 5
     Currently, member names are not allowed to contain slashes (`/`) as it is used as a command delimiter. However, 
 this prevents adding valid values like `s/o`. We plan to change the command delimiter to another symbol such as
 `=` or `:` which are extremely unlikely, if not impossible, to be a valid part of a name. 
-2. **Implement split-screen view**:
+2. **Implement split-screen view for member list and subcommittee list**:
+   Currently, our GUI can only display one list view at a time. As such, certain commands can be run only in the member
+list view, or only in the subcommittee list view. In such cases, the user must use `list` to switch to the member list 
+view and `list-sc` to switch to the subcommittee list view. This may pose a slight inconvenience to some users. We plan 
+to implement a split-screen view that displays the member list on the left and the subcommittee list on the right, 
+allowing the user to view both lists at once and execute any command at any time.
