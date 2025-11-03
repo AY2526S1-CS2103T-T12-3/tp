@@ -50,7 +50,8 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + "hubby*"; // '*' not allowed in roles
-    public static final String INVALID_SUBCOM_DESC = " " + PREFIX_SUBCOM + "/n"; // empty string not allowed for subcommittees
+    public static final String INVALID_SUBCOM_DESC = " " + PREFIX_SUBCOM + "/n"; // empty string not allowed for
+    // subcommittees
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
