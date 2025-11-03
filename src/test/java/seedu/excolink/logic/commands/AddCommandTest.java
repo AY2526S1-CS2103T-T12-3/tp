@@ -18,6 +18,7 @@ import seedu.excolink.model.ExcoLink;
 import seedu.excolink.model.ModelStub;
 import seedu.excolink.model.ReadOnlyExcoLink;
 import seedu.excolink.model.person.Person;
+import seedu.excolink.model.person.Phone;
 import seedu.excolink.model.subcom.Subcom;
 import seedu.excolink.testutil.PersonBuilder;
 import seedu.excolink.ui.DisplayEntity;
@@ -79,6 +80,16 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(ALICE);
         String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
         assertEquals(expected, addCommand.toString());
+    }
+
+    @Test
+    public void execute_personWithNonNumericPhone_addsSuccessfullyWithWarning() throws Exception {
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Person validPerson = new PersonBuilder().withPhone("+65-9123-4567").build();
+
+        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+
+        assertTrue(commandResult.getFeedbackToUser().contains(Phone.MESSAGE_NON_NUMERIC_WARNING));
     }
 
     /**
