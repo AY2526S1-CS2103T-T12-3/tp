@@ -757,22 +757,23 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
 
 ### Creating a subcommittee
+
 1. Creating a new subcommittee
-    1. Prerequisites: ExcoLink does not already contain a subcommittee named "Logistics" (case-insensitive).
-   
+    1. Prerequisites: ExcoLink does not already contain a subcommittee "Logistics" (case-insensitive).
+
     1. Test case: `add-sc sc/Logistics`  
        Expected: If not already in subcommittee list view, GUI switches to subcommittee list view. New subcommittee
        "Logistics" is added to the list.
-   
+
     1. Test case: `add-sc sc/UI/UX`  
-      Expected:  No subcommittee is added and list view does not change. Error shown in status message indicating that
+       Expected:  No subcommittee is added and list view does not change. Error shown in status message indicating that
        the subcommittee name is invalid.
-   
+
 
 2. Attempting to create a duplicate subcommittee
-    1. Prerequisites: ExcoLink already contains a subcommittee named "Tech" (case-insensitive). 
+    1. Prerequisites: ExcoLink already contains a subcommittee "Tech" (case-insensitive).
        The sample data should already guarantee this.
-   
+
     1. Test case: `add-sc sc/Tech`  
        Expected: No subcommittee is added and list view does not change. Error shown in status message indicating that
        the subcommittee already exists.
@@ -781,15 +782,25 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
 
 ### Listing all subcommittees
-1. Running command to list all subcommittees while initially displaying list of members.
+
+1. Running command to list all subcommittees while initially displaying list of members
     1. Prerequisites: List all members using the `list` command.
-   
-    1. Test case: `list-sc`  
+
+    1. Enter: `list-sc`  
        Expected: List of subcommittees is displayed. List of members is no longer displayed.
-   
 
 ### Deleting a subcommittee
 
+1. Deleting an existing subcommittee that has one or more members assigned to it.
+    1. Prerequisites: As per sample data, ExcoLink contains a subcommittee "Tech" with members Alex Yeoh and David Li
+       assigned to it. The subcommittee has display index 1 in the subcommittee list. Next, the user must switch to the
+       subcommittee list view using `list-sc`.
+
+    1. Enter: `delete-sc 1`  
+       Expected: The subcommittee "Tech" is deleted from the list.
+
+    1. Next, enter: `list`  
+       Expected: List of members is displayed. Members Alex Yeoh and David Li are now shown to have no subcommittee.
 
 ### Saving data
 
