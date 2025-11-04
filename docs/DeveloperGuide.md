@@ -778,7 +778,6 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-
 ### Assigning a role to a member
 
 1. Assigning roles to a member
@@ -855,6 +854,21 @@ testers are expected to do more *exploratory* testing.
 
     1. Next, enter: `list`  
        Expected: List of members is displayed. Members Alex Yeoh and David Li are now shown to have no subcommittee.
+       
+       
+### Assign a member to a subcommittee
+
+1. Assign a member to a specified subcommittee
+
+    1. Prerequisites: List all members using the `list` command.
+       At least one member in the list, at least one subcommittee has been created
+    
+    1. Test case: `assign-sc 1 sc/Tech`<br>
+        Expected: The first member in the list will be assigneed to the Tech subcommittee..
+    1. Test case: `assign-sc 0 sc/Tech`<br>
+        Expected: An error message is displayed as the index given is invalid.
+    1. Test case: `assign-sc 1 sc/INVALID_SUBCOM`<br>
+        Expected: An error messgae is displayed as the subcommittee specified is invalid
 
 ### Unassigning a member from a subcommittee
 
