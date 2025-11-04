@@ -757,6 +757,112 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
+
+### Assigning a role to a member
+
+1. Assigning roles to a member
+
+    1. Prerequisites: List all members using the `list` command. At least one member in the list.
+
+    1. Test case: `assign-role 1 r/team lead r/treasurer`<br>
+       Expected: First member in the list is assigned the roles "team lead" and "treasurers".
+
+    1. Test case: `assign-role 0 r/team lead`<br>
+       Expected: No role is assigned to a member due to the invalid index input not in the list. An error message is displayed.
+
+    1. Test case: `assign-role 1 r/`<br>
+       Expected: No role is assigned to a member due to the invalid role input. An error message is displayed.
+
+### Deleting a role of a member
+
+1. Deleting roles of a member
+
+    1. Prerequisites: List all members using the `list` command. At least one member in the list and has roles assigned (eg "team lead" and "treasurer").
+
+    1. Test case: `delete-role 1 r/team lead r/treasurer`<br>
+       Expected: The roles "team lead" and "treasurer" of the first member in the list will be removed.
+
+    1. Test case: `delete-role 0 r/team lead`<br>
+       Expected: No role is removed from a member due to the invalid index input not in the list. An error message is displayed.
+
+    1. Test case: `delete-role 1 r/director`<br>
+       Expected: An error message will be displayed as the specified member does not have the specified role.
+
+
+### Creating a subcommittee
+
+1. Creating a new subcommittee
+    1. Prerequisites: ExcoLink does not already contain a subcommittee "Logistics" (case-insensitive).
+
+    1. Test case: `add-sc sc/Logistics`  
+       Expected: If not already in subcommittee list view, GUI switches to subcommittee list view. New subcommittee
+       "Logistics" is added to the list.
+
+    1. Test case: `add-sc sc/UI/UX`  
+       Expected:  No subcommittee is added and list view does not change. Error shown in status message indicating that
+       the subcommittee name is invalid.
+
+
+2. Attempting to create a duplicate subcommittee
+    1. Prerequisites: ExcoLink already contains a subcommittee "Tech" (case-insensitive).
+       The sample data should already guarantee this.
+
+    1. Test case: `add-sc sc/Tech`  
+       Expected: No subcommittee is added and list view does not change. Error shown in status message indicating that
+       the subcommittee already exists.
+
+    1. Test case: `add-sc sc/tEch`  
+       Expected: Similar to previous.
+
+### Listing all subcommittees
+
+1. Running command to list all subcommittees while initially displaying list of members
+    1. Prerequisites: List all members using the `list` command.
+
+    1. Enter: `list-sc`  
+       Expected: List of subcommittees is displayed. List of members is no longer displayed.
+
+### Deleting a subcommittee
+
+1. Deleting an existing subcommittee that has one or more members assigned to it.
+    1. Prerequisites: As per sample data, ExcoLink contains a subcommittee "Tech" with members Alex Yeoh and David Li
+       assigned to it. The subcommittee has display index 1 in the subcommittee list. Next, the user must switch to the
+       subcommittee list view using `list-sc`.
+
+    1. Enter: `delete-sc 1`  
+       Expected: The subcommittee "Tech" is deleted from the list.
+
+    1. Next, enter: `list`  
+       Expected: List of members is displayed. Members Alex Yeoh and David Li are now shown to have no subcommittee.
+
+### Unassigning a member from a subcommittee
+
+1. Unassigning a member from a subcommittee
+
+    1. Prerequisites: List all members using the `list` command.
+       At least one member in the list, at least one subcommittee has been created and the member is in that subcommittee.
+
+    1. Test case: `unassign-sc 1`<br>
+       Expected: The first member in the list will be removed from their subcommittee.
+    1. Test case: `unassign-sc 0`<br>
+       Expected: An error message is displayed as the index given is invalid.
+    1. Test case: `unassign-sc 4`<br>
+       Expected: An error message is displayed as member specified is not in any subcommittee. An error message is shown.
+
+### Listing members in a subcommittee
+
+1. Listing members of a specific subcommittee
+
+    1. Prerequisites: List all members using the `list` command or list all subcommittees using `list-sc` command.
+       At least one subcommittee exists in either list views.
+
+    1. Test case: `list-sc-members sc/Tech` <br>
+       Expected: Displays only members belonging to the Tech subcommittee. Success message is displayed.
+       Timestamp in the status bar is updated.
+
+    1. Other incorrect list subcom members commands to try: `list-sc-members`, `list-sc-members sc/INVALID_SUBCOM`<br>
+       Expected: No subcommittee member displayed. Error details shown in the status message. Status bar remains the same.
+
 ### Saving data
 
 1. Dealing with missing data files
@@ -771,6 +877,8 @@ testers are expected to do more *exploratory* testing.
     1. Corrupt the `data/excoLink.json` file.
     2. Relaunch the app.
        Expected: The app launches with empty data.
+
+---
 
 ## **Appendix: Planned Enhancements**
 
