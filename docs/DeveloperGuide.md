@@ -740,6 +740,27 @@ testers are expected to do more *exploratory* testing.
 
         1. Re-launch the app by double-clicking the jar file.<br>
            Expected: The most recent window size and location are retained.
+       
+### Adding a member
+
+1. Adding a member with the necessary details
+
+    1. Prerequisites: List all members using the `list` command. 
+
+    1. Test case: `add n/David Laid p/91133915 e/davidlaid16@gmail.com`<br>
+       Expected: A member "David Laid" is added to the list.
+
+    1. Test case: `add n/David Laid e/davidlaid16@gmail.com`<br>
+       Expected: No new member is added due to missing phone number input field. Missing phone number error message will be displayed.
+   
+2. Attempting to add a duplicate member
+
+    1. Prerequisites: ExcoLink already contains a member "David Laid" with the details "91133915" and "davidlaid16@gmail.com"
+   
+    1. Test case: `add n/David Laid p/91133915 e/davidlaid16@gmail.com`<br>
+       Expected: No new member is added as a member with the same phone number already exists. Duplicate error message will be displayed.
+
+
 
 ### Deleting a member
 
@@ -824,7 +845,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a subcommittee
 
-1. Deleting an existing subcommittee that has one or more members assigned to it.
+1. Deleting an existing subcommittee that has one or more members assigned to it
     1. Prerequisites: As per sample data, ExcoLink contains a subcommittee "Tech" with members Alex Yeoh and David Li
        assigned to it. The subcommittee has display index 1 in the subcommittee list. Next, the user must switch to the
        subcommittee list view using `list-sc`.
