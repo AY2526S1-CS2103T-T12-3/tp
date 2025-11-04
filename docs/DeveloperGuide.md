@@ -757,6 +757,17 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
+### Listing members in a subcommittee
+
+1. Listing members of a specific subcommittee
+   
+    1. Test case: `list-sc-members sc/Tech` <br>
+       Expected: Displays only members belonging to the Tech subcommittee. Success message is displayed.
+       Timestamp in the status bar is updated.
+
+    1. Other incorrect list subcom members commands to try: `list-sc-members`, `ist-sc-members sc/INVALID_SUBCOM`<br>
+       Expected: No subcommittee member displayed. Error details shown in the status message. Status bar remains the same.
+
 ### Saving data
 
 1. Dealing with missing data files
