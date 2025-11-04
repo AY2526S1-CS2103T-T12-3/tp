@@ -757,6 +757,20 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
+### Unassigning a member from a subcommittee
+
+1. Unassigning a member from a subcommittee
+
+    1. Prerequisites: List all members using the `list` command. 
+   At least one member in the list, at least one subcommittee has been created and the member is in that subcommittee.
+    
+    1. Test case: `unassign-sc 1`<br>
+       Expected: The first member in the list will be removed from their subcommittee.
+    1. Test case: `unassign-sc 0`<br>
+       Expected: An error message is displayed as the index given is invalid.
+    1. Test case: `unassign-sc 4`<br>
+       Expected: An error message is displayed as member specified is not in any subcommittee. An error message is shown.
+
 ### Saving data
 
 1. Dealing with missing data files
