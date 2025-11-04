@@ -802,6 +802,34 @@ testers are expected to do more *exploratory* testing.
     1. Next, enter: `list`  
        Expected: List of members is displayed. Members Alex Yeoh and David Li are now shown to have no subcommittee.
 
+### Unassigning a member from a subcommittee
+
+1. Unassigning a member from a subcommittee
+
+    1. Prerequisites: List all members using the `list` command. 
+   At least one member in the list, at least one subcommittee has been created and the member is in that subcommittee.
+    
+    1. Test case: `unassign-sc 1`<br>
+       Expected: The first member in the list will be removed from their subcommittee.
+    1. Test case: `unassign-sc 0`<br>
+       Expected: An error message is displayed as the index given is invalid.
+    1. Test case: `unassign-sc 4`<br>
+       Expected: An error message is displayed as member specified is not in any subcommittee. An error message is shown.
+
+### Listing members in a subcommittee
+
+1. Listing members of a specific subcommittee
+
+    1. Prerequisites: List all members using the `list` command or list all subcommittees using `list-sc` command. 
+       At least one subcommittee exists in either list views.
+   
+    1. Test case: `list-sc-members sc/Tech` <br>
+       Expected: Displays only members belonging to the Tech subcommittee. Success message is displayed.
+       Timestamp in the status bar is updated.
+
+    1. Other incorrect list subcom members commands to try: `list-sc-members`, `list-sc-members sc/INVALID_SUBCOM`<br>
+       Expected: No subcommittee member displayed. Error details shown in the status message. Status bar remains the same.
+
 ### Saving data
 
 1. Dealing with missing data files
