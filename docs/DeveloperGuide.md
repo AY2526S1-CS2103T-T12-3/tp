@@ -757,37 +757,6 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-### Assigning a role to a member
-
-1. Assigning roles to a member
-
-    1. Prerequisites: List all members using the `list` command. At least one member in the list.
-
-    1. Test case: `assign-role 1 r/team lead r/treasurer`<br>
-       Expected: First member in the list is assigned the roles "team lead" and "treasurers". 
-
-    1. Test case: `assign-role 0 r/team lead`<br>
-       Expected: No role is assigned to a member due to the invalid index input not in the list. An error message is displayed.  
-
-    1. Test case: `assign-role 1 r/`<br>
-   Expected: No role is assigned to a member due to the invalid role input. An error message is displayed.
-
-### Deleting a role of a member
-
-1. Deleting roles of a member
-
-    1. Prerequisites: List all members using the `list` command. At least one member in the list and has roles assigned (eg "team lead" and "treasurer").
-
-    1. Test case: `delete-role 1 r/team lead r/treasurer`<br>
-       Expected: The roles "team lead" and "treasurer" of the first member in the list will be removed. 
-
-    1. Test case: `delete-role 0 r/team lead`<br>
-       Expected: No role is removed from a member due to the invalid index input not in the list. An error message is displayed.
-
-    1. Test case: `delete-role 1 r/director`<br>
-       Expected: An error message will be displayed as the specified member does not have the specified role.
-
-
 ### Saving data
 
 1. Dealing with missing data files
