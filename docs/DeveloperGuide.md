@@ -749,13 +749,40 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `delete 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-       Timestamp in the status bar is updated.
 
     1. Test case: `delete 0`<br>
-       Expected: No member is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No member is deleted. Error details shown in the status message.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
+
+### Creating a subcommittee
+1. Creating a new subcommittee
+    1. Prerequisites: ExcoLink does not already contain a subcommittee named "Logistics" (case-insensitive).
+   
+    1. Test case: `add-sc sc/Logistics`  
+       Expected: If not already in subcommittee list view, GUI switches to subcommittee list view. New subcommittee
+       "Logistics" is added to the list.
+   
+    1. Test case: `add-sc sc/UI/UX`  
+      Expected:  No subcommittee is added and list view does not change. Error shown in status message indicating that
+       the subcommittee name is invalid.
+   
+
+2. Attempting to create a duplicate subcommittee
+    1. Prerequisites: ExcoLink already contains a subcommittee named "Tech" (case-insensitive). 
+       The sample data should already guarantee this.
+   
+    1. Test case: `add-sc sc/Tech`  
+       Expected: No subcommittee is added and list view does not change. Error shown in status message indicating that
+       the subcommittee already exists.
+
+    1. Test case: `add-sc sc/tEch`  
+      Expected: Similar to previous.
+
+### Listing all subcommittees
+
+### Deleting a subcommittee
 
 ### Saving data
 
@@ -771,6 +798,8 @@ testers are expected to do more *exploratory* testing.
     1. Corrupt the `data/excoLink.json` file.
     2. Relaunch the app.
        Expected: The app launches with empty data.
+
+---
 
 ## **Appendix: Planned Enhancements**
 
