@@ -749,12 +749,45 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `delete 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+       Timestamp in the status bar is updated.
 
     1. Test case: `delete 0`<br>
-       Expected: No member is deleted. Error details shown in the status message.
+       Expected: No member is deleted. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
+
+
+### Assigning a role to a member
+
+1. Assigning roles to a member
+
+    1. Prerequisites: List all members using the `list` command. At least one member in the list.
+
+    1. Test case: `assign-role 1 r/team lead r/treasurer`<br>
+       Expected: First member in the list is assigned the roles "team lead" and "treasurers".
+
+    1. Test case: `assign-role 0 r/team lead`<br>
+       Expected: No role is assigned to a member due to the invalid index input not in the list. An error message is displayed.
+
+    1. Test case: `assign-role 1 r/`<br>
+       Expected: No role is assigned to a member due to the invalid role input. An error message is displayed.
+
+### Deleting a role of a member
+
+1. Deleting roles of a member
+
+    1. Prerequisites: List all members using the `list` command. At least one member in the list and has roles assigned (eg "team lead" and "treasurer").
+
+    1. Test case: `delete-role 1 r/team lead r/treasurer`<br>
+       Expected: The roles "team lead" and "treasurer" of the first member in the list will be removed.
+
+    1. Test case: `delete-role 0 r/team lead`<br>
+       Expected: No role is removed from a member due to the invalid index input not in the list. An error message is displayed.
+
+    1. Test case: `delete-role 1 r/director`<br>
+       Expected: An error message will be displayed as the specified member does not have the specified role.
+
 
 ### Creating a subcommittee
 
@@ -806,9 +839,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Unassigning a member from a subcommittee
 
-    1. Prerequisites: List all members using the `list` command. 
-   At least one member in the list, at least one subcommittee has been created and the member is in that subcommittee.
-    
+    1. Prerequisites: List all members using the `list` command.
+       At least one member in the list, at least one subcommittee has been created and the member is in that subcommittee.
+
     1. Test case: `unassign-sc 1`<br>
        Expected: The first member in the list will be removed from their subcommittee.
     1. Test case: `unassign-sc 0`<br>
@@ -820,9 +853,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Listing members of a specific subcommittee
 
-    1. Prerequisites: List all members using the `list` command or list all subcommittees using `list-sc` command. 
+    1. Prerequisites: List all members using the `list` command or list all subcommittees using `list-sc` command.
        At least one subcommittee exists in either list views.
-   
+
     1. Test case: `list-sc-members sc/Tech` <br>
        Expected: Displays only members belonging to the Tech subcommittee. Success message is displayed.
        Timestamp in the status bar is updated.
