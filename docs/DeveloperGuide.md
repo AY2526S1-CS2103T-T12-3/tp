@@ -915,6 +915,62 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
+---
+
+## **Appendix: Effort**
+
+The development of **ExcoLink** required a moderate-to-high level of effort, extending beyond the scope of the original
+AddressBook Level 3 (AB3) project. While AB3 manages a single entity type (*Person*), ExcoLink was designed to handle 
+multiple interconnected entity types — namely **Members (Persons)**, **Subcommittees**, and **Roles**. 
+This multi-entity architecture introduced significant complexity in terms of model relationships, data integrity, and command dependencies.
+
+### **Difficulty Level and Challenges Faced**
+
+**Multi-Entity Management:**  
+Unlike AB3’s flat structure, ExcoLink maintains bidirectional relationships between members and subcommittees. Designing and maintaining synchronization between these entities required careful updates to both the model and storage layers.
+
+**Command and View Duality:**  
+Certain commands (e.g., `add-sc`, `assign-sc`, `unassign-sc`, `list-sc`) operate on specific list views 
+(member or subcommittee). This necessitated additional UI logic and the introduction of the *DisplayEntity* system 
+to ensure consistent behavior across views.
+
+**User Experience and Feedback:**  
+To improve usability, commands were augmented to automatically switch views when necessary
+(e.g., creating a subcommittee switches to the subcommittee list view). Ensuring that these transitions were smooth and bug-free was a challenge.
+
+**Data Consistency and Validation:**  
+Implementing safeguards for operations such as deleting subcommittees (while ensuring affected members are updated) demanded a deeper understanding of model mutability and defensive copying.
+
+---
+
+### **Effort and Team Contributions**
+
+The team devoted substantial effort to extending the core architecture while maintaining backward compatibility with AB3 components such as command parsing, undo/redo mechanisms, and JSON storage. Each member contributed across both feature development and code quality assurance (testing, documentation, refactoring).
+
+Main areas of work included:
+
+- Implementation of new commands (`eg add-sc`, `delete-sc`, `assign-sc`, `unassign-sc`, `list-sc`)
+- Integration of multi-view UI and display logic
+- Extensive testing for model and storage interactions
+- Rewriting documentation (User Guide, Developer Guide, Test instructions)
+
+---
+
+### **Achievements**
+
+ExcoLink successfully extends the AB3 foundation into a **multi-entity management system** that enables 
+university club executive committees to efficiently manage members and subcommittees.  
+The team achieved:
+
+- A functional CLI-driven management tool with dual entity views
+- Clean integration of multiple entity types
+- A stable, testable, and maintainable codebase aligned with AB3 design principles
+
+Overall, while AB3 provided a solid foundation, ExcoLink’s multi-entity architecture and enhanced user workflows
+demanded significant design, implementation, and integration effort beyond the base level.
+
+
+
 ## **Appendix: Planned Enhancements**
 
 Team size: 5
@@ -927,6 +983,5 @@ Team size: 5
    Currently, our GUI can only display one list view at a time. As such, certain commands can be run only in the member
    list view, or only in the subcommittee list view. In such cases, the user must use `list` to switch to the member
    list view and `list-sc` to switch to the subcommittee list view. This may pose a slight inconvenience to some users.
-   We plan
-   to implement a split-screen view that displays the member list on the left and the subcommittee list on the right,
+   We plan to implement a split-screen view that displays the member list on the left and the subcommittee list on the right,
    allowing the user to view both lists at once and execute any command at any time.
