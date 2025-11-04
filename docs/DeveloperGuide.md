@@ -787,3 +787,8 @@ Team size: 5
    We plan
    to implement a split-screen view that displays the member list on the left and the subcommittee list on the right,
    allowing the user to view both lists at once and execute any command at any time.
+
+### **Instructions for Manual Testing**
+
+3. Assign Alex Yeoh to Design subcommittee
+    - `assign-sc 1 sc/Design`
