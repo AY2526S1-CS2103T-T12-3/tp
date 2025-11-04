@@ -778,11 +778,18 @@ testers are expected to do more *exploratory* testing.
        the subcommittee already exists.
 
     1. Test case: `add-sc sc/tEch`  
-      Expected: Similar to previous.
+       Expected: Similar to previous.
 
 ### Listing all subcommittees
+1. Running command to list all subcommittees while initially displaying list of members.
+    1. Prerequisites: List all members using the `list` command.
+   
+    1. Test case: `list-sc`  
+       Expected: List of subcommittees is displayed. List of members is no longer displayed.
+   
 
 ### Deleting a subcommittee
+
 
 ### Saving data
 
